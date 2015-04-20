@@ -1,0 +1,72 @@
+Mets toutes les cases dans le meme gameObject vide "Cases",
+ajoute un script global qui gère toute la génération sur le gameobject Cases.
+
+
+Arborescence :
+- empty gameObject Cases (script de génération global à mettre ici!)
+	- empty gameObject Office (script de repartition des objets à mettre ici!)
+		- prefab Case
+		- prefab Case
+		- prefab Case
+		- etc.
+
+	- empty gameObject restroom (script de repartition des objets à mettre ici!)
+		- prefab Case
+		- prefab Case
+		- prefab Case
+		- etc.
+
+	- empty gameObject toilets (script d'initialisation à mettre ici!)
+		- prefab Case
+		- prefab Case
+
+	- empty gameObject boxes (script d'initialisation à mettre ici!)
+		- prefab Case
+		- prefab Case
+		- etc.
+
+	- empty gameObject corridors (script de repartition des objets à mettre ici!)
+		- prefab Case
+		- prefab Case
+		- etc.
+
+
+Pour instancier dans un gameObject parent :
+gameobject.transform.parent()
+
+Les portes doivent donner sur des cases couloirs obligatoirement.
+
+
+1. Ajout de cases vides à la racine de l'Empty
+2. Création du bureau du boss. On choisit une case aléatoirement et on cherche autour d'elle. Tant qu'on ne trouve pas un pattern 2x3, on continue à chercher. 
+Dès qu'on trouve, on met les 6 en floorType "bureau" et les bouge vers l'empty Office. BossOfficeDone = true;
+3. Même procédé pour la salle de repos, avec un pattern 2x2. On les met dans l'empty Restroom. RestroomDone = true;
+4. on place les chiottes. 2x random parmi les cases restantes. On les met dans l'empty Toilets. ToiletsDone = true;
+5. On place les boxes. On les met dans l'empty Boxes. BoxesDone = true;
+6. On met le reste dans l'empty Corridor. CorridorsDone = true;
+
+
+Script parent "Cases" :
+bossOfficeDone = false;
+restroomDone = false;
+toiletsDone = false;
+boxesDone = false;
+corridorsDone = false;
+
+La génération se déclenche dès que des prefabs se trouvent à la racine.
+if(y'a des prefabs à la racine) sortThemOut();
+
+
+Scripts proceduraux pour les pièces spéciales:
+if (parent.variableCorrespondanteDone == true) {
+- met la bonne texture de sol, le tint dans la bonne couleur, supprime les murs inutiles, supprime des fenetres parmi les murs restants, ajoute la porte.
+- répartit les objets dans la scène, si besoin.
+
+
+Script Case:
+bool used = false;
+int floorType = 0; (0 = couloir/boxes, 1 = bureau, 2 = restroom, 3 = toilets)
+bool[] walls = {true, true, true, true};
+bool[] windows = {true, true, true, true};
+
+

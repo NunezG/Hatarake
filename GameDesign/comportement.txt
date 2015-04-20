@@ -1,0 +1,27 @@
+working == random(work(), wander());
+motivation == random(50) + 50
+
+Si motivation == 100, working = true;
+Si motivation == 0, working == false;
+
+Si working == true, toutes les 2 secondes:
+	- il a 6/8 chances de travailler sur son poste: work();
+	- il a 2/8 d'aller travailler ailleurs : goTo(photocopieuse);
+
+Si working == false,
+	- il choisit de façon équiprobable : lookTv(), drink(), facebook(), poop() et wander();
+
+Définitions : 
+	- lookTv() : aller se poser dans la salle de repos, goTo(sofa) -> anim assis
+	- drink() : prise d'un café, goTo(coffee) -> anim café
+	- facebook() : glande face à son pc, ne change rien visuellement.
+	- poop() : va chier, goTo(toilets) -> anim assis;
+	- wander() : se balade dans les cases de l'entreprise aléatoirement, choisit une nouvelle case toutes les 2 secondes.
+
+Toutes les x secondes, une annotation apparait indiquant la situation de l'employé. (à définir)
+
+suicidal = false;
+fatigue = 0;
+
+if fatigue == fatigueMAX, suicidal = true;
+if suicidal == true, goTo(suicidePoint) -> delete(self);
