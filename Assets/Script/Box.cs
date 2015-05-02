@@ -16,7 +16,7 @@ public class Box : MonoBehaviour {
 	
 	void OnTriggerEnter(Collider other)
 	{
-		print("SOnTriggerEnterOnTriggerEnterOnTriggerEnter"+other.name);
+		//print("SOnTriggerEnterOnTriggerEnterOnTriggerEnter"+other.name);
 
 
 	}
@@ -33,13 +33,13 @@ public class Box : MonoBehaviour {
 
 
 
-			print("START WORKING");
+			//print("START WORKING");
 
 
 
 			//other.GetComponentInChildren<Employe>().auTravail = true;
 
-			other.GetComponentInChildren<Employe>().Travaille();
+			other.GetComponent<Employe>().Travaille();
 				//gameObject.start () as Employe;
 						
 		}

@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &104202
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 436656}
+  - 114: {fileID: 11425116}
+  - 114: {fileID: 11464538}
+  m_Layer: 0
+  m_Name: Office
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &436656
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 104202}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11425116
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 104202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b94247a65ad76b94b8f01bc13e991c10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floorPrefab: {fileID: 197490, guid: 891b06afad8574a4b944f800dc32576d, type: 2}
+  NorthWallPrefab: {fileID: 122442, guid: 8becd65d7e35dbd4384d11dafa21ecf3, type: 2}
+  SouthWallPrefab: {fileID: 187882, guid: 720b3236547a63243bf33f196335d7e0, type: 2}
+  EastWallPrefab: {fileID: 152368, guid: fff28b78ed9278144b827e519203b945, type: 2}
+  WestWallPrefab: {fileID: 108030, guid: 59e34829f09d0a140b44570978712b1e, type: 2}
+  obstacles: []
+  size: 10
+  materials:
+  - {fileID: 2100000, guid: 41e79b74ecdc6b94d8bf3f15dd6fe4fa, type: 2}
+  - {fileID: 2100000, guid: 37d39d488f353ff4896cabd4999234da, type: 2}
+  - {fileID: 2100000, guid: 786797a61bc30e94591fd7bfed2532d3, type: 2}
+  - {fileID: 2100000, guid: d821f665a235eb948b81fb448614cb7e, type: 2}
+--- !u!114 &11464538
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 104202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 691a6ea7e442dd74e847c064eda21f11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WorkBoxTriggerPrefab: {fileID: 189560, guid: 393237592b185ef4e84324636574d7e9, type: 2}
+  ChillRoomsTriggerPrefab: {fileID: 189560, guid: d04482a4745db1948b92c042ba505a14,
+    type: 2}
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 104202}
+  m_IsPrefabParent: 1
