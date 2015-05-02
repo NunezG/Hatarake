@@ -95,9 +95,10 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 268217652}
-  - 114: {fileID: 268217651}
   - 114: {fileID: 268217653}
   - 114: {fileID: 268217654}
+  - 114: {fileID: 268217651}
+  - 114: {fileID: 268217655}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -113,9 +114,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 268217650}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c005479c72a8394989a33b13fe69b05, type: 3}
+  m_Script: {fileID: 11500000, guid: 8c8d6d9bb8d9f1146a130394c41940e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boxiePrefab: {fileID: 148582, guid: d0aed392c1b62374c9691d0e8c854478, type: 2}
+  nombreBoxies: 10
+  boxes: []
 --- !u!4 &268217652
 Transform:
   m_ObjectHideFlags: 0
@@ -149,12 +153,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 268217650}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d3457917cfc5b04db4bf31b8d5b0fff, type: 3}
+  m_Script: {fileID: 11500000, guid: 03bdb3bcbfc2fd94ab0d61ca9e48b8f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boxiePrefab: {fileID: 148582, guid: d0aed392c1b62374c9691d0e8c854478, type: 2}
-  nombreBoxies: 10
   officePrefab: {fileID: 11425116, guid: 3b60c55a572b5e441bc368feebaf2190, type: 2}
+--- !u!114 &268217655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 268217650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a89208f0ac3dd3747a243853bc28987a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &353888183
 GameObject:
   m_ObjectHideFlags: 0

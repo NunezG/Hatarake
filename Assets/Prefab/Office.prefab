@@ -9,7 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 436656}
   - 114: {fileID: 11425116}
-  - 114: {fileID: 11464538}
+  - 114: {fileID: 11439750}
   m_Layer: 0
   m_Name: Office
   m_TagString: Untagged
@@ -41,8 +41,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floorPrefab: {fileID: 197490, guid: 891b06afad8574a4b944f800dc32576d, type: 2}
-  NorthWallPrefab: {fileID: 122442, guid: 8becd65d7e35dbd4384d11dafa21ecf3, type: 2}
-  SouthWallPrefab: {fileID: 187882, guid: 720b3236547a63243bf33f196335d7e0, type: 2}
+  NorthWallPrefab: {fileID: 187882, guid: 720b3236547a63243bf33f196335d7e0, type: 2}
+  SouthWallPrefab: {fileID: 122442, guid: 8becd65d7e35dbd4384d11dafa21ecf3, type: 2}
   EastWallPrefab: {fileID: 152368, guid: fff28b78ed9278144b827e519203b945, type: 2}
   WestWallPrefab: {fileID: 108030, guid: 59e34829f09d0a140b44570978712b1e, type: 2}
   obstacles: []
@@ -52,7 +52,12 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 37d39d488f353ff4896cabd4999234da, type: 2}
   - {fileID: 2100000, guid: 786797a61bc30e94591fd7bfed2532d3, type: 2}
   - {fileID: 2100000, guid: d821f665a235eb948b81fb448614cb7e, type: 2}
---- !u!114 &11464538
+  - {fileID: 2100000, guid: 027d199bc1f4514419713567df9d4a07, type: 2}
+  nbBossRooms: 1
+  nbCoffeeRooms: 2
+  nbBathRooms: 2
+  nbBoxes: 7
+--- !u!114 &11439750
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

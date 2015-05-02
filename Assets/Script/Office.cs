@@ -7,11 +7,11 @@ public class Office : MonoBehaviour {
 
 	public List<GameObject> obstacles = new List<GameObject>();
 
-	Cell [,] grid;
+	public Cell [,] grid;
 	public int size = 10;
 	public Material[] materials;
 
-
+    public int nbBossRooms, nbCoffeeRooms, nbBathRooms, nbBoxes;
 	// Use this for initialization
 	void Start () {
 	
@@ -29,53 +29,48 @@ public class Office : MonoBehaviour {
 		for (int i =0; i<size; i++) 
 			for (int j =0; j<size; j++)
 				grid[i, j]= new Cell(this,i,j,Cell.CellType.Corridor);
-		int bossRoomTry = 10;
-		bool bossRoomPlaced = false;
-
-		fillArea (0, 0, size, size, Cell.CellType.Corridor, true,false);
-		fillArea (0, 0, 3, 2, Cell.CellType.Bossroom, true,true);
-		
-		fillArea (0,2, 1, 1, Cell.CellType.Corridor, true,true);
-		fillArea (0,3, 1, 1, Cell.CellType.Corridor, true,true);
-		fillArea (0,4, 1, 1, Cell.CellType.Corridor, true,true);
-		fillArea (0,5, 1, 1, Cell.CellType.Corridor, true,true);
-
-		
-		fillArea (4,0, 2, 2, Cell.CellType.Coffeeroom, true,true);
-		
-		fillArea (4,3, 2, 2, Cell.CellType.Bathroom, true,true);
-
-		
-		fillArea (8,8, 2, 2, Cell.CellType.Coffeeroom, true,true);
-		fillArea (6,5, 3, 3, Cell.CellType.Bathroom, true,true);
-
-		
-		fillArea (6,5, 3, 3, Cell.CellType.Bathroom, true,true);
-		fillArea (0,6, 4, 4, Cell.CellType.Coffeeroom, true,true);
-
-		
-		fillArea (7,0, 3, 3, Cell.CellType.Coffeeroom, true,true);
-		//fillArea (4,4, 2, 2, Cell.CellType.Corridor, true,true);
-
-		/*while (bossRoomTry>0 && !bossRoomPlaced) {
-			bossRoomTry--;
-			bossRoomPlaced=placeBossRoom();
-		}*/
 
 
-		
+        fillArea(0, 0, 10, 10, Cell.CellType.Corridor, true); // on pose les murs
+        for (int i = 0; i < nbBossRooms; i++)
+        {
+            if (placeRoom(2, 3, Cell.CellType.Bossroom))
+                print("success");
+            else
+                print("defeat");
+        }
+
+
+        for (int i = 0; i < nbCoffeeRooms; i++)
+        {
+            if (placeRoom(2, 2, Cell.CellType.Coffeeroom))
+                print("success");
+            else
+                print("defeat");
+        }
+
+        for (int i = 0; i < nbBathRooms; i++)
+        {
+            if (placeRoom(2, 2, Cell.CellType.Bathroom))
+                print("success");
+            else
+                print("defeat");
+        }
+
+        for (int i = 0; i < nbBoxes; i++)
+        {
+            if (placeRoom(1, 1, Cell.CellType.Box))
+                print("success");
+            else
+                print("defeat");
+        }
+
 		for (int i =0; i<size; i++) 
 			for (int j =0; j<size; j++)
 				Create3DCell (i, j);
 
 	}
-	public void addCorresponding3DObject(){
-		
-		for (int i =0; i<size; i++) 
-			for (int j =0; j<size; j++)
-				grid[i, j]= new Cell(this,i,j,Cell.CellType.Corridor);
 
-	}
 
 	
 	private void Create3DCell (int x, int z) {
@@ -94,9 +89,12 @@ public class Office : MonoBehaviour {
 			case Cell.CellType.Coffeeroom :
 				newCell.GetComponent<Renderer>().material=materials[2];
 				break;
-			case Cell.CellType.Bathroom :
-				newCell.GetComponent<Renderer>().material=materials[3];
-				break;
+            case Cell.CellType.Bathroom:
+                newCell.GetComponent<Renderer>().material = materials[3];
+                break;
+            case Cell.CellType.Box:
+                newCell.GetComponent<Renderer>().material = materials[4];
+                break;
 		}
 		
 		obstacles.Add (newCell);
@@ -107,7 +105,7 @@ public class Office : MonoBehaviour {
 			newNorthWall.transform.Translate(new Vector3(x , 0f, z));
 			
 			obstacles.Add (newNorthWall);
-		}		
+		}
 		if (grid [x, z].wallSouth) {
 			GameObject newNSouthWall = Instantiate(SouthWallPrefab) as GameObject;
 			newNSouthWall.name = "SouthWall " + x + ", " + z;
@@ -115,7 +113,7 @@ public class Office : MonoBehaviour {
 
 			newNSouthWall.transform.Translate(new Vector3(x , 0f, z ));
 			obstacles.Add (newNSouthWall);
-		}		
+		}
 		if (grid [x, z].wallEast) {
 			GameObject newEastWall = Instantiate(EastWallPrefab) as GameObject;
 			newEastWall.name = "EastWall " + x + ", " + z;
@@ -123,7 +121,7 @@ public class Office : MonoBehaviour {
 
 			newEastWall.transform.Translate(new Vector3(x , 0f, z));
 			obstacles.Add (newEastWall);
-		}		
+		}
 		if (grid [x, z].wallWest) {
 			GameObject newWestWall = Instantiate(WestWallPrefab) as GameObject;
 			newWestWall.name = "WestWall " + x + ", " + z;
@@ -135,109 +133,211 @@ public class Office : MonoBehaviour {
 	}
 
 
-	public bool placeBossRoom(){
-		bool successfullyPlaced = true;
-		int posX = Random.Range (0, size);
-		int posY = Random.Range (0, size);
-		if (!collisionWithGrid (posX, posY, 2, 3))
-			fillArea (posX, posY, 2, 3, Cell.CellType.Bossroom,true,false);
-		else if (!collisionWithGrid (posX, posY, 3, 2))			
-			fillArea (posX, posY, 2, 3, Cell.CellType.Bossroom,true,false);
-		else
-			successfullyPlaced = false;
-
-		return successfullyPlaced;
-	}
-
-	public bool collisionWithGrid(int x,int y, int width, int height){
-		bool collision = true;
-		//si il ya au moins une cell de type corridor
-		for (int i =x; i<x+width; i++) 
-			for (int j =y; j<y+width; j++)
-				if(grid[i,j].cellType==Cell.CellType.Corridor) return collision ;
-		//si on ne trouve pas  AU MOINS UNE case de libre ( == corridor ) autour de cette position il y a aussi collision
-		bool noCellFree = true;
-		for (int i = x; i<x+width; i++) {
-			if (y!=0 && grid[i,y-1].cellType==Cell.CellType.Corridor)	noCellFree = false;			
-			if (y + height!= size && grid [i,y + height].cellType==Cell.CellType.Corridor) noCellFree = false;
-		}
-		for (int i = y; i<y+height; i++) {			
-			if (x!=0 && grid[x-1,i].cellType==Cell.CellType.Corridor)	noCellFree = false;			
-			if (x+width!=size && grid [x+width,i].cellType==Cell.CellType.Corridor) noCellFree = false;
-		}
-		if (noCellFree)
-			return collision;
-
-		// maintenant on remplie la zone en question
-		fillArea (x, y, width, height, Cell.CellType.Bossroom,false,false);
-		// et on verifie que nos corridors sont toujours bien tous connecte
-		if (!corridorsAllConnected ()) {// si ce n'est pas le cas
-			fillArea (x, y, width, height, Cell.CellType.Corridor, false,false); //on annule le remplissage
-			return collision; //et il ya collision
-		} else {
-			fillArea (x, y, width, height, Cell.CellType.Corridor, false,false); //on annule le remplissage
-			return !collision;
-		}
-
-	}
+    public bool placeRoom(int width, int height, Cell.CellType cellType)
+    {
+        bool roomForTheRoom = false;
+        List<Vector2> possiblePlacesForRoom = new List<Vector2>();
+        for (int i =0; i<size; i++)// on parcours l'intégralité de la grille
+            for (int j = 0; j < size; j++)
+            {
+                if (!collision(i, j, width, height))
+                    possiblePlacesForRoom.Add(new Vector2(i, j)); // on recupere les emplacements ou l'on peut poser notre piece
+            }
 
 
 
-	//methode renvoyant vrai si toutes les cases corridors sont bien connectees les unes aux autres, faux sinon
-	public bool corridorsAllConnected(){
-		
-		bool corridorsAintAllConnected = true;
+        if (possiblePlacesForRoom.Count > 0) // si on a trouve au moins un emplacement pour la salle
+        {
+            int rPlace = Random.Range(0, possiblePlacesForRoom.Count); // on en tire un au hasard
 
-		// nettoyage avant parcours ( à virer plus tard une fois que tous sera fait proprement
-		for (int i =0; i<size; i++)
-			for (int j =0; j<size; j++)
-				grid [i,j].check = false;
+            int xRoom = (int)possiblePlacesForRoom[rPlace].x;
+            int yRoom = (int)possiblePlacesForRoom[rPlace].y;
 
-		// on recupere la premiere case corridor que l'on trouve
-		bool found = false;
-		for (int i =0; i<size; i++) {
-			for (int j =0; j<size; j++) {
-				if (grid [i, j].cellType == Cell.CellType.Corridor) { 
-					found=true;
-					crawlCorridorsCells (i, j); // à partir de cette case on marque toutes les cases corridors connexe
-					break;
-				}
-			}
-			
-			if(found) break;
-		}
+            fillArea(xRoom, yRoom, width, height, cellType, true); // on pose la salle
 
-		for (int i =0; i<size; i++)
-			for (int j =0; j<size; j++)
-				if(grid [i,j].cellType == Cell.CellType.Corridor && !grid [i,j].check)  // si on trouve une seule case corridor non marquee
-					return corridorsAintAllConnected; // c'est que toutes nos cases corridors ne sont plus connexes
+           // print("xRoom : " + xRoom + ", yRoom : " + yRoom);
+
+            List<Vector2> possiblePlacesForDoor = new List<Vector2>(); // maintenant on va chercher la porte, on sait qu'il y a au moins un emplacement
+            for (int i = xRoom; i < xRoom + width; i++) // parcours au dessus et en dessous
+            {
+                if (yRoom > 1 && grid[i, yRoom - 1].cellType == Cell.CellType.Corridor) // si on trouve une case corridor autour de la salle
+                    possiblePlacesForDoor.Add(new Vector2(i, yRoom - 1)); // on l'ajoute aux emplacements possibles pour la porte
+                if (yRoom + height < size-1 && grid[i, yRoom + height].cellType == Cell.CellType.Corridor)
+                    possiblePlacesForDoor.Add(new Vector2(i, yRoom + height));
+            }
+            for (int i = yRoom; i < yRoom + height; i++)// parcours a droite a gauche
+            {
+                if (xRoom > 1 && grid[xRoom - 1, i].cellType == Cell.CellType.Corridor)
+                    possiblePlacesForDoor.Add(new Vector2(xRoom - 1, i));
+                if (xRoom + width < size-1 && grid[xRoom + width, i].cellType == Cell.CellType.Corridor)
+                    possiblePlacesForDoor.Add(new Vector2(xRoom + width, i));
+            }
+            for (int i = 0; i < possiblePlacesForDoor.Count;i++ ){
+
+               // print("xDoor : " + possiblePlacesForDoor[i].x + ", yDoor : " + possiblePlacesForDoor[i].y);
+            }
+                //print("Count : " + possiblePlacesForDoor.Count);
+            int rDoor = Random.Range(0, possiblePlacesForDoor.Count); // on en tire un au hasard
+
+            int xDoor = (int)possiblePlacesForDoor[rDoor].x;
+            int yDoor = (int)possiblePlacesForDoor[rDoor].y;
+
+            //print("/xDoor : " + xDoor + ", yDoor : " + yDoor);
+
+           // print("=============================================================");
+            grid[xDoor,yDoor].locked = true; // on verrouille le corridor pour en tenir compte dans les collisions futures et eviter de boucher le passage
+
+            if (xDoor == xRoom + width) //si la porte se trouve a l'est
+                grid[xDoor - 1, yDoor].wallEast = false;// on enleve le mur est de sa case ouest
+            if (xDoor < xRoom ) //si la porte se trouve a l'ouest
+                grid[xDoor + 1, yDoor].wallWest = false;// on enleve le mur ouest de sa case est
+            if (yDoor == yRoom + height) //si la porte se trouve au sud
+                grid[xDoor , yDoor-1].wallSouth = false;// on enleve le mur sud de sa case nord
+            if (yDoor <yRoom ) //si la porte se trouve au nord
+                grid[xDoor, yDoor+1].wallNorth = false;// on enleve le mur nord de sa case sud
+
+            roomForTheRoom = true;
+        }
+        else
+        {
+            roomForTheRoom = false;
+        }
+        return roomForTheRoom;
 
 
-		return !corridorsAintAllConnected; // sinon tout va bien
-	}
+    }
 
-	//parcours l'ensemble des cases corridor connectees à la case passee en parametre, et les marques
-	public void crawlCorridorsCells(int x,int y){
-		grid [x,y].check = true;
-			if (x<size && grid [x + 1, y].cellType == Cell.CellType.Corridor && !grid [x + 1, y].check)
-				crawlCorridorsCells (x + 1, y);
-			if (x>=0 && grid [x - 1, y].cellType == Cell.CellType.Corridor && !grid [x - 1, y].check)
-				crawlCorridorsCells (x - 1, y);
-			if (y<size && grid [x, y + 1].cellType == Cell.CellType.Corridor && !grid [x, y + 1].check)
-				crawlCorridorsCells (x, y + 1);
-			if (y>=0 && grid [x, y - 1].cellType == Cell.CellType.Corridor && !grid [x, y - 1].check)
-				crawlCorridorsCells (x, y - 1);
 
-		
-		
-	}
+    // renvoie vrai si la place est deja occupe par une case de type autre que corridor
+    public bool placeAlreadyTaken(int x, int y, int width, int height)
+    {
+        bool placeAlreadyTaken = false;
+        if (x >= 0 && y >= 0 && x + width <= size && y + height <= size) { // si notre salle ne depasse pas des limites de la grille
+            //on parcours l'ensemble des cases qu'elle occupera
+            for (int i = x; i < x + width; i++)
+                for (int j = y; j < y + height; j++)
+                    if (grid[i, j].cellType != Cell.CellType.Corridor ||grid[i, j].locked) // et si on trouve une case non corridor, ou corridor verrouillee ( pour laisser le passage )
+                        placeAlreadyTaken=true; // alors la place est prise
+        }
+        else
+        {
+            placeAlreadyTaken = true;
+        }
+        return placeAlreadyTaken;
+    }
+
+    // renvoie vrai si il y a au moins une case de libre autour pour mettre une porte
+    public bool doorCanBePlaced(int x, int y, int width, int height)
+    {
+        bool doorCanBePlaced = false;
+        for (int i = x; i < x + width; i++) // parcours au dessus et en dessous
+        {
+            if (y > 1 && grid[i, y - 1].cellType == Cell.CellType.Corridor) // si on trouve au moins une case corridor autour de la salle
+                doorCanBePlaced = true;
+            if (y + height < size -1 && grid[i, y + height].cellType == Cell.CellType.Corridor)
+                doorCanBePlaced = true;
+        }
+        for (int i = y; i < y + height; i++)
+        {
+            if (x > 1 && grid[x - 1, i].cellType == Cell.CellType.Corridor) 
+                doorCanBePlaced = true;
+            if (x + width < size -1 && grid[x + width, i].cellType == Cell.CellType.Corridor) 
+                doorCanBePlaced = true;
+        }
+
+        return doorCanBePlaced;
+    }
+
+    public bool breakCorridorsConnexion(int x, int y, int width, int height)
+    {
+        bool breakCorridorsConnexion = false;
+
+        fillArea(x, y, width, height, Cell.CellType.Bossroom, false);// on remplit la zone pour tester
+        // et on verifie que nos corridors sont toujours bien tous connecte
+        if (!corridorsAllConnected())// si ce n'est pas le cas
+            breakCorridorsConnexion = true;
+        else
+            breakCorridorsConnexion = false;
+
+        fillArea(x, y, width, height, Cell.CellType.Corridor, false); // on remet la zone dans son etat initial
+
+        return breakCorridorsConnexion;
+    }
+
+    //methode renvoyant vrai si toutes les cases corridors sont bien connectees les unes aux autres, faux sinon
+    public bool corridorsAllConnected()
+    {
+
+        bool corridorsAllConnected = true;
+
+        // on recupere la premiere case corridor que l'on trouve
+        bool found = false;
+        for (int i = 0; i < size; i++)
+        {
+            for (int j = 0; j < size; j++)
+            {
+                if (grid[i, j].cellType == Cell.CellType.Corridor)
+                {
+                    found = true;
+                    crawlCorridorsCells(i, j); // à partir de cette case on marque toutes les cases corridors connexe
+                    break;
+                }
+            }
+
+            if (found) break;
+        }
+
+        for (int i = 0; i < size; i++)
+            for (int j = 0; j < size; j++)
+                if (grid[i, j].cellType == Cell.CellType.Corridor && !grid[i, j].check)  // si on trouve une seule case corridor non marquee
+                    corridorsAllConnected = false; // c'est que toutes nos cases corridors ne sont plus connexes
+
+        // nettoyage après parcours
+        for (int i = 0; i < size; i++)
+            for (int j = 0; j < size; j++)
+                grid[i, j].check = false;
+
+        return corridorsAllConnected; 
+    }
+
+    //parcours l'ensemble des cases corridor non marquees connectees à la case passee en parametre, et les marques
+    public void crawlCorridorsCells(int x, int y)
+    {
+        grid[x, y].check = true;
+        if (x < size-1 && grid[x + 1, y].cellType == Cell.CellType.Corridor && !grid[x + 1, y].check) // voisin de droite
+            crawlCorridorsCells(x + 1, y);
+        if (x > 1 && grid[x - 1, y].cellType == Cell.CellType.Corridor && !grid[x - 1, y].check) // voisin de gauche
+            crawlCorridorsCells(x - 1, y);
+        if (y < size-1 && grid[x, y + 1].cellType == Cell.CellType.Corridor && !grid[x, y + 1].check) // voisin du bas
+            crawlCorridorsCells(x, y + 1);
+        if (y > 1 && grid[x, y - 1].cellType == Cell.CellType.Corridor && !grid[x, y - 1].check) // voisin du haut
+            crawlCorridorsCells(x, y - 1);
+    }
+
+    public bool collision (int x, int y, int width, int height)
+    {
+        bool collision = true;
+        if (!placeAlreadyTaken(x, y, width, height)   && doorCanBePlaced(x, y, width, height) && !breakCorridorsConnexion(x, y, width, height))
+            collision = false;
+
+        return collision;
+
+    }
+
+
+
+
+    // à l'initialisation, créer une list des cases libres
+
+
+
 	// remplie une zone de la grille avec un type de case
-	public void fillArea(int x,int y, int width, int height, Cell.CellType cellType, bool addTheWall,bool addTheDoor){
+	public void fillArea(int x,int y, int width, int height, Cell.CellType cellType, bool addTheWall){
 
 		for (int i =x; i<x+width; i++)
 			for (int j =y; j<y+height; j++) {
-				grid [i, j] = new Cell (this, i, j, cellType);
-
+				//grid [i, j] = new Cell (this, i, j, cellType);
+                grid[i, j].cellType = cellType;
 
 				if (addTheWall) { // si on veut ajouter les murs de la salle
 
@@ -246,53 +346,17 @@ public class Office : MonoBehaviour {
 					if (i == x + width - 1)
 						grid [i, j].wallEast = true; // si le mur est sur le cote Est
 					if (j == y)
-						grid [i, j].wallSouth = true; // si le mur est sur le cote Nord
+                        grid[i, j].wallNorth = true; // si le mur est sur le cote Nord
 					if (j == y + height - 1)
-						grid [i, j].wallNorth = true; // si le mur est sur le cote Sud
+						grid [i, j].wallSouth = true; // si le mur est sur le cote Sud
 					
 					
 				}// end if
-		}//end for
-		if (addTheWall && addTheDoor) {
-			
-			int doorX =x+1, doorY=y+1;
-			for (int k = x; k<x+width; k++) {
-				if (y != 0 && grid [k, y - 1].cellType == Cell.CellType.Corridor) { // parcours en haut
-					doorX = k;
-					doorY = y - 1;
-				}
-				if (y + height != size && grid [k, y + height].cellType == Cell.CellType.Corridor) { // parcours en bas
-					doorX = k;
-					doorY = y + height;
-				}
-			}
-			for (int k = y; k<y+height; k++) {			
-				if (x != 0 && grid [x - 1, k].cellType == Cell.CellType.Corridor) {	// parcours a gauche
-					doorX = x - 1;
-					doorY = k;		
-				}	
-				if (x + width != size && grid [x + width, k].cellType == Cell.CellType.Corridor) {// parcours a droite
-					doorX = x + width;
-					doorY = k;
-				}
-			}
-
-			if (doorX < x)
-				grid [x, doorY].wallWest = false;
-			if (doorX == x+width)
-				grid [x+width-1, doorY].wallEast = false;
-			if(doorY<y)
-				grid [doorX, y].wallNorth = false;
-			if(doorY==y+height)
-				grid [doorX, y+height-1].wallSouth = false;
-		}
-
+		    }//end for
 
 		GetComponent<Triggers> ().addTrigger (x, y, width, height, cellType);
-
+		
 	}
-
-
 
 
 

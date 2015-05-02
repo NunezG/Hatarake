@@ -3,6 +3,9 @@ using System.Collections;
 
 public class Box : MonoBehaviour {
 
+	public bool occupe = false;
+
+
 	// Use this for initialization
 	void Start () {
 	
@@ -28,7 +31,7 @@ public class Box : MonoBehaviour {
 
 
 
-		if (other.tag == "Employe" && other.GetComponent<Employe>().boxDeTravail==this.gameObject) 
+		if (other.tag == "Employe" && other.GetComponent<Employe>().getBox()==this.gameObject) 
 		{
 
 

@@ -5,8 +5,8 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour {
 	
 	public static GameManager instance = null;              //Static instance of GameManager which allows it to be accessed by any other script.
-	public GameObject sceneObject;
-	public GameObject menu;
+	//public GameObject sceneObject;
+	//public GameObject menu;
 	private int level = 1;
 	
 	//Awake is always called before any Start functions
@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour {
 		DontDestroyOnLoad(gameObject);
 		
 		//Call the InitGame function to initialize the first level 
-	//	InitGame();
+		InitGame();
 	}
 
 	// Use this for initialization
@@ -47,7 +47,24 @@ public class GameManager : MonoBehaviour {
 
 	public void InitGame()
 	{
-		menu.SetActive (false);
-		GameObject.Instantiate (sceneObject);
+
+		gameObject.GetComponent<LevelManager>().BeginGame();
+		
+		StartCoroutine(gameObject.GetComponent<NavMesh>().GenerateNavmesh());
+		// NavMesh ready ???
+		StartCoroutine(navMeshCheck());
+		//menu.SetActive (false);
+		//GameObject.Instantiate (sceneObject);
+	}
+
+	IEnumerator navMeshCheck()
+	{		
+		NavMesh navMesh = GetComponent<NavMesh> ();
+
+		while (!navMesh.isNavMeshDone) 
+		{
+			yield return new WaitForSeconds(1);
+		}
+		gameObject.GetComponent<CharacterManager>().Spawn();
 	}
 }

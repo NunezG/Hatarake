@@ -118,7 +118,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44ed7e867878db94c8084e53f20df8ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boxDeTravail: {fileID: 189560, guid: 393237592b185ef4e84324636574d7e9, type: 2}
+  suicidaire: 0
+  feignantise: 1
+  motivation: 100
+  fatigue: 0
+  fatigueMAX: 100
   auTravail: 0
   chill: []
 --- !u!114 &11425412
@@ -155,13 +159,13 @@ MonoBehaviour:
       id="_target" gameobject="-1" /><field value="100" type="System.Single" id="motivation"
       /></reference><reference type="RAIN.Motion.MecanimMotor" refcount="1" id="3"><field
       value="3" type="System.Single" id="_speed" /><field value="180" type="System.Single"
-      id="_rotationSpeed" /><field value="0.07" type="System.Single" id="_closeEnoughDistance"
+      id="_rotationSpeed" /><field value="0.1" type="System.Single" id="_closeEnoughDistance"
       /><field value="0.1" type="System.Single" id="_closeEnoughAngle" /><field value="90"
-      type="System.Single" id="_faceBeforeMoveAngle" /><field value="0" type="System.Single"
+      type="System.Single" id="_faceBeforeMoveAngle" /><field value="0.5" type="System.Single"
       id="_stepUpHeight" /><field value="False" type="System.Boolean" id="_allow3DMovement"
       /><field value="False" type="System.Boolean" id="_allow3DRotation" /><field
       value="True" type="System.Boolean" id="_allowOffGraphMovement" /><field value="False"
-      type="System.Boolean" id="_useRootMotion" /><field value="False" type="System.Boolean"
+      type="System.Boolean" id="_useRootMotion" /><field value="True" type="System.Boolean"
       id="_overrideRootRotation" /><field type="System.Collections.Generic.List" id="_forwardedParameters"
       elementtype="RAIN.Motion.MecanimMotor+MotorParameter" /></reference><reference
       type="RAIN.Animation.MecanimAnimator" refcount="1" id="4"><field type="RAIN.Animation.MecanimAnimator+IKTarget"
@@ -206,7 +210,7 @@ MonoBehaviour:
       value="0" type="System.Single" id="_maxPathLength" /><field type="System.Collections.Generic.List"
       id="_graphTags" elementtype="System.String" /></reference><reference type="RAIN.Perception.BasicSenses"
       refcount="1" id="11"><field type="System.Collections.Generic.List" id="_sensors"
-      elementtype="RAIN.Perception.Sensors.RAINSensor" /></reference><reference type="RAIN.Memory.BasicMemory+MemoryItem"
+      elementtype="RAIN.Perception.Sensors.RAINSensor" /></reference><reference type="RAIN.Motion.MecanimMotor+MotorParameter"
       refcount="0" id="12" /><reference type="RAIN.Memory.BasicMemory+MemoryItem"
       refcount="0" id="13" /><reference type="RAIN.Memory.BasicMemory+MemoryItem"
       refcount="1" id="14"><field value="myTarget" type="System.String" id="Key" /><field

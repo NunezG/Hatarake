@@ -21,7 +21,7 @@ public class Triggers : MonoBehaviour {
 			newTrigger = Instantiate(ChillRoomsTriggerPrefab) as GameObject;
 			//newTrigger.transform.position
 			break;
-		case Cell.CellType.Bossroom :
+		case Cell.CellType.Box :
 			newTrigger = Instantiate(WorkBoxTriggerPrefab) as GameObject;
 			break;
 		default:
