@@ -119,10 +119,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   suicidaire: 0
-  feignantise: 1
-  motivation: 100
+  feignantise: 5
+  motivation: 50
   fatigue: 0
   fatigueMAX: 100
+  vitesseTravail: 5
+  vitesseFatigue: 10
+  effetRepos: 10
   auTravail: 0
   chill: []
 --- !u!114 &11425412

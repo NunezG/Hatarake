@@ -20,6 +20,20 @@ public class Box : MonoBehaviour {
 	void OnTriggerEnter(Collider other)
 	{
 		//print("SOnTriggerEnterOnTriggerEnterOnTriggerEnter"+other.name);
+		
+		if (other.tag == "Employe" && other.GetComponent<Employe>().getBox()==this.gameObject) 
+		{		
+			StartCoroutine(other.GetComponent<Employe>().Travaille());
+			
+		}
+
+
+	}
+
+
+	void OnTriggerExit(Collider other)
+	{
+
 
 
 	}
@@ -30,22 +44,6 @@ public class Box : MonoBehaviour {
 		//print("BOX COLLISION "+other.tag);
 
 
-
-		if (other.tag == "Employe" && other.GetComponent<Employe>().getBox()==this.gameObject) 
-		{
-
-
-
-			//print("START WORKING");
-
-
-
-			//other.GetComponentInChildren<Employe>().auTravail = true;
-
-			other.GetComponent<Employe>().Travaille();
-				//gameObject.start () as Employe;
-						
-		}
 
 
 	}
