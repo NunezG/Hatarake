@@ -31,7 +31,7 @@ public class Office : MonoBehaviour {
 				grid[i, j]= new Cell(this,i,j,Cell.CellType.Corridor);
 
 
-        fillArea(0, 0, 10, 10, Cell.CellType.Corridor, true); // on pose les murs
+		fillArea(0, 0, size, size, Cell.CellType.Corridor, true); // on pose les murs
         for (int i = 0; i < nbBossRooms; i++)
         {
             if (placeRoom(2, 3, Cell.CellType.Bossroom))
@@ -51,7 +51,7 @@ public class Office : MonoBehaviour {
 
         for (int i = 0; i < nbBathRooms; i++)
         {
-            if (placeRoom(2, 2, Cell.CellType.Bathroom))
+            if (placeRoom(1, 1, Cell.CellType.Bathroom))
                 print("success");
             else
                 print("defeat");

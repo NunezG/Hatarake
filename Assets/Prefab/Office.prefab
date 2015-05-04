@@ -46,7 +46,7 @@ MonoBehaviour:
   EastWallPrefab: {fileID: 152368, guid: fff28b78ed9278144b827e519203b945, type: 2}
   WestWallPrefab: {fileID: 108030, guid: 59e34829f09d0a140b44570978712b1e, type: 2}
   obstacles: []
-  size: 10
+  size: 9
   materials:
   - {fileID: 2100000, guid: 41e79b74ecdc6b94d8bf3f15dd6fe4fa, type: 2}
   - {fileID: 2100000, guid: 37d39d488f353ff4896cabd4999234da, type: 2}
@@ -54,9 +54,9 @@ MonoBehaviour:
   - {fileID: 2100000, guid: d821f665a235eb948b81fb448614cb7e, type: 2}
   - {fileID: 2100000, guid: 027d199bc1f4514419713567df9d4a07, type: 2}
   nbBossRooms: 1
-  nbCoffeeRooms: 2
+  nbCoffeeRooms: 1
   nbBathRooms: 2
-  nbBoxes: 7
+  nbBoxes: 10
 --- !u!114 &11439750
 MonoBehaviour:
   m_ObjectHideFlags: 1

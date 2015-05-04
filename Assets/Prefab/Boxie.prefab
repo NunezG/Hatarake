@@ -1,18 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &148582
+--- !u!1 &115054
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 423836}
-  - 33: {fileID: 3352248}
-  - 136: {fileID: 13684246}
-  - 23: {fileID: 2302142}
-  - 114: {fileID: 11416156}
-  - 54: {fileID: 5423164}
+  - 4: {fileID: 477394}
+  - 33: {fileID: 3357256}
+  - 136: {fileID: 13647842}
+  - 23: {fileID: 2395986}
+  - 114: {fileID: 11459514}
+  - 54: {fileID: 5473218}
   m_Layer: 0
   m_Name: Boxie
   m_TagString: Employe
@@ -20,15 +20,15 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &194856
+--- !u!1 &173324
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 451880}
-  - 114: {fileID: 11425412}
+  - 4: {fileID: 465014}
+  - 114: {fileID: 11429634}
   m_Layer: 0
   m_Name: AI
   m_TagString: Untagged
@@ -36,37 +36,37 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &423836
+--- !u!4 &465014
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 148582}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .293000013, y: .134000018, z: -.022499999}
-  m_LocalScale: {x: .25, y: .25, z: .25}
-  m_Children:
-  - {fileID: 451880}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
---- !u!4 &451880
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 194856}
+  m_GameObject: {fileID: 173324}
   m_LocalRotation: {x: 1, y: 0, z: 0, w: 2.14576721e-05}
   m_LocalPosition: {x: -4.1652441, y: -2.41029596, z: -13.4739504}
   m_LocalScale: {x: 3.0312686, y: 2.79272199, z: 3.11192703}
   m_Children: []
-  m_Father: {fileID: 423836}
+  m_Father: {fileID: 477394}
   m_RootOrder: 0
---- !u!23 &2302142
+--- !u!4 &477394
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 115054}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .293000013, y: .134000018, z: -.022499999}
+  m_LocalScale: {x: .25, y: .25, z: .25}
+  m_Children:
+  - {fileID: 465014}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!23 &2395986
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 148582}
+  m_GameObject: {fileID: 115054}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -85,19 +85,19 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!33 &3352248
+--- !u!33 &3357256
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 148582}
+  m_GameObject: {fileID: 115054}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &5423164
+--- !u!54 &5473218
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 148582}
+  m_GameObject: {fileID: 115054}
   serializedVersion: 2
   m_Mass: 1e+09
   m_Drag: 3.40282347e+38
@@ -107,33 +107,12 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 2
---- !u!114 &11416156
+--- !u!114 &11429634
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 148582}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44ed7e867878db94c8084e53f20df8ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  suicidaire: 0
-  feignantise: 5
-  motivation: 50
-  fatigue: 0
-  fatigueMAX: 100
-  vitesseTravail: 5
-  vitesseFatigue: 10
-  effetRepos: 10
-  auTravail: 0
-  chill: []
---- !u!114 &11425412
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 194856}
+  m_GameObject: {fileID: 173324}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 157053555, guid: 9fa2ecd1ff2ad394281dd3bf72c5b76e, type: 3}
@@ -147,8 +126,8 @@ MonoBehaviour:
       id="_ai" /></fields><references><reference type="RAIN.Core.AI" refcount="1"
       id="0"><field value="True" type="System.Boolean" id="_isActive" /><field type="UnityEngine.GameObject"
       id="_body" gameobject="0" /><field type="RAIN.Memory.BasicMemory" reference="1"
-      id="_workingMemory" childrenvisible="False" /><field type="RAIN.Minds.BasicMind"
-      reference="2" id="_mind" childrenvisible="True" /><field type="RAIN.Motion.MecanimMotor"
+      id="_workingMemory" childrenvisible="True" /><field type="RAIN.Minds.BasicMind"
+      reference="2" id="_mind" childrenvisible="False" /><field type="RAIN.Motion.MecanimMotor"
       reference="3" id="_motor" childrenvisible="False" /><field type="RAIN.Animation.MecanimAnimator"
       reference="4" id="_animator" childrenvisible="False" /><field type="RAIN.Navigation.BasicNavigator"
       reference="10" id="_navigator" /><field type="RAIN.Perception.BasicSenses" reference="11"
@@ -229,15 +208,36 @@ MonoBehaviour:
       /><field value="System.Boolean" type="System.Type" id="ValueType" /><field value="False"
       type="System.Boolean" id="Value" /></reference></references></component>
     _serializedGameObjects:
-    - {fileID: 148582}
+    - {fileID: 115054}
     - {fileID: 11400000, guid: 2f0cd6b0cb96b46489ea1ca676a77edc, type: 2}
     _serializedCustomData: []
---- !u!136 &13684246
+--- !u!114 &11459514
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 115054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44ed7e867878db94c8084e53f20df8ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  feignantise: 10
+  motivation: 50
+  fatigue: 0
+  fatigueMAX: 100
+  vitesseTravail: 5
+  vitesseFatigue: 10
+  effetRepos: 10
+  effetEngueulement: 200
+  auTravail: 0
+  chill: []
+--- !u!136 &13647842
 CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 148582}
+  m_GameObject: {fileID: 115054}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
@@ -254,5 +254,5 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 148582}
+  m_RootGameObject: {fileID: 115054}
   m_IsPrefabParent: 1

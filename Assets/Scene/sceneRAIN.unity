@@ -117,7 +117,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c8d6d9bb8d9f1146a130394c41940e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boxiePrefab: {fileID: 148582, guid: d0aed392c1b62374c9691d0e8c854478, type: 2}
+  boxiePrefab: {fileID: 115054, guid: d0aed392c1b62374c9691d0e8c854478, type: 2}
+  bossPrefab: {fileID: 171372, guid: 5134b76fd8d64f14aacdbb095f67182c, type: 2}
   nombreBoxies: 10
   boxes: []
 --- !u!4 &268217652
