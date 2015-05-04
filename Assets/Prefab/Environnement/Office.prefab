@@ -41,10 +41,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floorPrefab: {fileID: 197490, guid: 891b06afad8574a4b944f800dc32576d, type: 2}
-  NorthWallPrefab: {fileID: 187882, guid: 720b3236547a63243bf33f196335d7e0, type: 2}
-  SouthWallPrefab: {fileID: 122442, guid: 8becd65d7e35dbd4384d11dafa21ecf3, type: 2}
-  EastWallPrefab: {fileID: 152368, guid: fff28b78ed9278144b827e519203b945, type: 2}
-  WestWallPrefab: {fileID: 108030, guid: 59e34829f09d0a140b44570978712b1e, type: 2}
+  NorthWallPrefab: {fileID: 162846, guid: 720b3236547a63243bf33f196335d7e0, type: 2}
+  SouthWallPrefab: {fileID: 156778, guid: 8becd65d7e35dbd4384d11dafa21ecf3, type: 2}
+  EastWallPrefab: {fileID: 128386, guid: fff28b78ed9278144b827e519203b945, type: 2}
+  WestWallPrefab: {fileID: 104546, guid: 59e34829f09d0a140b44570978712b1e, type: 2}
+  NorthDoorPrefab: {fileID: 154448, guid: 65961a4bf2051954488f6c5e815e86a3, type: 2}
+  SouthDoorPrefab: {fileID: 143560, guid: 8b48c264ff521fa42801ef4a4785508e, type: 2}
+  EastDoorPrefab: {fileID: 133294, guid: 391ecaedd8319b245bfcfe1ff017233e, type: 2}
+  WestDoorPrefab: {fileID: 199894, guid: 8c9384a033d25e843a695362bf2f8773, type: 2}
   obstacles: []
   size: 9
   materials:

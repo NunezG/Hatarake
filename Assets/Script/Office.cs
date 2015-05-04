@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class Office : MonoBehaviour {
 
-	public GameObject floorPrefab,NorthWallPrefab,SouthWallPrefab,EastWallPrefab,WestWallPrefab;
+	public GameObject floorPrefab,NorthWallPrefab,SouthWallPrefab,EastWallPrefab,WestWallPrefab,NorthDoorPrefab,SouthDoorPrefab,EastDoorPrefab,WestDoorPrefab;
 
 	public List<GameObject> obstacles = new List<GameObject>();
 
@@ -105,7 +105,16 @@ public class Office : MonoBehaviour {
 			newNorthWall.transform.Translate(new Vector3(x , 0f, z));
 			
 			obstacles.Add (newNorthWall);
-		}
+        }
+        else if (grid[x, z].doorNorth)
+        {
+            GameObject newNorthDoor = Instantiate(NorthDoorPrefab) as GameObject;
+            newNorthDoor.name = "NorthDoor " + x + ", " + z;
+            newNorthDoor.transform.parent = transform;
+            newNorthDoor.transform.Translate(new Vector3(x, 0f, z));
+
+            obstacles.Add(newNorthDoor);
+        }
 		if (grid [x, z].wallSouth) {
 			GameObject newNSouthWall = Instantiate(SouthWallPrefab) as GameObject;
 			newNSouthWall.name = "SouthWall " + x + ", " + z;
@@ -113,7 +122,16 @@ public class Office : MonoBehaviour {
 
 			newNSouthWall.transform.Translate(new Vector3(x , 0f, z ));
 			obstacles.Add (newNSouthWall);
-		}
+        }
+        else if (grid[x, z].doorSouth)
+        {
+            GameObject newSouthDoor = Instantiate(SouthDoorPrefab) as GameObject;
+            newSouthDoor.name = "SouthDoor " + x + ", " + z;
+            newSouthDoor.transform.parent = transform;
+            newSouthDoor.transform.Translate(new Vector3(x, 0f, z));
+
+            obstacles.Add(newSouthDoor);
+        }
 		if (grid [x, z].wallEast) {
 			GameObject newEastWall = Instantiate(EastWallPrefab) as GameObject;
 			newEastWall.name = "EastWall " + x + ", " + z;
@@ -121,14 +139,32 @@ public class Office : MonoBehaviour {
 
 			newEastWall.transform.Translate(new Vector3(x , 0f, z));
 			obstacles.Add (newEastWall);
-		}
+        }
+        else if (grid[x, z].doorEast)
+        {
+            GameObject newEastDoor = Instantiate(EastDoorPrefab) as GameObject;
+            newEastDoor.name = "EastDoor " + x + ", " + z;
+            newEastDoor.transform.parent = transform;
+            newEastDoor.transform.Translate(new Vector3(x, 0f, z));
+
+            obstacles.Add(newEastDoor);
+        }
 		if (grid [x, z].wallWest) {
 			GameObject newWestWall = Instantiate(WestWallPrefab) as GameObject;
 			newWestWall.name = "WestWall " + x + ", " + z;
 			newWestWall.transform.parent = transform;
 			newWestWall.transform.Translate(new Vector3(x , 0f, z));
 			obstacles.Add (newWestWall);
-		}
+        }
+        else if (grid[x, z].doorWest)
+        {
+            GameObject newWestDoor = Instantiate(WestDoorPrefab) as GameObject;
+            newWestDoor.name = "WestDoor " + x + ", " + z;
+            newWestDoor.transform.parent = transform;
+            newWestDoor.transform.Translate(new Vector3(x, 0f, z));
+
+            obstacles.Add(newWestDoor);
+        }
 
 	}
 
@@ -172,10 +208,10 @@ public class Office : MonoBehaviour {
                 if (xRoom + width < size-1 && grid[xRoom + width, i].cellType == Cell.CellType.Corridor)
                     possiblePlacesForDoor.Add(new Vector2(xRoom + width, i));
             }
-            for (int i = 0; i < possiblePlacesForDoor.Count;i++ ){
+           // for (int i = 0; i < possiblePlacesForDoor.Count;i++ ){
 
                // print("xDoor : " + possiblePlacesForDoor[i].x + ", yDoor : " + possiblePlacesForDoor[i].y);
-            }
+            //}
                 //print("Count : " + possiblePlacesForDoor.Count);
             int rDoor = Random.Range(0, possiblePlacesForDoor.Count); // on en tire un au hasard
 
@@ -187,15 +223,22 @@ public class Office : MonoBehaviour {
            // print("=============================================================");
             grid[xDoor,yDoor].locked = true; // on verrouille le corridor pour en tenir compte dans les collisions futures et eviter de boucher le passage
 
-            if (xDoor == xRoom + width) //si la porte se trouve a l'est
+            if (xDoor == xRoom + width){ //si la porte se trouve a l'est
                 grid[xDoor - 1, yDoor].wallEast = false;// on enleve le mur est de sa case ouest
-            if (xDoor < xRoom ) //si la porte se trouve a l'ouest
+                grid[xDoor - 1, yDoor].doorEast = true;// on ajoute la porte de sa case ouest
+            }
+            if (xDoor < xRoom){ //si la porte se trouve a l'ouest
                 grid[xDoor + 1, yDoor].wallWest = false;// on enleve le mur ouest de sa case est
-            if (yDoor == yRoom + height) //si la porte se trouve au sud
-                grid[xDoor , yDoor-1].wallSouth = false;// on enleve le mur sud de sa case nord
-            if (yDoor <yRoom ) //si la porte se trouve au nord
-                grid[xDoor, yDoor+1].wallNorth = false;// on enleve le mur nord de sa case sud
-
+                grid[xDoor + 1, yDoor].doorWest = true;// on ajoute la porte ouest de sa case est
+            }
+            if (yDoor == yRoom + height){ //si la porte se trouve au sud
+                grid[xDoor, yDoor - 1].wallSouth = false;// on enleve le mur sud de sa case nord
+                grid[xDoor, yDoor - 1].doorSouth = true;// on ajoute la porte sud de sa case nord
+            }
+            if (yDoor < yRoom) { //si la porte se trouve au nord
+                grid[xDoor, yDoor + 1].wallNorth = false;// on enleve le mur nord de sa case sud
+                grid[xDoor, yDoor + 1].doorNorth = true;// on ajoute la porte nord de sa case sud
+            }
             roomForTheRoom = true;
         }
         else
@@ -353,8 +396,7 @@ public class Office : MonoBehaviour {
 					
 				}// end if
 		    }//end for
-
-		GetComponent<Triggers> ().addTrigger (x, y, width, height, cellType);
+        if (addTheWall)	GetComponent<Triggers> ().addTrigger (x, y, width, height, cellType);
 		
 	}
 

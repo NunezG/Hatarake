@@ -3,8 +3,9 @@ using System.Collections;
 
 public class Cell  {
 
-	Office office;
-	public bool wallNorth, wallEast,wallSouth,wallWest;
+    Office office;
+    public bool wallNorth, wallEast, wallSouth, wallWest;
+    public bool doorNorth, doorEast, doorSouth, doorWest;
 	int posX,posY;
 	public bool check=false;
     public bool locked = false;
@@ -19,8 +20,7 @@ public class Cell  {
 		this.posX = posX;
 		this.posY = posY;
 		this.cellType = type;
-		wallNorth = wallEast = wallSouth = wallWest = false;
-
+		wallNorth = wallEast = wallSouth = wallWest = doorEast= doorNorth=doorSouth= doorWest =false;
 	}
 
 	public void init(Office office,int posX,int posY, bool north,bool east,bool south,bool west,CellType type ){
