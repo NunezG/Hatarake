@@ -19,7 +19,7 @@ public class NavMesh : MonoBehaviour {
 		navMesh = Instantiate (navMesh);
 	//transform.position = 
 		LevelManager level = gameObject.GetComponent<LevelManager>();
-		navMesh.transform.position = level.officePrefab.transform.position + new Vector3(officeMiddle, 0 ,officeMiddle);
+		navMesh.transform.position = level.getOfficeInstance().transform.position + new Vector3(officeMiddle, 0 ,officeMiddle);
 
 		tRig = navMesh.GetComponent<RAIN.Navigation.NavMesh.NavMeshRig>();
 

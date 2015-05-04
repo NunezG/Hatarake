@@ -1,34 +1,14 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &115054
+--- !u!1 &104044
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 477394}
-  - 33: {fileID: 3357256}
-  - 136: {fileID: 13647842}
-  - 23: {fileID: 2395986}
-  - 114: {fileID: 11459514}
-  - 54: {fileID: 5473218}
-  m_Layer: 0
-  m_Name: Boxie
-  m_TagString: Employe
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &173324
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 465014}
-  - 114: {fileID: 11429634}
+  - 4: {fileID: 486176}
+  - 114: {fileID: 11424424}
   m_Layer: 0
   m_Name: AI
   m_TagString: Untagged
@@ -36,37 +16,57 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &465014
+--- !u!1 &160060
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 425460}
+  - 33: {fileID: 3329434}
+  - 136: {fileID: 13620826}
+  - 23: {fileID: 2340132}
+  - 114: {fileID: 11497896}
+  - 54: {fileID: 5402756}
+  m_Layer: 0
+  m_Name: Boxie
+  m_TagString: Employe
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &425460
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 173324}
-  m_LocalRotation: {x: 1, y: 0, z: 0, w: 2.14576721e-05}
-  m_LocalPosition: {x: -4.1652441, y: -2.41029596, z: -13.4739504}
-  m_LocalScale: {x: 3.0312686, y: 2.79272199, z: 3.11192703}
-  m_Children: []
-  m_Father: {fileID: 477394}
-  m_RootOrder: 0
---- !u!4 &477394
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 115054}
+  m_GameObject: {fileID: 160060}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: .293000013, y: .134000018, z: -.022499999}
   m_LocalScale: {x: .25, y: .25, z: .25}
   m_Children:
-  - {fileID: 465014}
+  - {fileID: 486176}
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!23 &2395986
+--- !u!4 &486176
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 104044}
+  m_LocalRotation: {x: 1, y: 0, z: 0, w: 2.14576721e-05}
+  m_LocalPosition: {x: -4.1652441, y: -2.41029596, z: -13.4739504}
+  m_LocalScale: {x: 3.0312686, y: 2.79272199, z: 3.11192703}
+  m_Children: []
+  m_Father: {fileID: 425460}
+  m_RootOrder: 0
+--- !u!23 &2340132
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 115054}
+  m_GameObject: {fileID: 160060}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -85,34 +85,34 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!33 &3357256
+--- !u!33 &3329434
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 115054}
+  m_GameObject: {fileID: 160060}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &5473218
+--- !u!54 &5402756
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 115054}
+  m_GameObject: {fileID: 160060}
   serializedVersion: 2
   m_Mass: 1e+09
   m_Drag: 3.40282347e+38
   m_AngularDrag: 3.40282347e+38
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 2
---- !u!114 &11429634
+--- !u!114 &11424424
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 173324}
+  m_GameObject: {fileID: 104044}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 157053555, guid: 9fa2ecd1ff2ad394281dd3bf72c5b76e, type: 3}
@@ -138,18 +138,20 @@ MonoBehaviour:
       reference="14" id="element0" /><field type="RAIN.Memory.BasicMemory+MemoryItem"
       reference="12" id="element1" /><field type="RAIN.Memory.BasicMemory+MemoryItem"
       reference="13" id="element2" /><field type="RAIN.Memory.BasicMemory+MemoryItem"
-      reference="15" id="element3" /></field></reference><reference type="RAIN.Minds.BasicMind"
+      reference="15" id="element3" /><field type="RAIN.Memory.BasicMemory+MemoryItem"
+      reference="16" id="element4" /><field type="RAIN.Memory.BasicMemory+MemoryItem"
+      reference="17" id="element5" /></field></reference><reference type="RAIN.Minds.BasicMind"
       refcount="1" id="2"><field type="RAIN.BehaviorTrees.BTAsset" id="_behaviorTreeAsset"
       gameobject="1" /><field type="System.Collections.Generic.List" id="_behaviorTreeBindings"
       elementtype="RAIN.BehaviorTrees.BTAssetBinding" /></reference><reference type="RAIN.Motion.MecanimMotor"
       refcount="1" id="3"><field value="3" type="System.Single" id="_speed" /><field
-      value="180" type="System.Single" id="_rotationSpeed" /><field value="0.1" type="System.Single"
-      id="_closeEnoughDistance" /><field value="0.1" type="System.Single" id="_closeEnoughAngle"
-      /><field value="90" type="System.Single" id="_faceBeforeMoveAngle" /><field
-      value="0.5" type="System.Single" id="_stepUpHeight" /><field value="False" type="System.Boolean"
-      id="_allow3DMovement" /><field value="False" type="System.Boolean" id="_allow3DRotation"
-      /><field value="True" type="System.Boolean" id="_allowOffGraphMovement" /><field
-      value="False" type="System.Boolean" id="_useRootMotion" /><field value="True"
+      value="180" type="System.Single" id="_rotationSpeed" /><field value="0.001"
+      type="System.Single" id="_closeEnoughDistance" /><field value="0.5" type="System.Single"
+      id="_closeEnoughAngle" /><field value="90" type="System.Single" id="_faceBeforeMoveAngle"
+      /><field value="0" type="System.Single" id="_stepUpHeight" /><field value="False"
+      type="System.Boolean" id="_allow3DMovement" /><field value="False" type="System.Boolean"
+      id="_allow3DRotation" /><field value="True" type="System.Boolean" id="_allowOffGraphMovement"
+      /><field value="False" type="System.Boolean" id="_useRootMotion" /><field value="True"
       type="System.Boolean" id="_overrideRootRotation" /><field type="System.Collections.Generic.List"
       id="_forwardedParameters" elementtype="RAIN.Motion.MecanimMotor+MotorParameter"
       /></reference><reference type="RAIN.Animation.MecanimAnimator" refcount="1"
@@ -206,17 +208,23 @@ MonoBehaviour:
       type="System.Object" id="Value" gameobject="-1" /></reference><reference type="RAIN.Memory.BasicMemory+MemoryItem"
       refcount="1" id="15"><field value="suicidaire" type="System.String" id="Key"
       /><field value="System.Boolean" type="System.Type" id="ValueType" /><field value="False"
+      type="System.Boolean" id="Value" /></reference><reference type="RAIN.Memory.BasicMemory+MemoryItem"
+      refcount="1" id="16"><field value="deltaPos" type="System.String" id="Key" /><field
+      value="UnityEngine.Vector3" type="System.Type" id="ValueType" /><field value="0,0,0"
+      type="UnityEngine.Vector3" id="Value" /></reference><reference type="RAIN.Memory.BasicMemory+MemoryItem"
+      refcount="1" id="17"><field value="enDeplacement" type="System.String" id="Key"
+      /><field value="System.Boolean" type="System.Type" id="ValueType" /><field value="False"
       type="System.Boolean" id="Value" /></reference></references></component>
     _serializedGameObjects:
-    - {fileID: 115054}
+    - {fileID: 160060}
     - {fileID: 11400000, guid: 2f0cd6b0cb96b46489ea1ca676a77edc, type: 2}
     _serializedCustomData: []
---- !u!114 &11459514
+--- !u!114 &11497896
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 115054}
+  m_GameObject: {fileID: 160060}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44ed7e867878db94c8084e53f20df8ce, type: 3}
@@ -232,16 +240,16 @@ MonoBehaviour:
   effetEngueulement: 200
   auTravail: 0
   chill: []
---- !u!136 &13647842
+--- !u!136 &13620826
 CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 115054}
+  m_GameObject: {fileID: 160060}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: .699999988
+  m_Radius: .800000012
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -254,5 +262,5 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 115054}
+  m_RootGameObject: {fileID: 160060}
   m_IsPrefabParent: 1
