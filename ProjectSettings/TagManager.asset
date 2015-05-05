@@ -10,6 +10,7 @@ TagManager:
   - Nav
   - Repos
   - Box
+  - Boss
   layers:
   - Default
   - TransparentFX
