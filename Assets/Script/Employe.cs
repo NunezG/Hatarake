@@ -76,7 +76,7 @@ public class Employe : MonoBehaviour {
 
 	public void setTaget (GameObject target)
 	{
-		if (target == true)
+		if (target != null)
 		tMemory.SetItem("enDeplacement",true);
 		else tMemory.SetItem("enDeplacement",false);
 		tMemory.SetItem("myTarget",target);
@@ -106,7 +106,7 @@ public class Employe : MonoBehaviour {
 		//Chaque seconde : motivation -= feignantise DONC si feignantise est grand, les pauses seront plus fréquentes.
 
 		auTravail  = true;
-				
+        setTaget(null);	
 		while (motivation > 20) 
 		{
 			//print("MOTIV: "+ motivation);
@@ -122,8 +122,9 @@ public class Employe : MonoBehaviour {
 	}
 
 	// Use this for initialization
-	public IEnumerator Repos () 
-	{
+	public IEnumerator Repos ()
+    {
+        setTaget(null);	
 		while (motivation < 50) 
 		{
 			if (fatigue > 0 )

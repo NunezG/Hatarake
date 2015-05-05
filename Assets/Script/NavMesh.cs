@@ -26,6 +26,7 @@ public class NavMesh : MonoBehaviour {
 		// Unregister any navigation mesh we may already have (probably none if you are using this)
 		tRig.NavMesh.UnregisterNavigationGraph();
 		tRig.NavMesh.Size = gameObject.GetComponent<LevelManager> ().getOfficeInstance ().size;
+        print("SIZE NAVMESH: "+gameObject.GetComponent<LevelManager> ().getOfficeInstance ().size);
 		float startTime = Time.time;
 		tRig.NavMesh.StartCreatingContours(tRig, _threadCount);
 		while (tRig.NavMesh.Creating)

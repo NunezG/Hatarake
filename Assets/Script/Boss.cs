@@ -51,6 +51,8 @@ public class Boss : MonoBehaviour {
 
 			if (charge)
 			{
+                if (!actionArea.gameObject.active)
+                    actionArea.gameObject.SetActive(true);
 
 
 				jaugeEngueulage += Time.deltaTime*vitesseJauge;
@@ -116,6 +118,7 @@ public class Boss : MonoBehaviour {
 
 
 		}
+        actionArea.gameObject.SetActive(false);
 		actionArea.localScale = new Vector3(0.8f,actionArea.localScale.y,0.8f);
 
 		print ("END CHARGE ");
