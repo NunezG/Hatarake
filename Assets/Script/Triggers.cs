@@ -7,21 +7,21 @@ public class Triggers : MonoBehaviour {
 	
 	public GameObject ChillRoomsTriggerPrefab;
 
-	public void addTrigger(int x,int z, int width, int height, Cell.CellType cellType)
+	public void addTrigger(int x,int z, int width, int height, CellType cellType)
 	{
 		GameObject newTrigger;
 
 		switch(cellType)
 		{
-		case Cell.CellType.Coffeeroom :
+		case CellType.Coffeeroom :
 			newTrigger = Instantiate(ChillRoomsTriggerPrefab) as GameObject;
 		//newTrigger.transform.position
 			break;
-		case Cell.CellType.Bathroom :
+		case CellType.Bathroom :
 			newTrigger = Instantiate(ChillRoomsTriggerPrefab) as GameObject;
 			//newTrigger.transform.position
 			break;
-		case Cell.CellType.Box :
+		case CellType.Box :
 			newTrigger = Instantiate(WorkBoxTriggerPrefab) as GameObject;
 			break;
 		default:

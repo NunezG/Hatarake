@@ -9,7 +9,6 @@ public class Cell  {
 	int posX,posY;
 	public bool check=false;
     public bool locked = false;
-	public enum CellType {Bathroom,Bossroom,Coffeeroom,Corridor, Elevator,Box};
 
 	public CellType cellType;
 

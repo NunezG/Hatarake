@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03bdb3bcbfc2fd94ab0d61ca9e48b8f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  officePrefab: {fileID: 11425116, guid: 3b60c55a572b5e441bc368feebaf2190, type: 2}
+  officePrefab: {fileID: 11425116, guid: 3f2eacda945e3ce4e99521f2c4832d5f, type: 2}
 --- !u!114 &268217655
 MonoBehaviour:
   m_ObjectHideFlags: 0

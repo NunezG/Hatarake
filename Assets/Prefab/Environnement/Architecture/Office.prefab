@@ -40,23 +40,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b94247a65ad76b94b8f01bc13e991c10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floorPrefab: {fileID: 197490, guid: 891b06afad8574a4b944f800dc32576d, type: 2}
-  NorthWallPrefab: {fileID: 162846, guid: 720b3236547a63243bf33f196335d7e0, type: 2}
-  SouthWallPrefab: {fileID: 156778, guid: 8becd65d7e35dbd4384d11dafa21ecf3, type: 2}
-  EastWallPrefab: {fileID: 128386, guid: fff28b78ed9278144b827e519203b945, type: 2}
-  WestWallPrefab: {fileID: 104546, guid: 59e34829f09d0a140b44570978712b1e, type: 2}
-  NorthDoorPrefab: {fileID: 185550, guid: 65961a4bf2051954488f6c5e815e86a3, type: 2}
-  SouthDoorPrefab: {fileID: 166348, guid: 8b48c264ff521fa42801ef4a4785508e, type: 2}
-  EastDoorPrefab: {fileID: 133294, guid: 391ecaedd8319b245bfcfe1ff017233e, type: 2}
-  WestDoorPrefab: {fileID: 199894, guid: 8c9384a033d25e843a695362bf2f8773, type: 2}
+  floorPrefab: {fileID: 197490, guid: 9f3b1e84266c5464488dccfc50a6a833, type: 2}
+  WallPrefab: {fileID: 159858, guid: 222fe23955a88fb4c8502cb1ab8635c4, type: 2}
+  DoorPrefab: {fileID: 100166, guid: 424426dc29db31d47b9e74ba98206e6f, type: 2}
+  bossDeskPrefab: {fileID: 162958, guid: 8faa8969869da4f4d9b847061037b477, type: 2}
+  employeeDeskPrefab: {fileID: 178170, guid: b11288bafd7745e4fb9f661c9dc83db3, type: 2}
+  canapPrefab: {fileID: 197074, guid: ecaf45e2a406c1d4fbd3263986681031, type: 2}
+  photocopierPrefab: {fileID: 123568, guid: cd852a43c38d31a48a43ae66f2390e2a, type: 2}
+  toiletPrefab: {fileID: 174314, guid: 98d6b0990c56d394cae3dd3a46172612, type: 2}
+  vendingMachinePrefab: {fileID: 145126, guid: 83122c1436f14de428bbe199e1d91bfe, type: 2}
+  coffeeMachinePrefab: {fileID: 133790, guid: 90c51c73e7ba9f846a54a47d47f30119, type: 2}
   obstacles: []
+  rooms: []
   size: 9
   materials:
   - {fileID: 2100000, guid: 41e79b74ecdc6b94d8bf3f15dd6fe4fa, type: 2}
   - {fileID: 2100000, guid: 37d39d488f353ff4896cabd4999234da, type: 2}
   - {fileID: 2100000, guid: 786797a61bc30e94591fd7bfed2532d3, type: 2}
   - {fileID: 2100000, guid: d821f665a235eb948b81fb448614cb7e, type: 2}
-  - {fileID: 2100000, guid: 027d199bc1f4514419713567df9d4a07, type: 2}
+  - {fileID: 2100000, guid: 41e79b74ecdc6b94d8bf3f15dd6fe4fa, type: 2}
   nbBossRooms: 1
   nbCoffeeRooms: 1
   nbBathRooms: 2
