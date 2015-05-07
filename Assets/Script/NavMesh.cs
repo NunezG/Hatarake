@@ -13,19 +13,22 @@ public class NavMesh : MonoBehaviour {
 	// This will regenerate the navigation mesh when called
 	public IEnumerator GenerateNavmesh()
 	{
-		float officeMiddle = ((float)gameObject.GetComponent<LevelManager> ().getOfficeInstance ().size-1.0f)/2.0f;
+
+        float size = gameObject.GetComponent<LevelManager>().getOfficeInstance().size * gameObject.GetComponent<LevelManager>().getOfficeInstance().transform.localScale.x;
+        float officeMiddle = (size - gameObject.GetComponent<LevelManager>().getOfficeInstance().transform.localScale.x) / 2.0f;
 
 
 		navMesh = Instantiate (navMesh);
 	//transform.position = 
 		LevelManager level = gameObject.GetComponent<LevelManager>();
-		navMesh.transform.position = level.getOfficeInstance().transform.position + new Vector3(officeMiddle, 0 ,officeMiddle);
+		navMesh.transform.position = level.getOfficeInstance().transform.position + new Vector3(officeMiddle, 15,officeMiddle);
 
 		tRig = navMesh.GetComponent<RAIN.Navigation.NavMesh.NavMeshRig>();
 
 		// Unregister any navigation mesh we may already have (probably none if you are using this)
 		tRig.NavMesh.UnregisterNavigationGraph();
-		tRig.NavMesh.Size = gameObject.GetComponent<LevelManager> ().getOfficeInstance ().size;
+        tRig.NavMesh.Size = size;
+
         print("SIZE NAVMESH: "+gameObject.GetComponent<LevelManager> ().getOfficeInstance ().size);
 		float startTime = Time.time;
 		tRig.NavMesh.StartCreatingContours(tRig, _threadCount);

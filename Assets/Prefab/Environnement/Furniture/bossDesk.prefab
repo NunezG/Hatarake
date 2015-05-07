@@ -12,7 +12,7 @@ GameObject:
   - 65: {fileID: 6595598}
   m_Layer: 0
   m_Name: bossDeskCollider
-  m_TagString: Untagged
+  m_TagString: Furniture
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +28,7 @@ GameObject:
   - 212: {fileID: 21253480}
   m_Layer: 0
   m_Name: bossDeskSprite
-  m_TagString: Untagged
+  m_TagString: Furniture
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,7 +43,7 @@ GameObject:
   - 4: {fileID: 402208}
   m_Layer: 0
   m_Name: bossDesk
-  m_TagString: Untagged
+  m_TagString: Furniture
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
