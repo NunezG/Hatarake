@@ -119,7 +119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxiePrefab: {fileID: 132538, guid: c7ee810d6529ba340916106e675eee8c, type: 2}
   bossPrefab: {fileID: 113448, guid: 5134b76fd8d64f14aacdbb095f67182c, type: 2}
-  nombreBoxies: 4
+  nombreBoxies: 10
   boxes: []
 --- !u!4 &268217652
 Transform:
@@ -229,7 +229,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 45
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -248,7 +248,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 353888183}
   m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106709}
-  m_LocalPosition: {x: 4.5, y: 10, z: 4.5}
+  m_LocalPosition: {x: 40, y: 40, z: 40}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

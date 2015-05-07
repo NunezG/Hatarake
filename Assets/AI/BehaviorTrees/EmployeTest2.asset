@@ -15,9 +15,12 @@ MonoBehaviour:
     _serializedData: <scriptableobject version="1.2" type="RAIN.BehaviorTrees.BTAsset"><fields><field
       value="&lt;behaviortree version=&quot;1.1&quot; repeatuntil=&quot;&quot; name=&quot;EmployeTest2&quot;
       debugbreak=&quot;False&quot;&gt;&lt;selector usepriorities=&quot;False&quot;
-      repeatuntil=&quot;&quot; name=&quot;root&quot; debugbreak=&quot;False&quot;&gt;&lt;constraint
-      repeatuntil=&quot;&quot; priority=&quot;&quot; name=&quot;suicidaire == false&quot;
-      debugbreak=&quot;False&quot; constraint=&quot;suicidaire == false&quot;&gt;&lt;sequencer
+      repeatuntil=&quot;&quot; name=&quot;root&quot; debugbreak=&quot;False&quot;&gt;&lt;mecparam
+      valueexpression=&quot;false&quot; repeatuntil=&quot;&quot; priority=&quot;&quot;
+      parametertype=&quot;boolean&quot; parametername=&quot;&amp;quot;IsWalking&amp;quot;&quot;
+      name=&quot;mecparam&quot; debugbreak=&quot;False&quot; damptime=&quot;0&quot;
+      /&gt;&lt;constraint repeatuntil=&quot;&quot; priority=&quot;&quot; name=&quot;suicidaire
+      == false&quot; debugbreak=&quot;False&quot; constraint=&quot;suicidaire == false&quot;&gt;&lt;sequencer
       usepriorities=&quot;False&quot; repeatuntil=&quot;&quot; name=&quot;sequencer&quot;
       debugbreak=&quot;False&quot;&gt;&lt;expression returnvalue=&quot;evaluate&quot;
       repeatuntil=&quot;&quot; priority=&quot;&quot; name=&quot;enDeplacement == true&quot;
@@ -27,10 +30,13 @@ MonoBehaviour:
       repeatuntil=&quot;&quot; name=&quot;reTarget == false&quot; debugbreak=&quot;False&quot;
       constraint=&quot;reTarget == false&quot;&gt;&lt;move turnspeed=&quot;&quot;
       repeatuntil=&quot;&quot; name=&quot;move&quot; movetarget=&quot;myTarget&quot;
-      movespeed=&quot;2&quot; facetarget=&quot;&quot; debugbreak=&quot;False&quot;
-      closeenoughdistance=&quot;&quot; closeenoughangle=&quot;&quot; /&gt;&lt;/constraint&gt;&lt;selector
+      movespeed=&quot;&quot; facetarget=&quot;&quot; debugbreak=&quot;False&quot;
+      closeenoughdistance=&quot;&quot; closeenoughangle=&quot;&quot; /&gt;&lt;mecparam
+      valueexpression=&quot;true&quot; repeatuntil=&quot;&quot; parametertype=&quot;boolean&quot;
+      parametername=&quot;&amp;quot;IsWalking&amp;quot;&quot; name=&quot;mecparam&quot;
+      debugbreak=&quot;False&quot; damptime=&quot;0&quot; /&gt;&lt;/constraint&gt;&lt;selector
       usepriorities=&quot;False&quot; repeatuntil=&quot;&quot; name=&quot;selector&quot;
-      debugbreak=&quot;False&quot;&gt;&lt;timer waitforsec=&quot;5&quot; returnvalue=&quot;failure&quot;
+      debugbreak=&quot;False&quot;&gt;&lt;timer waitforsec=&quot;1&quot; returnvalue=&quot;failure&quot;
       priority=&quot;&quot; name=&quot;timer&quot; debugbreak=&quot;False&quot; /&gt;&lt;action
       repeatuntil=&quot;&quot; priority=&quot;&quot; parametervalues=&quot;&quot;
       parameters=&quot;&quot; namespace=&quot;(global)&quot; name=&quot;reset path&quot;
@@ -40,12 +46,16 @@ MonoBehaviour:
       repeatuntil=&quot;&quot; priority=&quot;&quot; name=&quot;suicidaire == true&quot;
       expression=&quot;suicidaire == true&quot; debugbreak=&quot;False&quot; /&gt;&lt;move
       turnspeed=&quot;&quot; repeatuntil=&quot;&quot; priority=&quot;&quot; name=&quot;move&quot;
-      movetarget=&quot;(0,0,0)&quot; movespeed=&quot;2&quot; facetarget=&quot;&quot;
+      movetarget=&quot;(0,0,0)&quot; movespeed=&quot;&quot; facetarget=&quot;&quot;
       debugbreak=&quot;False&quot; closeenoughdistance=&quot;&quot; closeenoughangle=&quot;&quot;
       /&gt;&lt;action repeatuntil=&quot;&quot; priority=&quot;&quot; parametervalues=&quot;&quot;
       parameters=&quot;&quot; namespace=&quot;(global)&quot; name=&quot;Suicide&quot;
-      debugbreak=&quot;False&quot; classname=&quot;Suicide&quot; /&gt;&lt;/sequencer&gt;&lt;/selector&gt;&lt;/behaviortree&gt;"
-      type="System.String" id="treeData" /><field type="System.Array" id="treeBindings"
-      elementtype="System.String" /></fields><references /></scriptableobject>
+      debugbreak=&quot;False&quot; classname=&quot;Suicide&quot; /&gt;&lt;mecparam
+      valueexpression=&quot;true&quot; repeatuntil=&quot;&quot; priority=&quot;&quot;
+      parametertype=&quot;boolean&quot; parametername=&quot;&amp;quot;IsWalking&amp;quot;&quot;
+      name=&quot;mecparam&quot; debugbreak=&quot;False&quot; damptime=&quot;0&quot;
+      /&gt;&lt;/sequencer&gt;&lt;/selector&gt;&lt;/behaviortree&gt;" type="System.String"
+      id="treeData" /><field type="System.Array" id="treeBindings" elementtype="System.String"
+      /></fields><references /></scriptableobject>
     _serializedGameObjects: []
     _serializedCustomData: []
