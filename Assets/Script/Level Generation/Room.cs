@@ -1,17 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class Room : MonoBehaviour{
+public class Room {
 
-    List<Cell> cells = new List<Cell>();
+    public int posX, posY, width, height;
+    public RoomType type;
+    public List<Cell> cells = new List<Cell>();
 
-	// Use this for initialization
-	void Start () {
+    public Room(int x,int y,int width,int height,RoomType type,Cell[,] grid)
+    {
+        this.posX = x;
+        this.posY = y;
+        this.width = width;
+        this.height = height;
+        this.type = type;
+        for (int i = x; i < x + width; i++)
+            for (int j = y; j < y + height; j++)
+                cells.Add(grid[i, j]);
 
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    }
 }

@@ -1,0 +1,1 @@
+﻿public enum RoomType { Bathroom, Bossroom, Coffeeroom, Corridor, Elevator, Box };
