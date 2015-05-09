@@ -11,6 +11,8 @@ TagManager:
   - Repos
   - Box
   - Boss
+  - Furniture
+  - Obj
   layers:
   - Default
   - TransparentFX
@@ -21,7 +23,7 @@ TagManager:
   - 
   - 
   - Ground
-  - 
+  - Boxie
   - 
   - 
   - 

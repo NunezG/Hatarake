@@ -93,7 +93,7 @@ Transform:
   m_GameObject: {fileID: 171010}
   m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106709}
   m_LocalPosition: {x: 0, y: 2.20000005, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children: []
   m_Father: {fileID: 409222}
   m_RootOrder: 2
@@ -194,8 +194,8 @@ MonoBehaviour:
       id="0"><field value="True" type="System.Boolean" id="_isActive" /><field type="UnityEngine.GameObject"
       id="_body" gameobject="0" /><field type="RAIN.Memory.BasicMemory" reference="1"
       id="_workingMemory" childrenvisible="False" /><field type="BossMove" reference="2"
-      id="_mind" childrenvisible="False" /><field type="RAIN.Motion.BasicMotor" reference="3"
-      id="_motor" childrenvisible="True" /><field type="RAIN.Animation.BasicAnimator"
+      id="_mind" childrenvisible="True" /><field type="RAIN.Motion.MecanimMotor" reference="3"
+      id="_motor" childrenvisible="False" /><field type="RAIN.Animation.BasicAnimator"
       reference="4" id="_animator" /><field type="RAIN.Navigation.BasicNavigator"
       reference="5" id="_navigator" childrenvisible="False" /><field type="RAIN.Perception.BasicSenses"
       reference="6" id="_senses" childrenvisible="False" /><field type="System.Collections.Generic.List"
@@ -203,16 +203,19 @@ MonoBehaviour:
       type="RAIN.Memory.BasicMemory" refcount="1" id="1"><field type="System.Collections.Generic.List"
       id="_memoryItems" elementtype="RAIN.Memory.BasicMemory+MemoryItem"><field type="RAIN.Memory.BasicMemory+MemoryItem"
       reference="7" id="element0" /></field></reference><reference type="BossMove"
-      refcount="1" id="2" /><reference type="RAIN.Motion.BasicMotor" refcount="1"
-      id="3"><field value="3" type="System.Single" id="_speed" /><field value="360"
-      type="System.Single" id="_rotationSpeed" /><field value="0.1" type="System.Single"
-      id="_closeEnoughDistance" /><field value="0.1" type="System.Single" id="_closeEnoughAngle"
-      /><field value="90" type="System.Single" id="_faceBeforeMoveAngle" /><field
-      value="0.5" type="System.Single" id="_stepUpHeight" /><field value="False" type="System.Boolean"
+      refcount="1" id="2" /><reference type="RAIN.Motion.MecanimMotor" refcount="1"
+      id="3"><field value="40" type="System.Single" id="_speed" /><field value="3000"
+      type="System.Single" id="_rotationSpeed" /><field value="1" type="System.Single"
+      id="_closeEnoughDistance" /><field value="1" type="System.Single" id="_closeEnoughAngle"
+      /><field value="3000" type="System.Single" id="_faceBeforeMoveAngle" /><field
+      value="5" type="System.Single" id="_stepUpHeight" /><field value="False" type="System.Boolean"
       id="_allow3DMovement" /><field value="False" type="System.Boolean" id="_allow3DRotation"
-      /><field value="True" type="System.Boolean" id="_allowOffGraphMovement" /></reference><reference
-      type="RAIN.Animation.BasicAnimator" refcount="1" id="4"><field type="System.Collections.Generic.List"
-      id="_animationStates" elementtype="RAIN.Animation.BasicAnimator+BasicAnimatorState"
+      /><field value="True" type="System.Boolean" id="_allowOffGraphMovement" /><field
+      value="False" type="System.Boolean" id="_useRootMotion" /><field value="False"
+      type="System.Boolean" id="_overrideRootRotation" /><field type="System.Collections.Generic.List"
+      id="_forwardedParameters" elementtype="RAIN.Motion.MecanimMotor+MotorParameter"
+      /></reference><reference type="RAIN.Animation.BasicAnimator" refcount="1" id="4"><field
+      type="System.Collections.Generic.List" id="_animationStates" elementtype="RAIN.Animation.BasicAnimator+BasicAnimatorState"
       /></reference><reference type="RAIN.Navigation.BasicNavigator" refcount="1"
       id="5"><field value="True" type="System.Boolean" id="_drawPaths" /><field value="0,1,0,1"
       type="UnityEngine.Color" id="_pathColor" /><field value="-0.5" type="System.Single"

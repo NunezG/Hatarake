@@ -23,8 +23,11 @@ public class CharacterManager : MonoBehaviour {
 	public void Spawn()
 	{
 		boss =(GameObject)Instantiate (bossPrefab);
+        boss.transform.localScale = boss.transform.localScale * gameObject.GetComponent<LevelManager>().getOfficeInstance().transform.localScale.x;
+
 		boss.transform.position = gameObject.GetComponent<LevelManager>().getOfficeInstance().transform.position;
 		boss.transform.Translate(Random.Range(0,4),boss.GetComponent<Collider>().bounds.extents.y,Random.Range(0,3));
+
 
 		boxies = new GameObject[nombreBoxies];
 
@@ -45,11 +48,11 @@ public class CharacterManager : MonoBehaviour {
 					break;
 				}
 			}
-
+            tempObject.transform.localScale = tempObject.transform.localScale * gameObject.GetComponent<LevelManager>().getOfficeInstance().transform.localScale.x;
 
 			tempObject.transform.position = gameObject.GetComponent<LevelManager>().getOfficeInstance().transform.position;
-			tempObject.transform.Translate(Random.Range(0,4),tempObject.GetComponent<Collider>().bounds.extents.y,Random.Range(0,3));
-
+			tempObject.transform.Translate(Random.Range(0,40),tempObject.GetComponent<Collider>().bounds.extents.y,Random.Range(0,30));
+           
 
 			boxies[i] = tempObject;
 
