@@ -7,7 +7,7 @@ public class Office : MonoBehaviour {
 
 	public GameObject floorPrefab,WallPrefab,DoorPrefab;
 
-    public GameObject bossDeskPrefab, employeeDeskPrefab, canapPrefab, photocopierPrefab, toiletPrefab, vendingMachinePrefab, coffeeMachinePrefab;
+    public GameObject bossDeskPrefab, employeeDeskPrefab, canapPrefab, photocopierPrefab, toiletPrefab, vendingMachinePrefab, coffeeMachinePrefab,carpetPrefab,flowerPotPrefab,casier0Prefab,casier1Prefab;
 
 	public List<GameObject> obstacles = new List<GameObject>();
 
@@ -20,7 +20,7 @@ public class Office : MonoBehaviour {
 
     public int nbBossRooms, nbCoffeeRooms, nbBathRooms, nbBoxes;
 
-    public int nbCoffeeMachine, nbToilet, nbLavabo, nbVendingMachine, nbPhotocopier, nbFlowerPot,nbTV;
+    public int nbCoffeeMachine, nbToilet, nbLavabo, nbVendingMachine, nbPhotocopier, nbFlowerPot,nbTV,nbCasier;
 
     //array pour selection aleatoire dans les enums
     Array orientationValues = Enum.GetValues(typeof(Orientation));
@@ -59,8 +59,8 @@ public class Office : MonoBehaviour {
 
 
         tryToRandomlyPlaceXRooms(nbBoxes,1, 1, RoomType.Box);
-
-        placingFurnitures();
+        createCorridorRoom();
+        placingFurnituresInOffice();
 		for (int i =0; i<size; i++) 
 			for (int j =0; j<size; j++)
 				Create3DCell (i, j);
@@ -70,7 +70,7 @@ public class Office : MonoBehaviour {
 
 	}
 
-    public void placingFurnitures()
+    public void placingFurnituresInOffice()
     {
         foreach (Room room in rooms)
         {
@@ -83,101 +83,203 @@ public class Office : MonoBehaviour {
                     placingBathroomFurniture(room);
                     break;
                 case RoomType.Bossroom:
+                    placingBossRoomFurniture(room);
                     break;
                 case RoomType.Box:
                     placingBoxFurniture(room);
                     break;
                 case RoomType.Corridor:
+                    placingCorridorFurniture(room);
                     break;
             }
         }
     }
 
+    public bool placingFurniture(Cell cell,FurnitureType type)
+    {
+        if (cell.locked) return false;
+        bool furniturePlaced = true;
+        bool againstAWall, oppositeToDoor, whatever, notOnDoorCell;
+        List<Orientation> possibleOrientation = new List<Orientation>();
+        notOnDoorCell=againstAWall = oppositeToDoor = whatever = false;
+        switch (type)
+        {
+            case FurnitureType.Casier:
+                againstAWall = true;
+                break;
+            case FurnitureType.FlowerPot:
+                againstAWall = true;
+                break;
+            case FurnitureType.BossDesk:
+                notOnDoorCell=againstAWall = againstAWall = true;
+                break;
+            case FurnitureType.EmployeeDesk:
+                againstAWall = oppositeToDoor = true;
+                break;
+            case FurnitureType.Canap:
+                notOnDoorCell=whatever = true;
+                break;
+            case FurnitureType.Photocopier:
+                againstAWall = true;
+                break;
+            case FurnitureType.Toilet:
+                againstAWall = oppositeToDoor = true;
+                break;
+            case FurnitureType.VendingMachine:
+                notOnDoorCell=againstAWall = true;
+                break;
+            case FurnitureType.CoffeeMachine:
+                againstAWall = true;
+                break;
+            case FurnitureType.TV:
+                whatever=notOnDoorCell = true;
+                break;
+            default:
+                break;
+        }
+        //si il ne faut pas que ce soit sur la case de la porte, et qu'on est sur la case de la porte ...
+        if (notOnDoorCell &&  (cell.doorEast || cell.doorNorth || cell.doorSouth || cell.doorWest ) )
+            return !furniturePlaced;
+        //si il faut que ce soit contre un mur, et qu'on a pas de mur ...
+        if (againstAWall && !cell.wallEast && !cell.wallNorth && !cell.wallSouth && !cell.wallWest )
+            return !furniturePlaced;
+        // si il faut que ce soit oppose à la porte et contre un mur, et qu'en face de la porte y a pas de mur ...
+        if (oppositeToDoor && againstAWall && ((!cell.wallEast && cell.doorWest) || (!cell.wallWest && cell.doorEast) || (!cell.wallSouth && cell.doorNorth) || (!cell.wallNorth && cell.doorSouth)))
+            return !furniturePlaced;
+
+
+        if (oppositeToDoor)
+        {
+            //print("oppositeToDoor");
+            if (cell.doorWest) possibleOrientation.Add(Orientation.East);
+            else if (cell.doorEast) possibleOrientation.Add(Orientation.West);
+            else if (cell.doorNorth) possibleOrientation.Add(Orientation.South);
+            else if (cell.doorSouth) possibleOrientation.Add(Orientation.North);
+        }
+        else if (againstAWall)
+        {
+            //print("againstAWall");
+            if (cell.wallWest) possibleOrientation.Add(Orientation.West);
+            else if (cell.wallEast) possibleOrientation.Add(Orientation.East);
+            else if (cell.wallNorth) possibleOrientation.Add(Orientation.North);
+            else if (cell.wallSouth) possibleOrientation.Add(Orientation.South);
+        }
+        else if (whatever)
+        {
+            //print("whatever");
+            possibleOrientation.Add(Orientation.West);
+            possibleOrientation.Add(Orientation.East);
+            possibleOrientation.Add(Orientation.North);
+            possibleOrientation.Add(Orientation.South);
+        }
+        int rdmOrientationIndex = UnityEngine.Random.Range(0, possibleOrientation.Count); // on en tire un au hasard
+        cell.furnitures.Add(new Furniture(cell.posX, cell.posY, type, possibleOrientation[rdmOrientationIndex]));
+
+        return furniturePlaced;
+    }
+
+
+
+    public bool placingRoomFurnitures(List<FurnitureType> roomFurnitures, Room room)
+    {
+        List<int> randomIndexBagForFurnitures = new List<int>(); // on cree une liste nous permettant de tirer aleatoirement un index dans la liste des fournitures
+        for (int i = 0; i < roomFurnitures.Count; i++) randomIndexBagForFurnitures.Add(i); // on la remplie 
+
+
+        //print(room.type + " has " + roomFurnitures.Count + " furnitures to place");
+        int nbFurnituresPlaced = 0;
+
+        for (int i = 0; i < roomFurnitures.Count; i++) // pour chacun des meuble de la liste
+        {
+            int rdmFurnitureBagIndex = UnityEngine.Random.Range(0, randomIndexBagForFurnitures.Count); // on tire au hasard un index dans la liste des index
+            int rdmFurnitureIndex = randomIndexBagForFurnitures[rdmFurnitureBagIndex];  // on recupere l'index de fourniture correspondant
+            randomIndexBagForFurnitures.RemoveAt(rdmFurnitureBagIndex); // on enleve cette index de la liste en question
+
+            List<int> randomIndexBagForCells = new List<int>(); // on cree une liste nous permettant de tirer aleatoirement un index dans la liste des cases 
+            for (int j = 0; j < room.cells.Count; j++) randomIndexBagForCells.Add(j); // on la remplie
+
+            bool furniturePlaced = false;// boolean vrai si le meuble a ete place
+            // creer une classe pour ce genre de truc ?
+            while (!furniturePlaced && randomIndexBagForCells.Count >0) // tant que le meuble n'a pas ete place  ou qu'il y a encore des cases a essayer
+            {
+
+                int rdmCellBagIndex = UnityEngine.Random.Range(0, randomIndexBagForCells.Count); // on tire un index au hasard dans la liste des index
+                int rdmCellIndex = randomIndexBagForCells[rdmCellBagIndex]; // on recupere l'index de case correspondant
+                randomIndexBagForCells.RemoveAt(rdmCellBagIndex); // on retire l'index en question de la liste des index
+                furniturePlaced = placingFurniture(room.cells[rdmCellIndex],roomFurnitures[rdmFurnitureIndex]);
+                room.cells[rdmCellIndex].locked = true;
+
+
+
+
+                //if (furniturePlaced) print(roomFurnitures[rdmFurnitureIndex] + " successfully placed in cell" + room.cells[rdmCellIndex].posX + ":" + room.cells[rdmCellIndex].posY);
+                //else print(" failed to place " + roomFurnitures[rdmFurnitureIndex] + "in cell" + room.cells[rdmCellIndex].posX + ":" + room.cells[rdmCellIndex].posY);
+            }
+            if (furniturePlaced) nbFurnituresPlaced++;
+        }
+        if (nbFurnituresPlaced == roomFurnitures.Count) return true;
+        else return false;
+    }
+
     public void placingCoffeeRoomFurniture(Room room)
     {
         List<FurnitureType> coffeeRoomFurnitures = new List<FurnitureType>();
-        for(int i=0;i<nbCoffeeMachine;i++){
+        for(int i=0;i<nbCoffeeMachine;i++)
             coffeeRoomFurnitures.Add(FurnitureType.CoffeeMachine);
-        }
-
-        for (int i = 0; i < nbVendingMachine; i++)
-        {
+        for (int i = 0; i < nbVendingMachine; i++)         
             coffeeRoomFurnitures.Add(FurnitureType.VendingMachine);
-        }
         for (int i = 0; i < nbTV; i++)
-        {
             coffeeRoomFurnitures.Add(FurnitureType.TV);
-        }
-        Orientation randomOrientation;
-        System.Random random = new System.Random();
-        foreach (Cell cell in room.cells)
-        {
 
-            if (!cell.doorWest && !cell.doorSouth && !cell.doorNorth && !cell.doorEast)
-            {
-                randomOrientation = (Orientation)orientationValues.GetValue(random.Next(orientationValues.Length));
-                int i = UnityEngine.Random.Range(0, coffeeRoomFurnitures.Count);
-                cell.furnitures.Add(new Furniture(cell.posX, cell.posY, coffeeRoomFurnitures[i], randomOrientation));
-                coffeeRoomFurnitures.RemoveAt(i);
-            }
+        placingRoomFurnitures(coffeeRoomFurnitures, room);
 
-        }
     }
+    
+    public void placingBossRoomFurniture(Room room)
+    {
+        List<FurnitureType> bossRoomFurnitures = new List<FurnitureType>();
+        room.cells[0].furnitures.Add(new Furniture (room.cells[0].posX,room.cells[0].posY,FurnitureType.Carpet,Orientation.North));
+        bossRoomFurnitures.Add(FurnitureType.CoffeeMachine);
+        bossRoomFurnitures.Add(FurnitureType.VendingMachine);
+        bossRoomFurnitures.Add(FurnitureType.TV);
+        bossRoomFurnitures.Add(FurnitureType.BossDesk);
+
+        placingRoomFurnitures(bossRoomFurnitures, room);
+
+    }
+
     public void placingBoxFurniture(Room room)
     {
-        foreach (Cell cell in room.cells)
-        {
-            Orientation orientation=Orientation.North;
-            if(cell.doorEast)
-                orientation=Orientation.West;
-            else if(cell.doorNorth)
-                orientation=Orientation.South;
-            else if(cell.doorSouth)
-                orientation=Orientation.North;
-            else if(cell.doorWest)
-                orientation=Orientation.East;
-            cell.furnitures.Add(new Furniture(cell.posX, cell.posY, FurnitureType.EmployeeDesk, orientation));
-        }
+        List<FurnitureType> boxFurnitures = new List<FurnitureType>();
+
+        boxFurnitures.Add(FurnitureType.EmployeeDesk);
+
+        placingRoomFurnitures(boxFurnitures, room);
     }
 
     public void placingBathroomFurniture(Room room)
     {
-        foreach (Cell cell in room.cells)
-        {
-            Orientation orientation = Orientation.North;
-            if (cell.doorEast)
-                orientation = Orientation.West;
-            else if (cell.doorNorth)
-                orientation = Orientation.South;
-            else if (cell.doorSouth)
-                orientation = Orientation.North;
-            else if (cell.doorWest)
-                orientation = Orientation.East;
-            cell.furnitures.Add(new Furniture(cell.posX, cell.posY, FurnitureType.Toilet, orientation));
-        }
+        List<FurnitureType> bathroomFurnitures = new List<FurnitureType>();
+
+        bathroomFurnitures.Add(FurnitureType.Toilet);
+
+        placingRoomFurnitures(bathroomFurnitures, room);
     }
 
-
-
-    public int tryToRandomlyPlaceXRooms(int X,int width, int height, RoomType type)
+    public void placingCorridorFurniture(Room room)
     {
-        int nbSuccess = 0;
-        bool success;
-        for (int i = 0; i < X; i++)
-        {
-            success = placeRoom(width, height, type);
-            if (success)
-            {
-                nbSuccess++;
-                print("success");
-            }
-            else
-            {
-                print("defeat");
-            }
-        }
-        return nbSuccess;
+        List<FurnitureType> corridorFurnitures = new List<FurnitureType>();
+        for (int i = 0; i < nbFlowerPot; i++)
+            corridorFurnitures.Add(FurnitureType.FlowerPot);
+        for (int i = 0; i < nbPhotocopier; i++)
+            corridorFurnitures.Add(FurnitureType.Photocopier);
+        for (int i = 0; i < nbCasier; i++)
+            corridorFurnitures.Add(FurnitureType.Casier);
+
+        placingRoomFurnitures(corridorFurnitures, room);
     }
+
+
 	
 	private void Create3DCell (int x, int z) {
 		GameObject newCell = Instantiate(floorPrefab) as GameObject;
@@ -290,11 +392,23 @@ public class Office : MonoBehaviour {
         }
         foreach (Furniture furniture in grid[x, z].furnitures)
         {
-
             GameObject newFurniture =null;
             string name;
             switch (furniture.type)
             {
+                case FurnitureType.Casier:
+                    if (UnityEngine.Random.Range(0, 2) == 0) newFurniture = Instantiate(casier0Prefab) as GameObject;
+                    else newFurniture = Instantiate(casier1Prefab) as GameObject;
+                    name = "Casier" + x + "," + z;
+                    break;
+                case FurnitureType.FlowerPot:
+                    newFurniture = Instantiate(flowerPotPrefab) as GameObject;
+                    name = "FlowerPot" + x + "," + z;
+                    break;
+                case FurnitureType.Carpet:
+                    newFurniture = Instantiate(carpetPrefab) as GameObject;
+                    name = "Carpet" + x + "," + z;
+                    break;
                 case FurnitureType.BossDesk:
                     newFurniture = Instantiate(bossDeskPrefab) as GameObject;
                     name ="BossDesk"+x+","+z;
@@ -339,7 +453,36 @@ public class Office : MonoBehaviour {
 
 	}
 
+    public int tryToRandomlyPlaceXRooms(int X, int width, int height, RoomType type)
+    {
+        int nbSuccess = 0;
+        bool success;
+        for (int i = 0; i < X; i++)
+        {
+            success = placeRoom(width, height, type);
+            if (success)
+            {
+                nbSuccess++;
+                // print("success");
+            }
+            else
+            {
+                // print("defeat");
+            }
+        }
+        return nbSuccess;
+    }
+    public void createCorridorRoom()
+    {
+        Room corridorsRoom = new Room(RoomType.Corridor);
+        for (int i = 0; i < size; i++)
+            for (int j = 0; j < size; j++)
+                if (grid[i, j].type == RoomType.Corridor) corridorsRoom.cells.Add(grid[i, j]);
 
+        rooms.Add(corridorsRoom);
+    }
+    
+    
     public bool placeRoom(int width, int height, RoomType type)
     {
         bool roomForTheRoom = false;
@@ -397,18 +540,28 @@ public class Office : MonoBehaviour {
             if (xDoor == xRoom + width){ //si la porte se trouve a l'est
                 grid[xDoor - 1, yDoor].wallEast = false;// on enleve le mur est de sa case ouest
                 grid[xDoor - 1, yDoor].doorEast = true;// on ajoute la porte de sa case ouest
+
+                grid[xDoor, yDoor].wallWest = false;// on enleve son mur ouest, pas propre, pour mobilier couloir, a revoir
+
             }
             if (xDoor < xRoom){ //si la porte se trouve a l'ouest
                 grid[xDoor + 1, yDoor].wallWest = false;// on enleve le mur ouest de sa case est
                 grid[xDoor + 1, yDoor].doorWest = true;// on ajoute la porte ouest de sa case est
+
+                grid[xDoor, yDoor].wallEast = false;// on enleve son mur ouest, pas propre, pour mobilier couloir, a revoir
             }
             if (yDoor == yRoom + height){ //si la porte se trouve au sud
                 grid[xDoor, yDoor - 1].wallSouth = false;// on enleve le mur sud de sa case nord
                 grid[xDoor, yDoor - 1].doorSouth = true;// on ajoute la porte sud de sa case nord
+
+                grid[xDoor, yDoor].wallNorth = false;// on enleve son mur ouest, pas propre, pour mobilier couloir, a revoir
+
             }
             if (yDoor < yRoom) { //si la porte se trouve au nord
                 grid[xDoor, yDoor + 1].wallNorth = false;// on enleve le mur nord de sa case sud
                 grid[xDoor, yDoor + 1].doorNorth = true;// on ajoute la porte nord de sa case sud
+
+                grid[xDoor, yDoor].wallSouth = false;// on enleve son mur ouest, pas propre, pour mobilier couloir, a revoir
             }
             roomForTheRoom = true;
         }
@@ -548,14 +701,24 @@ public class Office : MonoBehaviour {
 
 				if (addTheWall) { // si on veut ajouter les murs de la salle
 
-					if (i == x)
-						grid [i, j].wallWest = true; // si le mur est sur le cote Ouest
-					if (i == x + width - 1)
-						grid [i, j].wallEast = true; // si le mur est sur le cote Est
-					if (j == y)
+                    if (i == x)
+                    {
+                        grid[i, j].wallWest = true; // si le mur est sur le cote Ouest
+                        if(i>1)grid[i-1, j].wallEast = true; // pas propre,necessaire pour le mobilier de couloir, a enlever plus tard ( peut etre :s )
+                    }
+					if (i == x + width - 1){
+                        grid[i, j].wallEast = true; // si le mur est sur le cote Est
+                        if (i <size-2) grid[i + 1, j].wallWest = true; 
+                    }
+                    if (j == y) { 
                         grid[i, j].wallNorth = true; // si le mur est sur le cote Nord
-					if (j == y + height - 1)
-						grid [i, j].wallSouth = true; // si le mur est sur le cote Sud
+                        if (j > 1)grid[i, j-1].wallSouth = true;
+                    }
+                    if (j == y + height - 1)
+                    {
+                        grid[i, j].wallSouth = true; // si le mur est sur le cote Sud
+                        if (j < size - 2) grid[i, j+1].wallNorth = true; 
+                    }
 					
 					
 				}// end if

@@ -43,13 +43,17 @@ MonoBehaviour:
   floorPrefab: {fileID: 197490, guid: 9f3b1e84266c5464488dccfc50a6a833, type: 2}
   WallPrefab: {fileID: 159858, guid: 222fe23955a88fb4c8502cb1ab8635c4, type: 2}
   DoorPrefab: {fileID: 100166, guid: 424426dc29db31d47b9e74ba98206e6f, type: 2}
-  bossDeskPrefab: {fileID: 162958, guid: 8faa8969869da4f4d9b847061037b477, type: 2}
-  employeeDeskPrefab: {fileID: 101518, guid: b11288bafd7745e4fb9f661c9dc83db3, type: 2}
+  bossDeskPrefab: {fileID: 155384, guid: 8faa8969869da4f4d9b847061037b477, type: 2}
+  employeeDeskPrefab: {fileID: 120572, guid: b11288bafd7745e4fb9f661c9dc83db3, type: 2}
   canapPrefab: {fileID: 155376, guid: 5e7910fba5eaf7e448e37af22e1e3898, type: 2}
-  photocopierPrefab: {fileID: 123568, guid: cd852a43c38d31a48a43ae66f2390e2a, type: 2}
+  photocopierPrefab: {fileID: 176800, guid: cd852a43c38d31a48a43ae66f2390e2a, type: 2}
   toiletPrefab: {fileID: 168160, guid: ae22a59ecb6f86b47890f23988e3ad0c, type: 2}
   vendingMachinePrefab: {fileID: 145126, guid: 83122c1436f14de428bbe199e1d91bfe, type: 2}
   coffeeMachinePrefab: {fileID: 133790, guid: 90c51c73e7ba9f846a54a47d47f30119, type: 2}
+  carpetPrefab: {fileID: 170040, guid: 208c54618fa9c714290867c73e59c427, type: 2}
+  flowerPotPrefab: {fileID: 125056, guid: 0ddfa9d6cd497c644b01f1b91312f03b, type: 2}
+  casier0Prefab: {fileID: 192844, guid: afb2d38b439bb0a4b9c967fba5a89c90, type: 2}
+  casier1Prefab: {fileID: 139754, guid: 31b1ed8e439611049956f24b2a77c7f7, type: 2}
   obstacles: []
   size: 9
   materials:
@@ -66,9 +70,10 @@ MonoBehaviour:
   nbToilet: 0
   nbLavabo: 0
   nbVendingMachine: 1
-  nbPhotocopier: 0
-  nbFlowerPot: 0
+  nbPhotocopier: 5
+  nbFlowerPot: 20
   nbTV: 1
+  nbCasier: 20
 --- !u!114 &11439750
 MonoBehaviour:
   m_ObjectHideFlags: 1

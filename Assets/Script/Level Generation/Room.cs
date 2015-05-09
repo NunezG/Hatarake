@@ -19,4 +19,9 @@ public class Room {
                 cells.Add(grid[i, j]);
 
     }
+
+    public Room(RoomType type)
+    {
+        this.type = type;
+    }
 }
