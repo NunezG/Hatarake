@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class jaugeEngueulage : MonoBehaviour {
 
-	List<GameObject> employes = new List<GameObject>();
+	private List<GameObject> employes = new List<GameObject>();
 	//GameObject employes;
 
 	// Use this for initialization
@@ -16,9 +16,6 @@ public class jaugeEngueulage : MonoBehaviour {
 	void Update () {
 	
 	}
-
-
-
 
 	void OnTriggerEnter(Collider other)
 	{
@@ -35,36 +32,30 @@ public class jaugeEngueulage : MonoBehaviour {
 		
 	}
 	
-	
 	void OnTriggerExit(Collider other)
 	{
 		if (other.tag == "Employe") 
 		{		
 			
 			employes.Remove(other.gameObject);
-
-			
+	
 		}
-		
 		
 	}
 
-	public void Engueule()
-	{
-		print ("ENGUEULE: " + employes.Count);
+    public List<GameObject> getEmployesJauge()
+    {
 
-		foreach(GameObject emp in employes)
-		{
+        return employes;
+    }
 
-			emp.GetComponent<Employe>().Engueule();
+    public void clearEmployesJauge()
+    {
 
-		}
-		employes.Clear ();
-
-		//other.GetComponent<Employe>().Engueule();
+        employes.Clear(); 
+    }
 
 
-	}
 
 	
 	void OnTriggerStay(Collider other)

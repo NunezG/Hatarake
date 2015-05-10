@@ -51,7 +51,7 @@ public class Employe : MonoBehaviour {
 	void Start () 
 	{
 		chill = GameObject.FindGameObjectsWithTag("Repos");
-
+      
 	}
 
 	void Update () 
@@ -114,9 +114,10 @@ public class Employe : MonoBehaviour {
 			motivation -= feignantise;
 			yield return new WaitForSeconds((float)(1.0f / vitesseTravail));
 		}
-		//print("CHANGE TARGET: "+ motivation);
 
 		int index = Random.Range(0, chill.Length);
+        print("CHANGE TARGET: " + chill[index]);
+
 		setTaget(chill[index]);	
 
 	}
@@ -132,6 +133,8 @@ public class Employe : MonoBehaviour {
 			motivation += effetRepos;
 			yield return new WaitForSeconds(1.0f / vitesseTravail);
 		}
+        print("CHANGE TARGET: " + boxDeTravail);
+
 			setTaget(boxDeTravail);													
 	}
 
