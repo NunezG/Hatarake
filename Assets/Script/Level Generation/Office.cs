@@ -38,6 +38,13 @@ public class Office : MonoBehaviour {
 	
 	}
 
+    public void unlockCells()
+    {
+        for (int i = 0; i < size; i++)
+            for (int j = 0; j < size; j++)
+                grid[i, j].locked = false;
+    }
+
 	public void init(){
 		
 		grid = new Cell[size,size];
@@ -60,6 +67,7 @@ public class Office : MonoBehaviour {
 
         tryToRandomlyPlaceXRooms(nbBoxes,1, 1, RoomType.Box);
         createCorridorRoom();
+        unlockCells(); 
         placingFurnituresInOffice();
 		for (int i =0; i<size; i++) 
 			for (int j =0; j<size; j++)
@@ -487,6 +495,7 @@ public class Office : MonoBehaviour {
         }
         return nbSuccess;
     }
+
     public void createCorridorRoom()
     {
         Room corridorsRoom = new Room(RoomType.Corridor);
@@ -496,8 +505,7 @@ public class Office : MonoBehaviour {
 
         rooms.Add(corridorsRoom);
     }
-    
-    
+        
     public bool placeRoom(int width, int height, RoomType type)
     {
         bool roomForTheRoom = false;
@@ -525,16 +533,16 @@ public class Office : MonoBehaviour {
             List<Vector2> possiblePlacesForDoor = new List<Vector2>(); // maintenant on va chercher la porte, on sait qu'il y a au moins un emplacement
             for (int i = xRoom; i < xRoom + width; i++) // parcours au dessus et en dessous
             {
-                if (yRoom > 1 && grid[i, yRoom - 1].type == RoomType.Corridor) // si on trouve une case corridor autour de la salle
+                if (yRoom > 0 && grid[i, yRoom - 1].type == RoomType.Corridor) // si on trouve une case corridor autour de la salle
                     possiblePlacesForDoor.Add(new Vector2(i, yRoom - 1)); // on l'ajoute aux emplacements possibles pour la porte
-                if (yRoom + height < size - 1 && grid[i, yRoom + height].type == RoomType.Corridor)
+                if (yRoom + height < size  && grid[i, yRoom + height].type == RoomType.Corridor)
                     possiblePlacesForDoor.Add(new Vector2(i, yRoom + height));
             }
             for (int i = yRoom; i < yRoom + height; i++)// parcours a droite a gauche
             {
-                if (xRoom > 1 && grid[xRoom - 1, i].type == RoomType.Corridor)
+                if (xRoom > 0 && grid[xRoom - 1, i].type == RoomType.Corridor)
                     possiblePlacesForDoor.Add(new Vector2(xRoom - 1, i));
-                if (xRoom + width < size - 1 && grid[xRoom + width, i].type == RoomType.Corridor)
+                if (xRoom + width < size  && grid[xRoom + width, i].type == RoomType.Corridor)
                     possiblePlacesForDoor.Add(new Vector2(xRoom + width, i));
             }
            // for (int i = 0; i < possiblePlacesForDoor.Count;i++ ){
@@ -588,7 +596,15 @@ public class Office : MonoBehaviour {
 
 
     }
+    public bool collision(int x, int y, int width, int height)
+    {
+        bool collision = true;
+        if (!placeAlreadyTaken(x, y, width, height) && doorCanBePlaced(x, y, width, height) && !breakCorridorsConnexion(x, y, width, height))
+            collision = false;
 
+        return collision;
+
+    }
 
     // renvoie vrai si la place est deja occupe par une case de type autre que corridor
     public bool placeAlreadyTaken(int x, int y, int width, int height)
@@ -614,16 +630,16 @@ public class Office : MonoBehaviour {
         bool doorCanBePlaced = false;
         for (int i = x; i < x + width; i++) // parcours au dessus et en dessous
         {
-            if (y > 1 && grid[i, y - 1].type == RoomType.Corridor) // si on trouve au moins une case corridor autour de la salle
+            if (y > 0 && grid[i, y - 1].type == RoomType.Corridor) // si on trouve au moins une case corridor autour de la salle
                 doorCanBePlaced = true;
-            if (y + height < size - 1 && grid[i, y + height].type == RoomType.Corridor)
+            if (y + height < size  && grid[i, y + height].type == RoomType.Corridor)
                 doorCanBePlaced = true;
         }
         for (int i = y; i < y + height; i++)
         {
-            if (x > 1 && grid[x - 1, i].type == RoomType.Corridor) 
+            if (x > 0 && grid[x - 1, i].type == RoomType.Corridor) 
                 doorCanBePlaced = true;
-            if (x + width < size - 1 && grid[x + width, i].type == RoomType.Corridor) 
+            if (x + width < size  && grid[x + width, i].type == RoomType.Corridor) 
                 doorCanBePlaced = true;
         }
 
@@ -688,23 +704,15 @@ public class Office : MonoBehaviour {
         grid[x, y].check = true;
         if (x < size - 1 && grid[x + 1, y].type == RoomType.Corridor && !grid[x + 1, y].check) // voisin de droite
             crawlCorridorsCells(x + 1, y);
-        if (x > 1 && grid[x - 1, y].type == RoomType.Corridor && !grid[x - 1, y].check) // voisin de gauche
+        if (x > 0 && grid[x - 1, y].type == RoomType.Corridor && !grid[x - 1, y].check) // voisin de gauche
             crawlCorridorsCells(x - 1, y);
         if (y < size - 1 && grid[x, y + 1].type == RoomType.Corridor && !grid[x, y + 1].check) // voisin du bas
             crawlCorridorsCells(x, y + 1);
-        if (y > 1 && grid[x, y - 1].type == RoomType.Corridor && !grid[x, y - 1].check) // voisin du haut
+        if (y > 0 && grid[x, y - 1].type == RoomType.Corridor && !grid[x, y - 1].check) // voisin du haut
             crawlCorridorsCells(x, y - 1);
     }
 
-    public bool collision (int x, int y, int width, int height)
-    {
-        bool collision = true;
-        if (!placeAlreadyTaken(x, y, width, height)   && doorCanBePlaced(x, y, width, height) && !breakCorridorsConnexion(x, y, width, height))
-            collision = false;
 
-        return collision;
-
-    }
 
 	// remplie une zone de la grille avec un type de case
 	public void fillArea(int x,int y, int width, int height, RoomType type, bool addTheWall){
@@ -719,20 +727,20 @@ public class Office : MonoBehaviour {
                     if (i == x)
                     {
                         grid[i, j].wallWest = true; // si le mur est sur le cote Ouest
-                        if(i>1)grid[i-1, j].wallEast = true; // pas propre,necessaire pour le mobilier de couloir, a enlever plus tard ( peut etre :s )
+                        if(i>0)grid[i-1, j].wallEast = true; // pas propre,necessaire pour le mobilier de couloir, a enlever plus tard ( peut etre :s )
                     }
 					if (i == x + width - 1){
                         grid[i, j].wallEast = true; // si le mur est sur le cote Est
-                        if (i <size-2) grid[i + 1, j].wallWest = true; 
+                        if (i <size-1) grid[i + 1, j].wallWest = true; 
                     }
                     if (j == y) { 
                         grid[i, j].wallNorth = true; // si le mur est sur le cote Nord
-                        if (j > 1)grid[i, j-1].wallSouth = true;
+                        if (j > 0)grid[i, j-1].wallSouth = true;
                     }
                     if (j == y + height - 1)
                     {
                         grid[i, j].wallSouth = true; // si le mur est sur le cote Sud
-                        if (j < size - 2) grid[i, j+1].wallNorth = true; 
+                        if (j < size - 1) grid[i, j+1].wallNorth = true; 
                     }
 					
 					
