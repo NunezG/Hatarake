@@ -7,10 +7,12 @@ public class Employe : MonoBehaviour {
 	
 	//public bool suicidaire;
 	public float feignantise = 10;// variable conditionnant le temps entre chaque pause (constante définit lors de la génération aléatoire d’employés, valeur unique pour le premier proto);
-	public float motivation = 50;// variable conditionnant le départ en pause. motivation = 0 -> go to Pause;
+	public float motivation = 500;// variable conditionnant le départ en pause. motivation = 0 -> go to Pause;
+    public float motivationMax = 500;// variable conditionnant le départ en pause. motivation = 0 -> go to Pause;
+
 	public float fatigue= 0;// variable similaire à la vie, diminue qd il se fait engueuler, augmente lors de ses pauses. si == fatigueMAX -> suicidaire = true;
 	public float fatigueMAX = 100;  
-	private GameObject boxDeTravail;// Box de l’employé
+	public GameObject boxDeTravail;// Box de l’employé
 
 
 	public float vitesseTravail = 5;
@@ -33,7 +35,7 @@ public class Employe : MonoBehaviour {
 	Employe[] amis;// liste d’amis agissant sur la fatigue en cas de suicide;
 
 	public GameObject[] chill;
-	private RAIN.Memory.BasicMemory tMemory;
+	public RAIN.Memory.BasicMemory tMemory;
 
 	private RAIN.Navigation.BasicNavigator tNav;
 
@@ -104,10 +106,13 @@ public class Employe : MonoBehaviour {
 	public IEnumerator Travaille () 
 	{
 		//Chaque seconde : motivation -= feignantise DONC si feignantise est grand, les pauses seront plus fréquentes.
-
+        tMemory.SetItem("working", true);
 		auTravail  = true;
-        setTaget(null);	
-		while (motivation > 20) 
+        //setTaget(null);	
+        //setTaget(chill[index]);
+        tMemory.SetItem("enDeplacement", false);
+
+		while (motivation > 0) 
 		{
 			//print("MOTIV: "+ motivation);
 			//fatigue += vitesseFatigue;
@@ -117,16 +122,22 @@ public class Employe : MonoBehaviour {
 
 		int index = Random.Range(0, chill.Length);
         print("CHANGE TARGET: " + chill[index]);
+        tMemory.SetItem("working", false);
 
-		setTaget(chill[index]);	
+        tMemory.SetItem("enDeplacement", true);
+
+		//setTaget(chill[index]);
+        tMemory.SetItem("chillTarget", chill[index].transform.position);
 
 	}
 
 	// Use this for initialization
 	public IEnumerator Repos ()
     {
-        setTaget(null);	
-		while (motivation < 50) 
+       // setTaget(null);
+        tMemory.SetItem("enDeplacement", false);
+
+        while (motivation < motivationMax) 
 		{
 			if (fatigue > 0 )
 				fatigue -= vitesseFatigue;
@@ -134,8 +145,9 @@ public class Employe : MonoBehaviour {
 			yield return new WaitForSeconds(1.0f / vitesseTravail);
 		}
         print("CHANGE TARGET: " + boxDeTravail);
+        tMemory.SetItem("enDeplacement", true);
 
-			setTaget(boxDeTravail);													
+			//setTaget(boxDeTravail);													
 	}
 
 
