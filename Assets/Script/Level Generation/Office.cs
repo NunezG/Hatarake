@@ -48,7 +48,7 @@ public class Office : MonoBehaviour {
 
 
 		fillArea(0, 0, size, size, RoomType.Corridor, true); // on pose les murs
-
+        placeFixedCorridors();
         tryToRandomlyPlaceXRooms(nbBossRooms, 2, 3, RoomType.Bossroom);
 
 
@@ -178,7 +178,20 @@ public class Office : MonoBehaviour {
         return furniturePlaced;
     }
 
-
+    public void placeFixedCorridors()
+    {
+        for (int i = 0; i < size; i++)
+        {
+            grid[i, 2].type = RoomType.Corridor;
+            grid[i, 2].locked =true;
+            grid[i, 6].type = RoomType.Corridor;
+            grid[i, 6].locked = true; 
+            grid[2, i].type = RoomType.Corridor;
+            grid[2, i].locked = true;
+            grid[6, i].type = RoomType.Corridor;
+            grid[6, i].locked = true;
+        }
+    }
 
     public bool placingRoomFurnitures(List<FurnitureType> roomFurnitures, Room room)
     {
@@ -226,7 +239,7 @@ public class Office : MonoBehaviour {
         List<FurnitureType> coffeeRoomFurnitures = new List<FurnitureType>();
         for(int i=0;i<nbCoffeeMachine;i++)
             coffeeRoomFurnitures.Add(FurnitureType.CoffeeMachine);
-        for (int i = 0; i < nbVendingMachine; i++)         
+        //for (int i = 0; i < nbVendingMachine; i++)         
             coffeeRoomFurnitures.Add(FurnitureType.VendingMachine);
         for (int i = 0; i < nbTV; i++)
             coffeeRoomFurnitures.Add(FurnitureType.TV);
@@ -274,7 +287,9 @@ public class Office : MonoBehaviour {
         for (int i = 0; i < nbPhotocopier; i++)
             corridorFurnitures.Add(FurnitureType.Photocopier);
         for (int i = 0; i < nbCasier; i++)
-            corridorFurnitures.Add(FurnitureType.Casier);
+            corridorFurnitures.Add(FurnitureType.Casier); ;
+        for (int i = 0; i < nbVendingMachine; i++)
+            corridorFurnitures.Add(FurnitureType.VendingMachine);
 
         placingRoomFurnitures(corridorFurnitures, room);
     }
@@ -725,7 +740,7 @@ public class Office : MonoBehaviour {
 		    }//end for
         if (addTheWall) {
 
-            GetComponent<Triggers>().addTrigger(x, y, width, height, type);
+            //GetComponent<Triggers>().addTrigger(x, y, width, height, type);
         
         }
 		
