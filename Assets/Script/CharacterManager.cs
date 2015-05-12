@@ -17,7 +17,7 @@ public class CharacterManager : MonoBehaviour {
 
 	public GameObject[] boxes;
 
-    public GameObject[] workingHelp;
+  //  public GameObject[] workingHelp;
 
 	GameObject[] boxies;
 	GameObject boss;
@@ -31,17 +31,16 @@ public class CharacterManager : MonoBehaviour {
 	{
 
         boxes = GameObject.FindGameObjectsWithTag("Box");
-        workingHelp = GameObject.FindGameObjectsWithTag("WorkHelp");
 
 
         Repos[] rep = GameObject.FindObjectsOfType<Repos>();
 
-        foreach (Repos repoo in rep)
-        {
-            print(repoo.transform.name);
-            print(repoo.transform.position);
+       // foreach (Repos repoo in rep)
+     //   {
+       //     print(repoo.transform.name);
+      //      print(repoo.transform.position);
 
-        }
+       // }
 
 		boss =(GameObject)Instantiate (bossPrefab);
         boss.transform.localScale = boss.transform.localScale * gameObject.GetComponent<LevelManager>().getOfficeInstance().transform.localScale.x;
@@ -61,14 +60,14 @@ public class CharacterManager : MonoBehaviour {
 
 			foreach(GameObject box in boxes )
 			{
-				if (box.GetComponent<Box>().occupe == false)
+                if (box.GetComponent<Box>().assigne == false)
 				{
 					tempObject.GetComponent<Employe>().setBox(box);
-                    tempObject.GetComponent<Employe>().tMemory.SetItem("workTarget", box.transform.position);
+                    tempObject.GetComponent<Employe>().tMemory.SetItem("workTarget", box);
                     tempObject.GetComponent<Employe>().tMemory.SetItem("enDeplacement", true);
 
 					//tempObject.GetComponent<Employe>().setTaget(box);
-					box.GetComponent<Box>().occupe = true;
+                    box.GetComponent<Box>().assigne = true;
 					break;
 				}
 			}

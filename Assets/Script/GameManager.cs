@@ -31,7 +31,9 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+        StartCoroutine(gameObject.GetComponent<NavMesh>().GenerateNavmesh());
+        // NavMesh ready ???
+        StartCoroutine(navMeshCheck());
 	}
 	
 	// Update is called once per frame
@@ -50,9 +52,7 @@ public class GameManager : MonoBehaviour {
 
 		gameObject.GetComponent<LevelManager>().BeginGame();
 		
-		StartCoroutine(gameObject.GetComponent<NavMesh>().GenerateNavmesh());
-		// NavMesh ready ???
-		StartCoroutine(navMeshCheck());
+		
 		//menu.SetActive (false);
 		//GameObject.Instantiate (sceneObject);
 	}

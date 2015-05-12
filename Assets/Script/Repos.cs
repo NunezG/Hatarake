@@ -6,6 +6,9 @@ using System.Collections;
 
 public class Repos : MonoBehaviour {
 
+
+   public bool occupe = false;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -18,9 +21,10 @@ public class Repos : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{	
-		if (other.tag == "Employe") 
+		if (other.tag == "Employe" ) 
 		{
-			StartCoroutine(other.GetComponentInChildren<Employe>().Repos());	
+           
+		//	StartCoroutine(other.GetComponentInChildren<Employe>().Repos());	
 		}
 	}
 	void OnTriggerExit(Collider other)

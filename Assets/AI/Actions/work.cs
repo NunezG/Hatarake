@@ -9,8 +9,12 @@ public class work : RAINAction
 {
     public override void Start(RAIN.Core.AI ai)
     {
-        base.Start(ai);
 
+
+       // Debug.Log("PUTAIN DE WORKKKK  STARTTT ");
+
+        base.Start(ai);
+        
         //Chaque seconde : motivation -= feignantise DONC si feignantise est grand, les pauses seront plus fréquentes.
         ai.WorkingMemory.SetItem("working", true);
         // auTravail = true;
@@ -21,15 +25,18 @@ public class work : RAINAction
 
     public override ActionResult Execute(RAIN.Core.AI ai)
     {
-
-  
+       // Debug.Log("PUTAIN DE WORKKKK  ");
 
     //    while (ai.WorkingMemory.GetItem<int>("motivation") > 0)
      //   {
             //print("MOTIV: "+ motivation);
             //fatigue += vitesseFatigue;
-        int mot = ai.WorkingMemory.GetItem<int>("motivation") - ai.WorkingMemory.GetItem<int>("feignantise");
-            ai.WorkingMemory.SetItem("motivation", mot);
+
+
+        ai.WorkingMemory.SetItem("motivation", ai.WorkingMemory.GetItem<int>("motivation") - ai.Body.GetComponent<Employe>().feignantise);
+
+    //    ai.Body.GetComponent<Employe>().motivation -= ai.Body.GetComponent<Employe>().feignantise;
+           // ai.WorkingMemory.SetItem("motivation", mot);
            // yield return new WaitForSeconds((float)(1.0f / vitesseTravail));
       //  }
 
@@ -42,9 +49,18 @@ public class work : RAINAction
         //setTaget(chill[index]);
        // ai.WorkingMemory.SetItem("chillTarget", chill[index].transform.position);
 
-            if (ai.WorkingMemory.GetItem<int>("motivation") == 0)
-                return ActionResult.SUCCESS;
-            else return ActionResult.RUNNING;
+
+        if (ai.WorkingMemory.GetItem<int>("motivation") <= 0)
+        {
+            ai.WorkingMemory.GetItem<GameObject>("workTarget").GetComponent<Box>().occupe = false;
+            return ActionResult.SUCCESS;
+
+        }
+
+                   // Debug.Log("PUTAIN DE WORKKKK RUNNNNNNNNNNNNNNNNNNNNNN ");
+
+
+         return ActionResult.RUNNING;
     }
 
     public override void Stop(RAIN.Core.AI ai)
