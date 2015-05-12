@@ -13,7 +13,6 @@ public class Office : MonoBehaviour {
 
     public List<Room> rooms = new List<Room>();
 
-
 	public Cell [,] grid;
 	public int size ;
 	public Material[] materials;
@@ -26,7 +25,6 @@ public class Office : MonoBehaviour {
     Array orientationValues = Enum.GetValues(typeof(Orientation));
     Array FurnitureValues = Enum.GetValues(typeof(FurnitureType));
     Array RoomValues = Enum.GetValues(typeof(RoomType));
-
 
 	// Use this for initialization
 	void Start () {
@@ -56,7 +54,12 @@ public class Office : MonoBehaviour {
 
 		fillArea(0, 0, size, size, RoomType.Corridor, true); // on pose les murs
         placeFixedCorridors();
-        tryToRandomlyPlaceXRooms(nbBossRooms, 2, 3, RoomType.Bossroom);
+
+        int rdmBossRoom = UnityEngine.Random.Range(0, 2); 
+        if(rdmBossRoom==0)
+            tryToRandomlyPlaceXRooms(nbBossRooms, 2, 3, RoomType.Bossroom);
+        else
+            tryToRandomlyPlaceXRooms(nbBossRooms, 3, 2, RoomType.Bossroom);
 
 
         tryToRandomlyPlaceXRooms(nbCoffeeRooms, 2, 2, RoomType.Coffeeroom);
@@ -259,7 +262,13 @@ public class Office : MonoBehaviour {
     public void placingBossRoomFurniture(Room room)
     {
         List<FurnitureType> bossRoomFurnitures = new List<FurnitureType>();
-        room.cells[0].furnitures.Add(new Furniture (room.cells[0].posX,room.cells[0].posY,FurnitureType.Carpet,Orientation.North));
+        Furniture carpet =new Furniture (room.cells[0].posX,room.cells[0].posY,FurnitureType.Carpet,Orientation.North);
+        if (room.width == 3) { 
+            carpet.flip = true;
+            carpet.orientation = Orientation.West;
+        }
+        room.cells[0].furnitures.Add(carpet);
+
         bossRoomFurnitures.Add(FurnitureType.CoffeeMachine);
         bossRoomFurnitures.Add(FurnitureType.VendingMachine);
         bossRoomFurnitures.Add(FurnitureType.TV);
@@ -302,8 +311,6 @@ public class Office : MonoBehaviour {
         placingRoomFurnitures(corridorFurnitures, room);
     }
 
-
-	
 	private void Create3DCell (int x, int z) {
 		GameObject newCell = Instantiate(floorPrefab) as GameObject;
 		newCell.name = "Maze Cell " + x + ", " + z;
@@ -469,7 +476,7 @@ public class Office : MonoBehaviour {
             newFurniture.transform.Translate(new Vector3(x, 0f, z));
 
             //------------------------
-            newFurniture.transform.Rotate(0, furniture.orientationToDegree(), 0);
+            newFurniture.transform.Rotate(0, furniture.orientationToDegree(), furniture.flipToDegree());
             //-------------------
             obstacles.Add(newFurniture);
         }
@@ -596,6 +603,7 @@ public class Office : MonoBehaviour {
 
 
     }
+    
     public bool collision(int x, int y, int width, int height)
     {
         bool collision = true;
@@ -711,9 +719,7 @@ public class Office : MonoBehaviour {
         if (y > 0 && grid[x, y - 1].type == RoomType.Corridor && !grid[x, y - 1].check) // voisin du haut
             crawlCorridorsCells(x, y - 1);
     }
-
-
-
+    
 	// remplie une zone de la grille avec un type de case
 	public void fillArea(int x,int y, int width, int height, RoomType type, bool addTheWall){
 
@@ -753,9 +759,5 @@ public class Office : MonoBehaviour {
         }
 		
 	}
-
-
-
-
 
 }

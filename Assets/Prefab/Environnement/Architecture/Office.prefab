@@ -65,7 +65,7 @@ MonoBehaviour:
   nbBossRooms: 1
   nbCoffeeRooms: 1
   nbBathRooms: 2
-  nbBoxes: 10
+  nbBoxes: 20
   nbCoffeeMachine: 1
   nbToilet: 0
   nbLavabo: 0

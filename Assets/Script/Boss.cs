@@ -137,7 +137,10 @@ public class Boss : MonoBehaviour {
         StartCoroutine(Engueulade());	
 
 	}
+    void OnPreviewMouseRightButtonDown( )
+    {
 
+    }
 	void OnMouseUp ()
 	{
 		charge = false;

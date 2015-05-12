@@ -241,7 +241,7 @@ MonoBehaviour:
       id="_behaviorTreeBindings" elementtype="RAIN.BehaviorTrees.BTAssetBinding" /></reference><reference
       type="RAIN.Motion.MecanimMotor" refcount="1" id="3"><field value="40" type="System.Single"
       id="_speed" /><field value="3000" type="System.Single" id="_rotationSpeed" /><field
-      value="1" type="System.Single" id="_closeEnoughDistance" /><field value="1"
+      value="0.5" type="System.Single" id="_closeEnoughDistance" /><field value="1"
       type="System.Single" id="_closeEnoughAngle" /><field value="3000" type="System.Single"
       id="_faceBeforeMoveAngle" /><field value="5" type="System.Single" id="_stepUpHeight"
       /><field value="False" type="System.Boolean" id="_allow3DMovement" /><field

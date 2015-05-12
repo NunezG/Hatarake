@@ -6,12 +6,20 @@ public class Furniture {
     public FurnitureType type;
     public Orientation orientation;
 
+    public bool flip = false;
+
     public Furniture(int x, int y, FurnitureType type, Orientation orientation)
     {
         cellX = x;
         cellY = y;
         this.type = type;
         this.orientation = orientation;
+    }
+
+    public int flipToDegree()
+    {
+        if (flip) return 180;
+        else return 0;
     }
 
     public int orientationToDegree()
