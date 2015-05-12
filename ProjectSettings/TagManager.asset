@@ -13,6 +13,7 @@ TagManager:
   - Boss
   - Furniture
   - Obj
+  - WorkHelp
   layers:
   - Default
   - TransparentFX

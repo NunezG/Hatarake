@@ -16,6 +16,9 @@ public class CharacterManager : MonoBehaviour {
 	float objectifNiveau; //(production à atteindre pour atteindre le niveau suivant)
 
 	public GameObject[] boxes;
+
+    public GameObject[] workingHelp;
+
 	GameObject[] boxies;
 	GameObject boss;
 
@@ -26,6 +29,10 @@ public class CharacterManager : MonoBehaviour {
 
 	public void Spawn()
 	{
+
+        boxes = GameObject.FindGameObjectsWithTag("Box");
+        workingHelp = GameObject.FindGameObjectsWithTag("WorkHelp");
+
 
         Repos[] rep = GameObject.FindObjectsOfType<Repos>();
 
@@ -49,15 +56,18 @@ public class CharacterManager : MonoBehaviour {
 		for (int i = 0; i < nombreBoxies; i++) 
 		{
 			GameObject tempObject = (GameObject)Instantiate (boxiePrefab);
-			
-			boxes = GameObject.FindGameObjectsWithTag("Box");
-			
+
+            tempObject.name = boxiePrefab.name + i;
+
 			foreach(GameObject box in boxes )
 			{
 				if (box.GetComponent<Box>().occupe == false)
 				{
 					tempObject.GetComponent<Employe>().setBox(box);
-					tempObject.GetComponent<Employe>().setTaget(box);
+                    tempObject.GetComponent<Employe>().tMemory.SetItem("workTarget", box.transform.position);
+                    tempObject.GetComponent<Employe>().tMemory.SetItem("enDeplacement", true);
+
+					//tempObject.GetComponent<Employe>().setTaget(box);
 					box.GetComponent<Box>().occupe = true;
 					break;
 				}
