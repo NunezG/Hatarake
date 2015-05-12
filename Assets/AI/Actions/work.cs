@@ -52,7 +52,7 @@ public class work : RAINAction
 
         if (ai.WorkingMemory.GetItem<int>("motivation") <= 0)
         {
-            ai.WorkingMemory.GetItem<GameObject>("workTarget").GetComponent<Box>().occupe = false;
+            ai.WorkingMemory.GetItem<GameObject>("myTarget").GetComponent<Box>().occupe = false;
             return ActionResult.SUCCESS;
 
         }

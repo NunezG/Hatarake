@@ -63,7 +63,7 @@ public class CharacterManager : MonoBehaviour {
                 if (box.GetComponent<Box>().assigne == false)
 				{
 					tempObject.GetComponent<Employe>().setBox(box);
-                    tempObject.GetComponent<Employe>().tMemory.SetItem("workTarget", box);
+                    tempObject.GetComponent<Employe>().tMemory.SetItem("myTarget", box);
                     tempObject.GetComponent<Employe>().tMemory.SetItem("enDeplacement", true);
 
 					//tempObject.GetComponent<Employe>().setTaget(box);

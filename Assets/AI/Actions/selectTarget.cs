@@ -110,7 +110,7 @@ public class selectTarget : RAINAction
 
       // Debug.Log("FUCKING FAILLLLLLLLLLLLLL ");
 
-        return ActionResult.FAILURE;
+        return ActionResult.RUNNING;
     }
 
     public override void Stop(RAIN.Core.AI ai)
