@@ -22,8 +22,18 @@ public class selectTarget : RAINAction
     public override ActionResult Execute(RAIN.Core.AI ai)
     {
      // Debug.Log("EXECCCC: " );
+		if(ai.WorkingMemory.GetItem<GameObject>("myTarget").CompareTag("Repos") == true)
+		{
+		//	Debug.Log ("SALLE DE REPOS OCCUPEEEEE");
+			ai.WorkingMemory.GetItem<GameObject>("myTarget").GetComponent<Repos>().occupe = false;
+		}else if(ai.WorkingMemory.GetItem<GameObject>("myTarget").CompareTag("WorkHelp") == true)
+		{
+		//	Debug.Log ("PHOTOCOPIEUSESEEEEEEEE OCCUPEEEEE");
+			ai.WorkingMemory.GetItem<GameObject>("myTarget").GetComponent<Box>().occupe = false;
+		}
 
-        if ( ai.WorkingMemory.GetItem<int>("motivation") == 0)
+
+        if ( ai.WorkingMemory.GetItem<int>("motivation") <= 0)
         {
           // Debug.Log("VARRRRRRRRRIABLEEEEEEEEEEEEEEEEEEEEEEEE: " + ai.Body.gameObject.GetComponent<Employe>().chill.Length);
 
@@ -44,6 +54,7 @@ public class selectTarget : RAINAction
            {
                if (go.GetComponent<Repos>().occupe == false)
                {
+
 
 
                   // Debug.Log("CHILLLLLLL: " + go.name);
@@ -73,7 +84,7 @@ public class selectTarget : RAINAction
         {
           //  Debug.Log("WORKIEEEEEEEEEEEEEEE /: " + ai.Body.gameObject.GetComponent<Employe>().workingHelp.Length);
 
-            int pos = Random.Range(0, 5);
+            int pos = Random.Range(0, 4);
 
             if (pos == 0)
             {

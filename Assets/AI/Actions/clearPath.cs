@@ -14,12 +14,12 @@ public class clearPath : RAINAction
 
     public override ActionResult Execute(RAIN.Core.AI ai)
     {
-		Debug.Log("CLEARNEDE" );
+	//	Debug.Log("CLEARNEDE" );
 
 
 		if (ai.Navigator.CurrentPath != null) {
-			Debug.Log ("CLEARNEDEEEEEEEEEEEEEEEEEEEEEEEEEEESSSSSSSSSSSSSSSSSSS" + ai.Navigator.CurrentPath.IsValid);
-			Debug.Log ("CLEARNEDEEEEEEE22222" + ai.Navigator.CurrentPath.IsPartial);
+	//		Debug.Log ("CLEARNEDEEEEEEEEEEEEEEEEEEEEEEEEEEESSSSSSSSSSSSSSSSSSS" + ai.Navigator.CurrentPath.IsValid);
+//			Debug.Log ("CLEARNEDEEEEEEE22222" + ai.Navigator.CurrentPath.IsPartial);
 
 			//ai.Reset (ai.Navigator.CurrentPath.);
 
@@ -27,6 +27,7 @@ public class clearPath : RAINAction
 
 
 		}
+		//ai.Navigator.Start ();
 		//tNav.RestartPathfindingSearch();
 
         return ActionResult.FAILURE;
