@@ -20,6 +20,10 @@ public class customDecision : RAINDecision
     {
         ActionResult tResult = ActionResult.SUCCESS;
 
+
+        if (ai.Body.GetComponent<Employe>().motivation > 0)
+        {
+
         for (; _lastRunning < _children.Count; _lastRunning++)
         {
             tResult = _children[_lastRunning].Run(ai);
@@ -28,6 +32,10 @@ public class customDecision : RAINDecision
         }
 
         return tResult;
+
+        }
+
+        return ActionResult.FAILURE;
     }
 
     public override void Stop(RAIN.Core.AI ai)

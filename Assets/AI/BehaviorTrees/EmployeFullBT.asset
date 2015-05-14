@@ -17,34 +17,44 @@ MonoBehaviour:
       debugbreak=&quot;False&quot;&gt;&lt;selector usepriorities=&quot;False&quot;
       repeatuntil=&quot;&quot; name=&quot;root&quot; debugbreak=&quot;False&quot;&gt;&lt;constraint
       repeatuntil=&quot;&quot; priority=&quot;&quot; name=&quot;suicidaire == false&quot;
-      debugbreak=&quot;False&quot; constraint=&quot;suicidaire == false&quot;&gt;&lt;selector
+      debugbreak=&quot;False&quot; constraint=&quot;suicidaire == false&quot;&gt;&lt;sequencer
       usepriorities=&quot;False&quot; repeatuntil=&quot;&quot; name=&quot;selector&quot;
-      debugbreak=&quot;False&quot;&gt;&lt;constraint repeatuntil=&quot;&quot; priority=&quot;&quot;
-      name=&quot;motivation &amp;gt; 0&quot; debugbreak=&quot;False&quot; constraint=&quot;motivation
-      &amp;gt; 0&quot;&gt;&lt;move turnspeed=&quot;&quot; repeatuntil=&quot;&quot;
-      name=&quot;move to work&quot; movetarget=&quot;workTarget&quot; movespeed=&quot;&quot;
-      facetarget=&quot;&quot; debugbreak=&quot;False&quot; closeenoughdistance=&quot;&quot;
-      closeenoughangle=&quot;&quot; /&gt;&lt;mecparam valueexpression=&quot;true&quot;
-      repeatuntil=&quot;&quot; parametertype=&quot;boolean&quot; parametername=&quot;typing&quot;
-      name=&quot;typing true&quot; debugbreak=&quot;False&quot; damptime=&quot;0&quot;
-      /&gt;&lt;action repeatuntil=&quot;&quot; parametervalues=&quot;&quot; parameters=&quot;&quot;
-      namespace=&quot;(global)&quot; name=&quot;action&quot; debugbreak=&quot;False&quot;
-      classname=&quot;work&quot; /&gt;&lt;mecparam valueexpression=&quot;false&quot;
-      repeatuntil=&quot;&quot; parametertype=&quot;boolean&quot; parametername=&quot;typing&quot;
-      name=&quot;typing false&quot; debugbreak=&quot;False&quot; damptime=&quot;0&quot;
-      /&gt;&lt;/constraint&gt;&lt;constraint repeatuntil=&quot;&quot; priority=&quot;&quot;
-      name=&quot;motivation &amp;lt; motivationMax&quot; debugbreak=&quot;False&quot;
-      constraint=&quot;motivation &amp;lt; motivationMax&quot;&gt;&lt;random repeatuntil=&quot;&quot;
-      name=&quot;selectChill&quot; debugbreak=&quot;False&quot;&gt;&lt;action weight=&quot;ghgg&quot;
-      repeatuntil=&quot;&quot; parametervalues=&quot;&quot; parameters=&quot;&quot;
-      namespace=&quot;(global)&quot; name=&quot;action&quot; debugbreak=&quot;False&quot;
-      classname=&quot;selectTarget&quot; /&gt;&lt;/random&gt;&lt;move turnspeed=&quot;&quot;
-      repeatuntil=&quot;&quot; name=&quot;move to chill&quot; movetarget=&quot;chillTarget&quot;
+      debugbreak=&quot;False&quot;&gt;&lt;action repeatuntil=&quot;&quot; priority=&quot;&quot;
+      parametervalues=&quot;&quot; parameters=&quot;&quot; namespace=&quot;(global)&quot;
+      name=&quot;select target&quot; debugbreak=&quot;False&quot; classname=&quot;selectTarget&quot;
+      /&gt;&lt;selector usepriorities=&quot;False&quot; repeatuntil=&quot;success&quot;
+      priority=&quot;&quot; name=&quot;sequencer&quot; debugbreak=&quot;False&quot;&gt;&lt;action
+      repeatuntil=&quot;&quot; priority=&quot;&quot; parametervalues=&quot;&quot;
+      parameters=&quot;&quot; namespace=&quot;&quot; name=&quot;clear&quot; debugbreak=&quot;False&quot;
+      classname=&quot;clearPath&quot; /&gt;&lt;parallel tiebreaker=&quot;succeed&quot;
+      succeed=&quot;any&quot; repeatuntil=&quot;&quot; priority=&quot;&quot; name=&quot;parallel&quot;
+      fail=&quot;any&quot; debugbreak=&quot;False&quot;&gt;&lt;move turnspeed=&quot;&quot;
+      repeatuntil=&quot;&quot; name=&quot;move to target&quot; movetarget=&quot;myTarget&quot;
       movespeed=&quot;&quot; facetarget=&quot;&quot; debugbreak=&quot;False&quot;
-      closeenoughdistance=&quot;&quot; closeenoughangle=&quot;&quot; /&gt;&lt;action
-      repeatuntil=&quot;&quot; parametervalues=&quot;&quot; parameters=&quot;bXlFeHByZXNzaW9u&quot;
-      namespace=&quot;(global)&quot; name=&quot;action&quot; debugbreak=&quot;False&quot;
-      classname=&quot;chill&quot; /&gt;&lt;/constraint&gt;&lt;/selector&gt;&lt;/constraint&gt;&lt;constraint
+      closeenoughdistance=&quot;&quot; closeenoughangle=&quot;&quot; /&gt;&lt;timer
+      waitforsec=&quot;1&quot; returnvalue=&quot;failure&quot; name=&quot;timer&quot;
+      debugbreak=&quot;False&quot; /&gt;&lt;/parallel&gt;&lt;/selector&gt;&lt;selector
+      usepriorities=&quot;False&quot; repeatuntil=&quot;&quot; priority=&quot;&quot;
+      name=&quot;selector&quot; debugbreak=&quot;False&quot;&gt;&lt;sequencer usepriorities=&quot;False&quot;
+      repeatuntil=&quot;&quot; priority=&quot;&quot; name=&quot;motivation &amp;gt;
+      0&quot; debugbreak=&quot;False&quot;&gt;&lt;expression returnvalue=&quot;evaluate&quot;
+      repeatuntil=&quot;&quot; priority=&quot;&quot; name=&quot;motivation &amp;gt;
+      0&quot; expression=&quot;motivation &amp;gt; 0&quot; debugbreak=&quot;False&quot;
+      /&gt;&lt;parallel tiebreaker=&quot;fail&quot; succeed=&quot;any&quot; repeatuntil=&quot;&quot;
+      priority=&quot;&quot; name=&quot;parallel&quot; fail=&quot;any&quot; debugbreak=&quot;False&quot;&gt;&lt;action
+      repeatuntil=&quot;&quot; parametervalues=&quot;&quot; parameters=&quot;&quot;
+      namespace=&quot;(global)&quot; name=&quot;work&quot; debugbreak=&quot;False&quot;
+      classname=&quot;work&quot; /&gt;&lt;timer waitforsec=&quot;2&quot; returnvalue=&quot;success&quot;
+      name=&quot;timer&quot; debugbreak=&quot;False&quot; /&gt;&lt;/parallel&gt;&lt;/sequencer&gt;&lt;sequencer
+      usepriorities=&quot;False&quot; repeatuntil=&quot;&quot; priority=&quot;&quot;
+      name=&quot;constraint&quot; debugbreak=&quot;False&quot;&gt;&lt;expression returnvalue=&quot;evaluate&quot;
+      repeatuntil=&quot;&quot; priority=&quot;&quot; name=&quot;motivation == 0&quot;
+      expression=&quot;motivation &amp;lt;= 0&quot; debugbreak=&quot;False&quot; /&gt;&lt;action
+      repeatuntil=&quot;&quot; priority=&quot;&quot; parametervalues=&quot;&quot;
+      parameters=&quot;&quot; namespace=&quot;&quot; name=&quot;chill&quot; debugbreak=&quot;False&quot;
+      classname=&quot;chill&quot; /&gt;&lt;/sequencer&gt;&lt;/selector&gt;&lt;sequencer
+      usepriorities=&quot;False&quot; repeatuntil=&quot;&quot; priority=&quot;&quot;
+      name=&quot;sequencer&quot; debugbreak=&quot;False&quot; /&gt;&lt;/sequencer&gt;&lt;/constraint&gt;&lt;constraint
       repeatuntil=&quot;&quot; priority=&quot;&quot; name=&quot;suicidaire == true&quot;
       debugbreak=&quot;False&quot; constraint=&quot;suicidaire == true&quot;&gt;&lt;sequencer
       usepriorities=&quot;False&quot; repeatuntil=&quot;&quot; name=&quot;sequencer&quot;

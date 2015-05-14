@@ -17,7 +17,7 @@ public class Employe : MonoBehaviour {
 
 	public float vitesseTravail = 5;
 	public float vitesseFatigue = 10;
-	public float effetRepos = 10;
+	public int effetRepos = 10;
 	public float effetEngueulement = 200;
 
 
@@ -35,11 +35,13 @@ public class Employe : MonoBehaviour {
 	Employe[] amis;// liste d’amis agissant sur la fatigue en cas de suicide;
 
 	public GameObject[] chill;
+    public GameObject[] workingHelp;
+
 	public RAIN.Memory.BasicMemory tMemory;
 
 	private RAIN.Navigation.BasicNavigator tNav;
 
-	private Vector3 oldPostion;
+	//private Vector3 oldPostion;
 
 	//Awake is always called before any Start functions
 	void Awake()
@@ -47,12 +49,17 @@ public class Employe : MonoBehaviour {
 		AIRig aiRig = GetComponentInChildren<AIRig>();		
 		tMemory = aiRig.AI.WorkingMemory as RAIN.Memory.BasicMemory;
 		tNav = aiRig.AI.Navigator as RAIN.Navigation.BasicNavigator;
+
+
+        chill = GameObject.FindGameObjectsWithTag("Repos");
+        workingHelp = GameObject.FindGameObjectsWithTag("WorkHelp");
 	}
 
 	// Use this for initialization
 	void Start () 
 	{
-		chill = GameObject.FindGameObjectsWithTag("Repos");
+		
+
       
 	}
 
@@ -60,7 +67,7 @@ public class Employe : MonoBehaviour {
 	{
 
 
-		tMemory.SetItem ("deltaPos", oldPostion - transform.position);
+	//	tMemory.SetItem ("deltaPos", oldPostion - transform.position);
 
 		//tNav.CurrentGraph.ClearNodes ();
 		//tNav.RestartPathfindingSearch();
@@ -127,7 +134,7 @@ public class Employe : MonoBehaviour {
         tMemory.SetItem("enDeplacement", true);
 
 		//setTaget(chill[index]);
-        tMemory.SetItem("chillTarget", chill[index].transform.position);
+        tMemory.SetItem("chillTarget", chill[index]);
 
 	}
 

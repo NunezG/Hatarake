@@ -3,8 +3,8 @@ using System.Collections;
 
 public class Box : MonoBehaviour {
 
-	public bool occupe = false;
-
+	public bool assigne = false;
+    public bool occupe = false;
 
 	// Use this for initialization
 	void Start () {
@@ -23,7 +23,7 @@ public class Box : MonoBehaviour {
 		
 		if (other.tag == "Employe" && other.GetComponent<Employe>().getBox()==this.gameObject) 
 		{		
-			StartCoroutine(other.GetComponent<Employe>().Travaille());
+			//StartCoroutine(other.GetComponent<Employe>().Travaille());
 			
 		}
 
