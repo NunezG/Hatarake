@@ -1,19 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class LevelManager : MonoBehaviour {
 
 	public Office officePrefab;
 	
-	private Office officeInstance;
+	private List<Office> officeFloors = new List<Office>();
 	
 	public void BeginGame () {
-		officeInstance = Instantiate(officePrefab) as Office;
-		officeInstance.init ();
+        int nbFloors = 3;
+        for (int i = 0; i < nbFloors; i++) {
+            Office officeInstance = Instantiate(officePrefab) as Office;
+            officeInstance.name = "Office floor n°" + i;
+		    officeInstance.init (i);
+            officeFloors.Add(officeInstance);
+        }
+
 	}
 	
 	private void RestartGame () {
-		Destroy(officeInstance.gameObject);
+        for (int i = 0; i < officeFloors.Count;i++ )
+            Destroy(officeFloors[i].gameObject);
 		BeginGame();
 	}
 	private void Start () {
@@ -26,8 +34,9 @@ public class LevelManager : MonoBehaviour {
 		}
 	}
 
-	public Office getOfficeInstance(){
-		return officeInstance;
+    public List<Office> getOfficeInstance()
+    {
+        return officeFloors;
 	}
 
 }

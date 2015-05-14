@@ -62,6 +62,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 786797a61bc30e94591fd7bfed2532d3, type: 2}
   - {fileID: 2100000, guid: d821f665a235eb948b81fb448614cb7e, type: 2}
   - {fileID: 2100000, guid: 41e79b74ecdc6b94d8bf3f15dd6fe4fa, type: 2}
+  - {fileID: 2100000, guid: a0f8e3badf5fad148b949f55748837e7, type: 2}
   nbBossRooms: 1
   nbCoffeeRooms: 1
   nbBathRooms: 2
@@ -74,6 +75,7 @@ MonoBehaviour:
   nbFlowerPot: 20
   nbTV: 1
   nbCasier: 20
+  floor: 0
 --- !u!114 &11439750
 MonoBehaviour:
   m_ObjectHideFlags: 1

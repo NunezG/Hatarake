@@ -44,9 +44,9 @@ public class CharacterManager : MonoBehaviour {
         }
 
 		boss =(GameObject)Instantiate (bossPrefab);
-        boss.transform.localScale = boss.transform.localScale * gameObject.GetComponent<LevelManager>().getOfficeInstance().transform.localScale.x;
+        boss.transform.localScale = boss.transform.localScale * gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.localScale.x;
 
-		boss.transform.position = gameObject.GetComponent<LevelManager>().getOfficeInstance().transform.position;
+        boss.transform.position = gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.position;
 		boss.transform.Translate(Random.Range(0,4),boss.GetComponent<Collider>().bounds.extents.y,Random.Range(0,3));
 
 
@@ -72,9 +72,9 @@ public class CharacterManager : MonoBehaviour {
 					break;
 				}
 			}
-            tempObject.transform.localScale = tempObject.transform.localScale * gameObject.GetComponent<LevelManager>().getOfficeInstance().transform.localScale.x;
+            tempObject.transform.localScale = tempObject.transform.localScale * gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.localScale.x;
 
-			tempObject.transform.position = gameObject.GetComponent<LevelManager>().getOfficeInstance().transform.position;
+			tempObject.transform.position = gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.position;
 			tempObject.transform.Translate(Random.Range(0,40),tempObject.GetComponent<Collider>().bounds.extents.y,Random.Range(0,30));
 
             tempObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color(Random.value, Random.value, Random.value);
