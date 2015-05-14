@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 //using RAIN.Minds;
 using RAIN.Core;
+using System.Collections.Generic;
 
 public class CharacterManager : MonoBehaviour {
 		
@@ -15,8 +16,7 @@ public class CharacterManager : MonoBehaviour {
 	float productionParSec; //(somme de chaque vitesseDeTravail des employés)
 	float objectifNiveau; //(production à atteindre pour atteindre le niveau suivant)
 
-	public GameObject[] boxes;
-
+	public List<GameObject>  boxes;
   //  public GameObject[] workingHelp;
 
 	GameObject[] boxies;
@@ -29,19 +29,10 @@ public class CharacterManager : MonoBehaviour {
 
 	public void Spawn()
 	{
+		GameObject floor = GameObject.Find ("Office floor0");			
 
-        boxes = GameObject.FindGameObjectsWithTag("Box");
-
-
-        Repos[] rep = GameObject.FindObjectsOfType<Repos>();
-
-       // foreach (Repos repoo in rep)
-     //   {
-       //     print(repoo.transform.name);
-      //      print(repoo.transform.position);
-
-       // }
-
+		Box[] boxes = floor.GetComponentsInChildren<Box> ();
+		
 		boss =(GameObject)Instantiate (bossPrefab);
         boss.transform.localScale = boss.transform.localScale * gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.localScale.x;
 
@@ -58,18 +49,20 @@ public class CharacterManager : MonoBehaviour {
 
             tempObject.name = boxiePrefab.name + i;
 
-			foreach(GameObject box in boxes )
+			foreach(Box box in boxes )
 			{
-                if (box.GetComponent<Box>().assigne == false)
+				if (box.CompareTag("Box") && box.assigne == false)
 				{
-					tempObject.GetComponent<Employe>().setBox(box);
-                    tempObject.GetComponent<Employe>().tMemory.SetItem("myTarget", box);
+					tempObject.GetComponent<Employe>().floor = floor;
+					tempObject.GetComponent<Employe>().setBox(box.gameObject);
+                    tempObject.GetComponent<Employe>().tMemory.SetItem("myTarget", box.gameObject);
                     tempObject.GetComponent<Employe>().tMemory.SetItem("enDeplacement", true);
 
 					//tempObject.GetComponent<Employe>().setTaget(box);
-                    box.GetComponent<Box>().assigne = true;
+					box.assigne = true;
 					break;
 				}
+
 			}
             tempObject.transform.localScale = tempObject.transform.localScale * gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.localScale.x;
 
@@ -80,8 +73,6 @@ public class CharacterManager : MonoBehaviour {
             tempObject.transform.GetChild(1).GetComponent<SpriteRenderer>().color = new Color(Random.value, Random.value, Random.value);
 
 			boxies[i] = tempObject;
-
-			//boxies [i].gameObject.GetComponentInChildren<AIRig>().AI.Motor.DefaultSpeed = 10;
-		}				
+			}				
 	}	
 }

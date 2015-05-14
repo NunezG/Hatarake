@@ -12,7 +12,7 @@ public class LevelManager : MonoBehaviour {
         int nbFloors = 3;
         for (int i = 0; i < nbFloors; i++) {
             Office officeInstance = Instantiate(officePrefab) as Office;
-            officeInstance.name = "Office floor n°" + i;
+            officeInstance.name = "Office floor" + i;
 		    officeInstance.init (i);
             officeFloors.Add(officeInstance);
         }
