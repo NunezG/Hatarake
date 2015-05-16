@@ -16,9 +16,9 @@ public class Employe : MonoBehaviour {
 	public float fatigueMAX = 100;  
 	public GameObject boxDeTravail;// Box de l’employé
 
-	public float vitesseTravail = 5;
+	//public float vitesseTravail = 5;
 	public float vitesseFatigue = 10;
-	public int effetRepos = 10;
+	//public int effetRepos = 10;
 	public float effetEngueulement = 200;
 
 	/**
@@ -29,7 +29,7 @@ public class Employe : MonoBehaviour {
 	**/
 	public bool auTravail;
 	bool enDeplacement;// utile pour l’animation notamment
-	float vitesseDeTravail = 50;// vitesse de production (plus grand si l’employé est bosseur => valeur unique par défaut pour le premier proto).
+	//float vitesseDeTravail = 50;// vitesse de production (plus grand si l’employé est bosseur => valeur unique par défaut pour le premier proto).
 	Employe[] amis;// liste d’amis agissant sur la fatigue en cas de suicide;
 
 	public GameObject floor;
@@ -40,6 +40,8 @@ public class Employe : MonoBehaviour {
 	public RAIN.Memory.BasicMemory tMemory;
 	private RAIN.Navigation.BasicNavigator tNav;
 
+
+	public EmployeNames data;
 	//Awake is always called before any Start functions
 	void Awake()
 	{
@@ -51,6 +53,8 @@ public class Employe : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{	
+		data.InitializeEmployee ();
+
 		Repos[] chills = floor.GetComponentsInChildren<Repos> ();
 		Box[] boxes = floor.GetComponentsInChildren<Box> ();
 
@@ -93,50 +97,6 @@ public class Employe : MonoBehaviour {
 	//{
 	//	auTravail = true;
 	//}
-
-	// Use this for initialization
-	public IEnumerator Travaille () 
-	{
-		//Chaque seconde : motivation -= feignantise DONC si feignantise est grand, les pauses seront plus fréquentes.
-        tMemory.SetItem("working", true);
-		auTravail  = true;
-        //setTaget(null);	
-        //setTaget(chill[index]);
-        tMemory.SetItem("enDeplacement", false);
-
-		while (motivation > 0) 
-		{
-			//fatigue += vitesseFatigue;
-			motivation -= feignantise;
-			yield return new WaitForSeconds((float)(1.0f / vitesseTravail));
-		}
-
-		int index = Random.Range(0, chill.Count);
-        tMemory.SetItem("working", false);
-        tMemory.SetItem("enDeplacement", true);
-
-		//setTaget(chill[index]);
-        tMemory.SetItem("chillTarget", chill[index]);
-
-	}
-
-	// Use this for initialization
-	public IEnumerator Repos ()
-    {
-       // setTaget(null);
-        tMemory.SetItem("enDeplacement", false);
-
-        while (motivation < motivationMax) 
-		{
-			if (fatigue > 0 )
-				fatigue -= vitesseFatigue;
-			motivation += effetRepos;
-			yield return new WaitForSeconds(1.0f / vitesseTravail);
-		}
-        tMemory.SetItem("enDeplacement", true);
-
-			//setTaget(boxDeTravail);													
-	}
 
 	// Use this for initialization
 	public void Engueule () 
