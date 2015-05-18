@@ -15,7 +15,12 @@ public class EmployeNames {
 	public bool isMale;
 	public List<string> hobbies = new List<string>();
 	public Data data;
-	
+
+    public float fatigue = 0;// variable similaire à la vie, diminue qd il se fait engueuler, augmente lors de ses pauses. si == fatigueMAX -> suicidaire = true;
+    public float motivation;// variable conditionnant le départ en pause. motivation = 0 -> go to Pause;
+    public float fatigueMAX = 100;
+    public float motivationMax = 500;// variable conditionnant le départ en pause. motivation = 0 -> go to Pause;
+    public float effetEngueulement = 200;
 
 	public void InitializeEmployee (){
 		data = new Data();
@@ -74,6 +79,8 @@ public class EmployeNames {
 
 		}
 
+
+        motivation = motivationMax;
 
 	}
 
