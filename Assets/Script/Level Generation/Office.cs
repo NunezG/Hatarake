@@ -13,7 +13,7 @@ public class Office : MonoBehaviour {
                         boxesPrefab,
                         bathroomPrefab,
                         coffeeRoomDecoPrefab,coffeeRoomChillPrefab,
-                        bossRoomPrefab;
+                        bossRoomDecoPrefab,bossRoomFixedPrefab;
 
 
 	public List<GameObject> obstacles = new List<GameObject>();
@@ -52,14 +52,18 @@ public class Office : MonoBehaviour {
                 grid[i, j].locked = false;
     }
 
-	public void init(int floor){
+    public void init(int floor, int nbBossRooms,int nbCoffeeRooms,int nbBathRooms,int nbBoxes)
+    {
         this.floor = floor;
+        this.nbBathRooms = nbBathRooms;
+        this.nbBossRooms = nbBossRooms;
+        this.nbCoffeeRooms = nbCoffeeRooms;
+        this.nbBoxes = nbBoxes;
 		grid = new Cell[size,size];
 		
 		for (int i =0; i<size; i++) 
 			for (int j =0; j<size; j++)
 				grid[i, j]= new Cell(this,i,j,RoomType.Corridor);
-
 
 		fillArea(0, 0, size, size, RoomType.Corridor, true); // on pose les murs
 
@@ -72,12 +76,9 @@ public class Office : MonoBehaviour {
         else
             tryToRandomlyPlaceXRooms(nbBossRooms, 3, 2, RoomType.Bossroom);
 
-
         tryToRandomlyPlaceXRooms(nbCoffeeRooms, 2, 2, RoomType.Coffeeroom);
 
-
         tryToRandomlyPlaceXRooms(nbBathRooms, 1, 1, RoomType.Bathroom);
-
 
         tryToRandomlyPlaceXRooms(nbBoxes,1, 1, RoomType.Box);
         createCorridorRoom();
@@ -87,9 +88,7 @@ public class Office : MonoBehaviour {
 			for (int j =0; j<size; j++)
 				Create3DCell (i, j);
 
-
         this.transform.localScale=new Vector3 (10, 10, 10);
-
 	}
 
     public void placingFurnituresInOffice()

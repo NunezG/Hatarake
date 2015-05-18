@@ -62,13 +62,6 @@ public class Boss : MonoBehaviour {
 
                 colliders = Physics.OverlapSphere(pos, 1f /* Radius */);
 
-              /*  if (colliders != null && colliders.Length > 0)
-                {
-                    Debug.Log("COLLIDER: " + colliders[0].name);
-                    Debug.Log("COLLIDER colliders[0].tag: " + colliders[0].tag);
-
-                }
-              */
                 if (pos != null && pos != transform.position && (colliders == null || (colliders != null && (colliders.Length == 0 || colliders[0].tag == "Nav"))))
                 {
                     tMemory.SetItem("enDeplacement", true);
@@ -87,31 +80,22 @@ public class Boss : MonoBehaviour {
 
 	}
 
-	//public GameObject setBoxies (GameObject[] lesBoxies)
-	//{
-	//	boxies = lesBoxies;
-	//}
-
     public IEnumerator Engueulade()
     {
 
         print("ENGUEULADE!!!!!!!!!!!!!!");
 
         actionArea.gameObject.SetActive(true);
+        float pos=0;
         while (charge)
         {
-                
-           // jaugeEngueulage += Time.deltaTime * vitesseJauge;
-         //   jaugeEngueulage += vitesseJauge;
-            float pos = Mathf.Lerp(actionArea.localScale.x, jaugeEngueulageMax, vitesseJauge * Time.deltaTime);
-            //Vector3.Lerp(transform.position, endP, smoothing * Time.deltaTime);
-
+            pos = Mathf.Lerp(actionArea.localScale.x, jaugeEngueulageMax, vitesseJauge * Time.deltaTime);
             actionArea.localScale = new Vector3(pos, actionArea.localScale.y, pos);
 
             yield return null;
         }
         print("HATARAKE!!!!!!!!!!!!!!!!! ");
-
+        HatarakeSign.Create(pos,this.transform.position);
         actionArea.gameObject.SetActive(false);
         actionArea.localScale = new Vector3(0.8f, actionArea.localScale.y, 0.8f);
         //ResetTimer
@@ -119,9 +103,7 @@ public class Boss : MonoBehaviour {
 
         foreach (GameObject emp in actionArea.GetComponent<jaugeEngueulage>().getEmployesJauge())
         {
-
             emp.GetComponent<Employe>().Engueule();
-
         }
         actionArea.GetComponent<jaugeEngueulage>().clearEmployesJauge();
 

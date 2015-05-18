@@ -29,6 +29,8 @@ public class work : RAINAction
             return ActionResult.SUCCESS;
         }
 
+        GameManager gm =GameObject.Find("GameManager").GetComponent<GameManager>();
+        gm.objectiveCompletion = gm.objectiveCompletion+0.1f;
 		//Continue a travailler
          return ActionResult.RUNNING;
     }
