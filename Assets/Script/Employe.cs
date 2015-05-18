@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+
 using RAIN.Core;
 using RAIN.Navigation;
 
@@ -14,14 +16,10 @@ public class Employe : MonoBehaviour {
 	public float fatigueMAX = 100;  
 	public GameObject boxDeTravail;// Box de l’employé
 
-
-	public float vitesseTravail = 5;
+	//public float vitesseTravail = 5;
 	public float vitesseFatigue = 10;
-	public int effetRepos = 10;
+	//public int effetRepos = 10;
 	public float effetEngueulement = 200;
-
-
-
 
 	/**
 	 * true = au taff
@@ -31,57 +29,51 @@ public class Employe : MonoBehaviour {
 	**/
 	public bool auTravail;
 	bool enDeplacement;// utile pour l’animation notamment
-	float vitesseDeTravail = 50;// vitesse de production (plus grand si l’employé est bosseur => valeur unique par défaut pour le premier proto).
+	//float vitesseDeTravail = 50;// vitesse de production (plus grand si l’employé est bosseur => valeur unique par défaut pour le premier proto).
 	Employe[] amis;// liste d’amis agissant sur la fatigue en cas de suicide;
 
-	public GameObject[] chill;
-    public GameObject[] workingHelp;
+	public GameObject floor;
+
+	public List<GameObject> chill;
+	public List<GameObject> workingHelp;
 
 	public RAIN.Memory.BasicMemory tMemory;
-
 	private RAIN.Navigation.BasicNavigator tNav;
 
-	//private Vector3 oldPostion;
 
+	public EmployeNames data;
 	//Awake is always called before any Start functions
 	void Awake()
 	{
 		AIRig aiRig = GetComponentInChildren<AIRig>();		
 		tMemory = aiRig.AI.WorkingMemory as RAIN.Memory.BasicMemory;
 		tNav = aiRig.AI.Navigator as RAIN.Navigation.BasicNavigator;
-
-
-        chill = GameObject.FindGameObjectsWithTag("Repos");
-        workingHelp = GameObject.FindGameObjectsWithTag("WorkHelp");
 	}
 
 	// Use this for initialization
 	void Start () 
-	{
-		
+	{	
+		data.InitializeEmployee ();
 
-      
+		Repos[] chills = floor.GetComponentsInChildren<Repos> ();
+		Box[] boxes = floor.GetComponentsInChildren<Box> ();
+
+		foreach (Repos chi in chills) 
+		{
+			chill.Add(chi.gameObject);	
+		}
+
+		foreach (Box box in boxes) {
+			if (box.CompareTag("Box") && box.assigne == false)
+			{
+				workingHelp.Add(box.gameObject);
+			}
+		}
 	}
 
 	void Update () 
 	{
-
-
-	//	tMemory.SetItem ("deltaPos", oldPostion - transform.position);
-
-		//tNav.CurrentGraph.ClearNodes ();
-		//tNav.RestartPathfindingSearch();
-
-		//print("PATH LENGHT" + tNav.CurrentPath.GetLength());
-
-
-
-		//oldPostion = transform.position;
-
-
-
 	}
-
 
 	public void setTaget (GameObject target)
 	{
@@ -101,85 +93,24 @@ public class Employe : MonoBehaviour {
 		return boxDeTravail;
 	}
 
-
-
 	//public void auTravail ()
 	//{
 	//	auTravail = true;
 	//}
 
-
-	// Use this for initialization
-	public IEnumerator Travaille () 
-	{
-		//Chaque seconde : motivation -= feignantise DONC si feignantise est grand, les pauses seront plus fréquentes.
-        tMemory.SetItem("working", true);
-		auTravail  = true;
-        //setTaget(null);	
-        //setTaget(chill[index]);
-        tMemory.SetItem("enDeplacement", false);
-
-		while (motivation > 0) 
-		{
-			//print("MOTIV: "+ motivation);
-			//fatigue += vitesseFatigue;
-			motivation -= feignantise;
-			yield return new WaitForSeconds((float)(1.0f / vitesseTravail));
-		}
-
-		int index = Random.Range(0, chill.Length);
-        print("CHANGE TARGET: " + chill[index]);
-        tMemory.SetItem("working", false);
-
-        tMemory.SetItem("enDeplacement", true);
-
-		//setTaget(chill[index]);
-        tMemory.SetItem("chillTarget", chill[index]);
-
-	}
-
-	// Use this for initialization
-	public IEnumerator Repos ()
-    {
-       // setTaget(null);
-        tMemory.SetItem("enDeplacement", false);
-
-        while (motivation < motivationMax) 
-		{
-			if (fatigue > 0 )
-				fatigue -= vitesseFatigue;
-			motivation += effetRepos;
-			yield return new WaitForSeconds(1.0f / vitesseTravail);
-		}
-        print("CHANGE TARGET: " + boxDeTravail);
-        tMemory.SetItem("enDeplacement", true);
-
-			//setTaget(boxDeTravail);													
-	}
-
-
-
 	// Use this for initialization
 	public void Engueule () 
 	{
-
-
-
 		//Chaque seconde : motivation -= feignantise DONC si feignantise est grand, les pauses seront plus fréquentes.
 		fatigue += effetEngueulement;
 		auTravail  = true;
-		print ("ENGUEULE EMPLOYE :" +fatigue );
 
 		if (fatigue >= fatigueMAX) {
 			//suicidaire = true;		
-			print("SUICIDAIRE!!!!!!!");
-
 			tMemory.SetItem("suicidaire",true);
 		}
 	}
 
-
-	
 	// Use this for initialization
 	public void Suicide () 
 	{
