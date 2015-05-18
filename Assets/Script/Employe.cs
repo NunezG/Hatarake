@@ -8,19 +8,8 @@ using RAIN.Navigation;
 public class Employe : MonoBehaviour {
 	
 	//public bool suicidaire;
-	public float feignantise = 10;// variable conditionnant le temps entre chaque pause (constante définit lors de la génération aléatoire d’employés, valeur unique pour le premier proto);
-	public float motivation = 500;// variable conditionnant le départ en pause. motivation = 0 -> go to Pause;
-    public float motivationMax = 500;// variable conditionnant le départ en pause. motivation = 0 -> go to Pause;
-
-	public float fatigue= 0;// variable similaire à la vie, diminue qd il se fait engueuler, augmente lors de ses pauses. si == fatigueMAX -> suicidaire = true;
-	public float fatigueMAX = 100;  
 	public GameObject boxDeTravail;// Box de l’employé
-
-	//public float vitesseTravail = 5;
-	public float vitesseFatigue = 10;
-	//public int effetRepos = 10;
-	public float effetEngueulement = 200;
-
+   
 	/**
 	 * true = au taff
 	 * false = en train de glander (engueulable)
@@ -29,7 +18,6 @@ public class Employe : MonoBehaviour {
 	**/
 	public bool auTravail;
 	bool enDeplacement;// utile pour l’animation notamment
-	//float vitesseDeTravail = 50;// vitesse de production (plus grand si l’employé est bosseur => valeur unique par défaut pour le premier proto).
 	Employe[] amis;// liste d’amis agissant sur la fatigue en cas de suicide;
 
 	public GameObject floor;
@@ -64,7 +52,7 @@ public class Employe : MonoBehaviour {
 		}
 
 		foreach (Box box in boxes) {
-			if (box.CompareTag("Box") && box.assigne == false)
+			if (box.CompareTag("WorkHelp"))
 			{
 				workingHelp.Add(box.gameObject);
 			}
@@ -102,10 +90,11 @@ public class Employe : MonoBehaviour {
 	public void Engueule () 
 	{
 		//Chaque seconde : motivation -= feignantise DONC si feignantise est grand, les pauses seront plus fréquentes.
-		fatigue += effetEngueulement;
+		data.fatigue += data.effetEngueulement;
+        data.motivation = data.motivationMax;
 		auTravail  = true;
 
-		if (fatigue >= fatigueMAX) {
+		if (data.fatigue >= data.fatigueMAX) {
 			//suicidaire = true;		
 			tMemory.SetItem("suicidaire",true);
 		}

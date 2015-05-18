@@ -21,7 +21,7 @@ public class customDecision : RAINDecision
         ActionResult tResult = ActionResult.SUCCESS;
 
 
-        if (ai.Body.GetComponent<Employe>().motivation > 0)
+        if (ai.Body.GetComponent<Employe>().data.motivation > 0)
         {
 
         for (; _lastRunning < _children.Count; _lastRunning++)
