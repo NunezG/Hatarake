@@ -3,30 +3,31 @@ using System.Collections.Generic;
 using System;
 
 using System.Collections;
-public class Office : MonoBehaviour {
+public class Office : MonoBehaviour
+{
 
-	public GameObject floorPrefab,WallPrefab,DoorPrefab;
+    public GameObject floorPrefab,backgroundPrefab, WallPrefab, DoorPrefab;
 
-    public GameObject bossDeskPrefab, employeeDeskPrefab, canapPrefab, photocopierPrefab, toiletPrefab, vendingMachinePrefab, coffeeMachinePrefab,carpetPrefab,flowerPotPrefab,casier0Prefab,casier1Prefab;
+    public GameObject bossDeskPrefab, employeeDeskPrefab, canapPrefab, photocopierPrefab, toiletPrefab, vendingMachinePrefab, coffeeMachinePrefab, carpetPrefab, flowerPotPrefab, casier0Prefab, casier1Prefab;
 
-    public GameObject[] corridorsDecoPreFab, corridorChillPrefab,corridorWorkPrefab,
+    public GameObject[] corridorsDecoPreFab, corridorChillPrefab, corridorWorkPrefab,
                         boxesPrefab,
                         bathroomPrefab,
-                        coffeeRoomDecoPrefab,coffeeRoomChillPrefab,
-                        bossRoomDecoPrefab,bossRoomFixedPrefab;
+                        coffeeRoomDecoPrefab, coffeeRoomChillPrefab,
+                        bossRoomDecoPrefab, bossRoomFixedPrefab;
 
 
-	public List<GameObject> obstacles = new List<GameObject>();
+    public List<GameObject> obstacles = new List<GameObject>();
 
     public List<Room> rooms = new List<Room>();
 
-	public Cell [,] grid;
-	public int size ;
-	public Material[] materials;
+    public Cell[,] grid;
+    public int size;
+    public Material[] materials;
 
     public int nbBossRooms, nbCoffeeRooms, nbBathRooms, nbBoxes;
 
-    public int nbCoffeeMachine, nbToilet, nbLavabo, nbVendingMachine, nbPhotocopier, nbFlowerPot,nbTV,nbCasier;
+    public int nbCoffeeMachine, nbToilet, nbLavabo, nbVendingMachine, nbPhotocopier, nbFlowerPot, nbTV, nbCasier;
 
     public int floor;
 
@@ -35,15 +36,17 @@ public class Office : MonoBehaviour {
     Array FurnitureValues = Enum.GetValues(typeof(FurnitureType));
     Array RoomValues = Enum.GetValues(typeof(RoomType));
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    // Use this for initialization
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 
     public void unlockCells()
     {
@@ -52,27 +55,27 @@ public class Office : MonoBehaviour {
                 grid[i, j].locked = false;
     }
 
-    public void init(int floor, int nbBossRooms,int nbCoffeeRooms,int nbBathRooms,int nbBoxes)
+    public void init(int floor, int nbBossRooms, int nbCoffeeRooms, int nbBathRooms, int nbBoxes)
     {
+
         this.floor = floor;
-        this.transform.Translate(floor * 20, 0, 0);
         this.nbBathRooms = nbBathRooms;
         this.nbBossRooms = nbBossRooms;
         this.nbCoffeeRooms = nbCoffeeRooms;
         this.nbBoxes = nbBoxes;
-		grid = new Cell[size,size];
-		
-		for (int i =0; i<size; i++) 
-			for (int j =0; j<size; j++)
-				grid[i, j]= new Cell(this,i,j,RoomType.Corridor);
+        grid = new Cell[size, size];
 
-		fillArea(0, 0, size, size, RoomType.Corridor, true); // on pose les murs
+        for (int i = 0; i < size; i++)
+            for (int j = 0; j < size; j++)
+                grid[i, j] = new Cell(this, i, j, RoomType.Corridor);
+
+        fillArea(0, 0, size, size, RoomType.Corridor, true); // on pose les murs
 
         placeFixedCorridors();
         createElevatorRoom();
 
-        int rdmBossRoom = UnityEngine.Random.Range(0, 2); 
-        if(rdmBossRoom==0)
+        int rdmBossRoom = UnityEngine.Random.Range(0, 2);
+        if (rdmBossRoom == 0)
             tryToRandomlyPlaceXRooms(nbBossRooms, 2, 3, RoomType.Bossroom);
         else
             tryToRandomlyPlaceXRooms(nbBossRooms, 3, 2, RoomType.Bossroom);
@@ -81,16 +84,22 @@ public class Office : MonoBehaviour {
 
         tryToRandomlyPlaceXRooms(nbBathRooms, 1, 1, RoomType.Bathroom);
 
-        tryToRandomlyPlaceXRooms(nbBoxes,1, 1, RoomType.Box);
+        tryToRandomlyPlaceXRooms(nbBoxes, 1, 1, RoomType.Box);
         createCorridorRoom();
-        unlockCells(); 
+        unlockCells();
         placingFurnituresInOffice();
-		for (int i =0; i<size; i++) 
-			for (int j =0; j<size; j++)
-				Create3DCell (i, j);
+        for (int i = 0; i < size; i++)
+            for (int j = 0; j < size; j++)
+                Create3DCell(i, j);
 
-       // this.transform.localScale=new Vector3 (10, 10, 10);
-	}
+        GameObject newBackground = Instantiate(backgroundPrefab) as GameObject;
+        newBackground.name = "Background floor" + floor;
+        newBackground.transform.parent = transform;
+        newBackground.transform.localPosition = new Vector3(floor * 20+4, -1.0f, 4);
+
+
+        this.transform.localScale = new Vector3(10, 10, 10);
+    }
 
     public void placingFurnituresInOffice()
     {
@@ -117,13 +126,13 @@ public class Office : MonoBehaviour {
         }
     }
 
-    public bool placingFurniture(Cell cell,FurnitureType type)
+    public bool placingFurniture(Cell cell, FurnitureType type)
     {
         if (cell.locked) return false;
         bool furniturePlaced = true;
         bool againstAWall, oppositeToDoor, whatever, notOnDoorCell;
         List<Orientation> possibleOrientation = new List<Orientation>();
-        notOnDoorCell=againstAWall = oppositeToDoor = whatever = false;
+        notOnDoorCell = againstAWall = oppositeToDoor = whatever = false;
         switch (type)
         {
             case FurnitureType.Casier:
@@ -133,13 +142,13 @@ public class Office : MonoBehaviour {
                 againstAWall = true;
                 break;
             case FurnitureType.BossDesk:
-                notOnDoorCell=againstAWall = againstAWall = true;
+                notOnDoorCell = againstAWall = againstAWall = true;
                 break;
             case FurnitureType.EmployeeDesk:
                 againstAWall = oppositeToDoor = true;
                 break;
             case FurnitureType.Canap:
-                notOnDoorCell=whatever = true;
+                notOnDoorCell = whatever = true;
                 break;
             case FurnitureType.Photocopier:
                 againstAWall = true;
@@ -148,22 +157,22 @@ public class Office : MonoBehaviour {
                 againstAWall = oppositeToDoor = true;
                 break;
             case FurnitureType.VendingMachine:
-                notOnDoorCell=againstAWall = true;
+                notOnDoorCell = againstAWall = true;
                 break;
             case FurnitureType.CoffeeMachine:
                 againstAWall = true;
                 break;
             case FurnitureType.TV:
-                whatever=notOnDoorCell = true;
+                whatever = notOnDoorCell = true;
                 break;
             default:
                 break;
         }
         //si il ne faut pas que ce soit sur la case de la porte, et qu'on est sur la case de la porte ...
-        if (notOnDoorCell &&  (cell.doorEast || cell.doorNorth || cell.doorSouth || cell.doorWest ) )
+        if (notOnDoorCell && (cell.doorEast || cell.doorNorth || cell.doorSouth || cell.doorWest))
             return !furniturePlaced;
         //si il faut que ce soit contre un mur, et qu'on a pas de mur ...
-        if (againstAWall && !cell.wallEast && !cell.wallNorth && !cell.wallSouth && !cell.wallWest )
+        if (againstAWall && !cell.wallEast && !cell.wallNorth && !cell.wallSouth && !cell.wallWest)
             return !furniturePlaced;
         // si il faut que ce soit oppose à la porte et contre un mur, et qu'en face de la porte y a pas de mur ...
         if (oppositeToDoor && againstAWall && ((!cell.wallEast && cell.doorWest) || (!cell.wallWest && cell.doorEast) || (!cell.wallSouth && cell.doorNorth) || (!cell.wallNorth && cell.doorSouth)))
@@ -205,9 +214,9 @@ public class Office : MonoBehaviour {
         for (int i = 0; i < size; i++)
         {
             grid[i, 2].type = RoomType.Corridor;
-            grid[i, 2].locked =true;
+            grid[i, 2].locked = true;
             grid[i, 6].type = RoomType.Corridor;
-            grid[i, 6].locked = true; 
+            grid[i, 6].locked = true;
             grid[2, i].type = RoomType.Corridor;
             grid[2, i].locked = true;
             grid[6, i].type = RoomType.Corridor;
@@ -235,13 +244,13 @@ public class Office : MonoBehaviour {
 
             bool furniturePlaced = false;// boolean vrai si le meuble a ete place
             // creer une classe pour ce genre de truc ?
-            while (!furniturePlaced && randomIndexBagForCells.Count >0) // tant que le meuble n'a pas ete place  ou qu'il y a encore des cases a essayer
+            while (!furniturePlaced && randomIndexBagForCells.Count > 0) // tant que le meuble n'a pas ete place  ou qu'il y a encore des cases a essayer
             {
 
                 int rdmCellBagIndex = UnityEngine.Random.Range(0, randomIndexBagForCells.Count); // on tire un index au hasard dans la liste des index
                 int rdmCellIndex = randomIndexBagForCells[rdmCellBagIndex]; // on recupere l'index de case correspondant
                 randomIndexBagForCells.RemoveAt(rdmCellBagIndex); // on retire l'index en question de la liste des index
-                furniturePlaced = placingFurniture(room.cells[rdmCellIndex],roomFurnitures[rdmFurnitureIndex]);
+                furniturePlaced = placingFurniture(room.cells[rdmCellIndex], roomFurnitures[rdmFurnitureIndex]);
                 room.cells[rdmCellIndex].locked = true;
 
 
@@ -259,22 +268,23 @@ public class Office : MonoBehaviour {
     public void placingCoffeeRoomFurniture(Room room)
     {
         List<FurnitureType> coffeeRoomFurnitures = new List<FurnitureType>();
-        for(int i=0;i<nbCoffeeMachine;i++)
+        for (int i = 0; i < nbCoffeeMachine; i++)
             coffeeRoomFurnitures.Add(FurnitureType.CoffeeMachine);
         //for (int i = 0; i < nbVendingMachine; i++)         
-            coffeeRoomFurnitures.Add(FurnitureType.VendingMachine);
+        coffeeRoomFurnitures.Add(FurnitureType.VendingMachine);
         for (int i = 0; i < nbTV; i++)
             coffeeRoomFurnitures.Add(FurnitureType.TV);
 
         placingRoomFurnitures(coffeeRoomFurnitures, room);
 
     }
-    
+
     public void placingBossRoomFurniture(Room room)
     {
         List<FurnitureType> bossRoomFurnitures = new List<FurnitureType>();
-        Furniture carpet =new Furniture (room.cells[0].posX,room.cells[0].posY,FurnitureType.Carpet,Orientation.North);
-        if (room.width == 3) { 
+        Furniture carpet = new Furniture(room.cells[0].posX, room.cells[0].posY, FurnitureType.Carpet, Orientation.North);
+        if (room.width == 3)
+        {
             carpet.flip = true;
             carpet.orientation = Orientation.West;
         }
@@ -326,24 +336,30 @@ public class Office : MonoBehaviour {
 
 
 
-	private void Create3DCell (int x, int z) {
-		GameObject newCell = Instantiate(floorPrefab) as GameObject;
-		newCell.name = "Maze Cell " + x + ", " + z;
+    private void Create3DCell(int x, int z)
+    {
+        GameObject newCell = Instantiate(floorPrefab) as GameObject;
+        newCell.name = "Maze Cell " + x + ", " + z;
         newCell.transform.parent = transform;
-        newCell.transform.localPosition = new Vector3(x , 0f, z);
+        newCell.transform.localPosition = new Vector3(x + floor * 20, 0f, z);
+
+
+
+
 
         //newCell.transform.Rotate(0,180,0);
 
-		switch(grid[x, z].type){
-			case RoomType.Corridor :
-				newCell.GetComponent<Renderer>().material=materials[0];
-				break;
-			case RoomType.Bossroom :
-				newCell.GetComponent<Renderer>().material=materials[1];
-				break;
-			case RoomType.Coffeeroom :
-				newCell.GetComponent<Renderer>().material=materials[2];
-				break;
+        switch (grid[x, z].type)
+        {
+            case RoomType.Corridor:
+                newCell.GetComponent<Renderer>().material = materials[0];
+                break;
+            case RoomType.Bossroom:
+                newCell.GetComponent<Renderer>().material = materials[1];
+                break;
+            case RoomType.Coffeeroom:
+                newCell.GetComponent<Renderer>().material = materials[2];
+                break;
             case RoomType.Bathroom:
                 newCell.GetComponent<Renderer>().material = materials[3];
                 break;
@@ -353,32 +369,34 @@ public class Office : MonoBehaviour {
             case RoomType.Elevator:
                 newCell.GetComponent<Renderer>().material = materials[5];
                 break;
-		}
-		
-		obstacles.Add (newCell);
-		if (grid [x, z].wallNorth) {
-			GameObject newNorthWall = Instantiate(WallPrefab) as GameObject;
-			newNorthWall.name = "NorthWall " + x + ", " + z;
-			newNorthWall.transform.parent = transform;
-            newNorthWall.transform.localPosition = new Vector3(x , 0f, z);
-			
-			obstacles.Add (newNorthWall);
         }
-        else if (grid[x, z].doorNorth && grid[x, z].type!=RoomType.Box)
+
+        obstacles.Add(newCell);
+        if (grid[x, z].wallNorth)
+        {
+            GameObject newNorthWall = Instantiate(WallPrefab) as GameObject;
+            newNorthWall.name = "NorthWall " + x + ", " + z;
+            newNorthWall.transform.parent = transform;
+            newNorthWall.transform.Translate(new Vector3(x + floor * 20, 0f, z));
+
+            obstacles.Add(newNorthWall);
+        }
+        else if (grid[x, z].doorNorth && grid[x, z].type != RoomType.Box)
         {
             GameObject newNorthDoor = Instantiate(DoorPrefab) as GameObject;
             newNorthDoor.name = "NorthDoor " + x + ", " + z;
             newNorthDoor.transform.parent = transform;
-            newNorthDoor.transform.localPosition = new Vector3(x, 0f, z);
+            newNorthDoor.transform.Translate(new Vector3(x + floor * 20, 0f, z));
 
             obstacles.Add(newNorthDoor);
         }
-		if (grid [x, z].wallSouth) {
+        if (grid[x, z].wallSouth)
+        {
             GameObject newSouthWall = Instantiate(WallPrefab) as GameObject;
             newSouthWall.name = "SouthWall " + x + ", " + z;
             newSouthWall.transform.parent = transform;
 
-            newSouthWall.transform.localPosition = new Vector3(x, 0f, z);
+            newSouthWall.transform.Translate(new Vector3(x + floor * 20, 0f, z));
             //------------------------
             newSouthWall.transform.Rotate(0, 180, 0);
             //-------------------
@@ -389,51 +407,53 @@ public class Office : MonoBehaviour {
             GameObject newSouthDoor = Instantiate(DoorPrefab) as GameObject;
             newSouthDoor.name = "SouthDoor " + x + ", " + z;
             newSouthDoor.transform.parent = transform;
-            newSouthDoor.transform.localPosition =new Vector3(x , 0f, z);
+            newSouthDoor.transform.Translate(new Vector3(x + floor * 20, 0f, z));
             //------------------------
             newSouthDoor.transform.Rotate(0, 180, 0);
             //-------------------
             obstacles.Add(newSouthDoor);
         }
-		if (grid [x, z].wallEast) {
-			//GameObject newEastWall = Instantiate(EastWallPrefab) as GameObject;
+        if (grid[x, z].wallEast)
+        {
+            //GameObject newEastWall = Instantiate(EastWallPrefab) as GameObject;
             GameObject newEastWall = Instantiate(WallPrefab) as GameObject;
-			newEastWall.name = "EastWall " + x + ", " + z;
-			newEastWall.transform.parent = transform;
+            newEastWall.name = "EastWall " + x + ", " + z;
+            newEastWall.transform.parent = transform;
 
-            newEastWall.transform.localPosition = new Vector3(x , 0f, z);
+            newEastWall.transform.Translate(new Vector3(x + floor * 20, 0f, z));
             //------------------------
-            newEastWall.transform.Rotate(0,-90,0);
+            newEastWall.transform.Rotate(0, -90, 0);
             //-------------------
-			obstacles.Add (newEastWall);
+            obstacles.Add(newEastWall);
         }
         else if (grid[x, z].doorEast && grid[x, z].type != RoomType.Box)
         {
             GameObject newEastDoor = Instantiate(DoorPrefab) as GameObject;
             newEastDoor.name = "EastDoor " + x + ", " + z;
             newEastDoor.transform.parent = transform;
-            newEastDoor.transform.localPosition = new Vector3(x, 0f, z);
+            newEastDoor.transform.Translate(new Vector3(x + floor * 20, 0f, z));
             //------------------------
             newEastDoor.transform.Rotate(0, -90, 0);
             //-------------------
             obstacles.Add(newEastDoor);
         }
-		if (grid [x, z].wallWest) {
+        if (grid[x, z].wallWest)
+        {
             GameObject newWestWall = Instantiate(WallPrefab) as GameObject;
-			newWestWall.name = "WestWall " + x + ", " + z;
-			newWestWall.transform.parent = transform;
-            newWestWall.transform.localPosition = new Vector3(x, 0f, z);
+            newWestWall.name = "WestWall " + x + ", " + z;
+            newWestWall.transform.parent = transform;
+            newWestWall.transform.Translate(new Vector3(x + floor * 20, 0f, z));
             //------------------------
             newWestWall.transform.Rotate(0, 90, 0);
             //-------------------
-			obstacles.Add (newWestWall);
+            obstacles.Add(newWestWall);
         }
         else if (grid[x, z].doorWest && grid[x, z].type != RoomType.Box)
         {
             GameObject newWestDoor = Instantiate(DoorPrefab) as GameObject;
             newWestDoor.name = "WestDoor " + x + ", " + z;
             newWestDoor.transform.parent = transform;
-            newWestDoor.transform.localPosition = new Vector3(x, 0f, z);
+            newWestDoor.transform.Translate(new Vector3(x + floor * 20, 0f, z));
 
             //------------------------
             newWestDoor.transform.Rotate(0, 90, 0);
@@ -442,7 +462,7 @@ public class Office : MonoBehaviour {
         }
         foreach (Furniture furniture in grid[x, z].furnitures)
         {
-            GameObject newFurniture =null;
+            GameObject newFurniture = null;
             string name;
             switch (furniture.type)
             {
@@ -461,39 +481,39 @@ public class Office : MonoBehaviour {
                     break;
                 case FurnitureType.BossDesk:
                     newFurniture = Instantiate(bossDeskPrefab) as GameObject;
-                    name ="BossDesk"+x+","+z;
+                    name = "BossDesk" + x + "," + z;
                     break;
                 case FurnitureType.Canap:
                     newFurniture = Instantiate(canapPrefab) as GameObject;
-                    name ="Canap"+x+","+z;
+                    name = "Canap" + x + "," + z;
                     break;
                 case FurnitureType.CoffeeMachine:
                     newFurniture = Instantiate(coffeeMachinePrefab) as GameObject;
-                    name ="CoffeeMachine"+x+","+z;
+                    name = "CoffeeMachine" + x + "," + z;
                     break;
                 case FurnitureType.EmployeeDesk:
                     newFurniture = Instantiate(employeeDeskPrefab) as GameObject;
-                    name ="EmployeeDesk"+x+","+z;
+                    name = "EmployeeDesk" + x + "," + z;
                     break;
                 case FurnitureType.Photocopier:
                     newFurniture = Instantiate(photocopierPrefab) as GameObject;
-                    name ="Photocopier"+x+","+z;
+                    name = "Photocopier" + x + "," + z;
                     break;
                 case FurnitureType.Toilet:
                     newFurniture = Instantiate(toiletPrefab) as GameObject;
-                    name ="Toilet"+x+","+z;
+                    name = "Toilet" + x + "," + z;
                     break;
                 case FurnitureType.TV:
                     newFurniture = Instantiate(canapPrefab) as GameObject;
-                    name ="TV"+x+","+z;
+                    name = "TV" + x + "," + z;
                     break;
                 case FurnitureType.VendingMachine:
                     newFurniture = Instantiate(vendingMachinePrefab) as GameObject;
-                    name ="VendingMachine"+x+","+z;
+                    name = "VendingMachine" + x + "," + z;
                     break;
             }
             newFurniture.transform.parent = transform;
-            newFurniture.transform.localPosition = new Vector3(x, 0f, z);
+            newFurniture.transform.Translate(new Vector3(x + floor * 20, 0f, z));
 
             //------------------------
             newFurniture.transform.Rotate(0, furniture.orientationToDegree(), furniture.flipToDegree());
@@ -501,7 +521,7 @@ public class Office : MonoBehaviour {
             obstacles.Add(newFurniture);
         }
 
-	}
+    }
 
     public int tryToRandomlyPlaceXRooms(int X, int width, int height, RoomType type)
     {
@@ -539,7 +559,7 @@ public class Office : MonoBehaviour {
         rooms.Add(new Room(4, 0, 1, 1, RoomType.Elevator, this.grid));
 
         grid[4, 1].locked = true;
-        grid[4, 0 ].wallSouth = false;
+        grid[4, 0].wallSouth = false;
         grid[4, 0].doorSouth = true;
         grid[4, 1].wallNorth = false;
     }
@@ -548,7 +568,7 @@ public class Office : MonoBehaviour {
     {
         bool roomForTheRoom = false;
         List<Vector2> possiblePlacesForRoom = new List<Vector2>();
-        for (int i =0; i<size; i++)// on parcours l'intégralité de la grille
+        for (int i = 0; i < size; i++)// on parcours l'intégralité de la grille
             for (int j = 0; j < size; j++)
             {
                 if (!collision(i, j, width, height))
@@ -565,29 +585,29 @@ public class Office : MonoBehaviour {
             int yRoom = (int)possiblePlacesForRoom[rPlace].y;
 
             fillArea(xRoom, yRoom, width, height, type, true); // on pose la salle
-            rooms.Add(new Room(xRoom, yRoom, width, height, type,grid));
-           // print("xRoom : " + xRoom + ", yRoom : " + yRoom);
+            rooms.Add(new Room(xRoom, yRoom, width, height, type, grid));
+            // print("xRoom : " + xRoom + ", yRoom : " + yRoom);
 
             List<Vector2> possiblePlacesForDoor = new List<Vector2>(); // maintenant on va chercher la porte, on sait qu'il y a au moins un emplacement
             for (int i = xRoom; i < xRoom + width; i++) // parcours au dessus et en dessous
             {
                 if (yRoom > 0 && grid[i, yRoom - 1].type == RoomType.Corridor) // si on trouve une case corridor autour de la salle
                     possiblePlacesForDoor.Add(new Vector2(i, yRoom - 1)); // on l'ajoute aux emplacements possibles pour la porte
-                if (yRoom + height < size  && grid[i, yRoom + height].type == RoomType.Corridor)
+                if (yRoom + height < size && grid[i, yRoom + height].type == RoomType.Corridor)
                     possiblePlacesForDoor.Add(new Vector2(i, yRoom + height));
             }
             for (int i = yRoom; i < yRoom + height; i++)// parcours a droite a gauche
             {
                 if (xRoom > 0 && grid[xRoom - 1, i].type == RoomType.Corridor)
                     possiblePlacesForDoor.Add(new Vector2(xRoom - 1, i));
-                if (xRoom + width < size  && grid[xRoom + width, i].type == RoomType.Corridor)
+                if (xRoom + width < size && grid[xRoom + width, i].type == RoomType.Corridor)
                     possiblePlacesForDoor.Add(new Vector2(xRoom + width, i));
             }
-           // for (int i = 0; i < possiblePlacesForDoor.Count;i++ ){
+            // for (int i = 0; i < possiblePlacesForDoor.Count;i++ ){
 
-               // print("xDoor : " + possiblePlacesForDoor[i].x + ", yDoor : " + possiblePlacesForDoor[i].y);
+            // print("xDoor : " + possiblePlacesForDoor[i].x + ", yDoor : " + possiblePlacesForDoor[i].y);
             //}
-                //print("Count : " + possiblePlacesForDoor.Count);
+            //print("Count : " + possiblePlacesForDoor.Count);
             int rDoor = UnityEngine.Random.Range(0, possiblePlacesForDoor.Count); // on en tire un au hasard
 
             int xDoor = (int)possiblePlacesForDoor[rDoor].x;
@@ -595,30 +615,34 @@ public class Office : MonoBehaviour {
 
             //print("/xDoor : " + xDoor + ", yDoor : " + yDoor);
 
-           // print("=============================================================");
-            grid[xDoor,yDoor].locked = true; // on verrouille le corridor pour en tenir compte dans les collisions futures et eviter de boucher le passage
+            // print("=============================================================");
+            grid[xDoor, yDoor].locked = true; // on verrouille le corridor pour en tenir compte dans les collisions futures et eviter de boucher le passage
 
-            if (xDoor == xRoom + width){ //si la porte se trouve a l'est
+            if (xDoor == xRoom + width)
+            { //si la porte se trouve a l'est
                 grid[xDoor - 1, yDoor].wallEast = false;// on enleve le mur est de sa case ouest
                 grid[xDoor - 1, yDoor].doorEast = true;// on ajoute la porte de sa case ouest
 
                 grid[xDoor, yDoor].wallWest = false;// on enleve son mur ouest, pas propre, pour mobilier couloir, a revoir
 
             }
-            if (xDoor < xRoom){ //si la porte se trouve a l'ouest
+            if (xDoor < xRoom)
+            { //si la porte se trouve a l'ouest
                 grid[xDoor + 1, yDoor].wallWest = false;// on enleve le mur ouest de sa case est
                 grid[xDoor + 1, yDoor].doorWest = true;// on ajoute la porte ouest de sa case est
 
                 grid[xDoor, yDoor].wallEast = false;// on enleve son mur ouest, pas propre, pour mobilier couloir, a revoir
             }
-            if (yDoor == yRoom + height){ //si la porte se trouve au sud
+            if (yDoor == yRoom + height)
+            { //si la porte se trouve au sud
                 grid[xDoor, yDoor - 1].wallSouth = false;// on enleve le mur sud de sa case nord
                 grid[xDoor, yDoor - 1].doorSouth = true;// on ajoute la porte sud de sa case nord
 
                 grid[xDoor, yDoor].wallNorth = false;// on enleve son mur ouest, pas propre, pour mobilier couloir, a revoir
 
             }
-            if (yDoor < yRoom) { //si la porte se trouve au nord
+            if (yDoor < yRoom)
+            { //si la porte se trouve au nord
                 grid[xDoor, yDoor + 1].wallNorth = false;// on enleve le mur nord de sa case sud
                 grid[xDoor, yDoor + 1].doorNorth = true;// on ajoute la porte nord de sa case sud
 
@@ -634,7 +658,7 @@ public class Office : MonoBehaviour {
     }
 
 
-    
+
     public bool collision(int x, int y, int width, int height)
     {
         bool collision = true;
@@ -649,12 +673,13 @@ public class Office : MonoBehaviour {
     public bool placeAlreadyTaken(int x, int y, int width, int height)
     {
         bool placeAlreadyTaken = false;
-        if (x >= 0 && y >= 0 && x + width <= size && y + height <= size) { // si notre salle ne depasse pas des limites de la grille
+        if (x >= 0 && y >= 0 && x + width <= size && y + height <= size)
+        { // si notre salle ne depasse pas des limites de la grille
             //on parcours l'ensemble des cases qu'elle occupera
             for (int i = x; i < x + width; i++)
                 for (int j = y; j < y + height; j++)
                     if (grid[i, j].type != RoomType.Corridor || grid[i, j].locked) // et si on trouve une case non corridor, ou corridor verrouillee ( pour laisser le passage )
-                        placeAlreadyTaken=true; // alors la place est prise
+                        placeAlreadyTaken = true; // alors la place est prise
         }
         else
         {
@@ -671,14 +696,14 @@ public class Office : MonoBehaviour {
         {
             if (y > 0 && grid[i, y - 1].type == RoomType.Corridor) // si on trouve au moins une case corridor autour de la salle
                 doorCanBePlaced = true;
-            if (y + height < size  && grid[i, y + height].type == RoomType.Corridor)
+            if (y + height < size && grid[i, y + height].type == RoomType.Corridor)
                 doorCanBePlaced = true;
         }
         for (int i = y; i < y + height; i++)
         {
-            if (x > 0 && grid[x - 1, i].type == RoomType.Corridor) 
+            if (x > 0 && grid[x - 1, i].type == RoomType.Corridor)
                 doorCanBePlaced = true;
-            if (x + width < size  && grid[x + width, i].type == RoomType.Corridor) 
+            if (x + width < size && grid[x + width, i].type == RoomType.Corridor)
                 doorCanBePlaced = true;
         }
 
@@ -734,7 +759,7 @@ public class Office : MonoBehaviour {
             for (int j = 0; j < size; j++)
                 grid[i, j].check = false;
 
-        return corridorsAllConnected; 
+        return corridorsAllConnected;
     }
 
     //parcours l'ensemble des cases corridor non marquees connectees à la case passee en parametre, et les marques
@@ -750,45 +775,51 @@ public class Office : MonoBehaviour {
         if (y > 0 && grid[x, y - 1].type == RoomType.Corridor && !grid[x, y - 1].check) // voisin du haut
             crawlCorridorsCells(x, y - 1);
     }
-    
-	// remplie une zone de la grille avec un type de case
-	public void fillArea(int x,int y, int width, int height, RoomType type, bool addTheWall){
 
-		for (int i =x; i<x+width; i++)
-			for (int j =y; j<y+height; j++) {
-				//grid [i, j] = new Cell (this, i, j, RoomType);
+    // remplie une zone de la grille avec un type de case
+    public void fillArea(int x, int y, int width, int height, RoomType type, bool addTheWall)
+    {
+
+        for (int i = x; i < x + width; i++)
+            for (int j = y; j < y + height; j++)
+            {
+                //grid [i, j] = new Cell (this, i, j, RoomType);
                 grid[i, j].type = type;
 
-				if (addTheWall) { // si on veut ajouter les murs de la salle
+                if (addTheWall)
+                { // si on veut ajouter les murs de la salle
 
                     if (i == x)
                     {
                         grid[i, j].wallWest = true; // si le mur est sur le cote Ouest
-                        if(i>0)grid[i-1, j].wallEast = true; // pas propre,necessaire pour le mobilier de couloir, a enlever plus tard ( peut etre :s )
+                        if (i > 0) grid[i - 1, j].wallEast = true; // pas propre,necessaire pour le mobilier de couloir, a enlever plus tard ( peut etre :s )
                     }
-					if (i == x + width - 1){
+                    if (i == x + width - 1)
+                    {
                         grid[i, j].wallEast = true; // si le mur est sur le cote Est
-                        if (i <size-1) grid[i + 1, j].wallWest = true; 
+                        if (i < size - 1) grid[i + 1, j].wallWest = true;
                     }
-                    if (j == y) { 
+                    if (j == y)
+                    {
                         grid[i, j].wallNorth = true; // si le mur est sur le cote Nord
-                        if (j > 0)grid[i, j-1].wallSouth = true;
+                        if (j > 0) grid[i, j - 1].wallSouth = true;
                     }
                     if (j == y + height - 1)
                     {
                         grid[i, j].wallSouth = true; // si le mur est sur le cote Sud
-                        if (j < size - 1) grid[i, j+1].wallNorth = true; 
+                        if (j < size - 1) grid[i, j + 1].wallNorth = true;
                     }
-					
-					
-				}// end if
-		    }//end for
-        if (addTheWall) {
+
+
+                }// end if
+            }//end for
+        if (addTheWall)
+        {
 
             //GetComponent<Triggers>().addTrigger(x, y, width, height, type);
-        
+
         }
-		
-	}
+
+    }
 
 }

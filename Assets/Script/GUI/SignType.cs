@@ -1,0 +1,1 @@
+﻿public enum SignType { Hatarake, Coffee, Death, Facebook, Glande,Work };
