@@ -8,7 +8,7 @@ public class Sign : MonoBehaviour
     public static Object death = Resources.Load("death");
     public static Object facebook = Resources.Load("facebook");
     public static Object glande = Resources.Load("goingToGlande");
-    public static Object work = Resources.Load("work!");
+    public static Object work = Resources.Load("work");
 
     SpriteRenderer spriteRenderer;
     public float volume, alpha;
@@ -54,7 +54,7 @@ public class Sign : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        this.transform.localScale = this.transform.localScale * volume;
+        this.transform.localScale = this.transform.localScale * volume * 10;
         spriteRenderer = this.GetComponent<SpriteRenderer>();
         //spriteRenderer.material.SetColor()
     }
@@ -75,7 +75,7 @@ public class Sign : MonoBehaviour
         }
         else
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
 
 

@@ -8,14 +8,10 @@ using RAIN.Motion;
 
 public class Boss : MonoBehaviour {
 
-
 	//Vector2 position; //peut utiliser son transform
-
-
 	float vitesseDep;
 
 	//GameObject[] boxies;
-
 
 	//float jaugeEngueulage; //se remplit quand on appuie sur le boss.
 
@@ -23,7 +19,6 @@ public class Boss : MonoBehaviour {
 
     public float vitesseJauge = 2.0f; //se remplit quand on appuie sur le boss.
 
-	
 	//float timer = 0;
 
 	bool charge = false;
@@ -37,7 +32,7 @@ public class Boss : MonoBehaviour {
 		AIRig aiRig = GetComponentInChildren<AIRig>();		
 		tMemory = aiRig.AI.WorkingMemory as RAIN.Memory.BasicMemory;
 
-		actionArea = transform.GetChild (0);        
+		actionArea = transform.GetChild (2);        
 	
         //navComponent = this.transform.GetComponent <NavMeshAgent>();
 
@@ -72,9 +67,6 @@ public class Boss : MonoBehaviour {
 
 		}
         
-
-
-
         if (pos.x == transform.position.x && pos.z == transform.position.z)
            tMemory.SetItem("enDeplacement", false);
 

@@ -33,7 +33,7 @@ public class CharacterManager : MonoBehaviour {
         boss.transform.localScale = boss.transform.localScale * gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.localScale.x;
 
         boss.transform.position = spawn.transform.position;
-        //boss.transform.Translate(Random.Range(0,4),boss.GetComponent<Collider>().bounds.extents.y,Random.Range(0,3));
+        boss.transform.Translate(0,boss.GetComponent<Collider>().bounds.extents.y,0);
 
 		boxies = new GameObject[nombreBoxies];
 

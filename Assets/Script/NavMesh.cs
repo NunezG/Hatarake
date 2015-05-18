@@ -13,15 +13,14 @@ public class NavMesh : MonoBehaviour {
 	// This will regenerate the navigation mesh when called
 	public IEnumerator GenerateNavmesh()
 	{
-
         float size = gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].size * gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.localScale.x;
         float officeMiddle = (size - gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.localScale.x) / 2.0f;
 
-
+       // Debug.Log("pos " + );
 		navMesh = Instantiate (navMesh);
-	//transform.position = 
-		LevelManager level = gameObject.GetComponent<LevelManager>();
-        navMesh.transform.position = level.getOfficeInstance()[0].transform.position + new Vector3(officeMiddle, 15, officeMiddle);
+
+        LevelManager level = gameObject.GetComponent<LevelManager>();
+        navMesh.transform.position = level.getOfficeInstance()[0].transform.position + new Vector3(officeMiddle, 0, officeMiddle);
 
 		tRig = navMesh.GetComponent<RAIN.Navigation.NavMesh.NavMeshRig>();
 
@@ -43,6 +42,5 @@ public class NavMesh : MonoBehaviour {
 		Debug.Log("NavMesh generated in " + (endTime - startTime) + "s");
 		tRig.NavMesh.RegisterNavigationGraph();
 		tRig.Awake();
-		
 	}
 }
