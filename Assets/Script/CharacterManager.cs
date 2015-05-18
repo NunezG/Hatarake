@@ -29,7 +29,7 @@ public class CharacterManager : MonoBehaviour {
 
 	public void Spawn()
 	{
-		GameObject floor = GameObject.Find ("Office floor0");			
+		GameObject floor = GameObject.Find ("Office floor n0");			
 
 		Box[] boxes = floor.GetComponentsInChildren<Box> ();
 		

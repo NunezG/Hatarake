@@ -11,11 +11,12 @@ public class HatarakeSign : MonoBehaviour {
 
     public static HatarakeSign Create(float volume,Vector3 position)
     {
+        Vector3 pos = new Vector3(position.x, position.y + 10, position.z);
         GameObject newObject = Instantiate(prefab) as GameObject;
         HatarakeSign yourObject = newObject.GetComponent<HatarakeSign>();
         yourObject.alpha = 255;
         yourObject.volume = volume;
-        yourObject.transform.position = position;
+        newObject.transform.position = pos;
         //do additional initialization steps here
 
         return yourObject;
@@ -30,10 +31,15 @@ public class HatarakeSign : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (alpha != 0){
-            alpha = Mathf.Lerp(255f, 0f, (1 / volume) * Time.deltaTime*500);
+        if (alpha > 0){
+
+            //alpha = Mathf.Lerp(255f, 0f, (1 / volume) * Time.deltaTime*400);
+            alpha = alpha - ( 1/volume) * Time.deltaTime * 400;
+
             print("ALPHA : " + alpha);
-            spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, alpha);
+            Color color = new Color(1, 1, 1, alpha);
+            spriteRenderer.color =color;
+            print(""+spriteRenderer.color.a);
         }
         else{
             Destroy(this);

@@ -22,7 +22,7 @@ public class chill : RAINAction
                 ai.WorkingMemory.SetItem("fatigue", ai.WorkingMemory.GetItem<int>("fatigue") - (int)ai.Body.gameObject.GetComponent<Employe>().vitesseFatigue);
           
 			//Augmente la motivation
-        	ai.WorkingMemory.SetItem("motivation", ai.WorkingMemory.GetItem<int>("motivation") + ai.Body.gameObject.GetComponent<Employe>().effetRepos);
+        	ai.WorkingMemory.SetItem("motivation", ai.WorkingMemory.GetItem<int>("motivation") + ai.Body.gameObject.GetComponent<Employe>().data.effetRepos);
            
 			//Si motivation Max, cesse de glander
             if (ai.WorkingMemory.GetItem<int>("motivation") >= ai.WorkingMemory.GetItem<int>("motivationMax"))
