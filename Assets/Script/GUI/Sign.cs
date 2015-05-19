@@ -66,7 +66,7 @@ public class Sign : MonoBehaviour
         {
 
             //alpha = Mathf.Lerp(255f, 0f, (1 / volume) * Time.deltaTime*400);
-            alpha = alpha - (1 / volume) * Time.deltaTime * 400;
+            alpha = alpha -  Time.deltaTime * 400;
 
             print("ALPHA : " + alpha);
             Color color = new Color(1, 1, 1, alpha);
