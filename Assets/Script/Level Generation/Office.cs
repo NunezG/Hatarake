@@ -6,9 +6,9 @@ using System.Collections;
 public class Office : MonoBehaviour
 {
 
-    public GameObject floorPrefab,backgroundPrefab, WallPrefab, DoorPrefab;
+    public GameObject floorPrefab,backgroundPrefab, WallPrefab, DoorPrefab, windowPrefab;
 
-    public GameObject bossDeskPrefab, employeeDeskPrefab, canapPrefab, photocopierPrefab, toiletPrefab, vendingMachinePrefab, coffeeMachinePrefab, carpetPrefab, flowerPotPrefab, casier0Prefab, casier1Prefab;
+    public GameObject bossDeskPrefab,glassTablePrefab, employeeDeskPrefab, canapPrefab,tvPrefab, photocopierPrefab, toiletPrefab, vendingMachinePrefab, coffeeMachinePrefab, carpetPrefab, flowerPotPrefab, casier0Prefab, casier1Prefab;
 
     public GameObject[] corridorsDecoPreFab, corridorChillPrefab, corridorWorkPrefab,
                         boxesPrefab,
@@ -148,6 +148,9 @@ public class Office : MonoBehaviour
                 againstAWall = oppositeToDoor = true;
                 break;
             case FurnitureType.Canap:
+                notOnDoorCell = againstAWall = true;
+                break;
+            case FurnitureType.GlassTable:
                 notOnDoorCell = whatever = true;
                 break;
             case FurnitureType.Photocopier:
@@ -222,6 +225,15 @@ public class Office : MonoBehaviour
             grid[6, i].type = RoomType.Corridor;
             grid[6, i].locked = true;
         }
+
+        grid[0, 2].wallWest = false;
+        grid[0, 6].wallWest = false;
+        grid[8, 2].wallEast = false;
+        grid[8, 6].wallEast = false;
+        grid[2, 0].wallNorth = false;
+        grid[6, 0].wallNorth = false;
+        grid[2, 8].wallSouth = false;
+        grid[6, 8].wallSouth = false;
     }
 
     public bool placingRoomFurnitures(List<FurnitureType> roomFurnitures, Room room)
@@ -279,6 +291,8 @@ public class Office : MonoBehaviour
 
     }
 
+
+
     public void placingBossRoomFurniture(Room room)
     {
         List<FurnitureType> bossRoomFurnitures = new List<FurnitureType>();
@@ -290,9 +304,10 @@ public class Office : MonoBehaviour
         }
         room.cells[0].furnitures.Add(carpet);
 
-        bossRoomFurnitures.Add(FurnitureType.CoffeeMachine);
-        bossRoomFurnitures.Add(FurnitureType.VendingMachine);
-        bossRoomFurnitures.Add(FurnitureType.TV);
+        bossRoomFurnitures.Add(FurnitureType.Casier);
+        bossRoomFurnitures.Add(FurnitureType.FlowerPot);
+        bossRoomFurnitures.Add(FurnitureType.GlassTable);
+        bossRoomFurnitures.Add(FurnitureType.Canap);
         bossRoomFurnitures.Add(FurnitureType.BossDesk);
 
         placingRoomFurnitures(bossRoomFurnitures, room);
@@ -342,10 +357,51 @@ public class Office : MonoBehaviour
         newCell.name = "Maze Cell " + x + ", " + z;
         newCell.transform.parent = transform;
         newCell.transform.localPosition = new Vector3(x + floor * 20, 0f, z);
+        if (z == 0 && (x == 2 || x == 6))
+        {
+            GameObject newNorthWindow = Instantiate(windowPrefab) as GameObject;
+            newNorthWindow.name = "NorthWindow " + x + ", " + z;
+            newNorthWindow.transform.parent = transform;
+            newNorthWindow.transform.Translate(new Vector3(x + floor * 20, 0f, z));
+            obstacles.Add(newNorthWindow);
+        }
+        if (z == 8 && (x == 2 || x == 6))
+        {
+            GameObject newSouthWindow = Instantiate(windowPrefab) as GameObject;
+            newSouthWindow.name = "SouthWindow " + x + ", " + z;
+            newSouthWindow.transform.parent = transform;
 
+            newSouthWindow.transform.Translate(new Vector3(x + floor * 20, 0f, z));
+            //------------------------
+            newSouthWindow.transform.Rotate(0, 180, 0);
+            //-------------------
+            obstacles.Add(newSouthWindow);
 
+        }
+        if (x == 0 && (z == 2 || z == 6))
+        {
+            GameObject newWestWindow = Instantiate(windowPrefab) as GameObject;
+            newWestWindow.name = "WestWindow " + x + ", " + z;
+            newWestWindow.transform.parent = transform;
 
+            newWestWindow.transform.Translate(new Vector3(x + floor * 20, 0f, z));
+            //------------------------
+            newWestWindow.transform.Rotate(0, 90, 0);
+            //-------------------
+            obstacles.Add(newWestWindow);
+        }
+        if (x == 8 && (z == 2 || z == 6))
+        {
+            GameObject newEastWindow = Instantiate(windowPrefab) as GameObject;
+            newEastWindow.name = "EastWindow " + x + ", " + z;
+            newEastWindow.transform.parent = transform;
 
+            newEastWindow.transform.Translate(new Vector3(x + floor * 20, 0f, z));
+            //------------------------
+            newEastWindow.transform.Rotate(0, -90, 0);
+            //-------------------
+            obstacles.Add(newEastWindow);
+        }
 
         //newCell.transform.Rotate(0,180,0);
 
@@ -471,6 +527,10 @@ public class Office : MonoBehaviour
                     else newFurniture = Instantiate(casier1Prefab) as GameObject;
                     name = "Casier" + x + "," + z;
                     break;
+                case FurnitureType.GlassTable:
+                    newFurniture = Instantiate(glassTablePrefab) as GameObject;
+                    name = "GlassTable" + x + "," + z;
+                    break;
                 case FurnitureType.FlowerPot:
                     newFurniture = Instantiate(flowerPotPrefab) as GameObject;
                     name = "FlowerPot" + x + "," + z;
@@ -504,7 +564,7 @@ public class Office : MonoBehaviour
                     name = "Toilet" + x + "," + z;
                     break;
                 case FurnitureType.TV:
-                    newFurniture = Instantiate(canapPrefab) as GameObject;
+                    newFurniture = Instantiate(tvPrefab) as GameObject;
                     name = "TV" + x + "," + z;
                     break;
                 case FurnitureType.VendingMachine:

@@ -1,1 +1,1 @@
-﻿public enum FurnitureType { BossDesk, EmployeeDesk, Canap, Photocopier, Toilet, VendingMachine, CoffeeMachine,TV,Carpet,FlowerPot ,Casier};
+﻿public enum FurnitureType { BossDesk, EmployeeDesk, Canap, Photocopier, Toilet, VendingMachine, CoffeeMachine,TV,Carpet,FlowerPot ,Casier,GlassTable};

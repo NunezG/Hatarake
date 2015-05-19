@@ -44,17 +44,20 @@ MonoBehaviour:
   backgroundPrefab: {fileID: 101382, guid: 72536e29d3fdd384c82a726d47ba0de3, type: 2}
   WallPrefab: {fileID: 159858, guid: 222fe23955a88fb4c8502cb1ab8635c4, type: 2}
   DoorPrefab: {fileID: 100166, guid: 424426dc29db31d47b9e74ba98206e6f, type: 2}
+  windowPrefab: {fileID: 167576, guid: 09765f5bc7929eb4b831da4dde19d67d, type: 2}
   bossDeskPrefab: {fileID: 155384, guid: 8faa8969869da4f4d9b847061037b477, type: 2}
+  glassTablePrefab: {fileID: 185890, guid: 9e26f2c9440868b4abc498e1b1cbbbfb, type: 2}
   employeeDeskPrefab: {fileID: 169652, guid: 9ab10a9e999a9b444adee0c4b51e696e, type: 2}
-  canapPrefab: {fileID: 131996, guid: 6401747cec3fe7a4f90fca37c745e331, type: 2}
+  canapPrefab: {fileID: 186938, guid: 6e9d39f8c6d8a4d4ea4f26a6968da5f7, type: 2}
+  tvPrefab: {fileID: 131996, guid: 6401747cec3fe7a4f90fca37c745e331, type: 2}
   photocopierPrefab: {fileID: 174228, guid: c21eb0b47bf85a148a132db01b0828b0, type: 2}
   toiletPrefab: {fileID: 101364, guid: 32d18ba487213744bb1c9f9541443be5, type: 2}
   vendingMachinePrefab: {fileID: 183598, guid: 3a62f35d048cb0948a13ce1e51fc4560, type: 2}
   coffeeMachinePrefab: {fileID: 180656, guid: b7b15f4c1a407a44d81befff22a2c337, type: 2}
   carpetPrefab: {fileID: 170040, guid: 208c54618fa9c714290867c73e59c427, type: 2}
   flowerPotPrefab: {fileID: 125056, guid: 0ddfa9d6cd497c644b01f1b91312f03b, type: 2}
-  casier0Prefab: {fileID: 192844, guid: afb2d38b439bb0a4b9c967fba5a89c90, type: 2}
-  casier1Prefab: {fileID: 139754, guid: 31b1ed8e439611049956f24b2a77c7f7, type: 2}
+  casier0Prefab: {fileID: 104958, guid: 3158fda371b3d3647a9a9088f5d56e09, type: 2}
+  casier1Prefab: {fileID: 127182, guid: 9daaa09fe7bff534e93967eccfde134f, type: 2}
   corridorsDecoPreFab: []
   corridorChillPrefab: []
   corridorWorkPrefab: []

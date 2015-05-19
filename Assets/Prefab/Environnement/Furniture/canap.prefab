@@ -1,21 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &143150
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 459220}
-  - 114: {fileID: 11428100}
-  m_Layer: 0
-  m_Name: Navigation Target Repos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
 --- !u!1 &152402
 GameObject:
   m_ObjectHideFlags: 0
@@ -28,23 +12,6 @@ GameObject:
   m_Layer: 0
   m_Name: canapSprite
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &184810
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 446160}
-  - 65: {fileID: 6587480}
-  - 114: {fileID: 11476686}
-  m_Layer: 0
-  m_Name: ChillRoomsTrigger
-  m_TagString: Repos
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -64,19 +31,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &446160
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 184810}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -.100000001, z: -.245000005}
-  m_LocalScale: {x: .791365445, y: 1, z: .257451415}
-  m_Children:
-  - {fileID: 459220}
-  m_Father: {fileID: 488318}
-  m_RootOrder: 1
 --- !u!4 &453092
 Transform:
   m_ObjectHideFlags: 1
@@ -89,18 +43,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 488318}
   m_RootOrder: 0
---- !u!4 &459220
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 143150}
-  m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106709}
-  m_LocalPosition: {x: 1.79277432, y: -.510529399, z: .0816598311}
-  m_LocalScale: {x: .0623356849, y: .0623357296, z: .0623357296}
-  m_Children: []
-  m_Father: {fileID: 446160}
-  m_RootOrder: 0
 --- !u!4 &488318
 Transform:
   m_ObjectHideFlags: 1
@@ -112,57 +54,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 453092}
-  - {fileID: 446160}
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!65 &6587480
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 184810}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &11428100
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 143150}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1728340906, guid: 9fa2ecd1ff2ad394281dd3bf72c5b76e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _dataSerializer:
-    _serializedData: <component version="1.2" type="RAIN.Navigation.Targets.NavigationTargetRig"><fields><field
-      value="AlwaysOn" type="RAIN.Core.VisualModeEnum" id="_visualMode" /><field type="RAIN.Navigation.Targets.NavigationTarget"
-      reference="0" id="_target" /></fields><references><reference type="RAIN.Navigation.Targets.NavigationTarget"
-      refcount="1" id="0"><field value="Navigation Target" type="System.String" id="_targetName"
-      /><field value="0,0.6,0.6,1" type="UnityEngine.Color" id="_targetColor" /><field
-      value="-0.5" type="System.Single" id="_outlineColorOffset" /><field value="0.4"
-      type="System.Single" id="_selectionColorOffset" /><field type="UnityEngine.Transform"
-      id="_mountPoint" gameobject="0" /><field value="-28.39654,0.1000862,5.129025"
-      type="UnityEngine.Vector3" id="_positionOffset" /><field value="0,0,0" type="UnityEngine.Vector3"
-      id="_angleOffset" /><field value="3.53" type="System.Single" id="_range" /></reference></references></component>
-    _serializedGameObjects:
-    - {fileID: 459220}
-    _serializedCustomData: []
---- !u!114 &11476686
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 184810}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6b315abcbbfd414593e9d4e8a72605f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &21235344
 SpriteRenderer:
   m_ObjectHideFlags: 1
