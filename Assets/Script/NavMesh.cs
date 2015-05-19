@@ -28,7 +28,7 @@ public class NavMesh : MonoBehaviour {
 		tRig.NavMesh.UnregisterNavigationGraph();
         tRig.NavMesh.Size = size;
 
-        print("SIZE NAVMESH: " + gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].size);
+        print("NavecMesh Size : " + gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].size);
 		float startTime = Time.time;
 		tRig.NavMesh.StartCreatingContours(tRig, _threadCount);
 		while (tRig.NavMesh.Creating)
@@ -39,7 +39,7 @@ public class NavMesh : MonoBehaviour {
 		}
 		isNavMeshDone = true;
 		float endTime = Time.time;
-		Debug.Log("NavMesh generated in " + (endTime - startTime) + "s");
+		Debug.Log("NavMesh generated in " + (endTime - startTime) + "s!!! That's frikkin' fast, man!!!");
 		tRig.NavMesh.RegisterNavigationGraph();
 		tRig.Awake();
 	}

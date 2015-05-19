@@ -15,14 +15,12 @@ public class ProgressBar : MonoBehaviour {
 			GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), waitScreen);
 
 		}
-       // print("ONGUI ");
+
         DrawProgress(GetComponent<GameManager>().objectiveCompletion / 1000.0f);
        
     }
 
-
-
- 
+	
 void DrawProgress(float progress )
 {
     GUI.DrawTexture(new Rect(10, 10, 200 * progress, 30), progressForeground);
