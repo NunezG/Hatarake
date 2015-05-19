@@ -95,7 +95,7 @@ public class Boss : MonoBehaviour {
             yield return null;
         }
         print("HATARAKE!!!!!!!!!!!!!!!!! ");
-        HatarakeSign.Create(pos,this.transform.position);
+        Sign.Create(pos,this.transform.position,SignType.Death);
         actionArea.gameObject.SetActive(false);
         actionArea.localScale = new Vector3(0.8f, actionArea.localScale.y, 0.8f);
         //ResetTimer
