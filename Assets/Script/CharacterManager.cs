@@ -22,13 +22,9 @@ public class CharacterManager : MonoBehaviour {
 	GameObject[] boxies;
 	GameObject boss;
 
-
-
-
-
-
 	public void Spawn()
 	{
+        GameObject spawn = GameObject.Find("spawnBoss");
 		GameObject floor = GameObject.Find ("Office floor n0");			
 
 		Box[] boxes = floor.GetComponentsInChildren<Box> ();
@@ -36,9 +32,8 @@ public class CharacterManager : MonoBehaviour {
 		boss =(GameObject)Instantiate (bossPrefab);
         boss.transform.localScale = boss.transform.localScale * gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.localScale.x;
 
-        boss.transform.position = gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.position;
-		boss.transform.Translate(Random.Range(0,4),boss.GetComponent<Collider>().bounds.extents.y,Random.Range(0,3));
-
+        boss.transform.position = spawn.transform.position;
+        boss.transform.Translate(0,boss.GetComponent<Collider>().bounds.extents.y,0);
 
 		boxies = new GameObject[nombreBoxies];
 

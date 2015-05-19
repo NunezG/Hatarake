@@ -28,7 +28,6 @@ public class Employe : MonoBehaviour {
 	public RAIN.Memory.BasicMemory tMemory;
 	private RAIN.Navigation.BasicNavigator tNav;
 
-
 	public EmployeNames data;
 	//Awake is always called before any Start functions
 	void Awake()
@@ -91,8 +90,9 @@ public class Employe : MonoBehaviour {
 	{
 		//Chaque seconde : motivation -= feignantise DONC si feignantise est grand, les pauses seront plus fréquentes.
 		data.fatigue += data.effetEngueulement;
-        data.motivation = data.motivationMax;
-		auTravail  = true;
+        data.motivation += data.effetEngueulement;
+        tMemory.SetItem("auTravail", true);
+        auTravail  = true;
 
 		if (data.fatigue >= data.fatigueMAX) {
 			//suicidaire = true;		

@@ -20,7 +20,7 @@ public class EmployeNames {
     public float motivation;// variable conditionnant le départ en pause. motivation = 0 -> go to Pause;
     public float fatigueMAX = 100;
     public float motivationMax = 500;// variable conditionnant le départ en pause. motivation = 0 -> go to Pause;
-    public float effetEngueulement = 200;
+    public float effetEngueulement = 40;
 
 	public void InitializeEmployee (){
 		data = new Data();

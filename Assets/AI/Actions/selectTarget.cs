@@ -14,6 +14,8 @@ public class selectTarget : RAINAction
     public override void Start(RAIN.Core.AI ai)
     {
         base.Start(ai);
+       float motivation = (int)ai.Body.gameObject.GetComponent<Employe>().data.motivation;
+        ai.WorkingMemory.SetItem("motivation", motivation);
         target = ai.WorkingMemory.GetItem<GameObject>("myTarget");
     }
 
@@ -28,14 +30,17 @@ public class selectTarget : RAINAction
             target.GetComponent<Box>().occupe = false;
 		}
 
-        if ( ai.WorkingMemory.GetItem<int>("motivation") <= 0)
+        if (ai.Body.GetComponent<Employe>().data.motivation <= 0)
         {
+              ai.WorkingMemory.SetItem("auTravail", false);
       //      int pos = Random.Range(0, ai.Body.gameObject.GetComponent<Employe>().chill.Length-1);
 
-           foreach (GameObject go in ai.Body.gameObject.GetComponent<Employe>().chill)
+           foreach (GameObject go in ai.Body.GetComponent<Employe>().chill)
            {
                if (go.GetComponent<Repos>().occupe == false)
                {
+                   Sign.Create(1, ai.Body.transform.position, SignType.Glande);
+
                    go.GetComponent<Repos>().occupe = true;
                    target = go;
                    return ActionResult.SUCCESS;
@@ -48,10 +53,12 @@ public class selectTarget : RAINAction
 
             if (pos == 0)
             {
-                foreach (GameObject go in ai.Body.gameObject.GetComponent<Employe>().workingHelp)
+                foreach (GameObject go in ai.Body.GetComponent<Employe>().workingHelp)
                 {
                     if (go.GetComponent<Box>().occupe == false)
                     {
+                        Sign.Create(1, ai.Body.transform.position, SignType.Work);
+
                         go.GetComponent<Box>().occupe = true;
                         target = go;
                         return ActionResult.SUCCESS;
@@ -59,7 +66,9 @@ public class selectTarget : RAINAction
                 }
             } else
             {
-               target = ai.Body.gameObject.GetComponent<Employe>().boxDeTravail;
+                Sign.Create(1, ai.Body.transform.position, SignType.Work);
+
+               target = ai.Body.GetComponent<Employe>().boxDeTravail;
 
                 return ActionResult.SUCCESS;
             }
