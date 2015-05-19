@@ -10,6 +10,7 @@ public class Sign : MonoBehaviour
     public static Object glande = Resources.Load("goingToGlande");
     public static Object work = Resources.Load("work");
 
+    public SignType type;
     SpriteRenderer spriteRenderer;
     public float volume, alpha;
 
@@ -17,7 +18,6 @@ public class Sign : MonoBehaviour
     {
         Vector3 pos = new Vector3(position.x, position.y + 10, position.z);
         GameObject newObject ;
-
         switch (type)
         {
             case SignType.Hatarake:
@@ -46,6 +46,7 @@ public class Sign : MonoBehaviour
         yourObject.alpha = 255;
         yourObject.volume = volume;
         newObject.transform.position = pos;
+        yourObject.type = type;
         //do additional initialization steps here
 
         return yourObject;
@@ -67,11 +68,13 @@ public class Sign : MonoBehaviour
 
             //alpha = Mathf.Lerp(255f, 0f, (1 / volume) * Time.deltaTime*400);
             alpha = alpha -  Time.deltaTime * 400;
-
-            print("ALPHA : " + alpha);
             Color color = new Color(1, 1, 1, alpha);
-            spriteRenderer.color = color;
-            print("" + spriteRenderer.color.a);
+            spriteRenderer.material.color = color;
+            if (type == SignType.Hatarake)
+            {
+                print("ALPHA : " + alpha);
+                print(" a :" + spriteRenderer.material.color.a);
+            }
         }
         else
         {
