@@ -87,7 +87,22 @@ public class Boss : MonoBehaviour {
             yield return null;
         }
         print("HATARAKE!!!!!!!!!!!!!!!!! ");
-        Sign.Create(pos,this.transform.position,SignType.Death);
+        Sign.Create(pos,this.transform.position,SignType.Hatarake);
+        if (pos > 10)
+        {
+            GameObject audio =this.transform.Find("hatarake_strong").gameObject;
+            audio.GetComponent<AudioSource>().Play();
+        }
+        else if (pos > 5)
+        {
+            GameObject audio = this.transform.Find("hatarake_medium").gameObject;
+            audio.GetComponent<AudioSource>().Play();
+        }
+        else if (pos > 0)
+        {
+            GameObject audio = this.transform.Find("hatarake_low").gameObject;
+            audio.GetComponent<AudioSource>().Play();
+        }
         actionArea.gameObject.SetActive(false);
         actionArea.localScale = new Vector3(0.8f, actionArea.localScale.y, 0.8f);
         //ResetTimer
