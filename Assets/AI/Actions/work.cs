@@ -31,7 +31,7 @@ public class work : RAINAction
         }
 
         GameManager gm =GameObject.Find("GameManager").GetComponent<GameManager>();
-        gm.objectiveCompletion = gm.objectiveCompletion+0.1f;
+        gm.objectiveCompletion = gm.objectiveCompletion + Time.deltaTime * ai.Body.GetComponent<Employe>().data.vitesseTravail;
 		//Continue a travailler
          return ActionResult.RUNNING;
     }
