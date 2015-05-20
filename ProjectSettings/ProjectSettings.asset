@@ -117,8 +117,8 @@ PlayerSettings:
   iOSLaunchScreenLandscape: {fileID: 0}
   iOSLaunchScreenBackgroundColor:
     serializedVersion: 2
-    rgba: 0
-  iOSLaunchScreenFillPct: 1
+    rgba: 4294967040
+  iOSLaunchScreenFillPct: 100
   iOSLaunchScreenSize: 100
   iOSLaunchScreenCustomXibPath: 
   AndroidTargetDevice: 0
@@ -387,9 +387,7 @@ PlayerSettings:
   iOS::ScriptingBackend: 0
   boolPropertyNames:
   - WebGL::dataCaching
-  - XboxOne::enus
   WebGL::dataCaching: 0
-  XboxOne::enus: 1
   stringPropertyNames:
   - WebGL::emscriptenArgs
   - WebGL::template
