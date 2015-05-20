@@ -66,14 +66,6 @@ public class Employe : MonoBehaviour {
         }
 	}
 
-	public void setTaget (GameObject target)
-	{
-		if (target != null)
-		    tMemory.SetItem("enDeplacement",true);
-		else tMemory.SetItem("enDeplacement",false);
-		    tMemory.SetItem("myTarget",target);
-	}
-
 	public void setBox (GameObject box)
 	{
 		boxDeTravail = box;

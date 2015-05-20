@@ -14,7 +14,7 @@ public class work : RAINAction
         base.Start(ai);
         motivation = ai.Body.GetComponent<Employe>().data.motivation;
 		//Set de bools, sert a rien pour l'instant
-		ai.WorkingMemory.SetItem("working", true);
+		//ai.WorkingMemory.SetItem("working", true);
         ai.WorkingMemory.SetItem("enDeplacement", false);
     }
 
@@ -52,7 +52,7 @@ public class work : RAINAction
         }
 
 		//Set de bool, sert a rien pour l'instant
-        ai.WorkingMemory.SetItem("working", false);
+        //ai.WorkingMemory.SetItem("working", false);
         base.Stop(ai);
     }
 }

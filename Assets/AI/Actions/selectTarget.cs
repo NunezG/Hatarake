@@ -32,25 +32,25 @@ public class selectTarget : RAINAction
 
            foreach (GameObject go in ai.Body.GetComponent<Employe>().chill)
            {
-
                lock (_queueLock)
                {
                    if (go.GetComponent<Repos>().occupe == false)
                    {
                        go.GetComponent<Repos>().occupe = true;
-
+                       ai.WorkingMemory.SetItem("glande", true);
                        //Sign.Create(1, ai.Body.transform.position, SignType.Glande);
                        SignEmitter.Create(1, ai.Body.transform.position, SignType.Glande);
                        go.GetComponent<Repos>().occupe = true;
                        target = go;
                        return ActionResult.SUCCESS;
                    }
-        
                }
            }
         }
         else 
         {
+            ai.WorkingMemory.SetItem("glande", false);
+
             int pos = Random.Range(0, 4);
 
             if (pos == 0)
@@ -62,19 +62,19 @@ public class selectTarget : RAINAction
                         if (go.GetComponent<Box>().occupe == false)
                         {
                             go.GetComponent<Box>().occupe = true;
-                                        ai.WorkingMemory.SetItem("auTravail", true);
+                            ai.WorkingMemory.SetItem("auTravail", true);
 
                             //Sign.Create(1, ai.Body.transform.position, SignType.Work);
                             SignEmitter.Create(1, ai.Body.transform.position, SignType.Work);
                             go.GetComponent<Box>().occupe = true;
                             target = go;
                             return ActionResult.SUCCESS;
-                        }
-                       
+                        }    
                     }
                 }
             } else
             {
+                ai.WorkingMemory.SetItem("auTravail", true);
                 //Sign.Create(1, ai.Body.transform.position, SignType.Work);
                 SignEmitter.Create(1, ai.Body.transform.position, SignType.Work);
                target = ai.Body.GetComponent<Employe>().boxDeTravail;
@@ -88,6 +88,7 @@ public class selectTarget : RAINAction
 
     public override void Stop(RAIN.Core.AI ai)
     {
+        ai.WorkingMemory.SetItem("enDeplacement", true);
         ai.WorkingMemory.SetItem("myTarget", target);
         base.Stop(ai);
     }
