@@ -162,14 +162,15 @@ public class Employe : MonoBehaviour {
 		return boxDeTravail;
 	}
 
+
 	//public void auTravail ()
 	//{
 	//	auTravail = true;
 	//}
 
+
 	// Use this for initialization
-	public void Engueule () 
-	{
+	public void Engueule (){
 		//Chaque seconde : motivation -= feignantise DONC si feignantise est grand, les pauses seront plus fréquentes.
 		data.fatigue += data.effetEngueulement;
         data.motivation += data.effetEngueulement;
@@ -182,8 +183,7 @@ public class Employe : MonoBehaviour {
 	}
 
 	// Use this for initialization
-	public void Suicide () 
-	{
+	public void Suicide (){
 		Destroy (gameObject);
 	}
 
