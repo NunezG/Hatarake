@@ -18,6 +18,8 @@ public class chill : RAINAction
 
 		//Set de bool, sert a rien pour l'instant
         ai.WorkingMemory.SetItem("enDeplacement", false);
+        ai.Body.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;
+
         base.Start(ai);
     }
 
@@ -48,8 +50,10 @@ public class chill : RAINAction
         ai.WorkingMemory.SetItem("motivation", motivation);
         ai.Body.gameObject.GetComponent<Employe>().data.motivation = motivation;
 
+        if (!ai.WorkingMemory.GetItem<GameObject>("myTarget").CompareTag("Box"))
         ai.WorkingMemory.GetItem<GameObject>("myTarget").GetComponent<Repos>().occupe = false;
-        
+
+        ai.Body.GetComponent<Rigidbody>().constraints =RigidbodyConstraints.FreezePositionY ;
 
         base.Stop(ai);
     }

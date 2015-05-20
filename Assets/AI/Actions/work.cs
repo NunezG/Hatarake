@@ -16,6 +16,9 @@ public class work : RAINAction
 		//Set de bools, sert a rien pour l'instant
 		//ai.WorkingMemory.SetItem("working", true);
         ai.WorkingMemory.SetItem("enDeplacement", false);
+        ai.Body.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY| RigidbodyConstraints.FreezePositionZ;
+        
+
     }
 
     public override ActionResult Execute(RAIN.Core.AI ai)
@@ -50,6 +53,7 @@ public class work : RAINAction
             // ai.WorkingMemory.GetItem("occupe");
             target.GetComponent<Box>().occupe = false;
         }
+        ai.Body.GetComponent<Rigidbody>().constraints =  RigidbodyConstraints.FreezePositionY ;
 
 		//Set de bool, sert a rien pour l'instant
         //ai.WorkingMemory.SetItem("working", false);

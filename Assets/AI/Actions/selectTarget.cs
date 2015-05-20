@@ -29,6 +29,8 @@ public class selectTarget : RAINAction
         if (ai.Body.GetComponent<Employe>().data.motivation <= 0)
         {
               ai.WorkingMemory.SetItem("auTravail", false);
+              ai.WorkingMemory.SetItem("glande", true);
+              SignEmitter.Create(1, ai.Body.transform.position, SignType.Glande);
 
            foreach (GameObject go in ai.Body.GetComponent<Employe>().chill)
            {
@@ -36,16 +38,19 @@ public class selectTarget : RAINAction
                {
                    if (go.GetComponent<Repos>().occupe == false)
                    {
-                       go.GetComponent<Repos>().occupe = true;
-                       ai.WorkingMemory.SetItem("glande", true);
+                       go.GetComponent<Repos>().occupe = true;                  
                        //Sign.Create(1, ai.Body.transform.position, SignType.Glande);
-                       SignEmitter.Create(1, ai.Body.transform.position, SignType.Glande);
-                       go.GetComponent<Repos>().occupe = true;
+                       
                        target = go;
                        return ActionResult.SUCCESS;
                    }
                }
            }
+
+           target = ai.Body.GetComponent<Employe>().boxDeTravail;
+           return ActionResult.SUCCESS;
+
+
         }
         else 
         {

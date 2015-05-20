@@ -42,6 +42,8 @@ public class CharacterManager : MonoBehaviour {
 		{
 			GameObject tempObject = (GameObject)Instantiate (boxiePrefab);
 
+            tempObject.GetComponent<Rigidbody>().mass = Random.Range(1, 100);
+
             tempObject.name = boxiePrefab.name + i;
 
 			foreach(Box box in boxes )
@@ -57,7 +59,6 @@ public class CharacterManager : MonoBehaviour {
 					box.assigne = true;
 					break;
 				}
-
 			}
             tempObject.transform.localScale = tempObject.transform.localScale * gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.localScale.x;
 
