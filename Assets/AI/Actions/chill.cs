@@ -22,8 +22,7 @@ public class chill : RAINAction
     }
 
     public override ActionResult Execute(RAIN.Core.AI ai)
-    {
-        
+    {      
 			//Reduction de la fatigue si existante
             if (fatigue  > 0)
                 fatigue = fatigue - Time.deltaTime*(int)ai.Body.gameObject.GetComponent<Employe>().data.effetRepos;
@@ -44,12 +43,13 @@ public class chill : RAINAction
 
     public override void Stop(RAIN.Core.AI ai)
     {
-        ai.WorkingMemory.GetItem<GameObject>("myTarget").GetComponent<Repos>().occupe = false;
-
         ai.WorkingMemory.SetItem("fatigue", fatigue);
         ai.Body.gameObject.GetComponent<Employe>().data.fatigue = fatigue;
         ai.WorkingMemory.SetItem("motivation", motivation);
         ai.Body.gameObject.GetComponent<Employe>().data.motivation = motivation;
+
+        ai.WorkingMemory.GetItem<GameObject>("myTarget").GetComponent<Repos>().occupe = false;
+        
 
         base.Stop(ai);
     }
