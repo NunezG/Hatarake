@@ -69,11 +69,11 @@ public class Sign : MonoBehaviour
             //alpha = Mathf.Lerp(255f, 0f, (1 / volume) * Time.deltaTime*400);
             alpha = alpha -  Time.deltaTime * 400;
             Color color = new Color(1, 1, 1, alpha);
-            spriteRenderer.material.color = color;
+           // spriteRenderer.material.color = color;
             if (type == SignType.Hatarake)
             {
-                print("ALPHA : " + alpha);
-                print(" a :" + spriteRenderer.material.color.a);
+               // print("ALPHA : " + alpha);
+              //  print(" a :" + spriteRenderer.material.color.a);
             }
         }
         else
