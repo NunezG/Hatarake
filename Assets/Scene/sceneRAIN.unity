@@ -312,7 +312,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxiePrefab: {fileID: 160380, guid: c7ee810d6529ba340916106e675eee8c, type: 2}
   bossPrefab: {fileID: 158092, guid: 5134b76fd8d64f14aacdbb095f67182c, type: 2}
-  nombreBoxies: 20
+  nombreBoxies: 2
   boxes: []
 --- !u!4 &268217652
 Transform:
@@ -367,8 +367,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a89208f0ac3dd3747a243853bc28987a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelObjective: 50
   objectiveCompletion: 0
-  scoringTime: 60
   time: 0
 --- !u!114 &268217656
 MonoBehaviour:
@@ -477,6 +477,48 @@ Transform:
   m_Children: []
   m_Father: {fileID: 268217652}
   m_RootOrder: 1
+--- !u!1001 &885805387
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 453590, guid: 32d18ba487213744bb1c9f9541443be5, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 453590, guid: 32d18ba487213744bb1c9f9541443be5, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: .100000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 453590, guid: 32d18ba487213744bb1c9f9541443be5, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 453590, guid: 32d18ba487213744bb1c9f9541443be5, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 453590, guid: 32d18ba487213744bb1c9f9541443be5, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 453590, guid: 32d18ba487213744bb1c9f9541443be5, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 453590, guid: 32d18ba487213744bb1c9f9541443be5, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 453590, guid: 32d18ba487213744bb1c9f9541443be5, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 32d18ba487213744bb1c9f9541443be5, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &999334986
 GameObject:
   m_ObjectHideFlags: 0
@@ -596,7 +638,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0

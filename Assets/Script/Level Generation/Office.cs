@@ -591,11 +591,11 @@ public class Office : MonoBehaviour
             if (success)
             {
                 nbSuccess++;
-                print("success : " + type);
+                //print("success : " + type);
             }
             else
             {
-               print("defeat : "+type);
+               //print("defeat : "+type);
             }
         }
         return nbSuccess;

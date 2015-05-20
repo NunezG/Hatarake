@@ -42,14 +42,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   materials:
+  - {fileID: 2100000, guid: 99f3cc29931682e4e8917e9c775b706e, type: 2}
   - {fileID: 2100000, guid: 53a47360a3eeafe4e83bb2c101debed3, type: 2}
   - {fileID: 2100000, guid: 08dae528d71d94943b536c3df03de918, type: 2}
+  - {fileID: 2100000, guid: 03067d2515db2fb43ab103fa8bc57d6d, type: 2}
   - {fileID: 2100000, guid: 4e3b2d87c26261344874219c13b5ce63, type: 2}
   - {fileID: 2100000, guid: bd64b5c9cc4207f46af3e13effbaf9e2, type: 2}
+  - {fileID: 2100000, guid: 827dafeb94eeed9419fe7deda6e7df6d, type: 2}
+  - {fileID: 2100000, guid: d2b8e39a1fef30247aea77773aa61bb8, type: 2}
+  - {fileID: 2100000, guid: edbe65ac1a319024280777ae742b6a61, type: 2}
+  - {fileID: 2100000, guid: 1bfa7f9090cfff64db2b0baa498b07f8, type: 2}
   - {fileID: 2100000, guid: 24e795711b961ad4abe4b62bedd7bb78, type: 2}
-  - {fileID: 0}
   type: 0
-  volume: 0
   alpha: 0
 --- !u!198 &19873692
 ParticleSystem:

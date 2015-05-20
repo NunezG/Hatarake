@@ -40,7 +40,12 @@ public class selectTarget : RAINAction
                    {
                        go.GetComponent<Repos>().occupe = true;                  
                        //Sign.Create(1, ai.Body.transform.position, SignType.Glande);
+<<<<<<< HEAD
                        
+=======
+                       //SignEmitter.Create(1, ai.Body.transform.position, SignType.GoingToGlande);
+                       go.GetComponent<Repos>().occupe = true;
+>>>>>>> 11b25805709454cb89f3082ce6004e6530c3094d
                        target = go;
                        return ActionResult.SUCCESS;
                    }
@@ -70,7 +75,7 @@ public class selectTarget : RAINAction
                             ai.WorkingMemory.SetItem("auTravail", true);
 
                             //Sign.Create(1, ai.Body.transform.position, SignType.Work);
-                            SignEmitter.Create(1, ai.Body.transform.position, SignType.Work);
+                            //SignEmitter.Create(1, ai.Body.transform.position, SignType.Work);
                             go.GetComponent<Box>().occupe = true;
                             target = go;
                             return ActionResult.SUCCESS;
@@ -81,7 +86,7 @@ public class selectTarget : RAINAction
             {
                 ai.WorkingMemory.SetItem("auTravail", true);
                 //Sign.Create(1, ai.Body.transform.position, SignType.Work);
-                SignEmitter.Create(1, ai.Body.transform.position, SignType.Work);
+                //SignEmitter.Create(1, ai.Body.transform.position, SignType.Work);
                target = ai.Body.GetComponent<Employe>().boxDeTravail;
 
                 return ActionResult.SUCCESS;

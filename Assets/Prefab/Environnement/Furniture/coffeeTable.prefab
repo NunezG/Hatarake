@@ -60,7 +60,7 @@ GameObject:
   - 65: {fileID: 6532990}
   - 114: {fileID: 11419092}
   m_Layer: 0
-  m_Name: ChillRoomsTrigger
+  m_Name: CoffeeTrigger
   m_TagString: Repos
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -187,6 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6b315abcbbfd414593e9d4e8a72605f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  occupe: 0
 --- !u!114 &11443950
 MonoBehaviour:
   m_ObjectHideFlags: 1
