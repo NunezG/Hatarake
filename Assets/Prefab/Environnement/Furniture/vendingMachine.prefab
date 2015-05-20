@@ -44,7 +44,7 @@ GameObject:
   - 65: {fileID: 6573554}
   - 114: {fileID: 11472148}
   m_Layer: 0
-  m_Name: ChillRoomsTrigger
+  m_Name: DrinkTrigger
   m_TagString: Repos
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

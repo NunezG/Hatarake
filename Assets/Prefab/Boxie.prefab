@@ -402,6 +402,7 @@ MonoBehaviour:
   boxDeTravail: {fileID: 0}
   auTravail: 0
   floor: {fileID: 0}
+  boss: {fileID: 0}
   chill: []
   workingHelp: []
   data:

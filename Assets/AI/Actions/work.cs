@@ -14,7 +14,7 @@ public class work : RAINAction
         base.Start(ai);
         motivation = ai.Body.GetComponent<Employe>().data.motivation;
 		//Set de bools, sert a rien pour l'instant
-		ai.WorkingMemory.SetItem("working", true);
+		//ai.WorkingMemory.SetItem("working", true);
         ai.WorkingMemory.SetItem("enDeplacement", false);
     }
 
@@ -26,7 +26,7 @@ public class work : RAINAction
         if (motivation <= 0)
         {
 			//Libere la place (encore en test)
-            ai.WorkingMemory.GetItem<GameObject>("myTarget").GetComponent<Box>().occupe = false;
+            //ai.WorkingMemory.GetItem<GameObject>("myTarget").GetComponent<Box>().occupe = false;
             return ActionResult.SUCCESS;
         }
 
@@ -38,11 +38,21 @@ public class work : RAINAction
 
     public override void Stop(RAIN.Core.AI ai)
     {
+        GameObject target;
+        target = ai.WorkingMemory.GetItem<GameObject>("myTarget");
+
+
         ai.WorkingMemory.SetItem("motivation", motivation);
         ai.Body.GetComponent<Employe>().data.motivation = motivation;
 
+        if (target.CompareTag("WorkHelp") == true)
+        {
+            // ai.WorkingMemory.GetItem("occupe");
+            target.GetComponent<Box>().occupe = false;
+        }
+
 		//Set de bool, sert a rien pour l'instant
-        ai.WorkingMemory.SetItem("working", false);
+        //ai.WorkingMemory.SetItem("working", false);
         base.Stop(ai);
     }
 }
