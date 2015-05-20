@@ -40,6 +40,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50ef7646a05613d4299dcdaa70160386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   volume: 0
   alpha: 0
 --- !u!212 &21282564
@@ -52,7 +53,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 2100000, guid: 53a47360a3eeafe4e83bb2c101debed3, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
