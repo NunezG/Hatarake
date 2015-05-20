@@ -9,9 +9,10 @@ public class GameManager : MonoBehaviour {
 	//public GameObject menu;
 	private int level = 1;
 
+	public float levelObjective;
     public float objectiveCompletion = 0;
-    public float scoringTime = 60; // en secondes
     public float time = 0;
+
 	//Awake is always called before any Start functions
 	void Awake()
 	{
@@ -41,11 +42,11 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (objectiveCompletion < 1000) { 
+		if (objectiveCompletion < levelObjective) { 
             time = time + Time.deltaTime; 
         }
         else{
-            print("score :" + objectiveCompletion / (time/scoringTime));
+            print("Level finished in :" + time);
             print("YAAAAAAAAAAAAATTTTTTTAAAAAAAAAAAA");
         }
 	}
