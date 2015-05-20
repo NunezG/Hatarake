@@ -290,9 +290,7 @@ public class Office : MonoBehaviour
         placingRoomFurnitures(coffeeRoomFurnitures, room);
 
     }
-
-
-
+    
     public void placingBossRoomFurniture(Room room)
     {
         List<FurnitureType> bossRoomFurnitures = new List<FurnitureType>();
@@ -335,14 +333,14 @@ public class Office : MonoBehaviour
     public void placingCorridorFurniture(Room room)
     {
         List<FurnitureType> corridorFurnitures = new List<FurnitureType>();
-        for (int i = 0; i < nbFlowerPot; i++)
-            corridorFurnitures.Add(FurnitureType.FlowerPot);
         for (int i = 0; i < nbPhotocopier; i++)
             corridorFurnitures.Add(FurnitureType.Photocopier);
-        for (int i = 0; i < nbCasier; i++)
-            corridorFurnitures.Add(FurnitureType.Casier); ;
         for (int i = 0; i < nbVendingMachine; i++)
             corridorFurnitures.Add(FurnitureType.VendingMachine);
+        for (int i = 0; i < nbCasier; i++)
+            corridorFurnitures.Add(FurnitureType.Casier);
+        for (int i = 0; i < nbFlowerPot; i++)
+            corridorFurnitures.Add(FurnitureType.FlowerPot);
 
         placingRoomFurnitures(corridorFurnitures, room);
     }
@@ -593,11 +591,11 @@ public class Office : MonoBehaviour
             if (success)
             {
                 nbSuccess++;
-                // print("success");
+                print("success : " + type);
             }
             else
             {
-                // print("defeat");
+               print("defeat : "+type);
             }
         }
         return nbSuccess;

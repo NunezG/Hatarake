@@ -39,8 +39,8 @@ public class selectTarget : RAINAction
            {
                if (go.GetComponent<Repos>().occupe == false)
                {
-                   Sign.Create(1, ai.Body.transform.position, SignType.Glande);
-
+                   //Sign.Create(1, ai.Body.transform.position, SignType.Glande);
+                   SignEmitter.Create(1, ai.Body.transform.position, SignType.Glande);
                    go.GetComponent<Repos>().occupe = true;
                    target = go;
                    return ActionResult.SUCCESS;
@@ -57,8 +57,8 @@ public class selectTarget : RAINAction
                 {
                     if (go.GetComponent<Box>().occupe == false)
                     {
-                        Sign.Create(1, ai.Body.transform.position, SignType.Work);
-
+                        //Sign.Create(1, ai.Body.transform.position, SignType.Work);
+                        SignEmitter.Create(1, ai.Body.transform.position, SignType.Work);
                         go.GetComponent<Box>().occupe = true;
                         target = go;
                         return ActionResult.SUCCESS;
@@ -66,8 +66,8 @@ public class selectTarget : RAINAction
                 }
             } else
             {
-                Sign.Create(1, ai.Body.transform.position, SignType.Work);
-
+                //Sign.Create(1, ai.Body.transform.position, SignType.Work);
+                SignEmitter.Create(1, ai.Body.transform.position, SignType.Work);
                target = ai.Body.GetComponent<Employe>().boxDeTravail;
 
                 return ActionResult.SUCCESS;

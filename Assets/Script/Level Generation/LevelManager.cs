@@ -7,16 +7,17 @@ public class LevelManager : MonoBehaviour {
 	public Office officePrefab;
 	
 	private List<Office> officeFloors = new List<Office>();
-	
+
+    public int nbCoffeeRooms, nbBathRooms, nbBoxes;
 	public void BeginGame () {
         int nbFloors = 3;
         for (int i = 0; i < nbFloors; i++) {
             Office officeInstance = Instantiate(officePrefab) as Office;
             officeInstance.name = "Office floor n" + i;
             if(i==0)
-                officeInstance.init (i,1,1,2,20);
+                officeInstance.init(i, 1, nbCoffeeRooms, nbBathRooms, nbBoxes);
             else
-                officeInstance.init(i, 0, 1, 2, 26);
+                officeInstance.init(i, 0, nbCoffeeRooms, nbBathRooms, nbBoxes+6);
             officeFloors.Add(officeInstance);
         }
 

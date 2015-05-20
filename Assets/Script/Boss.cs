@@ -90,11 +90,16 @@ public class Boss : MonoBehaviour {
         Sign.Create(pos,this.transform.position,SignType.Hatarake);
         if (pos > 10)
         {
+
+            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>().shaking = true;
+            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>().shakeMagnitude =  pos;
             GameObject audio =this.transform.Find("hatarake_strong").gameObject;
             audio.GetComponent<AudioSource>().Play();
         }
         else if (pos > 5)
         {
+            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>().shaking = true;
+            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>().shakeMagnitude = pos;
             GameObject audio = this.transform.Find("hatarake_medium").gameObject;
             audio.GetComponent<AudioSource>().Play();
         }

@@ -60,14 +60,18 @@ public class Employe : MonoBehaviour {
 
 	void Update () 
 	{
+        if (tMemory.GetItem<bool>("enDeplacement"))
+        {
+           // target.CompareTag("Repos");
+        }
 	}
 
 	public void setTaget (GameObject target)
 	{
 		if (target != null)
-		tMemory.SetItem("enDeplacement",true);
+		    tMemory.SetItem("enDeplacement",true);
 		else tMemory.SetItem("enDeplacement",false);
-		tMemory.SetItem("myTarget",target);
+		    tMemory.SetItem("myTarget",target);
 	}
 
 	public void setBox (GameObject box)

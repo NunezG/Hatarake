@@ -14,6 +14,7 @@ public class CameraController : MonoBehaviour {
 	 public float upDownMargin;
 	 public float leftRightMargin;
 
+     private float timer = 0;
 
      void Update () 
      {
@@ -32,10 +33,18 @@ public class CameraController : MonoBehaviour {
 
 			} catch {}
 		}
-
 		//Shaking Effect if enabled
-		if(shaking)
-			ShakeMyBooty ();
+        if (shaking && timer<0.2f )
+        {
+            timer = timer + Time.deltaTime;
+            //print("timer : " + timer);
+            ShakeMyBooty();
+        }
+        else
+        {
+            shaking = false;
+            timer = 0;
+        }
      
      }
 

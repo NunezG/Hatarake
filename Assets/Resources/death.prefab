@@ -42,7 +42,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   volume: 0
-  alpha: 0
+  alpha: 4
 --- !u!212 &21288336
 SpriteRenderer:
   m_ObjectHideFlags: 1
