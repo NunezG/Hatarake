@@ -16,7 +16,6 @@ public class Employe : MonoBehaviour {
 	 * si auTravail == true (true vers la photocop, vers le box) || false (true vers la salle de repos, vers les chiottes)
 	 * si auTravail == true (false dans le box, à la photcop) || false (false à la salle de repos, au chiottes)
 	**/
-	public bool auTravail;
 	bool enDeplacement;// utile pour l’animation notamment
 	Employe[] amis;// liste d’amis agissant sur la fatigue en cas de suicide;
 
@@ -31,6 +30,9 @@ public class Employe : MonoBehaviour {
 
 	public EmployeNames data;
 	//Awake is always called before any Start functions
+
+    public bool isAlreadyInRange, moveMemory, workingMemory,suicideMemory;
+
 	void Awake()
 	{
 		AIRig aiRig = GetComponentInChildren<AIRig>();		
@@ -41,7 +43,11 @@ public class Employe : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-        boss= GameObject.Find("Boss");
+        isAlreadyInRange = false;
+        suicideMemory = tMemory.GetItem<bool>("suicidaire");
+        moveMemory = tMemory.GetItem<bool>("enDeplacement");
+        workingMemory=tMemory.GetItem<bool>("auTravail");
+        boss = GameObject.FindGameObjectWithTag("Boss");
 
 		data.InitializeEmployee ();
 
@@ -63,15 +69,33 @@ public class Employe : MonoBehaviour {
 
 	void Update () 
 	{
-        GameObject target = tMemory.GetItem<GameObject>("myTarget");
         Vector3 distance = boss.transform.position - this.transform.position;
-        if (distance.magnitude > 15)
+
+
+        if (distance.magnitude < 15 && !isAlreadyInRange)
+        {
+            emitActivitySign();
+            isAlreadyInRange = true;
+        }
+        else if(distance.magnitude>=15)
+        {
+            isAlreadyInRange = false;
+        }else if((suicideMemory  != tMemory.GetItem<bool>("suicidaire") ||
+            moveMemory != tMemory.GetItem<bool>("enDeplacement") || workingMemory != tMemory.GetItem<bool>("auTravail")) && isAlreadyInRange)
         {
 
+            emitActivitySign();
+            suicideMemory = tMemory.GetItem<bool>("suicidaire");
+            moveMemory = tMemory.GetItem<bool>("enDeplacement");
+            workingMemory = tMemory.GetItem<bool>("auTravail");
         }
+ 
+	}
 
+    public void emitActivitySign()
+    {
 
-
+        GameObject target = tMemory.GetItem<GameObject>("myTarget");
         if (tMemory.GetItem<bool>("suicidaire"))
         {
             SignEmitter.Create(this.transform.position, SignType.Death);
@@ -79,16 +103,16 @@ public class Employe : MonoBehaviour {
 
         else if (tMemory.GetItem<bool>("enDeplacement"))
         {
-            if(target.CompareTag("Repos"))
+            if (target.CompareTag("Repos"))
             {
                 SignEmitter.Create(this.transform.position, SignType.GoingToGlande);
             }
-            if (target.CompareTag("WorkHelp"))
+            if (target.CompareTag("WorkHelp") || target.CompareTag("Box"))
             {
                 SignEmitter.Create(this.transform.position, SignType.GoingToWork);
             }
         }
-        else if (tMemory.GetItem<bool>("chilling"))
+        else if (tMemory.GetItem<bool>("glande"))
         {
             if (target.name.Equals("CoffeeTrigger"))
             {
@@ -126,7 +150,7 @@ public class Employe : MonoBehaviour {
                 SignEmitter.Create(this.transform.position, SignType.Work);
             }
         }
-	}
+    }
 
 	public void setBox (GameObject box)
 	{
@@ -150,7 +174,6 @@ public class Employe : MonoBehaviour {
 		data.fatigue += data.effetEngueulement;
         data.motivation += data.effetEngueulement;
         tMemory.SetItem("auTravail", true);
-        auTravail  = true;
 
 		if (data.fatigue >= data.fatigueMAX) {
 			//suicidaire = true;		
