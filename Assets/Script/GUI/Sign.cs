@@ -32,7 +32,7 @@ public class Sign : MonoBehaviour
             case SignType.Facebook:
                 newObject = Instantiate(facebook) as GameObject;
                 break;
-            case SignType.Glande:
+            case SignType.GoingToGlande:
                 newObject = Instantiate(glande) as GameObject;
                 break;
             case SignType.Work:

@@ -44,7 +44,7 @@ GameObject:
   - 65: {fileID: 6534696}
   - 114: {fileID: 11483710}
   m_Layer: 0
-  m_Name: WorkBoxTrigger
+  m_Name: PhotocopierTrigger
   m_TagString: WorkHelp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

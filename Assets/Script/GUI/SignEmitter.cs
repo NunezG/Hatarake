@@ -4,16 +4,16 @@ using System.Collections;
 public class SignEmitter : MonoBehaviour {
 
 
-    public Material[] materials = new Material[6];
+    public Material[] materials = new Material[10];
     public static Object SignGenerator=Resources.Load("SignGenerator");
 
     ParticleSystemRenderer partiSysRender;
     ParticleSystem partiSys;
     public SignType type;
     SpriteRenderer spriteRenderer;
-    public float volume, alpha;
+    public float  alpha;
 
-    public static SignEmitter Create(float volume, Vector3 position, SignType type)
+    public static SignEmitter Create(Vector3 position, SignType type)
     {
         Vector3 pos = new Vector3(position.x, position.y + 10, position.z);
         GameObject newObject = Instantiate(SignGenerator) as GameObject;
@@ -35,22 +35,41 @@ public class SignEmitter : MonoBehaviour {
             case SignType.Hatarake:
                 //partiSysRender.material=material;
                 break;
-            case SignType.Coffee:
+            case SignType.Cellphone:
                 partiSysRender.material = materials[0];
                 break;
-            case SignType.Death:
+            case SignType.Coffee:
                 partiSysRender.material = materials[1];
                 break;
-            case SignType.Facebook:
+            case SignType.Death:
                 partiSysRender.material = materials[2];
                 break;
-            case SignType.Glande:
+            case SignType.Drink:
                 partiSysRender.material = materials[3];
                 break;
-            case SignType.Work:
+            case SignType.Facebook:
                 partiSysRender.material = materials[4];
                 break;
+            case SignType.GoingToGlande:
+                partiSysRender.material = materials[5];
+                break;
+            case SignType.GoingToWork:
+                partiSysRender.material = materials[6];
+                break;
+            case SignType.Photocopier:
+                partiSysRender.material = materials[7];
+                break;
+            case SignType.Toilet:
+                partiSysRender.material = materials[8];
+                break;
+            case SignType.Tv:
+                partiSysRender.material = materials[9];
+                break;
+            case SignType.Work:
+                partiSysRender.material = materials[10];
+                break;
             default:
+                partiSysRender.material = materials[10];
                 break;
         }
 	}

@@ -27,7 +27,7 @@ GameObject:
   - 65: {fileID: 6595292}
   - 114: {fileID: 11428902}
   m_Layer: 0
-  m_Name: ChillRoomsTrigger 2
+  m_Name: TVRoomsTrigger 2
   m_TagString: Repos
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -139,7 +139,7 @@ GameObject:
   - 65: {fileID: 6527192}
   - 114: {fileID: 11475562}
   m_Layer: 0
-  m_Name: ChillRoomsTrigger 1
+  m_Name: TVTrigger 1
   m_TagString: Repos
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -156,7 +156,7 @@ GameObject:
   - 65: {fileID: 6534282}
   - 114: {fileID: 11470892}
   m_Layer: 0
-  m_Name: ChillRoomsTrigger
+  m_Name: TVTrigger
   m_TagString: Repos
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -436,6 +436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6b315abcbbfd414593e9d4e8a72605f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  occupe: 0
 --- !u!114 &11429030
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -472,6 +473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6b315abcbbfd414593e9d4e8a72605f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  occupe: 0
 --- !u!114 &11475562
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -483,6 +485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6b315abcbbfd414593e9d4e8a72605f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  occupe: 0
 --- !u!212 &21206156
 SpriteRenderer:
   m_ObjectHideFlags: 1

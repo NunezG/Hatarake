@@ -21,6 +21,7 @@ public class Employe : MonoBehaviour {
 	Employe[] amis;// liste d’amis agissant sur la fatigue en cas de suicide;
 
 	public GameObject floor;
+    public GameObject boss;
 
 	public List<GameObject> chill;
 	public List<GameObject> workingHelp;
@@ -39,7 +40,9 @@ public class Employe : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () 
-	{	
+	{
+        boss= GameObject.Find("Boss");
+
 		data.InitializeEmployee ();
 
 		Repos[] chills = floor.GetComponentsInChildren<Repos> ();
@@ -60,9 +63,68 @@ public class Employe : MonoBehaviour {
 
 	void Update () 
 	{
-        if (tMemory.GetItem<bool>("enDeplacement"))
+        GameObject target = tMemory.GetItem<GameObject>("myTarget");
+        Vector3 distance = boss.transform.position - this.transform.position;
+        if (distance.magnitude > 15)
         {
-           // target.CompareTag("Repos");
+
+        }
+
+
+
+        if (tMemory.GetItem<bool>("suicidaire"))
+        {
+            SignEmitter.Create(this.transform.position, SignType.Death);
+        }
+
+        else if (tMemory.GetItem<bool>("enDeplacement"))
+        {
+            if(target.CompareTag("Repos"))
+            {
+                SignEmitter.Create(this.transform.position, SignType.GoingToGlande);
+            }
+            if (target.CompareTag("WorkHelp"))
+            {
+                SignEmitter.Create(this.transform.position, SignType.GoingToWork);
+            }
+        }
+        else if (tMemory.GetItem<bool>("chilling"))
+        {
+            if (target.name.Equals("CoffeeTrigger"))
+            {
+                SignEmitter.Create(this.transform.position, SignType.Coffee);
+            }
+            else if (target.name.Equals("ToiletTrigger"))
+            {
+                SignEmitter.Create(this.transform.position, SignType.Toilet);
+            }
+            else if (target.name.Equals("DrinkTrigger"))
+            {
+                SignEmitter.Create(this.transform.position, SignType.Drink);
+            }
+            else if (target.name.Equals("WorkBoxTrigger"))
+            {
+                SignEmitter.Create(this.transform.position, SignType.Facebook);
+            }
+            else if (target.name.Equals("TVTrigger") || target.name.Equals("TVTrigger 1") || target.name.Equals("TVTrigger 2"))
+            {
+                SignEmitter.Create(this.transform.position, SignType.Tv);
+            }
+            else if (target.name.Equals("ToiletTrigger"))
+            {
+                SignEmitter.Create(this.transform.position, SignType.Toilet);
+            }
+        }
+        else if (tMemory.GetItem<bool>("auTravail"))
+        {
+            if (target.name.Equals("PhotocopierTrigger"))
+            {
+                SignEmitter.Create(this.transform.position, SignType.Photocopier);
+            }
+            else if (target.name.Equals("WorkBoxTrigger"))
+            {
+                SignEmitter.Create(this.transform.position, SignType.Work);
+            }
         }
 	}
 
