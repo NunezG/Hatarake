@@ -22,8 +22,9 @@ public class Employe : MonoBehaviour {
 	public GameObject floor;
     public GameObject boss;
 
-	public List<GameObject> chill;
-	public List<GameObject> workingHelp;
+    public List<GameObject> chill;
+    public List<GameObject> workingHelp;
+    public List<GameObject> suicide;
 
     public RAIN.Memory.BasicMemory tMemory;
     private RAIN.Navigation.BasicNavigator tNav;
@@ -39,7 +40,7 @@ public class Employe : MonoBehaviour {
         tMemory = aiRig.AI.WorkingMemory as RAIN.Memory.BasicMemory;
         tNav = aiRig.AI.Navigator as RAIN.Navigation.BasicNavigator; 
 
-          if (chill == null)
+        if (chill == null)
         {
             Repos[] chills = floor.GetComponentsInChildren<Repos>();
             foreach (Repos chi in chills)
@@ -57,6 +58,14 @@ public class Employe : MonoBehaviour {
                 {
                     workingHelp.Add(box.gameObject);
                 }
+            }
+        }
+        if (suicide == null)
+        {
+            SuicideWindow[] suicideWindows = floor.GetComponentsInChildren<SuicideWindow>();
+            foreach (SuicideWindow window in suicideWindows)
+            {
+                suicide.Add(window.gameObject);
             }
         }
 	}
@@ -108,7 +117,7 @@ public class Employe : MonoBehaviour {
 
     public void emitActivitySign()
     {
-        print("emitactivity");
+        //print("emitactivity");
         GameObject target = tMemory.GetItem<GameObject>("myTarget");
         if (tMemory.GetItem<bool>("suicidaire"))
         {
@@ -175,13 +184,6 @@ public class Employe : MonoBehaviour {
 	{
 		return boxDeTravail;
 	}
-
-
-	//public void auTravail ()
-	//{
-	//	auTravail = true;
-	//}
-
 
 	// Use this for initialization
 	public void Engueule (){

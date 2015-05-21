@@ -27,7 +27,26 @@ public class selectTarget : RAINAction
     public override ActionResult Execute(RAIN.Core.AI ai)
     {   
         //*Si motivation a 0 commence a glander
-        if (ai.Body.GetComponent<Employe>().data.motivation <= 0)
+
+
+        if (ai.WorkingMemory.GetItem<bool>("suicidaire"))
+        {
+            foreach (GameObject go in ai.Body.GetComponent<Employe>().suicide)
+            {
+                lock (_queueLock)
+                {
+                    if (go.GetComponent<SuicideWindow>().occupe == false)
+                    {
+                        go.GetComponent<SuicideWindow>().occupe = true;
+                        //Sign.Create(1, ai.Body.transform.position, SignType.Glande);
+                        //SignEmitter.Create(1, ai.Body.transform.position, SignType.GoingToGlande);
+                        target = go;
+                        return ActionResult.SUCCESS;
+                    }
+                }
+            }
+        }
+        else if (ai.Body.GetComponent<Employe>().data.motivation <= 0)
         {
               ai.WorkingMemory.SetItem("auTravail", false);
               ai.WorkingMemory.SetItem("glande", true);
