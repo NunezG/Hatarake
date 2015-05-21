@@ -72,17 +72,23 @@ public class Employe : MonoBehaviour {
         Vector3 distance = boss.transform.position - this.transform.position;
 
 
-        if (distance.magnitude < 15 && !isAlreadyInRange)
+        if (distance.magnitude < 15 && !isAlreadyInRange) // si il vient d'entrer dans le champ de vision du boss
         {
             emitActivitySign();
             isAlreadyInRange = true;
+
+            suicideMemory = tMemory.GetItem<bool>("suicidaire");
+            moveMemory = tMemory.GetItem<bool>("enDeplacement");
+            workingMemory = tMemory.GetItem<bool>("auTravail");
         }
-        else if(distance.magnitude>=15)
+        else if (distance.magnitude >= 15 && isAlreadyInRange) // si il en sort
         {
+
             isAlreadyInRange = false;
         }else if((suicideMemory  != tMemory.GetItem<bool>("suicidaire") ||
             moveMemory != tMemory.GetItem<bool>("enDeplacement") || workingMemory != tMemory.GetItem<bool>("auTravail")) && isAlreadyInRange)
-        {
+        { // si il est dans le champ et qu'il change d'état
+            
 
             emitActivitySign();
             suicideMemory = tMemory.GetItem<bool>("suicidaire");
@@ -94,7 +100,7 @@ public class Employe : MonoBehaviour {
 
     public void emitActivitySign()
     {
-
+        print("emitactivity");
         GameObject target = tMemory.GetItem<GameObject>("myTarget");
         if (tMemory.GetItem<bool>("suicidaire"))
         {
