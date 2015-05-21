@@ -55,7 +55,7 @@ public class Sign : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        this.transform.localScale = this.transform.localScale * volume * 10;
+        this.transform.localScale = this.transform.localScale * volume * 50;
         spriteRenderer = this.GetComponent<SpriteRenderer>();
         //spriteRenderer.material.SetColor()
     }
