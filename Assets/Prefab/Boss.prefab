@@ -934,7 +934,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed70688bd36709842a1940d2e5fb59bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jaugeEngueulageMax: 30
+  jaugeEngueulageMax: 10
   vitesseJauge: 2
 --- !u!136 &13674078
 CapsuleCollider:
