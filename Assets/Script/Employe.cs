@@ -22,6 +22,7 @@ public class Employe : MonoBehaviour {
 	public GameObject floor;
     public static GameObject boss;
 
+    public static List<GameObject> suicide;
 	public static List<GameObject> chill;
 	public static List<GameObject> workingHelp;
 
@@ -63,7 +64,14 @@ public class Employe : MonoBehaviour {
 			{
 				chill.Add(chi.gameObject);
 			}
-			
+            suicide = new List<GameObject>();
+
+            SuicideWindow[] suicidesWindows = floor.GetComponentsInChildren<SuicideWindow>();
+            print("suicidesWindows :" + suicidesWindows.Length);
+            foreach (SuicideWindow window in suicidesWindows)
+            {
+                suicide.Add(window.gameObject);
+            }
 			
 			workingHelp = new List<GameObject>();
 			
@@ -112,7 +120,7 @@ public class Employe : MonoBehaviour {
 
     public void emitActivitySign()
     {
-        print("emitactivity");
+        //print("emitactivity");
         GameObject target = tMemory.GetItem<GameObject>("myTarget");
         if (tMemory.GetItem<bool>("suicidaire"))
         {
@@ -202,7 +210,10 @@ public class Employe : MonoBehaviour {
 
 	// Use this for initialization
 	public void Suicide (){
-		Destroy (gameObject);
+
+        tMemory.GetItem("suicidaire");
+		//Destroy (this.gameObject);
+        this.gameObject.SetActive(false);
 	}
 
 }

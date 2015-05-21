@@ -29,22 +29,25 @@ public class selectTarget : RAINAction
         //*Si motivation a 0 commence a glander
 
 
-        if (ai.WorkingMemory.GetItem<bool>("suicidaire"))
+        if (ai.WorkingMemory.GetItem<bool>("suicidaire")==true)
         {
-            foreach (GameObject go in ai.Body.GetComponent<Employe>().suicide)
+            int rdmIndex=   UnityEngine.Random.Range(0, Employe.suicide.Count);
+
+            target = Employe.suicide[rdmIndex];
+            return ActionResult.SUCCESS;
+
+            /*foreach (GameObject go in Employe.suicide)
             {
                 lock (_queueLock)
                 {
                     if (go.GetComponent<SuicideWindow>().occupe == false)
                     {
                         go.GetComponent<SuicideWindow>().occupe = true;
-                        //Sign.Create(1, ai.Body.transform.position, SignType.Glande);
-                        //SignEmitter.Create(1, ai.Body.transform.position, SignType.GoingToGlande);
                         target = go;
                         return ActionResult.SUCCESS;
                     }
                 }
-            }
+            }*/
         }
         else if (ai.Body.GetComponent<Employe>().data.motivation <= 0)
         {
@@ -59,9 +62,7 @@ public class selectTarget : RAINAction
                {
                    if (go.GetComponent<Repos>().occupe == false)
                    {
-                       go.GetComponent<Repos>().occupe = true;                  
-                       //Sign.Create(1, ai.Body.transform.position, SignType.Glande);
-                       //SignEmitter.Create(1, ai.Body.transform.position, SignType.GoingToGlande);
+                       go.GetComponent<Repos>().occupe = true;
                        target = go;
                        return ActionResult.SUCCESS;
                    }
@@ -90,11 +91,7 @@ public class selectTarget : RAINAction
                     {
                         if (go.GetComponent<Box>().occupe == false)
                         {
-                            go.GetComponent<Box>().occupe = true;
                             ai.WorkingMemory.SetItem("auTravail", true);
-
-                            //Sign.Create(1, ai.Body.transform.position, SignType.Work);
-                            //SignEmitter.Create(1, ai.Body.transform.position, SignType.Work);
                             go.GetComponent<Box>().occupe = true;
                             target = go;
                             return ActionResult.SUCCESS;

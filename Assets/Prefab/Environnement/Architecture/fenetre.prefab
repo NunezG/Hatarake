@@ -26,7 +26,6 @@ GameObject:
   - 4: {fileID: 479192}
   - 33: {fileID: 3377732}
   - 65: {fileID: 6570984}
-  - 114: {fileID: 11451962}
   m_Layer: 0
   m_Name: fenetreCollider
   m_TagString: Mur
@@ -49,6 +48,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &197386
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 463790}
+  - 114: {fileID: 11477778}
+  m_Layer: 0
+  m_Name: suicideSpot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &450474
 Transform:
   m_ObjectHideFlags: 1
@@ -61,8 +76,21 @@ Transform:
   m_Children:
   - {fileID: 479192}
   - {fileID: 488254}
+  - {fileID: 463790}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!4 &463790
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 197386}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .0309999995, y: .138999999, z: -.202000007}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 450474}
+  m_RootOrder: 2
 --- !u!4 &479192
 Transform:
   m_ObjectHideFlags: 1
@@ -106,12 +134,12 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &11451962
+--- !u!114 &11477778
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 160666}
+  m_GameObject: {fileID: 197386}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab658b4c705cbd84098169f6f54c3f6f, type: 3}
