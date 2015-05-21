@@ -20,13 +20,13 @@ public class Employe : MonoBehaviour {
 	Employe[] amis;// liste d’amis agissant sur la fatigue en cas de suicide;
 
 	public GameObject floor;
-    public GameObject boss;
+    public static GameObject boss;
 
-	public List<GameObject> chill;
-	public List<GameObject> workingHelp;
+	public static List<GameObject> chill;
+	public static List<GameObject> workingHelp;
 
-	public RAIN.Memory.BasicMemory tMemory;
-	private RAIN.Navigation.BasicNavigator tNav;
+    public RAIN.Memory.BasicMemory tMemory;
+    private RAIN.Navigation.BasicNavigator tNav;
 
 	public EmployeNames data;
 	//Awake is always called before any Start functions
@@ -35,9 +35,11 @@ public class Employe : MonoBehaviour {
 
 	void Awake()
 	{
-		AIRig aiRig = GetComponentInChildren<AIRig>();		
-		tMemory = aiRig.AI.WorkingMemory as RAIN.Memory.BasicMemory;
-		tNav = aiRig.AI.Navigator as RAIN.Navigation.BasicNavigator;
+		AIRig aiRig = GetComponentInChildren<AIRig>();
+        tMemory = aiRig.AI.WorkingMemory as RAIN.Memory.BasicMemory;
+        tNav = aiRig.AI.Navigator as RAIN.Navigation.BasicNavigator; 
+
+         
 	}
 
 	// Use this for initialization
@@ -47,24 +49,34 @@ public class Employe : MonoBehaviour {
         suicideMemory = tMemory.GetItem<bool>("suicidaire");
         moveMemory = tMemory.GetItem<bool>("enDeplacement");
         workingMemory=tMemory.GetItem<bool>("auTravail");
-        boss = GameObject.FindGameObjectWithTag("Boss");
+       
 
 		data.InitializeEmployee ();
 
-		Repos[] chills = floor.GetComponentsInChildren<Repos> ();
-		Box[] boxes = floor.GetComponentsInChildren<Box> ();
-
-		foreach (Repos chi in chills) 
+		if (boss == null)
 		{
-			chill.Add(chi.gameObject);	
-		}
+			boss = GameObject.FindGameObjectWithTag("Boss");
 
-		foreach (Box box in boxes) {
-			if (box.CompareTag("WorkHelp"))
+			chill = new List<GameObject>();
+			Repos[] chills = floor.GetComponentsInChildren<Repos>();
+			foreach (Repos chi in chills)
 			{
-				workingHelp.Add(box.gameObject);
+				chill.Add(chi.gameObject);
+			}
+			
+			
+			workingHelp = new List<GameObject>();
+			
+			Box[] boxes = floor.GetComponentsInChildren<Box>();
+			foreach (Box box in boxes)
+			{
+				if (box.CompareTag("WorkHelp"))
+				{
+					workingHelp.Add(box.gameObject);
+				}
 			}
 		}
+      	
 	}
 
 	void Update () 
@@ -72,17 +84,23 @@ public class Employe : MonoBehaviour {
         Vector3 distance = boss.transform.position - this.transform.position;
 
 
-        if (distance.magnitude < 15 && !isAlreadyInRange)
+        if (distance.magnitude < 15 && !isAlreadyInRange) // si il vient d'entrer dans le champ de vision du boss
         {
             emitActivitySign();
             isAlreadyInRange = true;
+
+            suicideMemory = tMemory.GetItem<bool>("suicidaire");
+            moveMemory = tMemory.GetItem<bool>("enDeplacement");
+            workingMemory = tMemory.GetItem<bool>("auTravail");
         }
-        else if(distance.magnitude>=15)
+        else if (distance.magnitude >= 15 && isAlreadyInRange) // si il en sort
         {
+
             isAlreadyInRange = false;
         }else if((suicideMemory  != tMemory.GetItem<bool>("suicidaire") ||
             moveMemory != tMemory.GetItem<bool>("enDeplacement") || workingMemory != tMemory.GetItem<bool>("auTravail")) && isAlreadyInRange)
-        {
+        { // si il est dans le champ et qu'il change d'état
+            
 
             emitActivitySign();
             suicideMemory = tMemory.GetItem<bool>("suicidaire");
@@ -94,7 +112,7 @@ public class Employe : MonoBehaviour {
 
     public void emitActivitySign()
     {
-
+        print("emitactivity");
         GameObject target = tMemory.GetItem<GameObject>("myTarget");
         if (tMemory.GetItem<bool>("suicidaire"))
         {
@@ -162,18 +180,19 @@ public class Employe : MonoBehaviour {
 		return boxDeTravail;
 	}
 
+
 	//public void auTravail ()
 	//{
 	//	auTravail = true;
 	//}
 
+
 	// Use this for initialization
-	public void Engueule () 
-	{
+	public void Engueule (){
 		//Chaque seconde : motivation -= feignantise DONC si feignantise est grand, les pauses seront plus fréquentes.
 		data.fatigue += data.effetEngueulement;
         data.motivation += data.effetEngueulement;
-        tMemory.SetItem("auTravail", true);
+        tMemory.SetItem("hatarake", true);
 
 		if (data.fatigue >= data.fatigueMAX) {
 			//suicidaire = true;		
@@ -182,8 +201,7 @@ public class Employe : MonoBehaviour {
 	}
 
 	// Use this for initialization
-	public void Suicide () 
-	{
+	public void Suicide (){
 		Destroy (gameObject);
 	}
 
