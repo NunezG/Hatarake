@@ -6,7 +6,7 @@ public class CameraController : MonoBehaviour {
      public float dampTime = 0.15f;
      private Vector3 velocity = Vector3.zero;
 
-     private Transform target;
+     private GameObject target;
 	 public bool bossCreated;
 
 	 public bool shaking;
@@ -26,12 +26,12 @@ public class CameraController : MonoBehaviour {
 		} else {
 
 			// Looking for Boss GameObject
-			try{
+	
 
-				target = GameObject.FindGameObjectWithTag ("Boss").transform;
-			    bossCreated = true;
+				target = GameObject.FindGameObjectWithTag ("Boss");
+			   if (target!=null) bossCreated = true;
 
-			} catch {}
+		
 		}
 		//Shaking Effect if enabled
         if (shaking && timer<0.2f )
@@ -52,7 +52,7 @@ public class CameraController : MonoBehaviour {
 	{
 		if(true) // condition à compléter : si Boss en dehors du Rect(leftRightMargin, upDownMargin, width - 2*leftRightMargin, height - 2*upDownMargin)
 			{
-				Vector3 delta = target.position - GetComponent<Camera>().ViewportToWorldPoint(new Vector3(0.5f, 0.5f, GetComponent<Camera>().WorldToViewportPoint(target.position).z));
+                Vector3 delta = target.transform.position - GetComponent<Camera>().ViewportToWorldPoint(new Vector3(0.5f, 0.5f, GetComponent<Camera>().WorldToViewportPoint(target.transform.position).z));
 				Vector3 destination = transform.position + delta;
 				transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, dampTime);
 		    }

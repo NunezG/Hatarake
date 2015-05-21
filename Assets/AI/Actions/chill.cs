@@ -45,6 +45,7 @@ public class chill : RAINAction
 
     public override void Stop(RAIN.Core.AI ai)
     {
+        //rends le resultat
         ai.WorkingMemory.SetItem("fatigue", fatigue);
         ai.Body.gameObject.GetComponent<Employe>().data.fatigue = fatigue;
         ai.WorkingMemory.SetItem("motivation", motivation);

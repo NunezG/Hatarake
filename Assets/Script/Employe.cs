@@ -25,8 +25,8 @@ public class Employe : MonoBehaviour {
 	public List<GameObject> chill;
 	public List<GameObject> workingHelp;
 
-	public RAIN.Memory.BasicMemory tMemory;
-	private RAIN.Navigation.BasicNavigator tNav;
+    public RAIN.Memory.BasicMemory tMemory;
+    private RAIN.Navigation.BasicNavigator tNav;
 
 	public EmployeNames data;
 	//Awake is always called before any Start functions
@@ -35,9 +35,30 @@ public class Employe : MonoBehaviour {
 
 	void Awake()
 	{
-		AIRig aiRig = GetComponentInChildren<AIRig>();		
-		tMemory = aiRig.AI.WorkingMemory as RAIN.Memory.BasicMemory;
-		tNav = aiRig.AI.Navigator as RAIN.Navigation.BasicNavigator;
+		AIRig aiRig = GetComponentInChildren<AIRig>();
+        tMemory = aiRig.AI.WorkingMemory as RAIN.Memory.BasicMemory;
+        tNav = aiRig.AI.Navigator as RAIN.Navigation.BasicNavigator; 
+
+          if (chill == null)
+        {
+            Repos[] chills = floor.GetComponentsInChildren<Repos>();
+            foreach (Repos chi in chills)
+            {
+                chill.Add(chi.gameObject);
+            }
+        }
+
+        if (workingHelp == null)
+        {
+            Box[] boxes = floor.GetComponentsInChildren<Box>();
+            foreach (Box box in boxes)
+            {
+                if (box.CompareTag("WorkHelp"))
+                {
+                    workingHelp.Add(box.gameObject);
+                }
+            }
+        }
 	}
 
 	// Use this for initialization
@@ -51,20 +72,7 @@ public class Employe : MonoBehaviour {
 
 		data.InitializeEmployee ();
 
-		Repos[] chills = floor.GetComponentsInChildren<Repos> ();
-		Box[] boxes = floor.GetComponentsInChildren<Box> ();
-
-		foreach (Repos chi in chills) 
-		{
-			chill.Add(chi.gameObject);	
-		}
-
-		foreach (Box box in boxes) {
-			if (box.CompareTag("WorkHelp"))
-			{
-				workingHelp.Add(box.gameObject);
-			}
-		}
+      	
 	}
 
 	void Update () 
@@ -180,7 +188,7 @@ public class Employe : MonoBehaviour {
 		//Chaque seconde : motivation -= feignantise DONC si feignantise est grand, les pauses seront plus fréquentes.
 		data.fatigue += data.effetEngueulement;
         data.motivation += data.effetEngueulement;
-        tMemory.SetItem("auTravail", true);
+        tMemory.SetItem("hatarake", true);
 
 		if (data.fatigue >= data.fatigueMAX) {
 			//suicidaire = true;		

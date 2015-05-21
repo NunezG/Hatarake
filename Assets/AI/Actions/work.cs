@@ -8,13 +8,17 @@ using RAIN.Core;
 public class work : RAINAction
 {
     float motivation;
-
+    GameManager gm;
     public override void Start(RAIN.Core.AI ai)
     {
+        //Commence a travailler
         base.Start(ai);
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         motivation = ai.Body.GetComponent<Employe>().data.motivation;
 		//Set de bools, sert a rien pour l'instant
 		//ai.WorkingMemory.SetItem("working", true);
+        
+        //bouge plus
         ai.WorkingMemory.SetItem("enDeplacement", false);
         ai.Body.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY| RigidbodyConstraints.FreezePositionZ;
         
@@ -25,15 +29,13 @@ public class work : RAINAction
     {
        //Reduction de la motivation
         motivation = motivation - Time.deltaTime * ai.Body.GetComponent<Employe>().data.vitesseDemotivation;
-   		//Finis de travailler quand la motivation est 0
+   		
+        //Finis de travailler quand la motivation est 0
         if (motivation <= 0)
         {
-			//Libere la place (encore en test)
-            //ai.WorkingMemory.GetItem<GameObject>("myTarget").GetComponent<Box>().occupe = false;
             return ActionResult.SUCCESS;
         }
 
-        GameManager gm =GameObject.Find("GameManager").GetComponent<GameManager>();
         gm.objectiveCompletion = gm.objectiveCompletion + Time.deltaTime * ai.Body.GetComponent<Employe>().data.vitesseTravail;
 		//Continue a travailler
          return ActionResult.RUNNING;
@@ -44,19 +46,17 @@ public class work : RAINAction
         GameObject target;
         target = ai.WorkingMemory.GetItem<GameObject>("myTarget");
 
-
+        //Remets la motivation
         ai.WorkingMemory.SetItem("motivation", motivation);
         ai.Body.GetComponent<Employe>().data.motivation = motivation;
 
-        if (target.CompareTag("WorkHelp") == true)
+        //libère l'espace
+        if (target.CompareTag("WorkHelp"))
         {
-            // ai.WorkingMemory.GetItem("occupe");
             target.GetComponent<Box>().occupe = false;
         }
         ai.Body.GetComponent<Rigidbody>().constraints =  RigidbodyConstraints.FreezePositionY ;
 
-		//Set de bool, sert a rien pour l'instant
-        //ai.WorkingMemory.SetItem("working", false);
         base.Stop(ai);
     }
 }

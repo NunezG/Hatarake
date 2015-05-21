@@ -8,7 +8,7 @@ using RAIN.Representation;
 [RAINAction]
 public class selectTarget : RAINAction
 {
- //   public Expression target;
+ // public Expression target;
     GameObject target;
     private static object _queueLock;
 
@@ -26,12 +26,14 @@ public class selectTarget : RAINAction
 
     public override ActionResult Execute(RAIN.Core.AI ai)
     {   
+        //*Si motivation a 0 commence a glander
         if (ai.Body.GetComponent<Employe>().data.motivation <= 0)
         {
               ai.WorkingMemory.SetItem("auTravail", false);
               ai.WorkingMemory.SetItem("glande", true);
               //SignEmitter.Create(1, ai.Body.transform.position, SignType.Glande);
 
+            //*cherche une place vide pour glander
            foreach (GameObject go in ai.Body.GetComponent<Employe>().chill)
            {
                lock (_queueLock)
@@ -47,6 +49,7 @@ public class selectTarget : RAINAction
                }
            }
 
+           //*Si pas de place il retourne a son Box pour se connecter sur facebook
            target = ai.Body.GetComponent<Employe>().boxDeTravail;
            return ActionResult.SUCCESS;
 
@@ -54,10 +57,12 @@ public class selectTarget : RAINAction
         }
         else 
         {
+            //*Si motivation cherche une place vide pour bosser
             ai.WorkingMemory.SetItem("glande", false);
 
             int pos = Random.Range(0, 4);
 
+            //*1/4 de chances de bosser sur une photocopieuse
             if (pos == 0)
             {
                 foreach (GameObject go in ai.Body.GetComponent<Employe>().workingHelp)
@@ -79,10 +84,12 @@ public class selectTarget : RAINAction
                 }
             } else
             {
+                //*3/4 de chances de bosser dans son Box
                 ai.WorkingMemory.SetItem("auTravail", true);
+
                 //Sign.Create(1, ai.Body.transform.position, SignType.Work);
                 //SignEmitter.Create(1, ai.Body.transform.position, SignType.Work);
-               target = ai.Body.GetComponent<Employe>().boxDeTravail;
+                target = ai.Body.GetComponent<Employe>().boxDeTravail;
 
                 return ActionResult.SUCCESS;
             }
@@ -93,6 +100,7 @@ public class selectTarget : RAINAction
 
     public override void Stop(RAIN.Core.AI ai)
     {
+        //*set des variables après succès
         ai.WorkingMemory.SetItem("enDeplacement", true);
         ai.WorkingMemory.SetItem("myTarget", target);
         base.Stop(ai);
