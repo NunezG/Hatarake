@@ -53,7 +53,7 @@ public class selectTarget : RAINAction
               //SignEmitter.Create(1, ai.Body.transform.position, SignType.Glande);
 
             //*cherche une place vide pour glander
-           foreach (GameObject go in ai.Body.GetComponent<Employe>().chill)
+           foreach (GameObject go in Employe.chill)
            {
                lock (_queueLock)
                {
@@ -84,7 +84,7 @@ public class selectTarget : RAINAction
             //*1/4 de chances de bosser sur une photocopieuse
             if (pos == 0)
             {
-                foreach (GameObject go in ai.Body.GetComponent<Employe>().workingHelp)
+				foreach (GameObject go in Employe.workingHelp)
                 {
                     lock (_queueLock)
                     {
