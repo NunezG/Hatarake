@@ -20,10 +20,10 @@ public class Employe : MonoBehaviour {
 	Employe[] amis;// liste d’amis agissant sur la fatigue en cas de suicide;
 
 	public GameObject floor;
-    public GameObject boss;
+    public static GameObject boss;
 
-	public List<GameObject> chill;
-	public List<GameObject> workingHelp;
+	public static List<GameObject> chill;
+	public static List<GameObject> workingHelp;
 
     public RAIN.Memory.BasicMemory tMemory;
     private RAIN.Navigation.BasicNavigator tNav;
@@ -39,26 +39,7 @@ public class Employe : MonoBehaviour {
         tMemory = aiRig.AI.WorkingMemory as RAIN.Memory.BasicMemory;
         tNav = aiRig.AI.Navigator as RAIN.Navigation.BasicNavigator; 
 
-          if (chill == null)
-        {
-            Repos[] chills = floor.GetComponentsInChildren<Repos>();
-            foreach (Repos chi in chills)
-            {
-                chill.Add(chi.gameObject);
-            }
-        }
-
-        if (workingHelp == null)
-        {
-            Box[] boxes = floor.GetComponentsInChildren<Box>();
-            foreach (Box box in boxes)
-            {
-                if (box.CompareTag("WorkHelp"))
-                {
-                    workingHelp.Add(box.gameObject);
-                }
-            }
-        }
+         
 	}
 
 	// Use this for initialization
@@ -68,10 +49,33 @@ public class Employe : MonoBehaviour {
         suicideMemory = tMemory.GetItem<bool>("suicidaire");
         moveMemory = tMemory.GetItem<bool>("enDeplacement");
         workingMemory=tMemory.GetItem<bool>("auTravail");
-        boss = GameObject.FindGameObjectWithTag("Boss");
+       
 
 		data.InitializeEmployee ();
 
+		if (boss == null)
+		{
+			boss = GameObject.FindGameObjectWithTag("Boss");
+
+			chill = new List<GameObject>();
+			Repos[] chills = floor.GetComponentsInChildren<Repos>();
+			foreach (Repos chi in chills)
+			{
+				chill.Add(chi.gameObject);
+			}
+			
+			
+			workingHelp = new List<GameObject>();
+			
+			Box[] boxes = floor.GetComponentsInChildren<Box>();
+			foreach (Box box in boxes)
+			{
+				if (box.CompareTag("WorkHelp"))
+				{
+					workingHelp.Add(box.gameObject);
+				}
+			}
+		}
       	
 	}
 
