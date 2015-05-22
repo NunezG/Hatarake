@@ -52,8 +52,8 @@ public class CharacterManager : MonoBehaviour {
 				{
 					tempObject.GetComponent<Employe>().floor = floor;
 					tempObject.GetComponent<Employe>().setBox(box.gameObject);
-                    tempObject.GetComponent<Employe>().tMemory.SetItem("myTarget", box.gameObject);
-                    tempObject.GetComponent<Employe>().tMemory.SetItem("enDeplacement", true);
+                    //tempObject.GetComponent<Employe>().tMemory.SetItem("myTarget", box.gameObject);
+                    //tempObject.GetComponent<Employe>().tMemory.SetItem("enDeplacement", true);
 
 					//tempObject.GetComponent<Employe>().setTaget(box);
 					box.assigne = true;
