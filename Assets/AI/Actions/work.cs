@@ -33,6 +33,7 @@ public class work : RAINAction
         //Finis de travailler quand la motivation est 0
         if (motivation <= 0)
         {
+            ai.WorkingMemory.SetItem("auTravail", false);
             return ActionResult.SUCCESS;
         }
 
@@ -43,11 +44,14 @@ public class work : RAINAction
 
     public override void Stop(RAIN.Core.AI ai)
     {
+        
+
+
         GameObject target;
         target = ai.WorkingMemory.GetItem<GameObject>("myTarget");
 
         //Remets la motivation
-        ai.WorkingMemory.SetItem("motivation", motivation);
+       // ai.WorkingMemory.SetItem("motivation", motivation);
         ai.Body.GetComponent<Employe>().data.motivation = motivation;
 
         //libère l'espace

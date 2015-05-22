@@ -21,16 +21,39 @@ public class selectTarget : RAINAction
 
         base.Start(ai);
        float motivation = (int)ai.Body.gameObject.GetComponent<Employe>().data.motivation;
-        ai.WorkingMemory.SetItem("motivation", motivation);
-    }
-
-    public override ActionResult Execute(RAIN.Core.AI ai)
+      //  ai.WorkingMemory.SetItem("motivation", motivation);
+		//ai.WorkingMemory.SetItem("hatarake", false);
+	}
+	
+	public override ActionResult Execute(RAIN.Core.AI ai)
     {   
         //*Si motivation a 0 commence a glander
-        if (ai.Body.GetComponent<Employe>().data.motivation <= 0)
+
+
+        if (ai.WorkingMemory.GetItem<bool>("suicidaire"))
         {
-              ai.WorkingMemory.SetItem("auTravail", false);
-              ai.WorkingMemory.SetItem("glande", true);
+            int rdmIndex=   UnityEngine.Random.Range(0, Employe.suicide.Count);
+
+            target = Employe.suicide[rdmIndex];
+            return ActionResult.SUCCESS;
+
+            /*foreach (GameObject go in Employe.suicide)
+            {
+                lock (_queueLock)
+                {
+                    if (go.GetComponent<SuicideWindow>().occupe == false)
+                    {
+                        go.GetComponent<SuicideWindow>().occupe = true;
+                        target = go;
+                        return ActionResult.SUCCESS;
+                    }
+                }
+            }*/
+        }
+        else if (!ai.WorkingMemory.GetItem<bool>("auTravail"))
+        {
+              //ai.WorkingMemory.SetItem("auTravail", false);
+              //ai.WorkingMemory.SetItem("glande", true);
               //SignEmitter.Create(1, ai.Body.transform.position, SignType.Glande);
 
             //*cherche une place vide pour glander
@@ -40,9 +63,7 @@ public class selectTarget : RAINAction
                {
                    if (go.GetComponent<Repos>().occupe == false)
                    {
-                       go.GetComponent<Repos>().occupe = true;                  
-                       //Sign.Create(1, ai.Body.transform.position, SignType.Glande);
-                       //SignEmitter.Create(1, ai.Body.transform.position, SignType.GoingToGlande);
+                       go.GetComponent<Repos>().occupe = true;
                        target = go;
                        return ActionResult.SUCCESS;
                    }
@@ -58,7 +79,7 @@ public class selectTarget : RAINAction
         else 
         {
             //*Si motivation cherche une place vide pour bosser
-            ai.WorkingMemory.SetItem("glande", false);
+           // ai.WorkingMemory.SetItem("glande", false);
 
             int pos = Random.Range(0, 4);
 
@@ -71,11 +92,7 @@ public class selectTarget : RAINAction
                     {
                         if (go.GetComponent<Box>().occupe == false)
                         {
-                            go.GetComponent<Box>().occupe = true;
-                            ai.WorkingMemory.SetItem("auTravail", true);
-
-                            //Sign.Create(1, ai.Body.transform.position, SignType.Work);
-                            //SignEmitter.Create(1, ai.Body.transform.position, SignType.Work);
+                           // ai.WorkingMemory.SetItem("auTravail", true);
                             go.GetComponent<Box>().occupe = true;
                             target = go;
                             return ActionResult.SUCCESS;
@@ -85,7 +102,7 @@ public class selectTarget : RAINAction
             } else
             {
                 //*3/4 de chances de bosser dans son Box
-                ai.WorkingMemory.SetItem("auTravail", true);
+               // ai.WorkingMemory.SetItem("auTravail", true);
 
                 //Sign.Create(1, ai.Body.transform.position, SignType.Work);
                 //SignEmitter.Create(1, ai.Body.transform.position, SignType.Work);

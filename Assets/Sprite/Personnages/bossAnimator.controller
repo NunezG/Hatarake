@@ -65,7 +65,7 @@ AnimatorStateTransition:
   m_TransitionDuration: .0336674303
   m_TransitionOffset: 0
   m_ExitTime: 2.46458622e-08
-  m_HasExitTime: 1
+  m_HasExitTime: 0
   m_InterruptionSource: 1
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
@@ -134,7 +134,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Walk
-  m_Speed: 1
+  m_Speed: 1.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 110122294}
@@ -170,8 +170,8 @@ AnimatorStateMachine:
       first: {fileID: 110739542}
       second: []
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 50, y: 20, z: 0}
-  m_EntryPosition: {x: 84, y: 120, z: 0}
-  m_ExitPosition: {x: 800, y: 120, z: 0}
+  m_AnyStatePosition: {x: 228, y: -24, z: 0}
+  m_EntryPosition: {x: 204, y: 120, z: 0}
+  m_ExitPosition: {x: 660, y: 132, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 110202066}
