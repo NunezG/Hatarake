@@ -50,7 +50,8 @@ public class Employe : MonoBehaviour {
         suicideMemory = tMemory.GetItem<bool>("suicidaire");
         moveMemory = tMemory.GetItem<bool>("enDeplacement");
         workingMemory=tMemory.GetItem<bool>("auTravail");
-       
+        
+        //setActiveSound(false, false, false);
 
 		data.InitializeEmployee ();
 
@@ -106,17 +107,66 @@ public class Employe : MonoBehaviour {
 
             isAlreadyInRange = false;
         }else if((suicideMemory  != tMemory.GetItem<bool>("suicidaire") ||
-            moveMemory != tMemory.GetItem<bool>("enDeplacement") || workingMemory != tMemory.GetItem<bool>("auTravail")) && isAlreadyInRange)
+            moveMemory != tMemory.GetItem<bool>("enDeplacement") || workingMemory != tMemory.GetItem<bool>("auTravail")) )
         { // si il est dans le champ et qu'il change d'état
             
+            if( isAlreadyInRange)emitActivitySign();
 
-            emitActivitySign();
+            GameObject target = tMemory.GetItem<GameObject>("myTarget");
             suicideMemory = tMemory.GetItem<bool>("suicidaire");
             moveMemory = tMemory.GetItem<bool>("enDeplacement");
             workingMemory = tMemory.GetItem<bool>("auTravail");
+
+            if (workingMemory && !moveMemory && target.CompareTag("WorkHelp"))
+            {
+                //print("work");
+                this.setActiveSound(false, false, true);
+            }
+            else if (workingMemory && !moveMemory && target.CompareTag("Box"))
+            {
+                //play clavier PC
+                this.setActiveSound(false, true, false);
+            }
+            else if (!workingMemory && !moveMemory && target.CompareTag("Box"))
+            {
+                //play facebook
+                this.setActiveSound(false, true, false);
+            }
+            else if (!workingMemory && !moveMemory && (target.name.Equals("CoffeeTrigger") || target.name.Equals("DrinkTrigger")))
+            {
+                //play drink
+                this.setActiveSound(true, false, false);
+            }
+            else if (!workingMemory && !moveMemory && target.name.Equals("TVTrigger"))
+            {
+                //play tv
+                this.setActiveSound(false, false, false);
+            }
+            else
+            {
+                this.setActiveSound(false, false, false);
+            }
         }
  
 	}
+    public void setActiveSound(bool coffee, bool keyboard, bool photocopier)
+    {
+        /*
+        this.gameObject.transform.Find("soundCoffee").gameObject.SetActive(coffee);
+        this.gameObject.transform.Find("soundKeyboard").gameObject.SetActive(keyboard);
+        this.gameObject.transform.Find("soundPhotocopier").gameObject.SetActive(photocopier);*/
+        if (coffee) this.gameObject.transform.Find("soundCoffee").gameObject.GetComponent<AudioSource>().Play();
+        else this.gameObject.transform.Find("soundCoffee").gameObject.GetComponent<AudioSource>().Stop();
+        if (keyboard) this.gameObject.transform.Find("soundKeyboard").gameObject.GetComponent<AudioSource>().Play();
+        else this.gameObject.transform.Find("soundKeyboard").gameObject.GetComponent<AudioSource>().Stop();
+        if (photocopier) this.gameObject.transform.Find("soundPhotocopier").gameObject.GetComponent<AudioSource>().Play();
+        else this.gameObject.transform.Find("soundPhotocopier").gameObject.GetComponent<AudioSource>().Stop();
+
+        if (this.gameObject.transform.Find("soundPhotocopier").gameObject.GetComponent<AudioSource>().isPlaying) print("photocopier playing");
+        if (this.gameObject.transform.Find("soundKeyboard").gameObject.GetComponent<AudioSource>().isPlaying) print("keyboard playing");
+        if (this.gameObject.transform.Find("soundCoffee").gameObject.GetComponent<AudioSource>().isPlaying) print("playing coffee");
+    }
+
 
     public void emitActivitySign()
     {
@@ -126,7 +176,6 @@ public class Employe : MonoBehaviour {
         {
             SignEmitter.Create(this.transform.position, SignType.Death);
         }
-
         else if (tMemory.GetItem<bool>("enDeplacement"))
         {
             if (target.CompareTag("Repos"))
@@ -159,10 +208,6 @@ public class Employe : MonoBehaviour {
             else if (target.name.Equals("TVTrigger") || target.name.Equals("TVTrigger 1") || target.name.Equals("TVTrigger 2"))
             {
                 SignEmitter.Create(this.transform.position, SignType.Tv);
-            }
-            else if (target.name.Equals("ToiletTrigger"))
-            {
-                SignEmitter.Create(this.transform.position, SignType.Toilet);
             }
         }
         else if (tMemory.GetItem<bool>("auTravail"))
