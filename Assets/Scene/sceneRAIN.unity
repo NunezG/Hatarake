@@ -171,7 +171,7 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c1ed0c17174706146ac184503e95125a, type: 2}
   m_IsPrefabParent: 0
---- !u!82 &38410348 stripped
+--- !u!82 &38410348
 AudioSource:
   m_PrefabParentObject: {fileID: 8200324, guid: c1ed0c17174706146ac184503e95125a,
     type: 2}
