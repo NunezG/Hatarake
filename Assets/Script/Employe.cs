@@ -185,7 +185,19 @@ public class Employe : MonoBehaviour {
                 SignEmitter.Create(this.transform.position, SignType.GoingToWork);
             }
         }
-        else if (tMemory.GetItem<bool>("glande"))
+       
+        else if (tMemory.GetItem<bool>("auTravail"))
+        {
+            if (target.name.Equals("PhotocopierTrigger"))
+            {
+                SignEmitter.Create(this.transform.position, SignType.Photocopier);
+            }
+            else if (target.name.Equals("WorkBoxTrigger"))
+            {
+                SignEmitter.Create(this.transform.position, SignType.Work);
+            }
+        }
+        else
         {
             if (target.name.Equals("CoffeeTrigger"))
             {
@@ -206,17 +218,6 @@ public class Employe : MonoBehaviour {
             else if (target.name.Equals("TVTrigger") || target.name.Equals("TVTrigger 1") || target.name.Equals("TVTrigger 2"))
             {
                 SignEmitter.Create(this.transform.position, SignType.Tv);
-            }
-        }
-        else if (tMemory.GetItem<bool>("auTravail"))
-        {
-            if (target.name.Equals("PhotocopierTrigger"))
-            {
-                SignEmitter.Create(this.transform.position, SignType.Photocopier);
-            }
-            else if (target.name.Equals("WorkBoxTrigger"))
-            {
-                SignEmitter.Create(this.transform.position, SignType.Work);
             }
         }
     }
@@ -243,8 +244,9 @@ public class Employe : MonoBehaviour {
 		//Chaque seconde : motivation -= feignantise DONC si feignantise est grand, les pauses seront plus fréquentes.
 		data.fatigue += data.effetEngueulement;
         data.motivation += data.effetEngueulement;
-        tMemory.SetItem("hatarake", true);
-
+       // tMemory.SetItem("hatarake", true);
+        tMemory.SetItem("auTravail", true);
+        
 		if (data.fatigue >= data.fatigueMAX) {
 			//suicidaire = true;		
 			tMemory.SetItem("suicidaire",true);

@@ -46,14 +46,16 @@ public class CharacterManager : MonoBehaviour {
 
             tempObject.name = boxiePrefab.name + i;
 
+            tempObject.GetComponent<Employe>().tMemory.SetItem("auTravail", true);
+
 			foreach(Box box in boxes )
 			{
 				if (box.CompareTag("Box") && box.assigne == false)
 				{
 					tempObject.GetComponent<Employe>().floor = floor;
 					tempObject.GetComponent<Employe>().setBox(box.gameObject);
-                    tempObject.GetComponent<Employe>().tMemory.SetItem("myTarget", box.gameObject);
-                    tempObject.GetComponent<Employe>().tMemory.SetItem("enDeplacement", true);
+                    //tempObject.GetComponent<Employe>().tMemory.SetItem("myTarget", box.gameObject);
+                    //tempObject.GetComponent<Employe>().tMemory.SetItem("enDeplacement", true);
 
 					//tempObject.GetComponent<Employe>().setTaget(box);
 					box.assigne = true;
