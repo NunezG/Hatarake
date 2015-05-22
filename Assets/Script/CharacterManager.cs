@@ -46,6 +46,8 @@ public class CharacterManager : MonoBehaviour {
 
             tempObject.name = boxiePrefab.name + i;
 
+            tempObject.GetComponent<Employe>().tMemory.SetItem("auTravail", true);
+
 			foreach(Box box in boxes )
 			{
 				if (box.CompareTag("Box") && box.assigne == false)
