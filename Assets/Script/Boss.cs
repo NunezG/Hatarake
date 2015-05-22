@@ -61,14 +61,19 @@ public class Boss : MonoBehaviour {
                 {
                     tMemory.SetItem("enDeplacement", true);
                     tMemory.SetItem("target", pos);
+                    this.transform.Find("soundCourseBoss").gameObject.SetActive(true);
+                    this.transform.Find("soundCourseBoss").gameObject.GetComponent<AudioSource>().Play();
                 }
             }
 			
 
 		}
-        
+
         if (pos.x == transform.position.x && pos.z == transform.position.z)
-           tMemory.SetItem("enDeplacement", false);
+        {
+            tMemory.SetItem("enDeplacement", false);
+            this.transform.Find("soundCourseBoss").gameObject.SetActive(false);
+        }
 
 	}
 
@@ -88,7 +93,7 @@ public class Boss : MonoBehaviour {
         }
         print("HATARAKE!!!!!!!!!!!!!!!!! ");
         Sign.Create(pos,this.transform.position,SignType.Hatarake);
-        if (pos > 10)
+        if (pos > 7)
         {
 
             GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>().shaking = true;
@@ -96,7 +101,7 @@ public class Boss : MonoBehaviour {
             GameObject audio =this.transform.Find("hatarake_strong").gameObject;
             audio.GetComponent<AudioSource>().Play();
         }
-        else if (pos > 5)
+        else if (pos > 3)
         {
             GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>().shaking = true;
             GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>().shakeMagnitude = pos;

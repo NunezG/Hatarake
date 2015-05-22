@@ -1,38 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &101574
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 410926}
-  - 114: {fileID: 11429030}
-  m_Layer: 0
-  m_Name: Navigation Target Repos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!1 &111672
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 468840}
-  - 65: {fileID: 6595292}
-  - 114: {fileID: 11428902}
-  m_Layer: 0
-  m_Name: TVRoomsTrigger 2
-  m_TagString: Repos
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &123772
 GameObject:
   m_ObjectHideFlags: 1
@@ -178,18 +145,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &410926
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 101574}
-  m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106709}
-  m_LocalPosition: {x: 1.79277432, y: -.510529399, z: .0816598311}
-  m_LocalScale: {x: .0623356849, y: .0623357296, z: .0623357296}
-  m_Children: []
-  m_Father: {fileID: 468840}
-  m_RootOrder: 0
 --- !u!4 &435114
 Transform:
   m_ObjectHideFlags: 1
@@ -210,7 +165,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 184638}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .247999996, y: -.100000001, z: .230000004}
+  m_LocalPosition: {x: .150999993, y: -.100000001, z: .230000004}
   m_LocalScale: {x: .144517794, y: 1, z: .110699639}
   m_Children:
   - {fileID: 459206}
@@ -223,7 +178,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 182620}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.240999997, y: -.100000001, z: .230000004}
+  m_LocalPosition: {x: -.158999994, y: -.100000001, z: .230000004}
   m_LocalScale: {x: .144517794, y: 1, z: .110699639}
   m_Children:
   - {fileID: 465814}
@@ -256,7 +211,6 @@ Transform:
   - {fileID: 435114}
   - {fileID: 438684}
   - {fileID: 439602}
-  - {fileID: 468840}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &465814
@@ -271,19 +225,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 439602}
   m_RootOrder: 0
---- !u!4 &468840
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 111672}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .00899999961, y: -.100000001, z: .230000004}
-  m_LocalScale: {x: .144517794, y: 1, z: .110699639}
-  m_Children:
-  - {fileID: 410926}
-  m_Father: {fileID: 463704}
-  m_RootOrder: 5
 --- !u!4 &471422
 Transform:
   m_ObjectHideFlags: 1
@@ -363,18 +304,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &6595292
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 111672}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &11408336
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -424,43 +353,6 @@ MonoBehaviour:
       id="_angleOffset" /><field value="3.53" type="System.Single" id="_range" /></reference></references></component>
     _serializedGameObjects:
     - {fileID: 459206}
-    _serializedCustomData: []
---- !u!114 &11428902
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 111672}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6b315abcbbfd414593e9d4e8a72605f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  occupe: 0
---- !u!114 &11429030
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 101574}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1728340906, guid: 9fa2ecd1ff2ad394281dd3bf72c5b76e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _dataSerializer:
-    _serializedData: <component version="1.2" type="RAIN.Navigation.Targets.NavigationTargetRig"><fields><field
-      value="AlwaysOn" type="RAIN.Core.VisualModeEnum" id="_visualMode" /><field type="RAIN.Navigation.Targets.NavigationTarget"
-      reference="0" id="_target" /></fields><references><reference type="RAIN.Navigation.Targets.NavigationTarget"
-      refcount="1" id="0"><field value="Navigation Target" type="System.String" id="_targetName"
-      /><field value="0,0.6,0.6,1" type="UnityEngine.Color" id="_targetColor" /><field
-      value="-0.5" type="System.Single" id="_outlineColorOffset" /><field value="0.4"
-      type="System.Single" id="_selectionColorOffset" /><field type="UnityEngine.Transform"
-      id="_mountPoint" gameobject="0" /><field value="-28.39654,0.1000862,5.129025"
-      type="UnityEngine.Vector3" id="_positionOffset" /><field value="0,0,0" type="UnityEngine.Vector3"
-      id="_angleOffset" /><field value="3.53" type="System.Single" id="_range" /></reference></references></component>
-    _serializedGameObjects:
-    - {fileID: 410926}
     _serializedCustomData: []
 --- !u!114 &11470892
 MonoBehaviour:
