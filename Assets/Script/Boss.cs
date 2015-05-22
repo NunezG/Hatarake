@@ -33,7 +33,12 @@ public class Boss : MonoBehaviour {
 		AIRig aiRig = GetComponentInChildren<AIRig>();		
 		tMemory = aiRig.AI.WorkingMemory as RAIN.Memory.BasicMemory;
 
-		actionArea = transform.GetChild (2);
+
+        foreach (Transform go in transform)
+        {
+            if (go.name == "Cylinder") actionArea = go;
+
+        }
 
         tNav = aiRig.AI.Navigator as RAIN.Navigation.BasicNavigator;
        
@@ -57,10 +62,9 @@ public class Boss : MonoBehaviour {
                 //pos.y = transform.position.y;
                 pos.y = 2;
                 //navComponent.SetDestination (pos);
-
                 //colliders = Physics.OverlapSphere(pos, 1f /* Radius */);
-                Debug.Log("ONGRAPH " + tNav.OnGraph(pos, 0));
-                if (pos != null && pos != transform.position && tNav.OnGraph(pos, 0))
+
+              if (pos != null && pos != transform.position && tNav.OnGraph(pos, 0))
                 {
                     tMemory.SetItem("enDeplacement", true);
                     tMemory.SetItem("target", pos);
