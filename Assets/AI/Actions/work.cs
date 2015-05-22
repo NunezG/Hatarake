@@ -57,7 +57,8 @@ public class work : RAINAction
         //libère l'espace
         if (target.CompareTag("WorkHelp"))
         {
-            target.GetComponent<Box>().occupe = false;
+            //target.GetComponent<Box>().occupe = false;
+            Employe.emptyWorkingHelp.Add(target);
         }
         ai.Body.GetComponent<Rigidbody>().constraints =  RigidbodyConstraints.FreezePositionY ;
 
