@@ -24,5 +24,8 @@ public class ProgressBar : MonoBehaviour {
 void DrawProgress(float progress )
 {
     GUI.DrawTexture(new Rect(10, 10, 200 * progress, 30), progressForeground);
+
+		if (progress > 1.0)
+			Destroy (this);
 }
 }

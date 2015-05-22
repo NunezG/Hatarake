@@ -15,11 +15,10 @@ public class Boss : MonoBehaviour {
 
 	//float jaugeEngueulage; //se remplit quand on appuie sur le boss.
 
-  public  float jaugeEngueulageMax = 15.0f; //se remplit quand on appuie sur le boss.
+  public  float jaugeEngueulageMax = 15.0f;
 
-    public float vitesseJauge = 2.0f; //se remplit quand on appuie sur le boss.
+    public float vitesseJauge = 2.0f;
 
-	//float timer = 0;
 
 	bool charge = false;
     Vector3 pos;
@@ -27,23 +26,21 @@ public class Boss : MonoBehaviour {
 	Transform actionArea;
 	private RAIN.Memory.BasicMemory tMemory;
 
-	// Use this for initialization
+
 	void Start () {
 		AIRig aiRig = GetComponentInChildren<AIRig>();		
 		tMemory = aiRig.AI.WorkingMemory as RAIN.Memory.BasicMemory;
 
-		actionArea = transform.GetChild (2);        
-	
-        //navComponent = this.transform.GetComponent <NavMeshAgent>();
+		actionArea = transform.FindChild("engueuladeJauge");
 
 	}
 	
-	// Update is called once per frame
+
 	void Update () {
 
 		if(Input.GetMouseButton(0))
 		{
-			//Vector3 pos;
+
 
             Collider[] colliders;
 
@@ -51,9 +48,7 @@ public class Boss : MonoBehaviour {
             {
 
                 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                //pos.y = transform.position.y;
                 pos.y = 2;
-                //navComponent.SetDestination (pos);
 
                 colliders = Physics.OverlapSphere(pos, 1f /* Radius */);
 
@@ -93,7 +88,7 @@ public class Boss : MonoBehaviour {
 
             GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>().shaking = true;
             GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>().shakeMagnitude =  pos;
-            GameObject audio =this.transform.Find("hatarake_strong").gameObject;
+            GameObject audio = this.transform.Find("hatarake_strong").gameObject;
             audio.GetComponent<AudioSource>().Play();
         }
         else if (pos > 5)
