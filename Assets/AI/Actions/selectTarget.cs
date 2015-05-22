@@ -22,9 +22,10 @@ public class selectTarget : RAINAction
         base.Start(ai);
        float motivation = (int)ai.Body.gameObject.GetComponent<Employe>().data.motivation;
         ai.WorkingMemory.SetItem("motivation", motivation);
-    }
-
-    public override ActionResult Execute(RAIN.Core.AI ai)
+		ai.WorkingMemory.SetItem("hatarake", false);
+	}
+	
+	public override ActionResult Execute(RAIN.Core.AI ai)
     {   
         //*Si motivation a 0 commence a glander
 
