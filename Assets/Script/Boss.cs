@@ -26,14 +26,22 @@ public class Boss : MonoBehaviour {
 
 	Transform actionArea;
 	private RAIN.Memory.BasicMemory tMemory;
+    private RAIN.Navigation.BasicNavigator tNav;
 
 	// Use this for initialization
 	void Start () {
 		AIRig aiRig = GetComponentInChildren<AIRig>();		
 		tMemory = aiRig.AI.WorkingMemory as RAIN.Memory.BasicMemory;
 
-		actionArea = transform.GetChild (2);        
-	
+
+        foreach (Transform go in transform)
+        {
+            if (go.name == "Cylinder") actionArea = go;
+
+        }
+
+        tNav = aiRig.AI.Navigator as RAIN.Navigation.BasicNavigator;
+       
         //navComponent = this.transform.GetComponent <NavMeshAgent>();
 
 	}
@@ -45,7 +53,7 @@ public class Boss : MonoBehaviour {
 		{
 			//Vector3 pos;
 
-            Collider[] colliders;
+           // Collider[] colliders;
 
           if (!charge) 
             {
@@ -54,10 +62,9 @@ public class Boss : MonoBehaviour {
                 //pos.y = transform.position.y;
                 pos.y = 2;
                 //navComponent.SetDestination (pos);
+                //colliders = Physics.OverlapSphere(pos, 1f /* Radius */);
 
-                colliders = Physics.OverlapSphere(pos, 1f /* Radius */);
-
-                if (pos != null && pos != transform.position && (colliders == null || (colliders != null && (colliders.Length == 0 || colliders[0].tag == "Nav"))))
+              if (pos != null && pos != transform.position && tNav.OnGraph(pos, 0))
                 {
                     tMemory.SetItem("enDeplacement", true);
                     tMemory.SetItem("target", pos);

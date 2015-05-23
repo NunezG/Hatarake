@@ -23,8 +23,11 @@ public class Employe : MonoBehaviour {
     public static GameObject boss;
 
     public static List<GameObject> suicide;
-	public static List<GameObject> chill;
-	public static List<GameObject> workingHelp;
+	//public static List<GameObject> chill;
+    public static List<GameObject> emptyChill;
+
+	//public static List<GameObject> workingHelp;
+    public static List<GameObject> emptyWorkingHelp;
 
     public RAIN.Memory.BasicMemory tMemory;
     private RAIN.Navigation.BasicNavigator tNav;
@@ -59,11 +62,12 @@ public class Employe : MonoBehaviour {
 		{
 			boss = GameObject.FindGameObjectWithTag("Boss");
 
-			chill = new List<GameObject>();
+			//chill = new List<GameObject>();
+            emptyChill = new List<GameObject>();
 			Repos[] chills = floor.GetComponentsInChildren<Repos>();
 			foreach (Repos chi in chills)
 			{
-				chill.Add(chi.gameObject);
+                emptyChill.Add(chi.gameObject);
 			}
 
             suicide = new List<GameObject>();
@@ -73,16 +77,18 @@ public class Employe : MonoBehaviour {
                 suicide.Add(window.gameObject);
             }
 			
-			workingHelp = new List<GameObject>();			
+			//workingHelp = new List<GameObject>();
+            emptyWorkingHelp = new List<GameObject>();
 			Box[] boxes = floor.GetComponentsInChildren<Box>();
 			foreach (Box box in boxes)
 			{
 				if (box.CompareTag("WorkHelp"))
 				{
-					workingHelp.Add(box.gameObject);
+                    emptyWorkingHelp.Add(box.gameObject);
 				}
 			}
 		}
+
       	
 	}
 

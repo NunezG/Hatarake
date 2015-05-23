@@ -16,7 +16,7 @@ public class ProgressBar : MonoBehaviour {
 
 		}
 
-		DrawProgress(GetComponent<GameManager>().objectiveCompletion / GetComponent<GameManager>().levelObjective);
+        DrawProgress(GameManager.instance.objectiveCompletion / GameManager.instance.levelObjective);
        
     }
 
@@ -24,5 +24,8 @@ public class ProgressBar : MonoBehaviour {
 void DrawProgress(float progress )
 {
     GUI.DrawTexture(new Rect(10, 10, 200 * progress, 30), progressForeground);
+
+		if (progress > 1.0)
+			Destroy (this);
 }
 }
