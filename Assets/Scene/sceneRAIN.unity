@@ -114,9 +114,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ab0bb4a519338741aba39c552366c8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgroundAmbiance: {fileID: 0}
-  music: {fileID: 0}
-  tensionLayersVolumes: 0
 --- !u!4 &26823841
 Transform:
   m_ObjectHideFlags: 0
@@ -503,10 +500,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6e09e19a648e9745a5da629fddf0bf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraIsToMove: 0
+  fixedCamera: 0
   dampTime: .300000012
-  bossCreated: 0
   shaking: 0
   shakeMagnitude: 0
+  shakeTimer: 0
   upDownMargin: 20
   leftRightMargin: 20
 --- !u!124 &353888185
