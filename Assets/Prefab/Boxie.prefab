@@ -548,7 +548,7 @@ MonoBehaviour:
       type="System.Single" id="_closeEnoughAngle" /><field value="3000" type="System.Single"
       id="_faceBeforeMoveAngle" /><field value="5" type="System.Single" id="_stepUpHeight"
       /><field value="False" type="System.Boolean" id="_allow3DMovement" /><field
-      value="False" type="System.Boolean" id="_allow3DRotation" /><field value="True"
+      value="False" type="System.Boolean" id="_allow3DRotation" /><field value="False"
       type="System.Boolean" id="_allowOffGraphMovement" /><field value="False" type="System.Boolean"
       id="_useRootMotion" /><field value="False" type="System.Boolean" id="_overrideRootRotation"
       /><field type="System.Collections.Generic.List" id="_forwardedParameters" elementtype="RAIN.Motion.MecanimMotor+MotorParameter"><field
