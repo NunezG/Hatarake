@@ -68,8 +68,8 @@ public class Boss : MonoBehaviour {
                 {
                     tMemory.SetItem("enDeplacement", true);
                     tMemory.SetItem("target", pos);
-                    this.transform.Find("soundCourseBoss").gameObject.SetActive(true);
-                    this.transform.Find("soundCourseBoss").gameObject.GetComponent<AudioSource>().Play();
+                    this.transform.Find("soundbossFootsteps").gameObject.SetActive(true);
+                    this.transform.Find("soundbossFootsteps").gameObject.GetComponent<AudioSource>().Play();
                 }
             }
 			
@@ -79,8 +79,8 @@ public class Boss : MonoBehaviour {
         if (pos.x == transform.position.x && pos.z == transform.position.z)
         {
             tMemory.SetItem("enDeplacement", false);
-            this.transform.Find("soundCourseBoss").gameObject.GetComponent<AudioSource>().Stop();
-            this.transform.Find("soundCourseBoss").gameObject.SetActive(false);
+            this.transform.Find("soundbossFootsteps").gameObject.GetComponent<AudioSource>().Stop();
+            this.transform.Find("soundbossFootsteps").gameObject.SetActive(false);
         }
 
 	}

@@ -177,6 +177,7 @@ public class Employe : MonoBehaviour {
         //print("emitactivity");
         GameObject target = tMemory.GetItem<GameObject>("myTarget");
         if (target == null) print("TARGET NULL MAYDAY MAYDAY");
+        if (target.name == null) print("TARGET NAME NULL MAYDAY MAYDAY");
         if (tMemory.GetItem<bool>("suicidaire"))
         {
             SignEmitter.Create(this.transform.position, SignType.Death);
