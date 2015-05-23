@@ -3,16 +3,18 @@ using System.Collections;
 
 public class MusicManager : MonoBehaviour {
 
-	public AudioSource ambiance;
-	public AudioSource mainBG;
-	public AudioSource[] tensionsLayers;
+	public AudioSource backgroundAmbiance;
+	public AudioSource music;
+	public float tensionLayersVolumes;
 
 
 	void Start () {
-	
-		ambiance.Play ();
-		mainBG.Play ();
 
+		backgroundAmbiance = transform.FindChild ("ambianceSound").GetComponent<AudioSource> ();
+		music = transform.FindChild ("mainBackground").GetComponent<AudioSource> ();
+
+		backgroundAmbiance.Play ();
+		music.Play ();
 	}
 	
 
