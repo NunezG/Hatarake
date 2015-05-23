@@ -16,7 +16,7 @@ public class ProgressBar : MonoBehaviour {
 
 		}
 
-		DrawProgress(GetComponent<GameManager>().objectiveCompletion / GetComponent<GameManager>().levelObjective);
+        DrawProgress(GameManager.instance.objectiveCompletion / GameManager.instance.levelObjective);
        
     }
 

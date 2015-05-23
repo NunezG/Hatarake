@@ -15,44 +15,56 @@ public class Boss : MonoBehaviour {
 
 	//float jaugeEngueulage; //se remplit quand on appuie sur le boss.
 
-  public  float jaugeEngueulageMax = 15.0f;
+  public  float jaugeEngueulageMax = 15.0f; //se remplit quand on appuie sur le boss.
 
-    public float vitesseJauge = 2.0f;
+    public float vitesseJauge = 2.0f; //se remplit quand on appuie sur le boss.
 
+	//float timer = 0;
 
 	bool charge = false;
     Vector3 pos;
 
 	Transform actionArea;
 	private RAIN.Memory.BasicMemory tMemory;
+    private RAIN.Navigation.BasicNavigator tNav;
 
-
+	// Use this for initialization
 	void Start () {
 		AIRig aiRig = GetComponentInChildren<AIRig>();		
 		tMemory = aiRig.AI.WorkingMemory as RAIN.Memory.BasicMemory;
 
-		actionArea = transform.FindChild("engueuladeJauge");
+
+        foreach (Transform go in transform)
+        {
+            if (go.name == "Cylinder") actionArea = go;
+
+        }
+
+        tNav = aiRig.AI.Navigator as RAIN.Navigation.BasicNavigator;
+       
+        //navComponent = this.transform.GetComponent <NavMeshAgent>();
 
 	}
 	
-
+	// Update is called once per frame
 	void Update () {
 
 		if(Input.GetMouseButton(0))
 		{
+			//Vector3 pos;
 
-
-            Collider[] colliders;
+           // Collider[] colliders;
 
           if (!charge) 
             {
 
                 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                //pos.y = transform.position.y;
                 pos.y = 2;
+                //navComponent.SetDestination (pos);
+                //colliders = Physics.OverlapSphere(pos, 1f /* Radius */);
 
-                colliders = Physics.OverlapSphere(pos, 1f /* Radius */);
-
-                if (pos != null && pos != transform.position && (colliders == null || (colliders != null && (colliders.Length == 0 || colliders[0].tag == "Nav"))))
+              if (pos != null && pos != transform.position && tNav.OnGraph(pos, 0))
                 {
                     tMemory.SetItem("enDeplacement", true);
                     tMemory.SetItem("target", pos);
@@ -88,7 +100,7 @@ public class Boss : MonoBehaviour {
 
             GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>().shaking = true;
             GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>().shakeMagnitude =  pos;
-            GameObject audio = this.transform.Find("hatarake_strong").gameObject;
+            GameObject audio =this.transform.Find("hatarake_strong").gameObject;
             audio.GetComponent<AudioSource>().Play();
         }
         else if (pos > 5)

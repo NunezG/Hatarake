@@ -8,12 +8,10 @@ using RAIN.Core;
 public class work : RAINAction
 {
     float motivation;
-    GameManager gm;
     public override void Start(RAIN.Core.AI ai)
     {
         //Commence a travailler
         base.Start(ai);
-        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         motivation = ai.Body.GetComponent<Employe>().data.motivation;
 		//Set de bools, sert a rien pour l'instant
 		//ai.WorkingMemory.SetItem("working", true);
@@ -37,7 +35,7 @@ public class work : RAINAction
             return ActionResult.SUCCESS;
         }
 
-        gm.objectiveCompletion = gm.objectiveCompletion + Time.deltaTime * ai.Body.GetComponent<Employe>().data.vitesseTravail;
+        GameManager.instance.objectiveCompletion += Time.deltaTime * ai.Body.GetComponent<Employe>().data.vitesseTravail;
 		//Continue a travailler
          return ActionResult.RUNNING;
     }
@@ -57,7 +55,8 @@ public class work : RAINAction
         //libère l'espace
         if (target.CompareTag("WorkHelp"))
         {
-            target.GetComponent<Box>().occupe = false;
+            //target.GetComponent<Box>().occupe = false;
+            Employe.emptyWorkingHelp.Add(target);
         }
         ai.Body.GetComponent<Rigidbody>().constraints =  RigidbodyConstraints.FreezePositionY ;
 

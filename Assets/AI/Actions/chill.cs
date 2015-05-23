@@ -55,7 +55,8 @@ public class chill : RAINAction
         ai.Body.gameObject.GetComponent<Employe>().data.motivation = motivation;
 
         if (!ai.WorkingMemory.GetItem<GameObject>("myTarget").CompareTag("Box"))
-        ai.WorkingMemory.GetItem<GameObject>("myTarget").GetComponent<Repos>().occupe = false;
+            // ai.WorkingMemory.GetItem<GameObject>("myTarget").GetComponent<Repos>().occupe = false;
+            Employe.emptyChill.Add(ai.WorkingMemory.GetItem<GameObject>("myTarget"));
 
         ai.Body.GetComponent<Rigidbody>().constraints =RigidbodyConstraints.FreezePositionY ;
 
