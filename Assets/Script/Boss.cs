@@ -72,6 +72,7 @@ public class Boss : MonoBehaviour {
         if (pos.x == transform.position.x && pos.z == transform.position.z)
         {
             tMemory.SetItem("enDeplacement", false);
+            this.transform.Find("soundCourseBoss").gameObject.GetComponent<AudioSource>().Stop();
             this.transform.Find("soundCourseBoss").gameObject.SetActive(false);
         }
 
