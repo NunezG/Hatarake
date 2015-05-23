@@ -49,6 +49,12 @@ public class GameManager : MonoBehaviour {
             //print("Level finished in :" + time);
             //print("YAAAAAAAAAAAAATTTTTTTAAAAAAAAAAAA");
         }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            print("space key was pressed");
+            gameObject.GetComponent<CharacterManager>().spawnOneBoxieInElevator();
+        }
 	}
 
 	private void OnLevelWasLoaded(int index)

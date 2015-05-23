@@ -254,7 +254,7 @@ public class Employe : MonoBehaviour {
         data.motivation += data.effetEngueulement;
        // tMemory.SetItem("hatarake", true);
         tMemory.SetItem("auTravail", true);
-        
+        tMemory.SetItem("myTarget", boxDeTravail);
 		if (data.fatigue >= data.fatigueMAX) {
 			//suicidaire = true;		
 			tMemory.SetItem("suicidaire",true);

@@ -352,7 +352,6 @@ public class Office : MonoBehaviour
     private void Create3DCell(int x, int z)
     {
         GameObject newCell = Instantiate(floorPrefab) as GameObject;
-        newCell.name = "Maze Cell " + x + ", " + z;
         newCell.transform.parent = transform;
         newCell.transform.localPosition = new Vector3(x + floor * 20, 0f, z);
         if (z == 0 && (x == 2 || x == 6))
@@ -406,21 +405,27 @@ public class Office : MonoBehaviour
         switch (grid[x, z].type)
         {
             case RoomType.Corridor:
+                newCell.name = "Corridor Cell " + x + ", " + z;
                 newCell.GetComponent<Renderer>().material = materials[0];
                 break;
             case RoomType.Bossroom:
+                newCell.name = "BossRoom Cell " + x + ", " + z;
                 newCell.GetComponent<Renderer>().material = materials[1];
                 break;
             case RoomType.Coffeeroom:
+                newCell.name = "CoffeeRoom Cell " + x + ", " + z;
                 newCell.GetComponent<Renderer>().material = materials[2];
                 break;
             case RoomType.Bathroom:
+                newCell.name = "Bathroom Cell " + x + ", " + z;
                 newCell.GetComponent<Renderer>().material = materials[3];
                 break;
             case RoomType.Box:
+                newCell.name = "Box Cell " + x + ", " + z;
                 newCell.GetComponent<Renderer>().material = materials[4];
                 break;
             case RoomType.Elevator:
+                newCell.name = "Elevator Cell " + x + ", " + z;
                 newCell.GetComponent<Renderer>().material = materials[5];
                 break;
         }
