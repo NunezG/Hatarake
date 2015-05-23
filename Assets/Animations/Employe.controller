@@ -5,7 +5,7 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: employeeAnimator
+  m_Name: Employe
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: playing
@@ -44,7 +44,7 @@ AnimatorController:
     m_DefaultWeight: 0
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - serializedVersion: 5
     m_Name: Top
     m_StateMachine: {fileID: 110773522}
@@ -56,7 +56,7 @@ AnimatorController:
     m_DefaultWeight: 1
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - serializedVersion: 5
     m_Name: Feet
     m_StateMachine: {fileID: 110708136}
@@ -68,7 +68,7 @@ AnimatorController:
     m_DefaultWeight: 1
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   m_MultiThreadedStateMachine: 1
 --- !u!1101 &110108978
 AnimatorStateTransition:

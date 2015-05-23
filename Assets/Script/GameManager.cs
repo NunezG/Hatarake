@@ -45,9 +45,9 @@ public class GameManager : MonoBehaviour {
 		if (objectiveCompletion < levelObjective) { 
             time = time + Time.deltaTime; 
         }
-		else{
-            //print("Level finished in :" + time);
-            //print("YAAAAAAAAAAAAATTTTTTTAAAAAAAAAAAA");
+        else{
+            print("Level finished in :" + time);
+            print("YAAAAAAAAAAAAATTTTTTTAAAAAAAAAAAA");
         }
 	}
 
