@@ -32,7 +32,7 @@ public class Employe : MonoBehaviour {
     public RAIN.Memory.BasicMemory tMemory;
     private RAIN.Navigation.BasicNavigator tNav;
 
-	public EmployeNames data;
+	public EmployeeData data;
 	//Awake is always called before any Start functions
 
     public bool isAlreadyInRange, moveMemory, workingMemory,suicideMemory;

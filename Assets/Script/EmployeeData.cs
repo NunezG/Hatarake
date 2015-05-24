@@ -3,15 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 
 [System.Serializable]
-public class EmployeNames {
+public class EmployeeData {
 
 	public float vitesseDemotivation;
-	public float maxVitesseDemotivation = 100;
-	public float minVitesseDemotivation = 1;
+	private float maxVitesseDemotivation = 1;
+	private float minVitesseDemotivation = 0.2f;
+
 	public float effetRepos;
-	public float maxEffetRepos = 100 ;
-	public float minEffetRepos = 1;
-	public string nom;
+	private float maxEffetRepos = 1 ;
+	private float minEffetRepos = 0.2f;
+
+	public string firstName;
+	public string surname;
 	public bool isMale;
 	public List<string> hobbies = new List<string>();
 	public Data data;
@@ -25,6 +28,7 @@ public class EmployeNames {
 
 	public void InitializeEmployee (){
 		data = new Data();
+
 		//Choix du sexe
 		int cho = (int)Random.Range(0, 2);
 		isMale = (cho == 1) ? true : false;
@@ -33,17 +37,17 @@ public class EmployeNames {
 		if(isMale){
 			cho = (int)Random.Range(0, data.mNames.Length);
 
-			nom = data.mNames[cho];
+			firstName = data.mNames[cho];
 
 			cho = (int)Random.Range(0, data.Names.Length);
-			nom = nom + " " + data.Names[cho];
+			surname = data.Names[cho];
 		}
 		else{
 			cho = (int)Random.Range(0, data.fNames.Length);
 
-			nom = data.fNames[cho];
+			firstName = data.fNames[cho];
 			cho = (int)Random.Range(0, data.Names.Length);
-			nom = nom + " " + data.Names[cho];
+			surname = data.Names[cho];
 		}
 		
 		//Choix des occupations
@@ -73,15 +77,15 @@ public class EmployeNames {
 					break;
 			}
 		
-		//Determination de l'effet sur la rapidité de taff et la rapidité de glande
+		//Determination de l'effet des hobbies sur la rapidité de taff et la rapidité de glande
 		vitesseDemotivation = Mathf.Lerp(minVitesseDemotivation, maxVitesseDemotivation, glandouille / 10.0f);
 		effetRepos = Mathf.Lerp(minEffetRepos, maxEffetRepos, 1.0f - (glandouille / 10.0f));
 
 
 		}
 
-
-        motivation = motivationMax;
+		//On met la motiv' à une valeur aléatoire en début de jeu !
+        motivation = Random.Range(0, motivationMax);
 
 	}
 
@@ -298,6 +302,7 @@ public class Data{
 		"Adams",
 		"Allen",
 		"Anderson",
+		"Andrews",
 		"Baker",
 		"Bings",
 		"Brown",

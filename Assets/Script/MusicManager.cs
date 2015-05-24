@@ -11,12 +11,12 @@ public class MusicManager : MonoBehaviour {
 
 	void Start () {
 	
-
 		// triggering ambiance sound
-		ambiance.gameObject.SetActive (true);
-		ambiance.Play ();
+		ambiance = transform.FindChild ("ambianceSound").GetComponent<AudioSource> ();
+		mainBG = transform.FindChild ("mainBackground").GetComponent<AudioSource> ();
 
 		// triggering BG music
+		ambiance.Play ();
 		mainBG.Play ();
 
 		// triggering tension layers so they are in synch
