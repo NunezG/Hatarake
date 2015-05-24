@@ -27,7 +27,12 @@ public class employeeID : MonoBehaviour {
 	//Mise en commun de toutes les données, choix des vetements et de l'apparence
 	void Start () {
 
-		data = GetComponentInParent<EmployeeData> ();
+		skinColors = new Color[]{new Color(255, 0, 0)};
+		hairColors = new Color[]{new Color(0, 255, 0)};
+		topColors = new Color[]{new Color(0, 0, 255)};
+		bottomColors = new Color[]{new Color(255, 255, 0)};
+
+		data = GetComponentInParent<Employe> ().data;
 
 
 		//Randomizing caracteristics
@@ -51,7 +56,9 @@ public class employeeID : MonoBehaviour {
 
 		//Assigning colors
 		int cho = (int)Random.Range(0, skinColors.Length);
+		Debug.Log (cho);
 		skinColor = skinColors [cho];
+
 
 		cho = (int)Random.Range(0, hairColors.Length);
 		hairColor = hairColors [cho];
