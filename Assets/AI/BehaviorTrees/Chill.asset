@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1227330239, guid: 9fa2ecd1ff2ad394281dd3bf72c5b76e, type: 3}
+  m_Name: Chill
+  m_EditorClassIdentifier: 
+  _dataSerializer:
+    _serializedData: <scriptableobject version="1.2" type="RAIN.BehaviorTrees.BTAsset"><fields><field
+      value="&lt;behaviortree version=&quot;1.1&quot; repeatuntil=&quot;&quot; name=&quot;Chill&quot;
+      debugbreak=&quot;False&quot;&gt;&lt;constraint repeatuntil=&quot;&quot; name=&quot;auTravail
+      == false&quot; debugbreak=&quot;False&quot; constraint=&quot;auTravail == false&quot;&gt;&lt;parallel
+      tiebreaker=&quot;succeed&quot; succeed=&quot;any&quot; repeatuntil=&quot;&quot;
+      name=&quot;parallel&quot; fail=&quot;any&quot; debugbreak=&quot;False&quot;&gt;&lt;action
+      repeatuntil=&quot;&quot; parametervalues=&quot;&quot; parameters=&quot;&quot;
+      namespace=&quot;&quot; name=&quot;chill&quot; debugbreak=&quot;False&quot; classname=&quot;chill&quot;
+      /&gt;&lt;timer waitforsec=&quot;2&quot; returnvalue=&quot;failure&quot; name=&quot;timer&quot;
+      debugbreak=&quot;False&quot; /&gt;&lt;/parallel&gt;&lt;sequencer usepriorities=&quot;False&quot;
+      repeatuntil=&quot;&quot; name=&quot;seq glande&quot; debugbreak=&quot;False&quot;
+      /&gt;&lt;/constraint&gt;&lt;/behaviortree&gt;" type="System.String" id="treeData"
+      /><field type="System.Array" id="treeBindings" elementtype="System.String" /></fields><references
+      /></scriptableobject>
+    _serializedGameObjects: []
+    _serializedCustomData: []
