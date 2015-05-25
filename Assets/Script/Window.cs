@@ -4,7 +4,7 @@ using System.Collections;
 
 
 
-public class SuicideWindow : MonoBehaviour
+public class Window : MonoBehaviour
 {
 
 

@@ -71,10 +71,11 @@ public class Employe : MonoBehaviour {
 			}
 
             suicide = new List<GameObject>();
-            SuicideWindow[] suicidesWindows = floor.GetComponentsInChildren<SuicideWindow>();
-            foreach (SuicideWindow window in suicidesWindows)
+            Window[] suicidesWindows = floor.GetComponentsInChildren<Window>();
+            foreach (Window window in suicidesWindows)
             {
                 suicide.Add(window.gameObject);
+				emptyChill.Add(window.gameObject);
             }
 			
 			//workingHelp = new List<GameObject>();
