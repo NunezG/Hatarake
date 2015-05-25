@@ -1,0 +1,5 @@
+diff a/ProjectSettings/ProjectVersion.txt b/ProjectSettings/ProjectVersion.txt	(rejected hunks)
+@@ -1,2 +0,2 @@
+-m_EditorVersion: 5.0.0f4
++m_EditorVersion: 5.0.1f1
+ m_StandardAssetsVersion: 0
