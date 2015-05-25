@@ -14,70 +14,29 @@ MonoBehaviour:
   _dataSerializer:
     _serializedData: <scriptableobject version="1.2" type="RAIN.BehaviorTrees.BTAsset"><fields><field
       value="&lt;behaviortree version=&quot;1.1&quot; repeatuntil=&quot;&quot; name=&quot;EmployeFullBT&quot;
-      debugbreak=&quot;False&quot;&gt;&lt;selector usepriorities=&quot;False&quot;
-      repeatuntil=&quot;&quot; name=&quot;root&quot; debugbreak=&quot;False&quot;&gt;&lt;constraint
-      repeatuntil=&quot;&quot; priority=&quot;&quot; name=&quot;suicidaire == false&quot;
-      debugbreak=&quot;False&quot; constraint=&quot;suicidaire == false&quot;&gt;&lt;sequencer
-      usepriorities=&quot;False&quot; repeatuntil=&quot;&quot; name=&quot;selector&quot;
-      debugbreak=&quot;False&quot;&gt;&lt;action repeatuntil=&quot;&quot; priority=&quot;&quot;
-      parametervalues=&quot;&quot; parameters=&quot;&quot; namespace=&quot;(global)&quot;
-      name=&quot;select target&quot; debugbreak=&quot;False&quot; classname=&quot;selectTarget&quot;
-      /&gt;&lt;selector usepriorities=&quot;False&quot; repeatuntil=&quot;success&quot;
-      priority=&quot;&quot; name=&quot;sequencer&quot; debugbreak=&quot;False&quot;&gt;&lt;action
+      debugbreak=&quot;False&quot;&gt;&lt;sequencer usepriorities=&quot;False&quot;
+      repeatuntil=&quot;&quot; name=&quot;sequencer&quot; debugbreak=&quot;False&quot;&gt;&lt;action
       repeatuntil=&quot;&quot; priority=&quot;&quot; parametervalues=&quot;&quot;
-      parameters=&quot;&quot; namespace=&quot;&quot; name=&quot;clear&quot; debugbreak=&quot;False&quot;
-      classname=&quot;clearPath&quot; /&gt;&lt;parallel tiebreaker=&quot;succeed&quot;
-      succeed=&quot;any&quot; repeatuntil=&quot;&quot; priority=&quot;&quot; name=&quot;parallel&quot;
-      fail=&quot;any&quot; debugbreak=&quot;False&quot;&gt;&lt;move turnspeed=&quot;&quot;
-      repeatuntil=&quot;&quot; name=&quot;move to target&quot; movetarget=&quot;myTarget&quot;
-      movespeed=&quot;&quot; facetarget=&quot;&quot; debugbreak=&quot;False&quot;
-      closeenoughdistance=&quot;&quot; closeenoughangle=&quot;&quot; /&gt;&lt;timer
-      waitforsec=&quot;1&quot; returnvalue=&quot;failure&quot; name=&quot;timer&quot;
-      debugbreak=&quot;False&quot; /&gt;&lt;/parallel&gt;&lt;/selector&gt;&lt;selector
+      parameters=&quot;&quot; namespace=&quot;(global)&quot; name=&quot;select target&quot;
+      debugbreak=&quot;False&quot; classname=&quot;selectTarget&quot; /&gt;&lt;selector
       usepriorities=&quot;False&quot; repeatuntil=&quot;&quot; priority=&quot;&quot;
-      name=&quot;selector&quot; debugbreak=&quot;False&quot;&gt;&lt;sequencer usepriorities=&quot;False&quot;
-      repeatuntil=&quot;&quot; priority=&quot;&quot; name=&quot;seq travail&quot;
-      debugbreak=&quot;False&quot;&gt;&lt;expression returnvalue=&quot;evaluate&quot;
-      repeatuntil=&quot;&quot; priority=&quot;&quot; name=&quot;auTravail == true&quot;
-      expression=&quot;auTravail == true&quot; debugbreak=&quot;False&quot; /&gt;&lt;parallel
-      tiebreaker=&quot;fail&quot; succeed=&quot;any&quot; repeatuntil=&quot;&quot;
-      priority=&quot;&quot; name=&quot;parallel&quot; fail=&quot;any&quot; debugbreak=&quot;False&quot;&gt;&lt;action
-      repeatuntil=&quot;&quot; parametervalues=&quot;&quot; parameters=&quot;&quot;
-      namespace=&quot;(global)&quot; name=&quot;work&quot; debugbreak=&quot;False&quot;
-      classname=&quot;work&quot; /&gt;&lt;timer waitforsec=&quot;2&quot; returnvalue=&quot;success&quot;
-      name=&quot;timer&quot; debugbreak=&quot;False&quot; /&gt;&lt;/parallel&gt;&lt;/sequencer&gt;&lt;constraint
-      repeatuntil=&quot;&quot; priority=&quot;&quot; name=&quot;auTravail == false&quot;
-      debugbreak=&quot;False&quot; constraint=&quot;auTravail == false&quot;&gt;&lt;parallel
-      tiebreaker=&quot;succeed&quot; succeed=&quot;any&quot; repeatuntil=&quot;&quot;
-      name=&quot;parallel&quot; fail=&quot;any&quot; debugbreak=&quot;False&quot;&gt;&lt;action
-      repeatuntil=&quot;&quot; parametervalues=&quot;&quot; parameters=&quot;&quot;
-      namespace=&quot;&quot; name=&quot;chill&quot; debugbreak=&quot;False&quot; classname=&quot;chill&quot;
-      /&gt;&lt;timer waitforsec=&quot;2&quot; returnvalue=&quot;failure&quot; name=&quot;timer&quot;
-      debugbreak=&quot;False&quot; /&gt;&lt;/parallel&gt;&lt;sequencer usepriorities=&quot;False&quot;
-      repeatuntil=&quot;&quot; name=&quot;seq glande&quot; debugbreak=&quot;False&quot;
-      /&gt;&lt;/constraint&gt;&lt;/selector&gt;&lt;sequencer usepriorities=&quot;False&quot;
-      repeatuntil=&quot;&quot; priority=&quot;&quot; name=&quot;sequencer&quot; debugbreak=&quot;False&quot;
-      /&gt;&lt;/sequencer&gt;&lt;/constraint&gt;&lt;sequencer usepriorities=&quot;False&quot;
-      repeatuntil=&quot;&quot; priority=&quot;&quot; name=&quot;sequencer&quot; debugbreak=&quot;False&quot;&gt;&lt;expression
-      returnvalue=&quot;evaluate&quot; repeatuntil=&quot;&quot; priority=&quot;&quot;
-      name=&quot;suicidaire == true&quot; expression=&quot;suicidaire == true&quot;
-      debugbreak=&quot;False&quot; /&gt;&lt;action repeatuntil=&quot;&quot; priority=&quot;&quot;
-      parametervalues=&quot;&quot; parameters=&quot;&quot; namespace=&quot;&quot;
-      name=&quot;select target&quot; debugbreak=&quot;False&quot; classname=&quot;selectTarget&quot;
-      /&gt;&lt;move turnspeed=&quot;&quot; repeatuntil=&quot;&quot; priority=&quot;&quot;
-      name=&quot;move&quot; movetarget=&quot;myTarget&quot; movespeed=&quot;&quot;
-      facetarget=&quot;&quot; debugbreak=&quot;False&quot; closeenoughdistance=&quot;&quot;
-      closeenoughangle=&quot;&quot; /&gt;&lt;action repeatuntil=&quot;&quot; priority=&quot;&quot;
-      parametervalues=&quot;&quot; parameters=&quot;&quot; namespace=&quot;(global)&quot;
-      name=&quot;Suicide&quot; debugbreak=&quot;False&quot; classname=&quot;Suicide&quot;
-      /&gt;&lt;animate repeatuntil=&quot;&quot; priority=&quot;&quot; name=&quot;animate&quot;
-      debugbreak=&quot;False&quot; animationstate=&quot;Base Layer.walk&quot; /&gt;&lt;action
-      repeatuntil=&quot;&quot; priority=&quot;&quot; parametervalues=&quot;&quot;
-      parameters=&quot;&quot; namespace=&quot;(global)&quot; name=&quot;reset path&quot;
-      debugbreak=&quot;False&quot; classname=&quot;clearPath&quot; /&gt;&lt;timer
-      waitforsec=&quot;2&quot; returnvalue=&quot;failure&quot; priority=&quot;&quot;
-      name=&quot;timer&quot; debugbreak=&quot;False&quot; /&gt;&lt;/sequencer&gt;&lt;/selector&gt;&lt;/behaviortree&gt;"
+      name=&quot;selector&quot; debugbreak=&quot;False&quot;&gt;&lt;treebinding repeatuntil=&quot;&quot;
+      priority=&quot;&quot; name=&quot;Suicide&quot; debugbreak=&quot;False&quot;
+      binding=&quot;Suicide&quot; /&gt;&lt;sequencer usepriorities=&quot;False&quot;
+      repeatuntil=&quot;&quot; priority=&quot;&quot; name=&quot;boucle principale&quot;
+      debugbreak=&quot;False&quot;&gt;&lt;selector usepriorities=&quot;False&quot;
+      repeatuntil=&quot;&quot; priority=&quot;&quot; name=&quot;selector&quot; debugbreak=&quot;False&quot;&gt;&lt;constraint
+      repeatuntil=&quot;&quot; priority=&quot;&quot; name=&quot;hatarake == false
+      &amp;amp;&amp;amp; suicidaire == false&quot; debugbreak=&quot;False&quot; constraint=&quot;hatarake
+      == false &amp;amp;&amp;amp; suicidaire == false&quot;&gt;&lt;selector usepriorities=&quot;False&quot;
+      repeatuntil=&quot;&quot; name=&quot;selector&quot; debugbreak=&quot;False&quot;&gt;&lt;treebinding
+      repeatuntil=&quot;&quot; priority=&quot;&quot; name=&quot;Work&quot; debugbreak=&quot;False&quot;
+      binding=&quot;Work&quot; /&gt;&lt;treebinding repeatuntil=&quot;&quot; priority=&quot;&quot;
+      name=&quot;Chill&quot; debugbreak=&quot;False&quot; binding=&quot;Chill&quot;
+      /&gt;&lt;/selector&gt;&lt;/constraint&gt;&lt;/selector&gt;&lt;/sequencer&gt;&lt;/selector&gt;&lt;/sequencer&gt;&lt;/behaviortree&gt;"
       type="System.String" id="treeData" /><field type="System.Array" id="treeBindings"
-      elementtype="System.String" /></fields><references /></scriptableobject>
+      elementtype="System.String"><field value="Suicide" type="System.String" id="element0"
+      /><field value="Work" type="System.String" id="element1" /><field value="Chill"
+      type="System.String" id="element2" /></field></fields><references /></scriptableobject>
     _serializedGameObjects: []
     _serializedCustomData: []

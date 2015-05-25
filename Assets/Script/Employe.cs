@@ -71,10 +71,11 @@ public class Employe : MonoBehaviour {
 			}
 
             suicide = new List<GameObject>();
-            SuicideWindow[] suicidesWindows = floor.GetComponentsInChildren<SuicideWindow>();
-            foreach (SuicideWindow window in suicidesWindows)
+            Window[] suicidesWindows = floor.GetComponentsInChildren<Window>();
+            foreach (Window window in suicidesWindows)
             {
                 suicide.Add(window.gameObject);
+				emptyChill.Add(window.gameObject);
             }
 			
 			//workingHelp = new List<GameObject>();
@@ -252,13 +253,14 @@ public class Employe : MonoBehaviour {
 		//Chaque seconde : motivation -= feignantise DONC si feignantise est grand, les pauses seront plus fréquentes.
 		data.fatigue += data.effetEngueulement;
         data.motivation += data.effetEngueulement;
-       // tMemory.SetItem("hatarake", true);
-        tMemory.SetItem("auTravail", true);
-        tMemory.SetItem("myTarget", boxDeTravail);
-		if (data.fatigue >= data.fatigueMAX) {
-			//suicidaire = true;		
-			tMemory.SetItem("suicidaire",true);
-		}
+
+		if (data.fatigue < data.fatigueMAX) {
+			//suicidaire = true;	
+			tMemory.SetItem<bool>("hatarake", true);
+			tMemory.SetItem<bool>("auTravail", true);
+
+		}else tMemory.SetItem<bool>("suicidaire",true);
+		
 	}
 
 	// Use this for initialization
