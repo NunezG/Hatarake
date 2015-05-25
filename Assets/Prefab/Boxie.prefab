@@ -534,13 +534,13 @@ MonoBehaviour:
       type="RAIN.Memory.BasicMemory+MemoryItem" reference="12" id="element1" /><field
       type="RAIN.Memory.BasicMemory+MemoryItem" reference="13" id="element2" /><field
       type="RAIN.Memory.BasicMemory+MemoryItem" reference="15" id="element3" /><field
-      type="RAIN.Memory.BasicMemory+MemoryItem" reference="16" id="element4" /><field
-      type="RAIN.Memory.BasicMemory+MemoryItem" reference="17" id="element5" /><field
-      type="RAIN.Memory.BasicMemory+MemoryItem" reference="18" id="element6" /><field
-      type="RAIN.Memory.BasicMemory+MemoryItem" reference="21" id="element7" /><field
-      type="RAIN.Memory.BasicMemory+MemoryItem" reference="22" id="element8" /><field
-      type="RAIN.Memory.BasicMemory+MemoryItem" reference="26" id="element9" /><field
-      type="RAIN.Memory.BasicMemory+MemoryItem" reference="27" id="element10" /></field></reference><reference
+      type="RAIN.Memory.BasicMemory+MemoryItem" reference="17" id="element4" /><field
+      type="RAIN.Memory.BasicMemory+MemoryItem" reference="18" id="element5" /><field
+      type="RAIN.Memory.BasicMemory+MemoryItem" reference="21" id="element6" /><field
+      type="RAIN.Memory.BasicMemory+MemoryItem" reference="22" id="element7" /><field
+      type="RAIN.Memory.BasicMemory+MemoryItem" reference="26" id="element8" /><field
+      type="RAIN.Memory.BasicMemory+MemoryItem" reference="27" id="element9" /><field
+      type="RAIN.Memory.BasicMemory+MemoryItem" reference="16" id="element10" /></field></reference><reference
       type="RAIN.Minds.BasicMind" refcount="1" id="2"><field type="RAIN.BehaviorTrees.BTAsset"
       id="_behaviorTreeAsset" gameobject="1" /><field type="System.Collections.Generic.List"
       id="_behaviorTreeBindings" elementtype="RAIN.BehaviorTrees.BTAssetBinding"><field
@@ -614,9 +614,9 @@ MonoBehaviour:
       refcount="1" id="15"><field value="suicidaire" type="System.String" id="Key"
       /><field value="System.Boolean" type="System.Type" id="ValueType" /><field value="False"
       type="System.Boolean" id="Value" /></reference><reference type="RAIN.Memory.BasicMemory+MemoryItem"
-      refcount="1" id="16"><field value="deltaPos" type="System.String" id="Key" /><field
-      value="UnityEngine.Vector3" type="System.Type" id="ValueType" /><field value="0,0,0"
-      type="UnityEngine.Vector3" id="Value" /></reference><reference type="RAIN.Memory.BasicMemory+MemoryItem"
+      refcount="1" id="16"><field value="suicideSpeed" type="System.String" id="Key"
+      /><field value="System.Int32" type="System.Type" id="ValueType" /><field value="20"
+      type="System.Int32" id="Value" /></reference><reference type="RAIN.Memory.BasicMemory+MemoryItem"
       refcount="1" id="17"><field value="enDeplacement" type="System.String" id="Key"
       /><field value="System.Boolean" type="System.Type" id="ValueType" /><field value="False"
       type="System.Boolean" id="Value" /></reference><reference type="RAIN.Memory.BasicMemory+MemoryItem"

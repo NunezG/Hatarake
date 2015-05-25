@@ -21,6 +21,8 @@ public class selectTarget : RAINAction
     {   
         if (ai.WorkingMemory.GetItem<bool>("suicidaire"))
         {
+			ai.Motor.DefaultSpeed = ai.WorkingMemory.GetItem<int>("suicideSpeed");
+
             int rdmIndex= UnityEngine.Random.Range(0, Employe.suicide.Count);
 
             target = Employe.suicide[rdmIndex];
