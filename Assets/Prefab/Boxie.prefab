@@ -538,7 +538,9 @@ MonoBehaviour:
       type="RAIN.Memory.BasicMemory+MemoryItem" reference="17" id="element5" /><field
       type="RAIN.Memory.BasicMemory+MemoryItem" reference="18" id="element6" /><field
       type="RAIN.Memory.BasicMemory+MemoryItem" reference="21" id="element7" /><field
-      type="RAIN.Memory.BasicMemory+MemoryItem" reference="22" id="element8" /></field></reference><reference
+      type="RAIN.Memory.BasicMemory+MemoryItem" reference="22" id="element8" /><field
+      type="RAIN.Memory.BasicMemory+MemoryItem" reference="26" id="element9" /><field
+      type="RAIN.Memory.BasicMemory+MemoryItem" reference="27" id="element10" /></field></reference><reference
       type="RAIN.Minds.BasicMind" refcount="1" id="2"><field type="RAIN.BehaviorTrees.BTAsset"
       id="_behaviorTreeAsset" gameobject="1" /><field type="System.Collections.Generic.List"
       id="_behaviorTreeBindings" elementtype="RAIN.BehaviorTrees.BTAssetBinding"><field
@@ -640,8 +642,12 @@ MonoBehaviour:
       id="behaviorTree" gameobject="3" /></reference><reference type="RAIN.BehaviorTrees.BTAssetBinding"
       refcount="1" id="25"><field value="Move" type="System.String" id="binding" /><field
       type="RAIN.BehaviorTrees.BTAsset" id="behaviorTree" gameobject="5" /></reference><reference
-      type="RAIN.Memory.BasicMemory+MemoryItem" refcount="0" id="26" /><reference
-      type="RAIN.Memory.BasicMemory+MemoryItem" refcount="0" id="27" /><reference
+      type="RAIN.Memory.BasicMemory+MemoryItem" refcount="1" id="26"><field value="normalSpeed"
+      type="System.String" id="Key" /><field value="System.Int32" type="System.Type"
+      id="ValueType" /><field value="10" type="System.Int32" id="Value" /></reference><reference
+      type="RAIN.Memory.BasicMemory+MemoryItem" refcount="1" id="27"><field value="scaredSpeed"
+      type="System.String" id="Key" /><field value="System.Int32" type="System.Type"
+      id="ValueType" /><field value="50" type="System.Int32" id="Value" /></reference><reference
       type="RAIN.Memory.BasicMemory+MemoryItem" refcount="0" id="28" /><reference
       type="RAIN.Memory.BasicMemory+MemoryItem" refcount="0" id="29" /><reference
       type="RAIN.Animation.MecanimParameterValue" refcount="0" id="30" /><reference

@@ -19,9 +19,8 @@ public class work : RAINAction
         //bouge plus
         ai.WorkingMemory.SetItem("enDeplacement", false);
         ai.Body.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY| RigidbodyConstraints.FreezePositionZ;
-        
 
-    }
+	}
 
     public override ActionResult Execute(RAIN.Core.AI ai)
     {
@@ -60,6 +59,8 @@ public class work : RAINAction
         }
         ai.Body.GetComponent<Rigidbody>().constraints =  RigidbodyConstraints.FreezePositionY ;
 
-        base.Stop(ai);
+		ai.Motor.DefaultSpeed = ai.WorkingMemory.GetItem<int>("normalSpeed");
+
+		base.Stop(ai);
     }
 }
