@@ -21,7 +21,6 @@ public class selectTarget : RAINAction
         base.Start(ai);
        float motivation = (int)ai.Body.gameObject.GetComponent<Employe>().data.motivation;
       //  ai.WorkingMemory.SetItem("motivation", motivation);
-		//ai.WorkingMemory.SetItem("hatarake", false);
 	}
 	
 	public override ActionResult Execute(RAIN.Core.AI ai)
@@ -36,18 +35,6 @@ public class selectTarget : RAINAction
             target = Employe.suicide[rdmIndex];
             return ActionResult.SUCCESS;
 
-            /*foreach (GameObject go in Employe.suicide)
-            {
-                lock (_queueLock)
-                {
-                    if (go.GetComponent<SuicideWindow>().occupe == false)
-                    {
-                        go.GetComponent<SuicideWindow>().occupe = true;
-                        target = go;
-                        return ActionResult.SUCCESS;
-                    }
-                }
-            }*/
         }
         else if (!ai.WorkingMemory.GetItem<bool>("auTravail"))
         {
@@ -90,7 +77,7 @@ public class selectTarget : RAINAction
             int pos = Random.Range(0, 4);
 
             //*1/4 de chances de bosser sur une photocopieuse
-            if (pos == 0)
+			if (!ai.WorkingMemory.GetItem<bool>("hatarake") && pos == 0)
             {
                 if (Employe.emptyWorkingHelp.Count != 0)
                 {
@@ -128,6 +115,8 @@ public class selectTarget : RAINAction
 
     public override void Stop(RAIN.Core.AI ai)
     {
+		ai.WorkingMemory.SetItem<bool>("hatarake", false);
+		//ai.WorkingMemory.SetItem<bool>("suicidaire", false);
         //*set des variables après succès
         if (target != ai.WorkingMemory.GetItem<GameObject>("myTarget"))
         {

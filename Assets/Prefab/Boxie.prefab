@@ -544,7 +544,8 @@ MonoBehaviour:
       id="_behaviorTreeBindings" elementtype="RAIN.BehaviorTrees.BTAssetBinding"><field
       type="RAIN.BehaviorTrees.BTAssetBinding" reference="20" id="element0" /><field
       type="RAIN.BehaviorTrees.BTAssetBinding" reference="23" id="element1" /><field
-      type="RAIN.BehaviorTrees.BTAssetBinding" reference="24" id="element2" /></field></reference><reference
+      type="RAIN.BehaviorTrees.BTAssetBinding" reference="24" id="element2" /><field
+      type="RAIN.BehaviorTrees.BTAssetBinding" reference="25" id="element3" /></field></reference><reference
       type="RAIN.Motion.MecanimMotor" refcount="1" id="3"><field value="10" type="System.Single"
       id="_speed" /><field value="3000" type="System.Single" id="_rotationSpeed" /><field
       value="0.6" type="System.Single" id="_closeEnoughDistance" /><field value="1"
@@ -636,22 +637,24 @@ MonoBehaviour:
       /><field type="RAIN.BehaviorTrees.BTAsset" id="behaviorTree" gameobject="2"
       /></reference><reference type="RAIN.BehaviorTrees.BTAssetBinding" refcount="1"
       id="24"><field value="Suicide" type="System.String" id="binding" /><field type="RAIN.BehaviorTrees.BTAsset"
-      id="behaviorTree" gameobject="3" /></reference><reference type="RAIN.Memory.BasicMemory+MemoryItem"
-      refcount="0" id="25" /><reference type="RAIN.Memory.BasicMemory+MemoryItem"
-      refcount="0" id="26" /><reference type="RAIN.Memory.BasicMemory+MemoryItem"
-      refcount="0" id="27" /><reference type="RAIN.Memory.BasicMemory+MemoryItem"
-      refcount="0" id="28" /><reference type="RAIN.Memory.BasicMemory+MemoryItem"
-      refcount="0" id="29" /><reference type="RAIN.Animation.MecanimParameterValue"
-      refcount="0" id="30" /><reference type="RAIN.Representation.Expression" refcount="0"
-      id="31" customdata="18" /><reference type="RAIN.Animation.MecanimParameterValue"
-      refcount="0" id="32" /><reference type="RAIN.Representation.Expression" refcount="0"
-      id="33" customdata="19" /></references></component>
+      id="behaviorTree" gameobject="3" /></reference><reference type="RAIN.BehaviorTrees.BTAssetBinding"
+      refcount="1" id="25"><field value="Move" type="System.String" id="binding" /><field
+      type="RAIN.BehaviorTrees.BTAsset" id="behaviorTree" gameobject="5" /></reference><reference
+      type="RAIN.Memory.BasicMemory+MemoryItem" refcount="0" id="26" /><reference
+      type="RAIN.Memory.BasicMemory+MemoryItem" refcount="0" id="27" /><reference
+      type="RAIN.Memory.BasicMemory+MemoryItem" refcount="0" id="28" /><reference
+      type="RAIN.Memory.BasicMemory+MemoryItem" refcount="0" id="29" /><reference
+      type="RAIN.Animation.MecanimParameterValue" refcount="0" id="30" /><reference
+      type="RAIN.Representation.Expression" refcount="0" id="31" customdata="18" /><reference
+      type="RAIN.Animation.MecanimParameterValue" refcount="0" id="32" /><reference
+      type="RAIN.Representation.Expression" refcount="0" id="33" customdata="19" /></references></component>
     _serializedGameObjects:
     - {fileID: 160380}
     - {fileID: 11400000, guid: 62c622395b7ce8d49918a00d5c007c17, type: 2}
     - {fileID: 11400000, guid: 7fe719ceee8aa6f478c019563766a222, type: 2}
     - {fileID: 11400000, guid: d14258556a450024290af983f1c44f9b, type: 2}
     - {fileID: 11400000, guid: 55966509e4eb1ac4683d7f6a42949878, type: 2}
+    - {fileID: 11400000, guid: 30d126659ec9ba14a9fe358fedca45f3, type: 2}
     _serializedCustomData:
     - _data: 
       _stringData: DQo=

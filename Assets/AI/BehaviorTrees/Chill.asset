@@ -14,17 +14,19 @@ MonoBehaviour:
   _dataSerializer:
     _serializedData: <scriptableobject version="1.2" type="RAIN.BehaviorTrees.BTAsset"><fields><field
       value="&lt;behaviortree version=&quot;1.1&quot; repeatuntil=&quot;&quot; name=&quot;Chill&quot;
-      debugbreak=&quot;False&quot;&gt;&lt;constraint repeatuntil=&quot;&quot; name=&quot;auTravail
-      == false&quot; debugbreak=&quot;False&quot; constraint=&quot;auTravail == false&quot;&gt;&lt;parallel
-      tiebreaker=&quot;succeed&quot; succeed=&quot;any&quot; repeatuntil=&quot;&quot;
-      name=&quot;parallel&quot; fail=&quot;any&quot; debugbreak=&quot;False&quot;&gt;&lt;action
+      debugbreak=&quot;False&quot;&gt;&lt;constraint repeatuntil=&quot;&quot; name=&quot;hatarake
+      == false &amp;amp;&amp;amp; suicidaire == false &amp;amp;&amp;amp; auTravail
+      == false&quot; debugbreak=&quot;False&quot; constraint=&quot;hatarake == false
+      &amp;amp;&amp;amp; suicidaire == false &amp;amp;&amp;amp; auTravail == false&quot;&gt;&lt;treebinding
+      repeatuntil=&quot;&quot; name=&quot;Move&quot; debugbreak=&quot;False&quot;
+      binding=&quot;Move&quot; /&gt;&lt;parallel tiebreaker=&quot;succeed&quot; succeed=&quot;any&quot;
+      repeatuntil=&quot;&quot; name=&quot;parallel&quot; fail=&quot;any&quot; debugbreak=&quot;False&quot;&gt;&lt;action
       repeatuntil=&quot;&quot; parametervalues=&quot;&quot; parameters=&quot;&quot;
       namespace=&quot;&quot; name=&quot;chill&quot; debugbreak=&quot;False&quot; classname=&quot;chill&quot;
       /&gt;&lt;timer waitforsec=&quot;2&quot; returnvalue=&quot;failure&quot; name=&quot;timer&quot;
-      debugbreak=&quot;False&quot; /&gt;&lt;/parallel&gt;&lt;sequencer usepriorities=&quot;False&quot;
-      repeatuntil=&quot;&quot; name=&quot;seq glande&quot; debugbreak=&quot;False&quot;
-      /&gt;&lt;/constraint&gt;&lt;/behaviortree&gt;" type="System.String" id="treeData"
-      /><field type="System.Array" id="treeBindings" elementtype="System.String" /></fields><references
-      /></scriptableobject>
+      debugbreak=&quot;False&quot; /&gt;&lt;/parallel&gt;&lt;/constraint&gt;&lt;/behaviortree&gt;"
+      type="System.String" id="treeData" /><field type="System.Array" id="treeBindings"
+      elementtype="System.String"><field value="Move" type="System.String" id="element0"
+      /></field></fields><references /></scriptableobject>
     _serializedGameObjects: []
     _serializedCustomData: []

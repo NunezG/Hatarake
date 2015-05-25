@@ -252,13 +252,14 @@ public class Employe : MonoBehaviour {
 		//Chaque seconde : motivation -= feignantise DONC si feignantise est grand, les pauses seront plus fréquentes.
 		data.fatigue += data.effetEngueulement;
         data.motivation += data.effetEngueulement;
-       // tMemory.SetItem("hatarake", true);
-        tMemory.SetItem("auTravail", true);
-        tMemory.SetItem("myTarget", boxDeTravail);
-		if (data.fatigue >= data.fatigueMAX) {
-			//suicidaire = true;		
-			tMemory.SetItem("suicidaire",true);
-		}
+
+		if (data.fatigue < data.fatigueMAX) {
+			//suicidaire = true;	
+			tMemory.SetItem<bool>("hatarake", true);
+			tMemory.SetItem<bool>("auTravail", true);
+
+		}else tMemory.SetItem<bool>("suicidaire",true);
+		
 	}
 
 	// Use this for initialization
