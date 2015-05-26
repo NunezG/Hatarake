@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -21,13 +22,11 @@ public class EmployeeData {
 	
 	private Color[] skinColors;
 	private Color[] hairColors;
-	private Color[] topColors;
-	private Color[] bottomColors;
 	
 	public Color skinColor;
 	public Color hairColor;
 	public Color topColor;
-	public Color bottomColor;
+	public Color backColor;
 
 	public List<string> hobbies = new List<string>();
 
@@ -98,44 +97,28 @@ public class EmployeeData {
 
 		}
 
-		// Couleurs disponibles
-		skinColors = new Color[]{new Color(255, 0, 0)};
-		hairColors = new Color[]{new Color(0, 255, 0)};
-		topColors = new Color[]{new Color(0, 0, 255)};
-		bottomColors = new Color[]{new Color(255, 255, 0)};
-
 		//Randomizing caracteristics
 		physicalCaracteristics = new int[7];
 		for (int i = 0; i < physicalCaracteristics.Length; i++) {
 			
-			physicalCaracteristics[i] = (int) Random.Range(0, 9);
-			
-		}
-		
-		// If the employee is a woman, shift right index by 8
-		if(!isMale) {
-			
-			for (int i = 0; i < physicalCaracteristics.Length; i++) {
-				
-				physicalCaracteristics[i] += 8;
-				
+			physicalCaracteristics[i] = (int) Random.Range(0, 8);
+
+			// If the employee is a woman, shift right index by 8
+			if(!isMale) {
+					physicalCaracteristics[i] += 8;
 			}
-			
 		}
 		
+
 		//Assigning colors
-		cho = (int)Random.Range(0, skinColors.Length);
-		skinColor = skinColors [cho];
-		
-		
-		cho = (int)Random.Range(0, hairColors.Length);
-		hairColor = hairColors [cho];
-		
-		cho = (int)Random.Range(0, topColors.Length);
-		topColor = topColors [cho];
-		
-		cho = (int)Random.Range(0, bottomColors.Length);
-		bottomColor = bottomColors [cho];
+		//cho = (int)Random.Range(0, skinColors.Length);
+		skinColor = EditorGUIUtility.HSVToRGB(Random.Range (0.1f, 0.15f), Random.value, Random.Range (0.3f, 1.0f));
+
+		hairColor = EditorGUIUtility.HSVToRGB(Random.Range (0.1f, 0.15f), Random.value, Random.value);
+
+		topColor = EditorGUIUtility.HSVToRGB(Random.value, 1.0f, 1.0f);
+
+		backColor = EditorGUIUtility.HSVToRGB(Random.value, 0.4f, 1.0f);
 
 
 		//On met la motiv' à une valeur aléatoire en début de jeu !

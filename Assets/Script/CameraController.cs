@@ -112,6 +112,14 @@ public class CameraController : MonoBehaviour {
 		}
 	}
 
+	//Shakes the camera for a certain amount of time
+	public void ollowEmployee(GameObject employee, float fT)
+	{
+		target = employee;
+		focusTimer = fT;
+		fixedCamera = false;
+	}
+
 
  }
 
