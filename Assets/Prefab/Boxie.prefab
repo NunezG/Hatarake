@@ -721,6 +721,11 @@ MonoBehaviour:
     firstName: 
     surname: 
     isMale: 0
+    physicalCaracteristics: 
+    skinColor: {r: 0, g: 0, b: 0, a: 0}
+    hairColor: {r: 0, g: 0, b: 0, a: 0}
+    topColor: {r: 0, g: 0, b: 0, a: 0}
+    bottomColor: {r: 0, g: 0, b: 0, a: 0}
     hobbies: []
     fatigue: 0
     motivation: 0

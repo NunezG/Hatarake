@@ -10,7 +10,8 @@ public class Boss : MonoBehaviour {
 
 	//Vector2 position; //peut utiliser son transform
 	float vitesseDep;
-
+    public bool moveLocked ;
+    public bool hatarakeLocked ;
 	//GameObject[] boxies;
 
 	//float jaugeEngueulage; //se remplit quand on appuie sur le boss.
@@ -33,6 +34,8 @@ public class Boss : MonoBehaviour {
 		AIRig aiRig = GetComponentInChildren<AIRig>();		
 		tMemory = aiRig.AI.WorkingMemory as RAIN.Memory.BasicMemory;
 
+        moveLocked = true;
+        hatarakeLocked = true;
 
         foreach (Transform go in transform)
         {
@@ -49,7 +52,7 @@ public class Boss : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if(Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && !moveLocked)
 		{
 			//Vector3 pos;
 
@@ -138,10 +141,13 @@ public class Boss : MonoBehaviour {
 
 	void OnMouseDown () 
 	{
-		print ("START CHARGE ");
-		charge = true;
-		tMemory.SetItem("charge",true);
-        StartCoroutine(Engueulade());	
+        if (!hatarakeLocked)
+        {
+            print("START CHARGE ");
+            charge = true;
+            tMemory.SetItem("charge", true);
+            StartCoroutine(Engueulade());
+        }
 
 	}
     void OnPreviewMouseRightButtonDown( )

@@ -34,7 +34,7 @@ public class CharacterManager : MonoBehaviour {
 
         boss.transform.position = spawn.transform.position;
         boss.transform.Translate(0,boss.GetComponent<Collider>().bounds.extents.y,0);
-
+        this.gameObject.GetComponent<GameManager>().SetBoss(boss);
 		boxies = new List<GameObject>();
 
 		// create Player
@@ -75,40 +75,39 @@ public class CharacterManager : MonoBehaviour {
 	}
 
 
-    public void spawnOneBoxieInElevator()
+    public void spawnOneBoxieInElevator(int floorNb)
     {
-        GameObject spawn = GameObject.Find("spawnBoss");
-        GameObject floor = GameObject.Find("Office floor n0");
+        GameObject floor = GameObject.Find("Office floor n" + floorNb);
 
         Box[] boxes = floor.GetComponentsInChildren<Box>();
 
-        GameObject tempObject = (GameObject)Instantiate(boxiePrefab);
+        GameObject boxie = (GameObject)Instantiate(boxiePrefab);
 
-        tempObject.GetComponent<Rigidbody>().mass = Random.Range(1, 100);
+        boxie.GetComponent<Rigidbody>().mass = Random.Range(1, 100);
 
-        tempObject.name = boxiePrefab.name + boxies.Count;
+        boxie.name = boxiePrefab.name + boxies.Count;
 
-        tempObject.GetComponent<Employe>().tMemory.SetItem("auTravail", true);
+        boxie.GetComponent<Employe>().tMemory.SetItem("auTravail", true);
 
         foreach (Box box in boxes)
         {
             if (box.CompareTag("Box") && box.assigne == false)
             {
-                    tempObject.GetComponent<Employe>().floor = floor;
-                    tempObject.GetComponent<Employe>().setBox(box.gameObject);
-                    box.assigne = true;
-                    break;
+                boxie.GetComponent<Employe>().floor = floor;
+                boxie.GetComponent<Employe>().setBox(box.gameObject);
+                box.assigne = true;
+                break;
             }
         }
-        tempObject.transform.localScale = tempObject.transform.localScale * gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.localScale.x;
+        boxie.transform.localScale = boxie.transform.localScale * this.gameObject.GetComponent<LevelManager>().getOfficeInstance()[floorNb].transform.localScale.x;
 
-        tempObject.transform.position = gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.position;
-        tempObject.transform.Translate(40, tempObject.GetComponent<Collider>().bounds.extents.y, 0);
+        boxie.transform.position = this.gameObject.GetComponent<LevelManager>().getOfficeInstance()[floorNb].transform.position;
+        //boxie.transform.Translate(40, boxie.GetComponent<Collider>().bounds.extents.y, 0);
+        boxie.transform.Translate(floor.transform.Find("Elevator Cell 4, 0").position.x, boxie.GetComponent<Collider>().bounds.extents.y, 0);
+        boxie.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color(Random.value, Random.value, Random.value);
+        boxie.transform.GetChild(1).GetComponent<SpriteRenderer>().color = new Color(Random.value, Random.value, Random.value);
 
-        tempObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color(Random.value, Random.value, Random.value);
-        tempObject.transform.GetChild(1).GetComponent<SpriteRenderer>().color = new Color(Random.value, Random.value, Random.value);
-
-        boxies.Add(tempObject);
-        }				
+        boxies.Add(boxie);
+    }				
     
 }
