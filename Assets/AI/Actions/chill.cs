@@ -35,6 +35,7 @@ public class chill : RAINAction
 			//Si motivation Max, cesse de glander
            if (motivation >= (int)ai.Body.gameObject.GetComponent<Employe>().data.motivationMax)
             {
+			ai.WorkingMemory.SetItem<bool>("wander", false);
                 ai.WorkingMemory.SetItem("auTravail", true);
 				//Libere la place (encore en test)
                  return ActionResult.SUCCESS;
@@ -46,8 +47,6 @@ public class chill : RAINAction
 
     public override void Stop(RAIN.Core.AI ai)
     {
-       
-
         //rends le resultat
         ai.WorkingMemory.SetItem("fatigue", fatigue);
         ai.Body.gameObject.GetComponent<Employe>().data.fatigue = fatigue;

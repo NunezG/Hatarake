@@ -17,10 +17,18 @@ MonoBehaviour:
       debugbreak=&quot;False&quot;&gt;&lt;constraint repeatuntil=&quot;&quot; name=&quot;hatarake
       == false &amp;amp;&amp;amp; suicidaire == false &amp;amp;&amp;amp; auTravail
       == false&quot; debugbreak=&quot;False&quot; constraint=&quot;hatarake == false
-      &amp;amp;&amp;amp; suicidaire == false &amp;amp;&amp;amp; auTravail == false&quot;&gt;&lt;treebinding
+      &amp;amp;&amp;amp; suicidaire == false &amp;amp;&amp;amp; auTravail == false&quot;&gt;&lt;parallel
+      tiebreaker=&quot;fail&quot; succeed=&quot;any&quot; repeatuntil=&quot;&quot;
+      name=&quot;parallel&quot; fail=&quot;all&quot; debugbreak=&quot;False&quot;&gt;&lt;treebinding
       repeatuntil=&quot;&quot; name=&quot;Move&quot; debugbreak=&quot;False&quot;
-      binding=&quot;Move&quot; /&gt;&lt;parallel tiebreaker=&quot;succeed&quot; succeed=&quot;any&quot;
-      repeatuntil=&quot;&quot; name=&quot;parallel&quot; fail=&quot;any&quot; debugbreak=&quot;False&quot;&gt;&lt;action
+      binding=&quot;Move&quot; /&gt;&lt;sequencer usepriorities=&quot;False&quot;
+      repeatuntil=&quot;&quot; name=&quot;sequencer&quot; debugbreak=&quot;False&quot;&gt;&lt;expression
+      returnvalue=&quot;evaluate&quot; repeatuntil=&quot;&quot; priority=&quot;&quot;
+      name=&quot;wander == true&quot; expression=&quot;wander == true&quot; debugbreak=&quot;False&quot;
+      /&gt;&lt;timer waitforsec=&quot;random(3,5)&quot; returnvalue=&quot;success&quot;
+      priority=&quot;&quot; name=&quot;timer&quot; debugbreak=&quot;False&quot; /&gt;&lt;/sequencer&gt;&lt;/parallel&gt;&lt;parallel
+      tiebreaker=&quot;succeed&quot; succeed=&quot;any&quot; repeatuntil=&quot;&quot;
+      name=&quot;parallel&quot; fail=&quot;any&quot; debugbreak=&quot;False&quot;&gt;&lt;action
       repeatuntil=&quot;&quot; parametervalues=&quot;&quot; parameters=&quot;&quot;
       namespace=&quot;&quot; name=&quot;chill&quot; debugbreak=&quot;False&quot; classname=&quot;chill&quot;
       /&gt;&lt;timer waitforsec=&quot;2&quot; returnvalue=&quot;failure&quot; name=&quot;timer&quot;
