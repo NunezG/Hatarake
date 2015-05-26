@@ -9,6 +9,8 @@ public class CameraController : MonoBehaviour {
 	 private bool bossCreated;
 	 private float timer = 0;
 
+	 public GameObject pointer;
+
 	 public bool cameraIsToMove;
 	 public bool fixedCamera;
 
@@ -24,7 +26,10 @@ public class CameraController : MonoBehaviour {
 	 public float upDownMargin;
 	 public float leftRightMargin;
 
-     
+     void Start(){
+
+		pointer = GameObject.Find ("notifArrow");
+	}
 
      void Update () 
      {
@@ -67,6 +72,7 @@ public class CameraController : MonoBehaviour {
 				onOtherTarget = true;
 				focusTimer--;
 				fixedCamera = true;
+				pointer.SetActive(true);
 				if (focusTimer < 0.0f) {
 					focusTimer = 100.0f;
 					target = null;
@@ -74,8 +80,16 @@ public class CameraController : MonoBehaviour {
 					fixedCamera = false;
 				}
 			}
-		} else {
-			// Looking for Boss GameObject
+
+				//Camera is follwing Boss
+			else{
+
+				pointer.SetActive(false);
+
+			}
+		}
+		//target is null, lookin for Boss
+		else {
 			target = GameObject.FindGameObjectWithTag ("Boss");
 			if (target != null)
 				bossCreated = true;
@@ -112,8 +126,8 @@ public class CameraController : MonoBehaviour {
 		}
 	}
 
-	//Shakes the camera for a certain amount of time
-	public void ollowEmployee(GameObject employee, float fT)
+	//changes focus and focusTimer
+	public void FollowEmployee(GameObject employee, float fT)
 	{
 		target = employee;
 		focusTimer = fT;

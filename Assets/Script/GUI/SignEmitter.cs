@@ -73,10 +73,15 @@ public class SignEmitter : MonoBehaviour {
                 break;
         }
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
+
         if (!partiSys.IsAlive())
             Destroy(this.gameObject);
+
+		if (partiSys.time > 0.6f) {
+			transform.position = Vector3.Lerp(transform.position, GameObject.FindGameObjectWithTag("Boss").transform.position, 0.2f);
+		}
+
 	}
 }
