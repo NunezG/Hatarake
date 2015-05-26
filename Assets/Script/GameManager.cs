@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour {
         StartCoroutine(gameObject.GetComponent<NavMesh>().GenerateNavmesh());
         // NavMesh ready ???
         StartCoroutine(navMeshCheck());
+
 	}
 	
 	// Update is called once per frame
