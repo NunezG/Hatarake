@@ -5,7 +5,7 @@ public class CameraController : MonoBehaviour {
       
      
      private Vector3 velocity = Vector3.zero;
-     private GameObject target;
+     public GameObject target;
 	 private bool bossCreated;
 	 private float timer = 0;
 
@@ -17,6 +17,10 @@ public class CameraController : MonoBehaviour {
 	 public bool shaking;
 	 public float shakeMagnitude;
 	 public float shakeTimer;
+
+	 public bool onOtherTarget;
+	 public float focusTimer;
+
 	 public float upDownMargin;
 	 public float leftRightMargin;
 
@@ -24,8 +28,13 @@ public class CameraController : MonoBehaviour {
 
      void Update () 
      {
-		// Follow Boss, if created
-		if (bossCreated) {
+		// Follow Target, once Boss is created
+		if (target != null && bossCreated) {
+
+			//Nullify target is on suicided employee
+			if(!target.activeInHierarchy){
+				target = null;
+			}
 
 			//Camera is not fixed on Target (normal Boss Mode)
 			if (!fixedCamera) {
@@ -33,7 +42,7 @@ public class CameraController : MonoBehaviour {
 				//If Boss is within screen borders
 				if (Camera.main.WorldToScreenPoint (target.transform.position).x < Screen.width * leftRightMargin ||
 					Camera.main.WorldToScreenPoint (target.transform.position).x > Screen.width * (1 - leftRightMargin) ||
-				    Camera.main.WorldToScreenPoint (target.transform.position).y < Screen.height * upDownMargin ||
+					Camera.main.WorldToScreenPoint (target.transform.position).y < Screen.height * upDownMargin ||
 					Camera.main.WorldToScreenPoint (target.transform.position).y > Screen.height * (1 - upDownMargin)) {
 
 					cameraIsToMove = true;
@@ -51,23 +60,28 @@ public class CameraController : MonoBehaviour {
 			}
 
 			//Shake Your Booty, yeahhh !!!
-			if(shaking && timer < shakeTimer){
-				ShakeMyBooty();
-				timer++;
+			ShakeMyBooty ();
+
+			//If the target changes, triggers the timer, get back to Boss when finished
+			if (target != GameObject.Find ("Boss(Clone)")) {
+				onOtherTarget = true;
+				focusTimer--;
+				fixedCamera = true;
+				if (focusTimer < 0.0f) {
+					focusTimer = 100.0f;
+					target = null;
+					onOtherTarget = false;
+					fixedCamera = false;
+				}
 			}
-			else{
-				shaking = false;
-				timer = 0.0f;
-			}
+		} else {
+			// Looking for Boss GameObject
+			target = GameObject.FindGameObjectWithTag ("Boss");
+			if (target != null)
+				bossCreated = true;
 		}
-		
-		else{
-		   // Looking for Boss GameObject
-		   target = GameObject.FindGameObjectWithTag ("Boss");
-		   if (target!=null) bossCreated = true;
-		}
+	}
      
-     }
 
 	public void FollowTargetTillOnIt()
 	{
@@ -76,18 +90,28 @@ public class CameraController : MonoBehaviour {
 		Vector3 destination = transform.position + delta;
 		transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, dampTime);
 		    
+		// Stop the camera when close enough
 		if ((int)delta.magnitude == 0) {
 			cameraIsToMove = false;
 		}
 	}
-
+	
+	//Shakes the camera for a certain amount of time
 	public void ShakeMyBooty()
 	{
-		transform.position = new Vector3(transform.position.x + Random.Range(-shakeMagnitude, shakeMagnitude)*0.1f,
-		                                 transform.position.y,
-		                                 transform.position.z + Random.Range(-shakeMagnitude, shakeMagnitude)*0.1f);
+		if(shaking && timer < shakeTimer){
+			transform.position = new Vector3(transform.position.x + Random.Range(-shakeMagnitude, shakeMagnitude)*0.1f,
+			                                 transform.position.y,
+			                                 transform.position.z + Random.Range(-shakeMagnitude, shakeMagnitude)*0.1f);
+			timer++;
+		}
 
+		else {
+			shaking = false;
+			timer = 0.0f;
+		}
 	}
+
 
  }
 

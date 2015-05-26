@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class employeeID : MonoBehaviour {
 
 	private bool profileUpdated;
 	private string pictureChild = "picture";
-	private string[] pictureParts = {"figure", "hair", "eyes", "nose", "mouth", "top", "fond", "frame"};
+	private string[] pictureParts = {"face", "hair", "eyes", "nose", "mouth", "top", "bg", "frame"};
 
 	public GameObject employeePrefab;
+	public GameObject employeeClone;
 	private EmployeeData employeeInfos;
 
 
@@ -15,57 +17,82 @@ public class employeeID : MonoBehaviour {
 	void Update () {
 
 		//Show prefab's profile
-		if(gameObject.activeInHierarchy){
+		if (employeePrefab != null) {
 
-			//Update des infos si pas déjà fait
-			if(!profileUpdated){
+			//Check if not dead
+			if(!employeePrefab.activeInHierarchy){
+				employeePrefab = null;
+			}
 
-				try{
-					//recupération des données
-					employeeInfos = employeePrefab.GetComponent<Employe>().data;
+			//Récupération de la pancarte
+			Transform profile = transform.FindChild ("profile");
 
-					//Rendre visible
-					gameObject.SetActive(true);
+			//Update des infos la première boucle
+			if (!profileUpdated) {
 
-					//update ID name, first name and sex
-					transform.FindChild("ID").FindChild("FamilyName_label").GetComponent<TextMesh>().text = employeeInfos.surname.ToUpper();
-					transform.FindChild("ID").FindChild("Name_label").GetComponent<TextMesh>().text = employeeInfos.firstName.ToUpper();
-					transform.FindChild("ID").FindChild("Sex_label").GetComponent<TextMesh>().text = (employeeInfos.isMale) ? "Homme" : "Femme";
+				//Clone Prefab to compare later
+				employeeClone = employeePrefab;
 
-					//Update hobbies
-					for(int i = 0 ; i<5 ; i++){
-						transform.FindChild("Hobbies").FindChild("hobby"+(i+1)).GetComponent<TextMesh>().text = employeeInfos.hobbies[i];
-					}
+				//get infos from employee
+				employeeInfos = employeePrefab.GetComponent<Employe> ().data;
 
-					//update picture colors
-					transform.FindChild(pictureChild).FindChild(pictureParts[0]).GetComponent<SpriteRenderer>().color = employeeInfos.skinColor;
-					transform.FindChild(pictureChild).FindChild(pictureParts[1]).GetComponent<SpriteRenderer>().color = employeeInfos.hairColor;
-					transform.FindChild(pictureChild).FindChild(pictureParts[3]).GetComponent<SpriteRenderer>().color = employeeInfos.skinColor;
-					transform.FindChild(pictureChild).FindChild(pictureParts[5]).GetComponent<SpriteRenderer>().color = employeeInfos.topColor;
+				//set the panel visible
+				profile.gameObject.SetActive(true);
 
-					//update images
-					//transform.FindChild(pictureChild).FindChild(pictureParts[2]).GetComponent<SpriteRenderer>().color = employeePrefab.skinColor;
-					//transform.FindChild(pictureChild).FindChild(pictureParts[4]).GetComponent<SpriteRenderer>().color = employeePrefab.skinColor;
-					//transform.FindChild(pictureChild).FindChild(pictureParts[6]).GetComponent<SpriteRenderer>().color = employeePrefab.;
-					//transform.FindChild(pictureChild).FindChild(pictureParts[7]).GetComponent<SpriteRenderer>().color = employeePrefab.skinColor;
+				//update ID name, first name and sex
+				profile.FindChild ("familyName").GetComponent<Text> ().text = employeeInfos.surname.ToUpper ();
+				profile.FindChild ("firstName").GetComponent<Text> ().text = employeeInfos.firstName.ToUpper ();
+				//profile.FindChild("Sex_label").GetComponent<TextMesh>().text = (employeeInfos.isMale) ? "Homme" : "Femme";
 
-					profileUpdated = true;
+				//Update hobbies
+				profile.FindChild ("Obi-Wan").GetComponent<Text> ().text = "- " + employeeInfos.hobbies [0].ToUpper ();
+				for (int i = 1; i<5; i++) {
+					profile.FindChild ("hobby" + (i + 1)).GetComponent<Text> ().text = "- " + employeeInfos.hobbies [i].ToUpper ();
 				}
-				catch{
-					profileUpdated = false;
-					gameObject.SetActive(false);
-					Debug.Log ("Erreur lors du chargement infos de l'employé");
-				}
+
+				//update picture colors
+				profile.FindChild (pictureParts [0]).GetComponent<Image> ().color = employeeInfos.skinColor;
+				profile.FindChild (pictureParts [1]).GetComponent<Image> ().color = employeeInfos.hairColor;
+				profile.FindChild (pictureParts [3]).GetComponent<Image> ().color = employeeInfos.skinColor;
+				profile.FindChild (pictureParts [5]).GetComponent<Image> ().color = employeeInfos.topColor;
+
+				//update images
+
+				//gameObject.GetComponent<Animator> ().Play("choice", -1, (int)Random.Range (0,18)/18.0f);
+//					transform.FindChild(pictureChild).FindChild(pictureParts[2]).GetComponent<SpriteRenderer>().color = employeePrefab.skinColor;
+//					transform.FindChild(pictureChild).FindChild(pictureParts[4]).GetComponent<SpriteRenderer>().color = employeePrefab.skinColor;
+//					transform.FindChild(pictureChild).FindChild(pictureParts[6]).GetComponent<SpriteRenderer>().color = employeePrefab.;
+//					transform.FindChild(pictureChild).FindChild(pictureParts[7]).GetComponent<SpriteRenderer>().color = employeePrefab.skinColor;
+
+				//motivationMAX & fatigueMax
+				profile.FindChild("motivation").GetComponent<Slider>().maxValue = employeePrefab.GetComponent<Employe>().data.motivationMax;
+				profile.FindChild("fatigue").GetComponent<Slider>().maxValue = employeePrefab.GetComponent<Employe>().data.fatigueMAX;
+
+				//Profile has been updated
+				profileUpdated = true;
 			}
 
 			// Boucle d'affichage normale
-			else{}
+			else {
+
+				//update de la motivation et de la fatigue
+				profile.FindChild("motivation").GetComponent<Slider>().value = employeePrefab.GetComponent<Employe>().data.motivation;
+				profile.FindChild("fatigue").GetComponent<Slider>().value = employeePrefab.GetComponent<Employe>().data.fatigue;
+
+				//if new focus
+				if(employeeClone != employeePrefab){
+
+					profileUpdated = false;
+
+				}
+
+			}
 		}
 
-		// Rendre invisible aux yeux de tous
-		else{
+		// La pancarte n'est pas affichée
+		else {
+			transform.FindChild ("profile").gameObject.SetActive(false);
 			profileUpdated = false;
-			gameObject.SetActive(false);
 		}
 		
 	}

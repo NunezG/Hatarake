@@ -125,7 +125,6 @@ public class EmployeeData {
 		
 		//Assigning colors
 		cho = (int)Random.Range(0, skinColors.Length);
-		Debug.Log (cho);
 		skinColor = skinColors [cho];
 		
 		
