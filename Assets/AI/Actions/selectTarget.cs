@@ -33,8 +33,21 @@ public class selectTarget : RAINAction
         {
              int pos = Random.Range(0, 4);
 
-            //*1/4 de chances de bosser sur une photocopieuse
-             if (pos == 0 && Employe.emptyChill.Count != 0)
+			if (pos == 1 && Employe.emptyChill.Count != 0)
+			{
+				//*cherche une place vide pour glander
+				pos = Random.Range(0, Employe.emptyChill.Count);
+				
+				target = Employe.emptyChill[pos];
+
+				ai.WorkingMemory.SetItem<bool>("wander", true);
+
+				Employe.emptyChill.RemoveAt(pos);
+				return ActionResult.SUCCESS;
+			}
+
+			//*1/4 de chances de bosser sur une photocopieuse
+            else  if (pos != 0 && Employe.emptyChill.Count != 0)
              {
                  //*cherche une place vide pour glander
                  pos = Random.Range(0, Employe.emptyChill.Count);
@@ -43,7 +56,7 @@ public class selectTarget : RAINAction
                  Employe.emptyChill.RemoveAt(pos);
                  return ActionResult.SUCCESS;
 
-             }
+			} 
            //*Si pas de place il retourne a son Box pour se connecter sur facebook
            target = ai.Body.GetComponent<Employe>().boxDeTravail;
            return ActionResult.SUCCESS;
@@ -54,17 +67,15 @@ public class selectTarget : RAINAction
             int pos = Random.Range(0, 4);
 
             //*1/4 de chances de bosser sur une photocopieuse
-			if (!ai.WorkingMemory.GetItem<bool>("hatarake") && pos == 0)
+			if (!ai.WorkingMemory.GetItem<bool>("hatarake") && pos == 0 && Employe.emptyWorkingHelp.Count != 0)
             {
-                if (Employe.emptyWorkingHelp.Count != 0)
-                {
-                    pos = Random.Range(0, Employe.emptyWorkingHelp.Count);
+                pos = Random.Range(0, Employe.emptyWorkingHelp.Count);
 
-                    target = Employe.emptyWorkingHelp[pos];
-                    Employe.emptyWorkingHelp.RemoveAt(pos);
-                    return ActionResult.SUCCESS;
-                }
-            } else
+                target = Employe.emptyWorkingHelp[pos];
+                Employe.emptyWorkingHelp.RemoveAt(pos);
+                return ActionResult.SUCCESS;
+                
+			} else
             {
 				if (ai.WorkingMemory.GetItem<bool>("hatarake"))
 				{
