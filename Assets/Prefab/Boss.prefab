@@ -1058,6 +1058,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed70688bd36709842a1940d2e5fb59bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveLocked: 0
+  hatarakeLocked: 0
   jaugeEngueulageMax: 10
   vitesseJauge: 2
 --- !u!136 &13674078
