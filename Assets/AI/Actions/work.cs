@@ -8,7 +8,10 @@ using RAIN.Core;
 public class work : RAINAction
 {
     float motivation;
-    public override void Start(RAIN.Core.AI ai)
+	GameObject target;
+
+
+	public override void Start(RAIN.Core.AI ai)
     {
         //Commence a travailler
         base.Start(ai);
@@ -19,24 +22,29 @@ public class work : RAINAction
         //bouge plus
         ai.WorkingMemory.SetItem("enDeplacement", false);
         ai.Body.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY| RigidbodyConstraints.FreezePositionZ;
+		target = ai.WorkingMemory.GetItem<GameObject>("myTarget");
 
 	}
 
     public override ActionResult Execute(RAIN.Core.AI ai)
     {
-       //Reduction de la motivation
-        motivation = motivation - Time.deltaTime * ai.Body.GetComponent<Employe>().data.vitesseDemotivation;
+		if (!target.GetComponent<Box>().broken) {
+			//Reduction de la motivation
+			motivation = motivation - Time.deltaTime * ai.Body.GetComponent<Employe> ().data.vitesseDemotivation;
    		
-        //Finis de travailler quand la motivation est 0
-        if (motivation <= 0)
-        {
-            ai.WorkingMemory.SetItem("auTravail", false);
-            return ActionResult.SUCCESS;
-        }
+			//Finis de travailler quand la motivation est 0
+			if (motivation <= 0) {
+				ai.WorkingMemory.SetItem ("auTravail", false);
+				return ActionResult.SUCCESS;
+			}
 
-        GameManager.instance.objectiveCompletion += Time.deltaTime * ai.Body.GetComponent<Employe>().data.vitesseTravail;
-		//Continue a travailler
-         return ActionResult.RUNNING;
+			GameManager.instance.objectiveCompletion += Time.deltaTime * ai.Body.GetComponent<Employe> ().data.vitesseTravail;
+			//Continue a travailler
+			return ActionResult.RUNNING;
+		} else {
+			motivation = motivation - Time.deltaTime * ai.Body.GetComponent<Employe> ().data.vitesseDemotivation * 20;
+			return ActionResult.SUCCESS;
+		}
     }
 
     public override void Stop(RAIN.Core.AI ai)
@@ -44,8 +52,6 @@ public class work : RAINAction
         
 
 
-        GameObject target;
-        target = ai.WorkingMemory.GetItem<GameObject>("myTarget");
 
         //Remets la motivation
        // ai.WorkingMemory.SetItem("motivation", motivation);

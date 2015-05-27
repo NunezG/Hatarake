@@ -5,6 +5,8 @@ public class Box : MonoBehaviour {
 
 	public bool assigne = false;
     public bool occupe = false;
+	public bool broken = false;
+
 
 	// Use this for initialization
 	void Start () {
