@@ -23,13 +23,9 @@ public class jaugeEngueulage : MonoBehaviour {
 
 		if (other.tag == "Employe") 
 		{		
-			
 			employes.Add(other.gameObject);
-			//other.GetComponent<Employe>().Engueule();
-			
-		}
-		
-		
+			//other.GetComponent<Employe>().Engueule();			
+		}		
 	}
 	
 	void OnTriggerExit(Collider other)

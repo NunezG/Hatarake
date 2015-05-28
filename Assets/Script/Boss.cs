@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using RAIN.Core;
 using RAIN.Navigation.Targets;
 using RAIN.Minds;
@@ -7,6 +8,9 @@ using RAIN.Serialization;
 using RAIN.Motion;
 
 public class Boss : MonoBehaviour {
+
+    public GameObject gameManager;
+    public bool tutoLock = false;
 
 	//Vector2 position; //peut utiliser son transform
 	float vitesseDep;
@@ -31,11 +35,21 @@ public class Boss : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        gameManager = GameObject.Find("GameManager");
+        if (gameManager.GetComponent<GameManager>().tutoIsOn)
+        {
+            moveLocked = hatarakeLocked = true ;
+        }
+        else
+        {
+            moveLocked = hatarakeLocked = false;
+        }
+
 		AIRig aiRig = GetComponentInChildren<AIRig>();		
 		tMemory = aiRig.AI.WorkingMemory as RAIN.Memory.BasicMemory;
-
+        /*
         moveLocked = true;
-        hatarakeLocked = true;
+        hatarakeLocked = true;*/
 
         foreach (Transform go in transform)
         {
@@ -68,12 +82,10 @@ public class Boss : MonoBehaviour {
                 //colliders = Physics.OverlapSphere(pos, 1f /* Radius */);
 
               if (pos != null && pos != transform.position && tNav.OnGraph(pos, 0))
-                {
+              {
                     tMemory.SetItem("enDeplacement", true);
                     tMemory.SetItem("target", pos);
-                    this.transform.Find("soundbossFootsteps").gameObject.SetActive(true);
-                    this.transform.Find("soundbossFootsteps").gameObject.GetComponent<AudioSource>().Play();
-                }
+               }
             }
 			
 
@@ -82,16 +94,24 @@ public class Boss : MonoBehaviour {
         if (pos.x == transform.position.x && pos.z == transform.position.z)
         {
             tMemory.SetItem("enDeplacement", false);
+        }
+        if (tMemory.GetItem<bool>("enDeplacement"))
+        { 
+            //this.transform.Find("soundbossFootsteps").
+            this.transform.Find("soundbossFootsteps").gameObject.SetActive(true);
+            this.transform.Find("soundbossFootsteps").gameObject.GetComponent<AudioSource>().Play();
+        }
+        else
+        {
             this.transform.Find("soundbossFootsteps").gameObject.GetComponent<AudioSource>().Stop();
             this.transform.Find("soundbossFootsteps").gameObject.SetActive(false);
         }
-
 	}
 
     public IEnumerator Engueulade()
     {
 
-        print("ENGUEULADE!!!!!!!!!!!!!!");
+        //print("ENGUEULADE!!!!!!!!!!!!!!");
 
         actionArea.gameObject.SetActive(true);
         float pos=0;
@@ -102,7 +122,7 @@ public class Boss : MonoBehaviour {
 
             yield return null;
         }
-        print("HATARAKE!!!!!!!!!!!!!!!!! ");
+        //print("HATARAKE!!!!!!!!!!!!!!!!! ");
         Sign.Create(pos,this.transform.position,SignType.Hatarake);
         if (pos > 7)
         {
@@ -128,11 +148,17 @@ public class Boss : MonoBehaviour {
         actionArea.localScale = new Vector3(0.8f, actionArea.localScale.y, 0.8f);
         //ResetTimer
        // jaugeEngueulage = 0;
-
-        foreach (GameObject emp in actionArea.GetComponent<jaugeEngueulage>().getEmployesJauge())
+        List<GameObject> employesEngueulable = actionArea.GetComponent<jaugeEngueulage>().getEmployesJauge();
+        foreach (GameObject emp in employesEngueulable)
         {
             emp.GetComponent<Employe>().Engueule();
         }
+        if (!tutoLock && employesEngueulable.Count > 0)
+        {
+            tutoLock = true;
+            gameManager.GetComponent<GameManager>().nextTutoStep();
+        }
+
         actionArea.GetComponent<jaugeEngueulage>().clearEmployesJauge();
 
         //actionArea.GetComponent<jaugeEngueulage>().Engueule();
@@ -143,7 +169,7 @@ public class Boss : MonoBehaviour {
 	{
         if (!hatarakeLocked)
         {
-            print("START CHARGE ");
+            //print("START CHARGE ");
             charge = true;
             tMemory.SetItem("charge", true);
             StartCoroutine(Engueulade());
