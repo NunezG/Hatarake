@@ -111,7 +111,6 @@ public class EmployeeData {
 		
 
 		//Assigning colors
-		//cho = (int)Random.Range(0, skinColors.Length);
 		skinColor = EditorGUIUtility.HSVToRGB(Random.Range (0.1f, 0.15f), Random.value, Random.Range (0.3f, 1.0f));
 
 		hairColor = EditorGUIUtility.HSVToRGB(Random.Range (0.1f, 0.15f), Random.value, Random.value);
