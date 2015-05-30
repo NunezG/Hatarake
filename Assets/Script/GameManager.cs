@@ -54,9 +54,8 @@ public class GameManager : MonoBehaviour {
         {
             tutoButton.SetActive(false);
         }
-        StartCoroutine(gameObject.GetComponent<NavMesh>().GenerateNavmesh());
-        // NavMesh ready ???
-        StartCoroutine(navMeshCheck());
+       // StartCoroutine(gameObject.GetComponent<NavMesh>().GenerateNavmesh());
+        
         canvaEmbauche.SetActive(false);
 
 	}
@@ -331,7 +330,9 @@ public class GameManager : MonoBehaviour {
 	{
 
 		gameObject.GetComponent<LevelManager>().BeginGame();
-		
+        
+        // NavMesh ready ???
+        StartCoroutine(navMeshCheck());
 		
 		//menu.SetActive (false);
 		//GameObject.Instantiate (sceneObject);
@@ -339,9 +340,9 @@ public class GameManager : MonoBehaviour {
 
 	IEnumerator navMeshCheck()
 	{		
-		NavMesh navMesh = GetComponent<NavMesh> ();
+		//NavMesh navMesh = GetComponent<NavMesh> ();
 
-		while (!navMesh.isNavMeshDone) 
+        while (!NavMesh.isNavMeshDone) 
 		{
 			yield return new WaitForSeconds(1);
 		}

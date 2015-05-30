@@ -9,7 +9,7 @@ using RAIN.Motion;
 
 public class Boss : MonoBehaviour {
 
-    public GameObject gameManager;
+   // public GameObject gameManager;
     public bool tutoLock = false;
 
 	//Vector2 position; //peut utiliser son transform
@@ -40,8 +40,8 @@ public class Boss : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        gameManager = GameObject.Find("GameManager");
-        if (gameManager.GetComponent<GameManager>().tutoIsOn)
+       // gameManager = GameObject.Find("GameManager");
+        if (GameManager.instance.tutoIsOn)
         {
             moveLocked = hatarakeLocked = true ;
         }
@@ -169,7 +169,7 @@ public class Boss : MonoBehaviour {
         if (!tutoLock && employesEngueulable.Count > 0)
         {
             tutoLock = true;
-            gameManager.GetComponent<GameManager>().nextTutoStep();
+            GameManager.instance.nextTutoStep();
         }
 
         actionArea.GetComponent<jaugeEngueulage>().clearEmployesJauge();

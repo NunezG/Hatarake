@@ -18,6 +18,9 @@ public class LevelManager : MonoBehaviour {
             else
                 officeInstance.init(i, 0, nbCoffeeRooms, nbBathRooms, nbBoxes+6);
             officeFloors.Add(officeInstance);
+
+            StartCoroutine(NavMesh.GenerateNavmesh(officeInstance));
+            
         }
 
 	}
