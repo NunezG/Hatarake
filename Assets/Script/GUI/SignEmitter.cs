@@ -12,6 +12,7 @@ public class SignEmitter : MonoBehaviour {
     public SignType type;
     SpriteRenderer spriteRenderer;
     public float  alpha;
+	public GameObject boss;
 
     public static SignEmitter Create(Vector3 position, SignType type)
     {
@@ -22,13 +23,14 @@ public class SignEmitter : MonoBehaviour {
         yourObject.type = type;
         yourObject.partiSysRender = newObject.GetComponent<ParticleSystemRenderer>();
         yourObject.partiSys = newObject.GetComponent<ParticleSystem>();
-        //do additional initialization steps here
+
 
         return yourObject;
     }
 	// Use this for initialization
 	void Start () {
         
+		boss = GameObject.FindGameObjectWithTag("Boss");
 
 	    switch (type)
         {
@@ -80,7 +82,7 @@ public class SignEmitter : MonoBehaviour {
             Destroy(this.gameObject);
 
 		if (partiSys.time > 0.6f) {
-			transform.position = Vector3.Lerp(transform.position, GameObject.FindGameObjectWithTag("Boss").transform.position, 0.2f);
+			transform.position = Vector3.Lerp(transform.position, boss.transform.position, 0.2f);
 		}
 
 	}
