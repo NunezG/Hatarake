@@ -3,10 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using RAIN.Core;
 using RAIN.Navigation;
-
 public class Employe : MonoBehaviour {
-	
-	//public bool suicidaire;
+
+    GameObject employeProfile;
 	public GameObject boxDeTravail;// Box de l’employé
    
 	/**
@@ -52,7 +51,9 @@ public class Employe : MonoBehaviour {
         suicideMemory = tMemory.GetItem<bool>("suicidaire");
         moveMemory = tMemory.GetItem<bool>("enDeplacement");
         workingMemory=tMemory.GetItem<bool>("auTravail");
-        
+
+        employeProfile = GameObject.Find("EmployeeProfile");
+
         //setActiveSound(false, false, false);
 
 		data.InitializeEmployee ();
@@ -60,7 +61,6 @@ public class Employe : MonoBehaviour {
 		if (boss == null)
 		{
 			boss = GameObject.FindGameObjectWithTag("Boss");
-
 			//chill = new List<GameObject>();
             emptyChill = new List<GameObject>();
 			Repos[] chills = floor.GetComponentsInChildren<Repos>();
@@ -96,6 +96,7 @@ public class Employe : MonoBehaviour {
 	{
         Vector3 distance = boss.transform.position - this.transform.position;
 
+        //if (boss == null) print("patate");
 
         if (distance.magnitude < 15 && !isAlreadyInRange) // si il vient d'entrer dans le champ de vision du boss
         {
@@ -172,15 +173,31 @@ public class Employe : MonoBehaviour {
     }
 
 
+    void OnMouseDown() 
+    {
+        //GameObject camera = GameObject.Find("Main Camera");
+       // GameObject boss = GameObject.FindGameObjectWithTag("Boss");
+       //oss.getmoveLocked = true;
+        //camera.GetComponent<CameraController>().FollowEmployee(this.gameObject, 10000);
+        employeProfile.GetComponent<employeeID>().setJProfile(0,this.gameObject);
+    }
+
+
     public void emitActivitySign()
     {
         //print("emitactivity");
         GameObject target = tMemory.GetItem<GameObject>("myTarget");
-        if (target == null) print("TARGET NULL MAYDAY MAYDAY");
-        if (target.name == null) print("TARGET NAME NULL MAYDAY MAYDAY");
+        if (target == null) { 
+            //print("TARGET NULL MAYDAY MAYDAY");
+            return; 
+        }
         if (tMemory.GetItem<bool>("suicidaire"))
         {
             SignEmitter.Create(this.transform.position, SignType.Death);
+        }
+        else if (tMemory.GetItem<bool>("wander"))
+        {
+                SignEmitter.Create(this.transform.position, SignType.Cellphone);
         }
         else if (tMemory.GetItem<bool>("enDeplacement"))
         {

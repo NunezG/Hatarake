@@ -16,8 +16,8 @@ public class MusicManager : MonoBehaviour {
 		mainBG = transform.FindChild ("mainBackground").GetComponent<AudioSource> ();
 
 		// triggering BG music
-		ambiance.Play ();
-		mainBG.Play ();
+		//ambiance.Play ();
+		//mainBG.Play ();
 
 		// triggering tension layers so they are in synch
 		for (int i = 0 ; i < tensionsLayers.Length ; i++)

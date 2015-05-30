@@ -7,8 +7,8 @@ using System.Collections.Generic;
 public class EmployeeData {
 
 	public float vitesseDemotivation;
-	private float maxVitesseDemotivation = 1;
-	private float minVitesseDemotivation = 0.2f;
+	public float maxVitesseDemotivation = 1;
+	public float minVitesseDemotivation = 0.2f;
 
 	public float effetRepos;
 	private float maxEffetRepos = 1 ;
@@ -118,7 +118,6 @@ public class EmployeeData {
 		topColor = EditorGUIUtility.HSVToRGB(Random.value, 1.0f, 1.0f);
 
 		backColor = EditorGUIUtility.HSVToRGB(Random.value, 0.4f, 1.0f);
-
 
 		//On met la motiv' à une valeur aléatoire en début de jeu !
         motivation = Random.Range(0, motivationMax);

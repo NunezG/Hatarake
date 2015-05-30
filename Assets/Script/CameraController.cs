@@ -134,6 +134,13 @@ public class CameraController : MonoBehaviour {
 		fixedCamera = false;
 	}
 
+    public void BackToTheBoss()
+    {
+        focusTimer = 100.0f;
+        target = null;
+        onOtherTarget = false;
+        fixedCamera = false;
+    }
 
  }
 

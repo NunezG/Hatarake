@@ -38,7 +38,7 @@ public class work : RAINAction
 				return ActionResult.SUCCESS;
 			}
 
-			GameManager.instance.objectiveCompletion += Time.deltaTime * ai.Body.GetComponent<Employe> ().data.vitesseTravail;
+            GameManager.instance.employeeWork( Time.deltaTime , ai.Body.GetComponent<Employe>().data.vitesseTravail );
 			//Continue a travailler
 			return ActionResult.RUNNING;
 		} else {

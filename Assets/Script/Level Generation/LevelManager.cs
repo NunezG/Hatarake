@@ -8,9 +8,8 @@ public class LevelManager : MonoBehaviour {
 	
 	private List<Office> officeFloors = new List<Office>();
 
-    public int nbCoffeeRooms, nbBathRooms, nbBoxes;
+    public int nbCoffeeRooms, nbBathRooms, nbBoxes,nbFloors;
 	public void BeginGame () {
-        int nbFloors = 3;
         for (int i = 0; i < nbFloors; i++) {
             Office officeInstance = Instantiate(officePrefab) as Office;
             officeInstance.name = "Office floor n" + i;
@@ -22,6 +21,14 @@ public class LevelManager : MonoBehaviour {
         }
 
 	}
+
+    public void addFloor()
+    {
+        Office officeInstance = Instantiate(officePrefab) as Office;
+        officeInstance.name = "Office floor n" + officeFloors.Count;
+        officeInstance.init(officeFloors.Count, 0, nbCoffeeRooms, nbBathRooms, nbBoxes + 6);
+        officeFloors.Add(officeInstance);
+    }
 	
 	private void RestartGame () {
         for (int i = 0; i < officeFloors.Count;i++ )

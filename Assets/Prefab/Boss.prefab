@@ -732,7 +732,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 08e66de9d7ec5b64cb85ca6b21f75b9d, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: .389999986
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -887,6 +887,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed70688bd36709842a1940d2e5fb59bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveLocked: 0
+  hatarakeLocked: 0
   jaugeEngueulageMax: 15
   vitesseJauge: 2
 --- !u!114 &11440450
