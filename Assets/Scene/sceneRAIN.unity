@@ -825,6 +825,10 @@ MonoBehaviour:
   profile: 0
   waitingForObjectiveCompletion: 0
   hatarakeTime: 0
+  nbEmployeeToHire: 1
+  nbEmployeeLeftToHire: 0
+  workingIsActuallyUsefull: 1
+  tutoHiringBool: 0
 --- !u!114 &268217656
 MonoBehaviour:
   m_ObjectHideFlags: 0

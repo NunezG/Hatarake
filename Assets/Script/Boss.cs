@@ -16,11 +16,16 @@ public class Boss : MonoBehaviour {
 	float vitesseDep;
     public bool moveLocked ;
     public bool hatarakeLocked ;
+    public int yellingO_Meter = 0;
+
+    public int maxYellingO_Meter = 50;
+    public int gainByBubble = 2;
+    public int maxLossByScream = 10;
 	//GameObject[] boxies;
 
 	//float jaugeEngueulage; //se remplit quand on appuie sur le boss.
 
-  public  float jaugeEngueulageMax = 15.0f; //se remplit quand on appuie sur le boss.
+    public  float jaugeEngueulageMax = 15.0f; //se remplit quand on appuie sur le boss.
 
     public float vitesseJauge = 2.0f; //se remplit quand on appuie sur le boss.
 
@@ -62,7 +67,13 @@ public class Boss : MonoBehaviour {
         //navComponent = this.transform.GetComponent <NavMeshAgent>();
 
 	}
-	
+
+    public void addBubble()
+    {
+        yellingO_Meter = yellingO_Meter + gainByBubble;
+        if (yellingO_Meter > maxYellingO_Meter) yellingO_Meter = maxYellingO_Meter;
+    }
+
 	// Update is called once per frame
 	void Update () {
 
@@ -117,11 +128,13 @@ public class Boss : MonoBehaviour {
         float pos=0;
         while (charge)
         {
-            pos = Mathf.Lerp(actionArea.localScale.x, jaugeEngueulageMax, vitesseJauge * Time.deltaTime);
+            pos = Mathf.Lerp(actionArea.localScale.x, jaugeEngueulageMax * (Mathf.Min(maxLossByScream, yellingO_Meter) / maxLossByScream), vitesseJauge * Time.deltaTime);
             actionArea.localScale = new Vector3(pos, actionArea.localScale.y, pos);
 
             yield return null;
         }
+
+        yellingO_Meter = (int)(yellingO_Meter - (pos / jaugeEngueulageMax) * maxLossByScream);
         //print("HATARAKE!!!!!!!!!!!!!!!!! ");
         Sign.Create(pos,this.transform.position,SignType.Hatarake);
         if (pos > 7)

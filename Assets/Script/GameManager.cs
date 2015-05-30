@@ -21,6 +21,12 @@ public class GameManager : MonoBehaviour {
     public bool lookingForCoffee, lookingForElevator, telephoneIsRinging,
                 hiring, profile,waitingForObjectiveCompletion,hatarakeTime;//boolean pour tuto
 
+   public int nbEmployeeToHire = 1;
+   public int nbEmployeeLeftToHire;
+   bool hiringTime = false;
+
+   public bool workingIsActuallyUsefull = true;
+
 	//Awake is always called before any Start functions
 	void Awake()
 	{
@@ -66,11 +72,9 @@ public class GameManager : MonoBehaviour {
             victoryButton.GetComponentInChildren<Text>().text = "VICTORY ! \n We triumph once again : " + levelObjective*time +" funbucks obtained!";
             boss.GetComponent<Boss>().moveLocked = true;
             boss.GetComponent<Boss>().hatarakeLocked = true;
-            //print("Level finished in :" + time);
-            //print("YAAAAAAAAAAAAATTTTTTTAAAAAAAAAAAA");
-            levelObjective = 10000;
+            workingIsActuallyUsefull = false;
+            //levelObjective = 10000;
             objectiveCompletion=time = 0;
-
         }
         if (tutoIsOn)
         {
@@ -102,6 +106,19 @@ public class GameManager : MonoBehaviour {
                 }
             }
         }
+
+        if (hiringTime && !ongoingHiring && nbEmployeeLeftToHire!=0)
+        {
+            //nombre d'employe a embaucher
+            //temps à attendre entre chaque embauche
+            activateHiringRound();
+        }
+        else if (hiringTime && nbEmployeeLeftToHire == 0) // on a finit d'embaucher pour le nouvelle objectif
+        {
+            hiringTime = false;
+            workingIsActuallyUsefull = true;
+        }
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             print("space key was pressed");
@@ -125,8 +142,20 @@ public class GameManager : MonoBehaviour {
         canvaEmbauche.GetComponent<employeeID>().setJProfile(2, tempHiringBoxiesBuffer[2]);
     }
 
+    public void employeeWork(float deltaTime, float workSpeed)
+    {
+        if(workingIsActuallyUsefull)
+            objectiveCompletion = objectiveCompletion + (deltaTime * workSpeed); 
+    }
+
+    public bool tutoHiringBool = false;
     public void terminateHiringRound(int j)
     {
+        if (!tutoHiringBool)
+        {
+            tutoHiringBool = true;
+
+        }
         canvaEmbauche.GetComponent<employeeID>().nullifyAllProfile(); // get rid of all the profile
         GameObject boxieToHire = tempHiringBoxiesBuffer[j];
         for (int i = 0; i < tempHiringBoxiesBuffer.Length; i++)
@@ -143,6 +172,7 @@ public class GameManager : MonoBehaviour {
         ongoingHiring = false;
         boss.GetComponent<Boss>().moveLocked = false;
         boss.GetComponent<Boss>().hatarakeLocked = false;
+        nbEmployeeLeftToHire--;
     }
 
     public void nextObjective()
@@ -157,6 +187,9 @@ public class GameManager : MonoBehaviour {
             objectiveCompletion = 0;
             time = 0;
         }
+        hiringTime = true;
+        nbEmployeeToHire++;
+        nbEmployeeLeftToHire = nbEmployeeToHire;
 
     }
 
@@ -235,7 +268,7 @@ public class GameManager : MonoBehaviour {
                 tutoButton.SetActive(true);
                 tutoButton.GetComponentInChildren<Text>().text = "Va cliquer profil";
             }
-            else if (tutoStep == 10)//on vient de cliquer sur le panneau va cliquer profil
+            else if (tutoStep == 10)//on vient de cliquer sur le panneau va cliquer profil, il faut qu'on aille cliquer sur un profil
             {
                 tutoStep++;
                 boss.GetComponent<Boss>().moveLocked = false;
@@ -263,13 +296,6 @@ public class GameManager : MonoBehaviour {
             }
             else if (tutoStep == 14)//on vient de gueuler sur quelqu'un, fin du tuto
             {
-                /*
-                tutoIsOn = false;
-                boss.GetComponent<Boss>().moveLocked = false;
-                boss.GetComponent<Boss>().hatarakeLocked = false;
-                tutoButton.SetActive(false);*/
-
-
                 tutoStep++;
                 boss.GetComponent<Boss>().moveLocked = true;
                 tutoButton.SetActive(true);

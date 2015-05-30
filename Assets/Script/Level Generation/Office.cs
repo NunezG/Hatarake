@@ -95,9 +95,9 @@ public class Office : MonoBehaviour
         GameObject newBackground = Instantiate(backgroundPrefab) as GameObject;
         newBackground.name = "Background floor" + floor;
         newBackground.transform.parent = transform;
-        newBackground.transform.localPosition = new Vector3(floor * 20+4, -1.0f, 4);
+        newBackground.transform.localPosition = new Vector3(4, -1.0f, 4);
 
-
+        this.gameObject.transform.position=new Vector3(200*floor,0,0);
         this.transform.localScale = new Vector3(10, 10, 10);
     }
 
@@ -353,13 +353,13 @@ public class Office : MonoBehaviour
     {
         GameObject newCell = Instantiate(floorPrefab) as GameObject;
         newCell.transform.parent = transform;
-        newCell.transform.localPosition = new Vector3(x + floor * 20, 0f, z);
+        newCell.transform.localPosition = new Vector3(x , 0f, z);
         if (z == 0 && (x == 2 || x == 6))
         {
             GameObject newNorthWindow = Instantiate(windowPrefab) as GameObject;
             newNorthWindow.name = "NorthWindow " + x + ", " + z;
             newNorthWindow.transform.parent = transform;
-            newNorthWindow.transform.Translate(new Vector3(x + floor * 20, 0f, z));
+            newNorthWindow.transform.Translate(new Vector3(x , 0f, z));
             obstacles.Add(newNorthWindow);
         }
         if (z == 8 && (x == 2 || x == 6))
@@ -368,7 +368,7 @@ public class Office : MonoBehaviour
             newSouthWindow.name = "SouthWindow " + x + ", " + z;
             newSouthWindow.transform.parent = transform;
 
-            newSouthWindow.transform.Translate(new Vector3(x + floor * 20, 0f, z));
+            newSouthWindow.transform.Translate(new Vector3(x , 0f, z));
             //------------------------
             newSouthWindow.transform.Rotate(0, 180, 0);
             //-------------------
@@ -381,7 +381,7 @@ public class Office : MonoBehaviour
             newWestWindow.name = "WestWindow " + x + ", " + z;
             newWestWindow.transform.parent = transform;
 
-            newWestWindow.transform.Translate(new Vector3(x + floor * 20, 0f, z));
+            newWestWindow.transform.Translate(new Vector3(x , 0f, z));
             //------------------------
             newWestWindow.transform.Rotate(0, 90, 0);
             //-------------------
@@ -393,7 +393,7 @@ public class Office : MonoBehaviour
             newEastWindow.name = "EastWindow " + x + ", " + z;
             newEastWindow.transform.parent = transform;
 
-            newEastWindow.transform.Translate(new Vector3(x + floor * 20, 0f, z));
+            newEastWindow.transform.Translate(new Vector3(x , 0f, z));
             //------------------------
             newEastWindow.transform.Rotate(0, -90, 0);
             //-------------------
@@ -436,7 +436,7 @@ public class Office : MonoBehaviour
             GameObject newNorthWall = Instantiate(WallPrefab) as GameObject;
             newNorthWall.name = "NorthWall " + x + ", " + z;
             newNorthWall.transform.parent = transform;
-            newNorthWall.transform.Translate(new Vector3(x + floor * 20, 0f, z));
+            newNorthWall.transform.Translate(new Vector3(x , 0f, z));
 
             obstacles.Add(newNorthWall);
         }
@@ -445,7 +445,7 @@ public class Office : MonoBehaviour
             GameObject newNorthDoor = Instantiate(DoorPrefab) as GameObject;
             newNorthDoor.name = "NorthDoor " + x + ", " + z;
             newNorthDoor.transform.parent = transform;
-            newNorthDoor.transform.Translate(new Vector3(x + floor * 20, 0f, z));
+            newNorthDoor.transform.Translate(new Vector3(x , 0f, z));
 
             obstacles.Add(newNorthDoor);
         }
@@ -455,7 +455,7 @@ public class Office : MonoBehaviour
             newSouthWall.name = "SouthWall " + x + ", " + z;
             newSouthWall.transform.parent = transform;
 
-            newSouthWall.transform.Translate(new Vector3(x + floor * 20, 0f, z));
+            newSouthWall.transform.Translate(new Vector3(x, 0f, z));
             //------------------------
             newSouthWall.transform.Rotate(0, 180, 0);
             //-------------------
@@ -466,7 +466,7 @@ public class Office : MonoBehaviour
             GameObject newSouthDoor = Instantiate(DoorPrefab) as GameObject;
             newSouthDoor.name = "SouthDoor " + x + ", " + z;
             newSouthDoor.transform.parent = transform;
-            newSouthDoor.transform.Translate(new Vector3(x + floor * 20, 0f, z));
+            newSouthDoor.transform.Translate(new Vector3(x , 0f, z));
             //------------------------
             newSouthDoor.transform.Rotate(0, 180, 0);
             //-------------------
@@ -479,7 +479,7 @@ public class Office : MonoBehaviour
             newEastWall.name = "EastWall " + x + ", " + z;
             newEastWall.transform.parent = transform;
 
-            newEastWall.transform.Translate(new Vector3(x + floor * 20, 0f, z));
+            newEastWall.transform.Translate(new Vector3(x , 0f, z));
             //------------------------
             newEastWall.transform.Rotate(0, -90, 0);
             //-------------------
@@ -490,7 +490,7 @@ public class Office : MonoBehaviour
             GameObject newEastDoor = Instantiate(DoorPrefab) as GameObject;
             newEastDoor.name = "EastDoor " + x + ", " + z;
             newEastDoor.transform.parent = transform;
-            newEastDoor.transform.Translate(new Vector3(x + floor * 20, 0f, z));
+            newEastDoor.transform.Translate(new Vector3(x , 0f, z));
             //------------------------
             newEastDoor.transform.Rotate(0, -90, 0);
             //-------------------
@@ -501,7 +501,7 @@ public class Office : MonoBehaviour
             GameObject newWestWall = Instantiate(WallPrefab) as GameObject;
             newWestWall.name = "WestWall " + x + ", " + z;
             newWestWall.transform.parent = transform;
-            newWestWall.transform.Translate(new Vector3(x + floor * 20, 0f, z));
+            newWestWall.transform.Translate(new Vector3(x , 0f, z));
             //------------------------
             newWestWall.transform.Rotate(0, 90, 0);
             //-------------------
@@ -512,7 +512,7 @@ public class Office : MonoBehaviour
             GameObject newWestDoor = Instantiate(DoorPrefab) as GameObject;
             newWestDoor.name = "WestDoor " + x + ", " + z;
             newWestDoor.transform.parent = transform;
-            newWestDoor.transform.Translate(new Vector3(x + floor * 20, 0f, z));
+            newWestDoor.transform.Translate(new Vector3(x , 0f, z));
 
             //------------------------
             newWestDoor.transform.Rotate(0, 90, 0);
@@ -576,7 +576,7 @@ public class Office : MonoBehaviour
                     break;
             }
             newFurniture.transform.parent = transform;
-            newFurniture.transform.Translate(new Vector3(x + floor * 20, 0f, z));
+            newFurniture.transform.Translate(new Vector3(x , 0f, z));
 
             //------------------------
             newFurniture.transform.Rotate(0, furniture.orientationToDegree(), furniture.flipToDegree());

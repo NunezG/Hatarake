@@ -12,7 +12,7 @@ public class SignEmitter : MonoBehaviour {
     public SignType type;
     SpriteRenderer spriteRenderer;
     public float  alpha;
-
+    public GameObject boss;
     public static SignEmitter Create(Vector3 position, SignType type)
     {
         Vector3 pos = new Vector3(position.x, position.y + 10, position.z);
@@ -28,8 +28,8 @@ public class SignEmitter : MonoBehaviour {
     }
 	// Use this for initialization
 	void Start () {
-        
 
+        boss = GameObject.FindGameObjectWithTag("Boss");
 	    switch (type)
         {
             case SignType.Hatarake:
@@ -77,10 +77,13 @@ public class SignEmitter : MonoBehaviour {
 	void Update () {
 
         if (!partiSys.IsAlive())
+        {
+            boss.GetComponent<Boss>().addBubble();
             Destroy(this.gameObject);
+        }
 
 		if (partiSys.time > 0.6f) {
-			transform.position = Vector3.Lerp(transform.position, GameObject.FindGameObjectWithTag("Boss").transform.position, 0.2f);
+			transform.position = Vector3.Lerp(transform.position, boss.transform.position, 0.2f);
 		}
 
 	}
