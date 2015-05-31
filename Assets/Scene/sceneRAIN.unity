@@ -730,7 +730,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 268217652}
-  - 114: {fileID: 268217653}
   - 114: {fileID: 268217654}
   - 114: {fileID: 268217651}
   - 114: {fileID: 268217655}
@@ -769,19 +768,6 @@ Transform:
   - {fileID: 353888188}
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &268217653
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 268217650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec5193130a7d18a459a7ca91723cab09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  navMesh: {fileID: 167968, guid: acad63f05df6114489989865ae6e7f76, type: 2}
-  isNavMeshDone: 0
 --- !u!114 &268217654
 MonoBehaviour:
   m_ObjectHideFlags: 0
