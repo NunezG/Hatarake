@@ -813,7 +813,7 @@ MonoBehaviour:
   tutoButton: {fileID: 34613726}
   victoryButton: {fileID: 2111000940}
   tutoStep: 0
-  levelObjective: 2
+  levelObjective: 20000
   objectiveCompletion: 0
   time: 0
   tutoIsOn: 0
@@ -842,6 +842,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   progressForeground: {fileID: 2800000, guid: 8aa471a2cbf9a724b9e2514608cf558e, type: 3}
   waitScreen: {fileID: 2800000, guid: 171839a38080c4a4b8e9b0e5a10c3b85, type: 3}
+  boss: {fileID: 0}
 --- !u!1 &270155828
 GameObject:
   m_ObjectHideFlags: 0
@@ -1166,11 +1167,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 268217652}
   m_RootOrder: 0
---- !u!1 &365779999
+--- !u!1 &365779999 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 116076, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
   m_PrefabInternal: {fileID: 458650909}
---- !u!114 &365780001
+--- !u!114 &365780001 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11468108, guid: 878ddc77cf27cf14b836dfc9fdc06496,
     type: 2}
@@ -1723,7 +1724,7 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
   m_IsPrefabParent: 0
---- !u!224 &458650910
+--- !u!224 &458650910 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22497468, guid: 878ddc77cf27cf14b836dfc9fdc06496,
     type: 2}
@@ -2989,7 +2990,7 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1217861429}
---- !u!1 &1228620638
+--- !u!1 &1228620638 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 163756, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
   m_PrefabInternal: {fileID: 458650909}
@@ -3834,11 +3835,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: .5, y: .5}
---- !u!1 &1568487262
+--- !u!1 &1568487262 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 116076, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
   m_PrefabInternal: {fileID: 722902175}
---- !u!114 &1568487264
+--- !u!114 &1568487264 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11468108, guid: 878ddc77cf27cf14b836dfc9fdc06496,
     type: 2}
@@ -4293,7 +4294,7 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1791623073}
---- !u!114 &1791663992
+--- !u!114 &1791663992 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11498816, guid: 878ddc77cf27cf14b836dfc9fdc06496,
     type: 2}
