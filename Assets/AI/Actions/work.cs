@@ -28,7 +28,6 @@ public class work : RAINAction
 
     public override ActionResult Execute(RAIN.Core.AI ai)
     {
-		if (!target.GetComponent<Box>().broken) {
 			//Reduction de la motivation
 			motivation = motivation - Time.deltaTime * ai.Body.GetComponent<Employe> ().data.vitesseDemotivation;
    		
@@ -41,10 +40,6 @@ public class work : RAINAction
             GameManager.instance.employeeWork( Time.deltaTime , ai.Body.GetComponent<Employe>().data.vitesseTravail );
 			//Continue a travailler
 			return ActionResult.RUNNING;
-		} else {
-			motivation = motivation - Time.deltaTime * ai.Body.GetComponent<Employe> ().data.vitesseDemotivation * 20;
-			return ActionResult.SUCCESS;
-		}
     }
 
     public override void Stop(RAIN.Core.AI ai)

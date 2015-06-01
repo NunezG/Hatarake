@@ -10,6 +10,7 @@ public class chill : RAINAction
 {
     float motivation;
     float fatigue;
+    GameObject target;
 
     public override void Start(RAIN.Core.AI ai)
     {
@@ -19,30 +20,44 @@ public class chill : RAINAction
 		//Set de bool, sert a rien pour l'instant
         ai.WorkingMemory.SetItem("enDeplacement", false);
         ai.Body.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;
+        target = ai.WorkingMemory.GetItem<GameObject>("myTarget");
 
         base.Start(ai);
     }
 
     public override ActionResult Execute(RAIN.Core.AI ai)
-    {      
-			//Reduction de la fatigue si existante
-            if (fatigue  > 0)
-                fatigue = fatigue - Time.deltaTime*(int)ai.Body.gameObject.GetComponent<Employe>().data.effetRepos;
-          
-			//Augmente la motivation
-           motivation = motivation + Time.deltaTime*(int)ai.Body.gameObject.GetComponent<Employe>().data.effetRepos;
-           
-			//Si motivation Max, cesse de glander
-           if (motivation >= (int)ai.Body.gameObject.GetComponent<Employe>().data.motivationMax)
+    {
+
+        //Si l'objet n'est pas cassé
+        if (target.GetComponent<BreakableFurniture>()==null || !target.GetComponent<BreakableFurniture>().broken)
+        {
+            //Reduction de la fatigue si existante
+            if (fatigue > 0)
+                fatigue = fatigue - Time.deltaTime * (int)ai.Body.gameObject.GetComponent<Employe>().data.effetRepos;
+
+            //Augmente la motivation
+            motivation = motivation + Time.deltaTime * (int)ai.Body.gameObject.GetComponent<Employe>().data.effetRepos;
+
+            //Si motivation Max, cesse de glander
+            if (motivation >= (int)ai.Body.gameObject.GetComponent<Employe>().data.motivationMax)
             {
-			ai.WorkingMemory.SetItem<bool>("wander", false);
+                ai.WorkingMemory.SetItem<bool>("wander", false);
                 ai.WorkingMemory.SetItem("auTravail", true);
-				//Libere la place (encore en test)
-                 return ActionResult.SUCCESS;
+                //Libere la place (encore en test)
+                return ActionResult.SUCCESS;
             }
 
-			//Continue a glander
+            //Continue a glander
             return ActionResult.RUNNING;
+        }
+
+        else
+        {
+            //Motivation reduite si machine cassee (Fatigue augmente?)
+            motivation = motivation - Time.deltaTime * ai.Body.GetComponent<Employe>().data.vitesseDemotivation * 20;
+            return ActionResult.SUCCESS;
+        }
+
     }
 
     public override void Stop(RAIN.Core.AI ai)
@@ -53,9 +68,9 @@ public class chill : RAINAction
         //ai.WorkingMemory.SetItem("motivation", motivation);
         ai.Body.gameObject.GetComponent<Employe>().data.motivation = motivation;
 
-        if (!ai.WorkingMemory.GetItem<GameObject>("myTarget").CompareTag("Box"))
+        if (!target.CompareTag("Box"))
             // ai.WorkingMemory.GetItem<GameObject>("myTarget").GetComponent<Repos>().occupe = false;
-            Employe.emptyChill.Add(ai.WorkingMemory.GetItem<GameObject>("myTarget"));
+            Employe.emptyChill.Add(target);
 
         ai.Body.GetComponent<Rigidbody>().constraints =RigidbodyConstraints.FreezePositionY ;
 
