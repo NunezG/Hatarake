@@ -41,6 +41,7 @@ GameObject:
   - 4: {fileID: 471422}
   - 33: {fileID: 3364296}
   - 65: {fileID: 6553650}
+  - 114: {fileID: 11476776}
   m_Layer: 0
   m_Name: TvCollider
   m_TagString: Untagged
@@ -378,6 +379,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   occupe: 0
+--- !u!114 &11476776
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 129664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9781fc0abc9976e41abed21fb8a6040a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  broken: 0
+  resistance: 52
 --- !u!212 &21206156
 SpriteRenderer:
   m_ObjectHideFlags: 1

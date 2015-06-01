@@ -95,13 +95,14 @@ public class Boss : MonoBehaviour {
                     tMemory.SetItem("enDeplacement", true);
                     tMemory.SetItem("target", pos);
                 }
-                else if (colliders.Length > 0 && colliders[0].GetComponent<BreakableFurniture>() != null)
+                else if (colliders.Length > 0 && colliders[0].GetComponent<BreakableFurniture>() != null && (transform.position - colliders[0].transform.position).magnitude < 5)
                     {
-                        tMemory.SetItem("sabotage", true);
-                        tMemory.SetItem("enDeplacement", true);
-                        tMemory.SetItem<GameObject>("target", colliders[0].gameObject);
-                    }
-                
+                        colliders[0].gameObject.GetComponentInChildren<BreakableFurniture>().Hit(50.0f);
+
+                       // tMemory.SetItem("sabotage", true);
+                      //  tMemory.SetItem("enDeplacement", true);
+                      //  tMemory.SetItem<GameObject>("target", colliders[0].gameObject);
+                    } 
             }
         }
 	}
