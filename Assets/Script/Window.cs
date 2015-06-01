@@ -8,7 +8,7 @@ public class Window : MonoBehaviour
 {
 
 
-    public bool occupe = false;
+    //public bool occupe = false;
 
     // Use this for initialization
     void Start()

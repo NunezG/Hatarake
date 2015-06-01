@@ -43,25 +43,26 @@ public class Employe : MonoBehaviour {
 
          
 	}
-
-	// Use this for initialization
-	void Start () 
-	{
+    // Use this for initialization
+    void Start()
+    {
         isAlreadyInRange = false;
         suicideMemory = tMemory.GetItem<bool>("suicidaire");
         moveMemory = tMemory.GetItem<bool>("enDeplacement");
-        workingMemory=tMemory.GetItem<bool>("auTravail");
+        workingMemory = tMemory.GetItem<bool>("auTravail");
 
         employeProfile = GameObject.Find("EmployeeProfile");
 
-        //setActiveSound(false, false, false);
+        data.InitializeEmployee();
+    }
 
-		data.InitializeEmployee ();
 
+	// mets les repères pour l'employé
+	public void SetEmployeeLocations () 
+	{
 		if (boss == null)
 		{
 			boss = GameObject.FindGameObjectWithTag("Boss");
-			//chill = new List<GameObject>();
             emptyChill = new List<GameObject>();
 			Repos[] chills = floor.GetComponentsInChildren<Repos>();
 			foreach (Repos chi in chills)
@@ -77,7 +78,6 @@ public class Employe : MonoBehaviour {
 				emptyChill.Add(window.gameObject);
             }
 			
-			//workingHelp = new List<GameObject>();
             emptyWorkingHelp = new List<GameObject>();
 			Box[] boxes = floor.GetComponentsInChildren<Box>();
 			foreach (Box box in boxes)
@@ -87,9 +87,7 @@ public class Employe : MonoBehaviour {
                     emptyWorkingHelp.Add(box.gameObject);
 				}
 			}
-		}
-
-      	
+		} 	
 	}
 
 	void Update () 
