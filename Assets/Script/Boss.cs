@@ -84,8 +84,10 @@ public class Boss : MonoBehaviour {
             pos.y = 2;
             //navComponent.SetDestination (pos);
             //colliders = Physics.OverlapSphere(pos, 1f /* Radius */);
+           
+            Collider[] colliders = Physics.OverlapSphere(pos, 1f /* Radius */);
 
-            if (pos != null && pos != transform.position)
+            if (!(colliders.Length > 0 && colliders[0].tag == "Employe") && pos != null && pos != transform.position)
             {
                 if (tNav.OnGraph(pos, 0))
                 {
@@ -93,17 +95,13 @@ public class Boss : MonoBehaviour {
                     tMemory.SetItem("enDeplacement", true);
                     tMemory.SetItem("target", pos);
                 }
-                else
-                {
-                    Collider[] colliders = Physics.OverlapSphere(pos, 1f /* Radius */);
-
-                    if (colliders != null && colliders.Length > 0 && colliders[0].GetComponent<BreakableFurniture>() != null)
+                else if (colliders.Length > 0 && colliders[0].GetComponent<BreakableFurniture>() != null)
                     {
                         tMemory.SetItem("sabotage", true);
                         tMemory.SetItem("enDeplacement", true);
                         tMemory.SetItem<GameObject>("target", colliders[0].gameObject);
                     }
-                }
+                
             }
         }
 	}
