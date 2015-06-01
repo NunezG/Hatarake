@@ -273,7 +273,8 @@ public class Employe : MonoBehaviour {
 		if (data.fatigue < data.fatigueMAX) {
 			//suicidaire = true;	
 			tMemory.SetItem<bool>("hatarake", true);
-			tMemory.SetItem<bool>("auTravail", true);
+            tMemory.SetItem<bool>("auTravail", true);
+            tMemory.SetItem<bool>("wander", false);
 
 		}else tMemory.SetItem<bool>("suicidaire",true);
 		

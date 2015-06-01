@@ -813,7 +813,7 @@ MonoBehaviour:
   tutoButton: {fileID: 34613726}
   victoryButton: {fileID: 2111000940}
   tutoStep: 0
-  levelObjective: 2
+  levelObjective: 1000
   objectiveCompletion: 0
   time: 0
   tutoIsOn: 0
@@ -842,6 +842,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   progressForeground: {fileID: 2800000, guid: 8aa471a2cbf9a724b9e2514608cf558e, type: 3}
   waitScreen: {fileID: 2800000, guid: 171839a38080c4a4b8e9b0e5a10c3b85, type: 3}
+  boss: {fileID: 0}
 --- !u!1 &270155828
 GameObject:
   m_ObjectHideFlags: 0

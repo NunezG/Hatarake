@@ -717,9 +717,9 @@ MonoBehaviour:
   floor: {fileID: 0}
   data:
     vitesseDemotivation: 0
-    maxVitesseDemotivation: 0
-    minVitesseDemotivation: .200000003
-    effetRepos: 10
+    maxVitesseDemotivation: 50
+    minVitesseDemotivation: 2
+    effetRepos: 60
     firstName: 
     surname: 
     isMale: 0
@@ -731,9 +731,9 @@ MonoBehaviour:
     hobbies: []
     fatigue: 0
     motivation: 0
-    fatigueMAX: 100
+    fatigueMAX: 700
     motivationMax: 500
-    effetEngueulement: 40
+    effetEngueulement: 100
     vitesseTravail: .5
   isAlreadyInRange: 0
   moveMemory: 0

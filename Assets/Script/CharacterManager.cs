@@ -72,6 +72,23 @@ public class CharacterManager : MonoBehaviour {
 		}				
 	}
 
+
+    public int GetNumberOfWorkingBoxies()
+    {
+        int nbWorkingBoxies = 0;
+        foreach (GameObject boxie in boxies)
+        {
+            if (boxie.GetComponent<Employe>().tMemory.GetItem<bool>("auTravail") && !boxie.GetComponent<Employe>().tMemory.GetItem<bool>("enDeplacement"))
+                nbWorkingBoxies++;
+        }
+        return nbWorkingBoxies;
+    }
+
+    public int GetTotalNumberOfBoxies()
+    {
+        return boxies.Count;
+    }
+
     public void AddBoxieFromeHire(GameObject boxie)
     {
         int floorNb = 0;
@@ -125,7 +142,7 @@ public class CharacterManager : MonoBehaviour {
         
         //boxie.transform.GetChild(1).GetComponent<SpriteRenderer>().color = boxie.GetComponent<Employe>().data.topColor;
 
-        boxies.Add(boxie);
+        //boxies.Add(boxie);
         return boxie;
     }
 
