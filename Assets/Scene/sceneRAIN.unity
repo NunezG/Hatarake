@@ -730,7 +730,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 268217652}
-  - 114: {fileID: 268217653}
   - 114: {fileID: 268217654}
   - 114: {fileID: 268217651}
   - 114: {fileID: 268217655}
@@ -769,19 +768,6 @@ Transform:
   - {fileID: 353888188}
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &268217653
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 268217650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec5193130a7d18a459a7ca91723cab09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  navMesh: {fileID: 167968, guid: acad63f05df6114489989865ae6e7f76, type: 2}
-  isNavMeshDone: 0
 --- !u!114 &268217654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -813,7 +799,7 @@ MonoBehaviour:
   tutoButton: {fileID: 34613726}
   victoryButton: {fileID: 2111000940}
   tutoStep: 0
-  levelObjective: 1000
+  levelObjective: 20000
   objectiveCompletion: 0
   time: 0
   tutoIsOn: 0
@@ -1167,11 +1153,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 268217652}
   m_RootOrder: 0
---- !u!1 &365779999
+--- !u!1 &365779999 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 116076, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
   m_PrefabInternal: {fileID: 458650909}
---- !u!114 &365780001
+--- !u!114 &365780001 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11468108, guid: 878ddc77cf27cf14b836dfc9fdc06496,
     type: 2}
@@ -1724,7 +1710,7 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
   m_IsPrefabParent: 0
---- !u!224 &458650910
+--- !u!224 &458650910 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22497468, guid: 878ddc77cf27cf14b836dfc9fdc06496,
     type: 2}
@@ -2990,7 +2976,7 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1217861429}
---- !u!1 &1228620638
+--- !u!1 &1228620638 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 163756, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
   m_PrefabInternal: {fileID: 458650909}
@@ -3835,11 +3821,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: .5, y: .5}
---- !u!1 &1568487262
+--- !u!1 &1568487262 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 116076, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
   m_PrefabInternal: {fileID: 722902175}
---- !u!114 &1568487264
+--- !u!114 &1568487264 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11468108, guid: 878ddc77cf27cf14b836dfc9fdc06496,
     type: 2}
@@ -4294,7 +4280,7 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1791623073}
---- !u!114 &1791663992
+--- !u!114 &1791663992 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11498816, guid: 878ddc77cf27cf14b836dfc9fdc06496,
     type: 2}

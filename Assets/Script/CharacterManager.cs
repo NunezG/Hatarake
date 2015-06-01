@@ -34,7 +34,7 @@ public class CharacterManager : MonoBehaviour {
 
         boss.transform.position = spawn.transform.position;
         boss.transform.Translate(0,boss.GetComponent<Collider>().bounds.extents.y,0);
-        this.gameObject.GetComponent<GameManager>().SetBoss(boss);
+        GameManager.instance.SetBoss(boss);
 
 		// create Player
 		for (int i = 0; i < nombreBoxies; i++) 

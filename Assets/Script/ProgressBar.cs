@@ -17,7 +17,7 @@ public class ProgressBar : MonoBehaviour {
     void OnGUI()
     {
 
-		if (!GameObject.Find ("GameManager").GetComponent<NavMesh> ().isNavMeshDone) {
+		if (!NavMesh.isNavMeshDone) {
 			GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), waitScreen);
 		}
         if (boss != null)

@@ -9,7 +9,7 @@ using RAIN.Motion;
 
 public class Boss : MonoBehaviour {
 
-    public GameObject gameManager;
+   // public GameObject gameManager;
     public bool tutoLock = false;
 
 	//Vector2 position; //peut utiliser son transform
@@ -40,8 +40,8 @@ public class Boss : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        gameManager = GameObject.Find("GameManager");
-        if (gameManager.GetComponent<GameManager>().tutoIsOn)
+       // gameManager = GameObject.Find("GameManager");
+        if (GameManager.instance.tutoIsOn)
         {
             moveLocked = hatarakeLocked = true ;
         }
@@ -77,45 +77,34 @@ public class Boss : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (Input.GetMouseButton(0) && !moveLocked)
-		{
-			//Vector3 pos;
+        if (Input.GetMouseButton(0) && !charge && !moveLocked)
+        {
+            pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            //pos.y = transform.position.y;
+            pos.y = 2;
+            //navComponent.SetDestination (pos);
+            //colliders = Physics.OverlapSphere(pos, 1f /* Radius */);
 
-           // Collider[] colliders;
-
-          if (!charge) 
+            if (pos != null && pos != transform.position)
             {
-
-                pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                //pos.y = transform.position.y;
-                pos.y = 2;
-                //navComponent.SetDestination (pos);
-                //colliders = Physics.OverlapSphere(pos, 1f /* Radius */);
-
-              if (pos != null && pos != transform.position && tNav.OnGraph(pos, 0))
-              {
+                if (tNav.OnGraph(pos, 0))
+                {
+                    tMemory.SetItem("sabotage", false);
                     tMemory.SetItem("enDeplacement", true);
                     tMemory.SetItem("target", pos);
-               }
+                }
+                else
+                {
+                    Collider[] colliders = Physics.OverlapSphere(pos, 1f /* Radius */);
+
+                    if (colliders != null && colliders.Length > 0 && colliders[0].GetComponent<BreakableFurniture>() != null)
+                    {
+                        tMemory.SetItem("sabotage", true);
+                        tMemory.SetItem("enDeplacement", true);
+                        tMemory.SetItem<GameObject>("target", colliders[0].gameObject);
+                    }
+                }
             }
-			
-
-		}
-
-        if (pos.x == transform.position.x && pos.z == transform.position.z)
-        {
-            tMemory.SetItem("enDeplacement", false);
-        }
-        if (tMemory.GetItem<bool>("enDeplacement"))
-        { 
-            //this.transform.Find("soundbossFootsteps").
-            this.transform.Find("soundbossFootsteps").gameObject.SetActive(true);
-            this.transform.Find("soundbossFootsteps").gameObject.GetComponent<AudioSource>().Play();
-        }
-        else
-        {
-            this.transform.Find("soundbossFootsteps").gameObject.GetComponent<AudioSource>().Stop();
-            this.transform.Find("soundbossFootsteps").gameObject.SetActive(false);
         }
 	}
 
@@ -169,7 +158,7 @@ public class Boss : MonoBehaviour {
         if (!tutoLock && employesEngueulable.Count > 0)
         {
             tutoLock = true;
-            gameManager.GetComponent<GameManager>().nextTutoStep();
+            GameManager.instance.nextTutoStep();
         }
 
         actionArea.GetComponent<jaugeEngueulage>().clearEmployesJauge();

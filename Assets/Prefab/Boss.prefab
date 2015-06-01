@@ -887,8 +887,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed70688bd36709842a1940d2e5fb59bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tutoLock: 0
   moveLocked: 0
   hatarakeLocked: 0
+  yellingO_Meter: 1
+  maxYellingO_Meter: 50
+  gainByBubble: 2
+  maxLossByScream: 10
   jaugeEngueulageMax: 15
   vitesseJauge: 2
 --- !u!114 &11440450
