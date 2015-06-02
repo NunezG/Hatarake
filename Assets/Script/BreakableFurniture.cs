@@ -3,46 +3,33 @@ using System.Collections;
 
 public class BreakableFurniture : MonoBehaviour {
     public bool broken = false;
-    public float resistance = Random.Range(50, 100);
-    private float tempBroken = 0;
-  //  public float timeBroken = Random.Range(5, 10);
-
-	// Use this for initialization
-	void Start () {
-	
+	private int resistance = 5;
+    private int damage = 0;
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 
-            tempBroken += Time.deltaTime;
+        if (damage == resistance) {
+			transform.parent.GetComponentInChildren<SpriteRenderer> ().color = new Color (1.0f, 0.0f, 0.0f);
+			broken = true;
+		}
 
-            if (tempBroken >= resistance / 2)
-            {
-                transform.parent.GetComponentInChildren<SpriteRenderer>().color = new Color(0.5f, 0.1f, 0.1f);
-            }
-
-            if (tempBroken >= resistance)
-            {
-                Break();
-            }
-        
+        else
+		{
+			transform.parent.GetComponentInChildren<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f);
+			broken = false;
+		}
 	}
 
-    public void Hit(float force)
+    public void Hit()
     {
-        tempBroken += force;
-        if (tempBroken >= resistance)
-        {
-            Break();
-        }
+		if(damage < 5)
+        	damage++;
     }
 
-
-    public void Break()
-    {
-        transform.parent.GetComponentInChildren<SpriteRenderer>().color = new Color(1.0f, 0.0f, 0.0f);
-        broken = true;
-    }
+	public void Repair()
+	{
+		damage = 0;
+	}
 
 }
