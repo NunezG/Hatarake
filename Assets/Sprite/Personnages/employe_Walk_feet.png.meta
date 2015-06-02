@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: e81f867e24df9a441bc5b07190443ce1
-timeCreated: 1433101620
+guid: d8f9ce5a963edb04b8d003d93a3e0322
+timeCreated: 1433264670
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: employee_top_Walk_0
-    21300002: employee_top_Walk_1
-    21300004: employee_top_Walk_2
-    21300006: employee_top_Walk_3
+    21300000: employe_Walk_feet_0
+    21300002: employe_Walk_feet_1
+    21300004: employe_Walk_feet_2
+    21300006: employe_Walk_feet_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -47,13 +47,13 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 128
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: employee_top_Walk_0
+    - name: employe_Walk_feet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -61,19 +61,9 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: employee_top_Walk_1
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 64
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: employee_top_Walk_2
+    - name: employe_Walk_feet_1
       rect:
         serializedVersion: 2
         x: 0
@@ -81,9 +71,19 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: employee_top_Walk_3
+    - name: employe_Walk_feet_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: employe_Walk_feet_3
       rect:
         serializedVersion: 2
         x: 64
@@ -91,7 +91,7 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
