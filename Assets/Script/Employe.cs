@@ -37,7 +37,7 @@ public class Employe : MonoBehaviour {
 
     //public AudioSource[] coffeeSound, facebookSound, workingSound;
 
-    public AudioSource coffeeSound,keyboardSound,photocopierSound,depressionSound,gamingSound,facebookSound,vendingMachineSound,suicideSoundMale,suicideSoundFemale;
+    public AudioSource coffeeSound,keyboardSound,photocopierSound,depressionSound,gamingSound,facebookSound,vendingMachineSound;
 
     public AudioSource[] engueulageSound;
 
@@ -345,13 +345,12 @@ public class Employe : MonoBehaviour {
         window.transform.Find("brokenWindow").gameObject.GetComponent<ParticleSystem>().Play();
 
 
-        if (data.isMale)
-            window.transform.Find("suicideMale").GetComponent<AudioSource>().Play();
-        else
-            window.transform.Find("suicideFemale").GetComponent<AudioSource>().Play();
+        window.GetComponent<Window>().playSuicide(data.isMale);
 
-		//Destroy (this.gameObject);
-        this.gameObject.SetActive(false);
+            //window.transform.Find("suicideFemale").GetComponent<AudioSource>().Play();
+
+            //Destroy (this.gameObject);
+            this.gameObject.SetActive(false);
 	}
 
 }

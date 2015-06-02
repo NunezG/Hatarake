@@ -58,7 +58,7 @@ GameObject:
   - 4: {fileID: 449978}
   - 33: {fileID: 3339258}
   - 65: {fileID: 6587460}
-  - 114: {fileID: 11457854}
+  - 114: {fileID: 11439444}
   m_Layer: 0
   m_Name: spawnBoss
   m_TagString: Untagged
@@ -155,7 +155,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &11457854
+--- !u!114 &11439444
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

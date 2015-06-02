@@ -114,13 +114,16 @@ public class CharacterManager : MonoBehaviour {
 
         boxie.GetComponent<Employe>().tMemory.SetItem("auTravail", true);
 
-        GameObject floor = GameObject.Find("Office floor n0");	
+        GameObject floor = GameObject.Find("Office floor n0");
+
+        boxie.GetComponent<Employe>().floor = floor;
+        boxie.GetComponent<Employe>().SetEmployeeLocations();
+
         Box[] boxes = floor.GetComponentsInChildren<Box>();
         foreach (Box box in boxes)
         {
             if (box.CompareTag("Box") && box.assigne == false)
             {
-                boxie.GetComponent<Employe>().floor = floor;
                 boxie.GetComponent<Employe>().setBox(box.gameObject);
                 boxie.GetComponent<Employe>().tMemory.SetItem("myTarget", box.gameObject);
                 boxie.GetComponent<Employe>().tMemory.SetItem("enDeplacement", true);

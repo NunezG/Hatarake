@@ -26,18 +26,26 @@ public class employeeID : MonoBehaviour
 
     private EmployeeData employeeInfos;
 
-    void Start()
+    void Awake()
     {
         int count = 0;
         sprites = new Sprite[][] { faces, hairs, eyes, noses, mouths, tops, bgs };
-        foreach (Transform transform in this.transform){
-            if(transform.gameObject.tag=="profile"){
+        foreach (Transform transform in this.transform)
+        {
+            if (transform.gameObject.tag == "profile")
+            {
                 count++;
             }
         }
+        //print("count : " + count);
         profileUpdated = new bool[count];
         currentEmployee = new GameObject[count];
         previousEmployee = new GameObject[count];
+
+    }
+
+    void Start()
+    {
 
 
     }
@@ -150,6 +158,7 @@ public class employeeID : MonoBehaviour
 
     public void setJProfile(int j,GameObject employee)
     {
+        //print("index : " + j);
         currentEmployee[j] = employee;
         //previousEmployee[j] = employee;
     }

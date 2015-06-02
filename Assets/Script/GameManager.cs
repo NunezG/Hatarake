@@ -348,6 +348,7 @@ public class GameManager : MonoBehaviour {
 		{
 			yield return new WaitForSeconds(1);
 		}
+        Destroy(this.GetComponent<AudioListener>());
 		gameObject.GetComponent<CharacterManager>().Spawn();
 	}
 
