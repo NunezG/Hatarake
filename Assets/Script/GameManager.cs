@@ -128,17 +128,19 @@ public class GameManager : MonoBehaviour {
 
     public void activateHiringRound()
     {
-
-        boss.GetComponent<Boss>().moveLocked = true;
-        boss.GetComponent<Boss>().hatarakeLocked = true;
-        ongoingHiring = true;
-        canvaEmbauche.SetActive(true);
-        tempHiringBoxiesBuffer[0] = this.GetComponent<CharacterManager>().GenerateOneBoxieForHire();
-        canvaEmbauche.GetComponent<employeeID>().setJProfile(0, tempHiringBoxiesBuffer[0]);
-        tempHiringBoxiesBuffer[1] = this.GetComponent<CharacterManager>().GenerateOneBoxieForHire();
-        canvaEmbauche.GetComponent<employeeID>().setJProfile(1, tempHiringBoxiesBuffer[1]);
-        tempHiringBoxiesBuffer[2] = this.GetComponent<CharacterManager>().GenerateOneBoxieForHire();
-        canvaEmbauche.GetComponent<employeeID>().setJProfile(2, tempHiringBoxiesBuffer[2]);
+        if (!ongoingHiring)
+        {
+            boss.GetComponent<Boss>().moveLocked = true;
+            boss.GetComponent<Boss>().hatarakeLocked = true;
+            ongoingHiring = true;
+            canvaEmbauche.SetActive(true);
+            tempHiringBoxiesBuffer[0] = this.GetComponent<CharacterManager>().GenerateOneBoxieForHire();
+            canvaEmbauche.GetComponent<employeeID>().setJProfile(0, tempHiringBoxiesBuffer[0]);
+            tempHiringBoxiesBuffer[1] = this.GetComponent<CharacterManager>().GenerateOneBoxieForHire();
+            canvaEmbauche.GetComponent<employeeID>().setJProfile(1, tempHiringBoxiesBuffer[1]);
+            tempHiringBoxiesBuffer[2] = this.GetComponent<CharacterManager>().GenerateOneBoxieForHire();
+            canvaEmbauche.GetComponent<employeeID>().setJProfile(2, tempHiringBoxiesBuffer[2]);
+        }
     }
 
     public void employeeWork(float deltaTime, float workSpeed)
@@ -346,6 +348,7 @@ public class GameManager : MonoBehaviour {
 		{
 			yield return new WaitForSeconds(1);
 		}
+        Destroy(this.GetComponent<AudioListener>());
 		gameObject.GetComponent<CharacterManager>().Spawn();
 	}
 

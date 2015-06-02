@@ -783,7 +783,7 @@ MonoBehaviour:
   nbCoffeeRooms: 1
   nbBathRooms: 2
   nbBoxes: 20
-  nbFloors: 2
+  nbFloors: 1
 --- !u!114 &268217655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1153,11 +1153,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 268217652}
   m_RootOrder: 0
---- !u!1 &365779999 stripped
+--- !u!1 &365779999
 GameObject:
   m_PrefabParentObject: {fileID: 116076, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
   m_PrefabInternal: {fileID: 458650909}
---- !u!114 &365780001 stripped
+--- !u!114 &365780001
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11468108, guid: 878ddc77cf27cf14b836dfc9fdc06496,
     type: 2}
@@ -1710,7 +1710,7 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
   m_IsPrefabParent: 0
---- !u!224 &458650910 stripped
+--- !u!224 &458650910
 RectTransform:
   m_PrefabParentObject: {fileID: 22497468, guid: 878ddc77cf27cf14b836dfc9fdc06496,
     type: 2}
@@ -2976,7 +2976,7 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1217861429}
---- !u!1 &1228620638 stripped
+--- !u!1 &1228620638
 GameObject:
   m_PrefabParentObject: {fileID: 163756, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
   m_PrefabInternal: {fileID: 458650909}
@@ -3821,11 +3821,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: .5, y: .5}
---- !u!1 &1568487262 stripped
+--- !u!1 &1568487262
 GameObject:
   m_PrefabParentObject: {fileID: 116076, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
   m_PrefabInternal: {fileID: 722902175}
---- !u!114 &1568487264 stripped
+--- !u!114 &1568487264
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11468108, guid: 878ddc77cf27cf14b836dfc9fdc06496,
     type: 2}
@@ -4280,7 +4280,7 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1791623073}
---- !u!114 &1791663992 stripped
+--- !u!114 &1791663992
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11498816, guid: 878ddc77cf27cf14b836dfc9fdc06496,
     type: 2}

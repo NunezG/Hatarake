@@ -304,7 +304,7 @@ public class Office : MonoBehaviour
 
         bossRoomFurnitures.Add(FurnitureType.Casier);
         bossRoomFurnitures.Add(FurnitureType.FlowerPot);
-        bossRoomFurnitures.Add(FurnitureType.GlassTable);
+       // bossRoomFurnitures.Add(FurnitureType.GlassTable);
         bossRoomFurnitures.Add(FurnitureType.Canap);
         bossRoomFurnitures.Add(FurnitureType.BossDesk);
 

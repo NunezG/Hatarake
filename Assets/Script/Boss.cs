@@ -23,6 +23,8 @@ public class Boss : MonoBehaviour {
     public int maxLossByScream = 10;
 	//GameObject[] boxies;
 
+    public AudioSource[] bossSounds;
+
 	//float jaugeEngueulage; //se remplit quand on appuie sur le boss.
 
     public  float jaugeEngueulageMax = 15.0f; //se remplit quand on appuie sur le boss.
@@ -68,6 +70,13 @@ public class Boss : MonoBehaviour {
 
 	}
 
+    public void playRandomBossSound(){
+        int rdmIndex=Random.Range(0, bossSounds.Length);
+        bossSounds[rdmIndex].Play();
+        for (int i = 0; i < bossSounds.Length; i++)
+            if (bossSounds[i].isPlaying) print(i + "eme sound is playing");
+    }
+
     public void addBubble()
     {
         yellingO_Meter = yellingO_Meter + gainByBubble;
@@ -94,15 +103,17 @@ public class Boss : MonoBehaviour {
                     tMemory.SetItem("sabotage", false);
                     tMemory.SetItem("enDeplacement", true);
                     tMemory.SetItem("target", pos);
+
+                    
                 }
                 else if (colliders.Length > 0 && colliders[0].GetComponent<BreakableFurniture>() != null && (transform.position - colliders[0].transform.position).magnitude < 5)
-                    {
+                {
                         colliders[0].gameObject.GetComponentInChildren<BreakableFurniture>().Hit(50.0f);
 
                        // tMemory.SetItem("sabotage", true);
                       //  tMemory.SetItem("enDeplacement", true);
                       //  tMemory.SetItem<GameObject>("target", colliders[0].gameObject);
-                    } 
+                } 
             }
         }
 	}
@@ -185,7 +196,6 @@ public class Boss : MonoBehaviour {
 	{
 		charge = false;
 		tMemory.SetItem("charge",false);
-
 	}
 	
 }

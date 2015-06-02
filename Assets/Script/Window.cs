@@ -6,20 +6,39 @@ using System.Collections;
 
 public class Window : MonoBehaviour
 {
-
+    public AudioSource suicideMale, suicideFemale;
 
     //public bool occupe = false;
 
     // Use this for initialization
     void Start()
     {
-
     }
 
     // Update is called once per frame
     void Update()
     {
+    }
 
+    public void playSuicide(bool isMale)
+    {
+        if (isMale)
+        {
+            if (!suicideMale.gameObject.activeInHierarchy)
+            {
+                suicideMale.gameObject.SetActive(true);
+            }
+            suicideMale.Play();
+        }
+        else
+        {
+
+            if (!suicideFemale.gameObject.activeInHierarchy)
+            {
+                suicideFemale.gameObject.SetActive(true);
+            }
+            suicideFemale.Play();
+        }
     }
 
     void OnTriggerEnter(Collider other)

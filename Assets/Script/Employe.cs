@@ -35,13 +35,20 @@ public class Employe : MonoBehaviour {
 
     public bool isAlreadyInRange, moveMemory, workingMemory,suicideMemory;
 
+    //public AudioSource[] coffeeSound, facebookSound, workingSound;
+
+    public AudioSource coffeeSound,keyboardSound,photocopierSound,depressionSound,gamingSound,facebookSound,vendingMachineSound;
+
+    public AudioSource[] engueulageSound;
+
+    public float seuilDepression = 0.8f;
+    public bool depressif = false;
+
 	void Awake()
 	{
 		AIRig aiRig = GetComponentInChildren<AIRig>();
         tMemory = aiRig.AI.WorkingMemory as RAIN.Memory.BasicMemory;
-        tNav = aiRig.AI.Navigator as RAIN.Navigation.BasicNavigator; 
-
-         
+        tNav = aiRig.AI.Navigator as RAIN.Navigation.BasicNavigator;          
 	}
     // Use this for initialization
     void Start()
@@ -111,7 +118,7 @@ public class Employe : MonoBehaviour {
             isAlreadyInRange = false;
         }else if((suicideMemory  != tMemory.GetItem<bool>("suicidaire") ||
             moveMemory != tMemory.GetItem<bool>("enDeplacement") || workingMemory != tMemory.GetItem<bool>("auTravail")) )
-        { // si il est dans le champ et qu'il change d'état
+        { // si il change d'état
             
             if( isAlreadyInRange)emitActivitySign();
 
@@ -120,54 +127,102 @@ public class Employe : MonoBehaviour {
             moveMemory = tMemory.GetItem<bool>("enDeplacement");
             workingMemory = tMemory.GetItem<bool>("auTravail");
 
-            if (workingMemory && !moveMemory && target.CompareTag("WorkHelp"))
+            //print("ratio : "+(float)(data.fatigue) / (float)(data.fatigueMAX));
+            if (((float)(data.fatigue) / (float)(data.fatigueMAX)) > seuilDepression ) 
             {
-                //print("work");
-                this.setActiveSound(false, false, true);
+                //play photocopier;
+                if (!depressif)
+                {
+                    depressif = true;
+                    print(this.name + " viens de rentrer en dépression");
+                    this.setActiveSound(false, false, false, false, true, false, false, false, false);
+                }
+            }
+            else if (workingMemory && !moveMemory && target.CompareTag("WorkHelp"))
+            {
+                depressif = false;
+                //play photocopier;
+                this.setActiveSound(false, false, false, true,false,false,false,false,false);
             }
             else if (workingMemory && !moveMemory && target.CompareTag("Box"))
             {
+                depressif = false;
                 //play clavier PC
-                this.setActiveSound(false, true, false);
+                this.setActiveSound(false, false, true, false, false, false, false, false, false);
             }
             else if (!workingMemory && !moveMemory && target.CompareTag("Box"))
             {
+                depressif = false;
                 //play facebook
-                this.setActiveSound(false, true, false);
+                this.setActiveSound(false, false, false, false, false, true, false, false, false);
             }
-            else if (!workingMemory && !moveMemory && (target.name.Equals("CoffeeTrigger") || target.name.Equals("DrinkTrigger")))
+            else if (!workingMemory && !moveMemory && target.name.Equals("CoffeeTrigger") )
             {
-                //play drink
-                this.setActiveSound(true, false, false);
+                depressif = false;
+                //play coffee
+                this.setActiveSound(false, false, false, false, false, false, true, false, false);
+            }
+            else if (!workingMemory && !moveMemory && target.name.Equals("DrinkTrigger"))
+            {
+                depressif = false;
+                //play vending machine
+                this.setActiveSound(false, false, false, false, false, false, false, true, false);
             }
             else if (!workingMemory && !moveMemory && target.name.Equals("TVTrigger"))
             {
-                //play tv
-                this.setActiveSound(false, false, false);
+                depressif = false;
+                //play gaming
+                this.setActiveSound(false, false, false, false, false, false, false, false, true);
             }
             else
             {
-                this.setActiveSound(false, false, false);
+                depressif = false;
+                this.setActiveSound(false, false, false, false, false, false, false, false, false);
             }
         }
  
 	}
-    public void setActiveSound(bool coffee, bool keyboard, bool photocopier)
+    
+    public void setActiveSound(bool engueulade,bool suicide, bool keyboard, bool photocopier, bool depression, bool facebook,bool coffee, bool vendingMachine, bool gaming)
     {
         /*
         this.gameObject.transform.Find("soundCoffee").gameObject.SetActive(coffee);
         this.gameObject.transform.Find("soundKeyboard").gameObject.SetActive(keyboard);
         this.gameObject.transform.Find("soundPhotocopier").gameObject.SetActive(photocopier);*/
-        if (coffee) this.gameObject.transform.Find("soundCoffee").gameObject.GetComponent<AudioSource>().Play();
-        else this.gameObject.transform.Find("soundCoffee").gameObject.GetComponent<AudioSource>().Stop();
-        if (keyboard) this.gameObject.transform.Find("soundKeyboard").gameObject.GetComponent<AudioSource>().Play();
-        else this.gameObject.transform.Find("soundKeyboard").gameObject.GetComponent<AudioSource>().Stop();
-        if (photocopier) this.gameObject.transform.Find("soundPhotocopier").gameObject.GetComponent<AudioSource>().Play();
-        else this.gameObject.transform.Find("soundPhotocopier").gameObject.GetComponent<AudioSource>().Stop();
+        
+        //if (coffee) this.gameObject.transform.Find("soundCoffee").gameObject.GetComponent<AudioSource>().Play();
+       // else this.gameObject.transform.Find("soundCoffee").gameObject.GetComponent<AudioSource>().Stop();
+        if (engueulade)
+        {
+            int index = Random.Range(0, engueulageSound.Length);
+            engueulageSound[index].Play();
+        }
+        else
+        {
+            for (int i = 0; i < engueulageSound.Length; i++)
+            {
+                engueulageSound[i].Stop();
+            }
 
-        //if (this.gameObject.transform.Find("soundPhotocopier").gameObject.GetComponent<AudioSource>().isPlaying) print("photocopier playing");
-        //if (this.gameObject.transform.Find("soundKeyboard").gameObject.GetComponent<AudioSource>().isPlaying) print("keyboard playing");
-        //if (this.gameObject.transform.Find("soundCoffee").gameObject.GetComponent<AudioSource>().isPlaying) print("playing coffee");
+        }
+
+        if (keyboard && !keyboardSound.isPlaying) keyboardSound.Play();
+        else keyboardSound.Stop();
+
+        if (photocopier && !photocopierSound.isPlaying) photocopierSound.Play();
+        else photocopierSound.Stop();
+
+        if (depression && !depressionSound.isPlaying) depressionSound.Play();
+        //else depressionSound.Stop();
+
+        if (facebook && !facebookSound.isPlaying) facebookSound.Play();
+        else facebookSound.Stop();
+
+        if (vendingMachine && !vendingMachineSound.isPlaying) vendingMachineSound.Play();
+        else vendingMachineSound.Stop();
+
+        if (gaming && !gamingSound.isPlaying) gamingSound.Play();
+        else gamingSound.Stop();
     }
 
 
@@ -273,8 +328,11 @@ public class Employe : MonoBehaviour {
 			tMemory.SetItem<bool>("hatarake", true);
 			tMemory.SetItem<bool>("auTravail", true);
             tMemory.SetItem<bool>("wander", false);
+            this.setActiveSound(true, false, false, false, false, false, false, false, false);
 
-		}else tMemory.SetItem<bool>("suicidaire",true);
+		}else {
+            tMemory.SetItem<bool>("suicidaire", true);
+        }
 		
 	}
 
@@ -285,8 +343,14 @@ public class Employe : MonoBehaviour {
         GameObject window = tMemory.GetItem<GameObject>("myTarget");
         window.transform.Find("tache").gameObject.SetActive(true);
         window.transform.Find("brokenWindow").gameObject.GetComponent<ParticleSystem>().Play();
-		//Destroy (this.gameObject);
-        this.gameObject.SetActive(false);
+
+
+        window.GetComponent<Window>().playSuicide(data.isMale);
+
+            //window.transform.Find("suicideFemale").GetComponent<AudioSource>().Play();
+
+            //Destroy (this.gameObject);
+            this.gameObject.SetActive(false);
 	}
 
 }

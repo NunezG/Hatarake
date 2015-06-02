@@ -71,6 +71,23 @@ public class CharacterManager : MonoBehaviour {
 		}				
 	}
 
+
+    public int GetNumberOfWorkingBoxies()
+    {
+        int nbWorkingBoxies = 0;
+        foreach (GameObject boxie in boxies)
+        {
+            if (boxie.GetComponent<Employe>().tMemory.GetItem<bool>("auTravail") && !boxie.GetComponent<Employe>().tMemory.GetItem<bool>("enDeplacement"))
+                nbWorkingBoxies++;
+        }
+        return nbWorkingBoxies;
+    }
+
+    public int GetTotalNumberOfBoxies()
+    {
+        return boxies.Count;
+    }
+
     public void AddBoxieFromeHire(GameObject boxie)
     {
         int floorNb = 0;
@@ -97,22 +114,27 @@ public class CharacterManager : MonoBehaviour {
 
         boxie.GetComponent<Employe>().tMemory.SetItem("auTravail", true);
 
-        GameObject floor = GameObject.Find("Office floor n0");	
+        GameObject floor = GameObject.Find("Office floor n0");
+
+        boxie.GetComponent<Employe>().floor = floor;
+        boxie.GetComponent<Employe>().SetEmployeeLocations();
+
         Box[] boxes = floor.GetComponentsInChildren<Box>();
         foreach (Box box in boxes)
         {
             if (box.CompareTag("Box") && box.assigne == false)
             {
-                boxie.GetComponent<Employe>().floor = floor;
                 boxie.GetComponent<Employe>().setBox(box.gameObject);
                 boxie.GetComponent<Employe>().tMemory.SetItem("myTarget", box.gameObject);
                 boxie.GetComponent<Employe>().tMemory.SetItem("enDeplacement", true);
 
                 //boxie.GetComponent<Employe>().setTaget(box);
-                box.assigne = true;
+                //box.assigne = true;
                 break;
             }
         }
+
+        //boxie.GetComponent<Employe>().tMemory.SetItem("ongoingHiring", true);
         boxie.transform.localScale = boxie.transform.localScale * gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.localScale.x;
 
         boxie.transform.position = gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.position;
@@ -124,7 +146,7 @@ public class CharacterManager : MonoBehaviour {
         
         //boxie.transform.GetChild(1).GetComponent<SpriteRenderer>().color = boxie.GetComponent<Employe>().data.topColor;
 
-        boxies.Add(boxie);
+        //boxies.Add(boxie);
         return boxie;
     }
 
