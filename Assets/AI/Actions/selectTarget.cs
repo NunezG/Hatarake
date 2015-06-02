@@ -18,76 +18,79 @@ public class selectTarget : RAINAction
 	}
 	
 	public override ActionResult Execute(RAIN.Core.AI ai)
-    {   
-        if (ai.WorkingMemory.GetItem<bool>("suicidaire"))
-        {
-			ai.Motor.DefaultSpeed = ai.WorkingMemory.GetItem<int>("suicideSpeed");
-
-            int rdmIndex= UnityEngine.Random.Range(0, Employe.suicide.Count);
-
-            target = Employe.suicide[rdmIndex];
-            return ActionResult.SUCCESS;
-
-        }
-        else if (!ai.WorkingMemory.GetItem<bool>("auTravail"))
-        {
-             int pos = Random.Range(0, 4);
-
-			if (pos == 1 && Employe.emptyChill.Count != 0)
-			{
-				//*cherche une place vide pour glander
-				pos = Random.Range(0, Employe.emptyChill.Count);
-				
-				target = Employe.emptyChill[pos];
-
-				ai.WorkingMemory.SetItem<bool>("wander", true);
-
-				Employe.emptyChill.RemoveAt(pos);
-				return ActionResult.SUCCESS;
-			}
-
-			//*1/4 de chances de bosser sur une photocopieuse
-            else  if (pos != 0 && Employe.emptyChill.Count != 0)
-             {
-                 //*cherche une place vide pour glander
-                 pos = Random.Range(0, Employe.emptyChill.Count);
-
-                 target = Employe.emptyChill[pos];
-                 Employe.emptyChill.RemoveAt(pos);
-                 return ActionResult.SUCCESS;
-
-			} 
-           //*Si pas de place il retourne a son Box pour se connecter sur facebook
-           target = ai.Body.GetComponent<Employe>().boxDeTravail;
-           return ActionResult.SUCCESS;
-        }
-        else 
-        {
-            //*Si motivation cherche une place vide pour bosser
-            int pos = Random.Range(0, 4);
-
-            //*1/4 de chances de bosser sur une photocopieuse
-			if (!ai.WorkingMemory.GetItem<bool>("hatarake") && pos == 0 && Employe.emptyWorkingHelp.Count != 0)
+    {
+       // if (!ai.WorkingMemory.GetItem<bool>("ongoingHiring"))
+       // {
+            if (ai.WorkingMemory.GetItem<bool>("suicidaire"))
             {
-                pos = Random.Range(0, Employe.emptyWorkingHelp.Count);
+                ai.Motor.DefaultSpeed = ai.WorkingMemory.GetItem<int>("suicideSpeed");
 
-                target = Employe.emptyWorkingHelp[pos];
-                Employe.emptyWorkingHelp.RemoveAt(pos);
+                int rdmIndex = UnityEngine.Random.Range(0, Employe.suicide.Count);
+
+                target = Employe.suicide[rdmIndex];
                 return ActionResult.SUCCESS;
-                
-			} else
-            {
-				if (ai.WorkingMemory.GetItem<bool>("hatarake"))
-				{
-					ai.Motor.DefaultSpeed = ai.WorkingMemory.GetItem<int>("scaredSpeed");
-				}
-                //*3/4 de chances de bosser dans son Box
-                target = ai.Body.GetComponent<Employe>().boxDeTravail;
 
+            }
+            else if (!ai.WorkingMemory.GetItem<bool>("auTravail"))
+            {
+                int pos = Random.Range(0, 4);
+
+                if (pos == 1 && Employe.emptyChill.Count != 0)
+                {
+                    //*cherche une place vide pour glander
+                    pos = Random.Range(0, Employe.emptyChill.Count);
+
+                    target = Employe.emptyChill[pos];
+
+                    ai.WorkingMemory.SetItem<bool>("wander", true);
+
+                    Employe.emptyChill.RemoveAt(pos);
+                    return ActionResult.SUCCESS;
+                }
+
+                //*1/4 de chances de bosser sur une photocopieuse
+                else if (pos != 0 && Employe.emptyChill.Count != 0)
+                {
+                    //*cherche une place vide pour glander
+                    pos = Random.Range(0, Employe.emptyChill.Count);
+
+                    target = Employe.emptyChill[pos];
+                    Employe.emptyChill.RemoveAt(pos);
+                    return ActionResult.SUCCESS;
+
+                }
+                //*Si pas de place il retourne a son Box pour se connecter sur facebook
+                target = ai.Body.GetComponent<Employe>().boxDeTravail;
                 return ActionResult.SUCCESS;
             }
-        }
+            else
+            {
+                //*Si motivation cherche une place vide pour bosser
+                int pos = Random.Range(0, 4);
 
+                //*1/4 de chances de bosser sur une photocopieuse
+                if (!ai.WorkingMemory.GetItem<bool>("hatarake") && pos == 0 && Employe.emptyWorkingHelp.Count != 0)
+                {
+                    pos = Random.Range(0, Employe.emptyWorkingHelp.Count);
+
+                    target = Employe.emptyWorkingHelp[pos];
+                    Employe.emptyWorkingHelp.RemoveAt(pos);
+                    return ActionResult.SUCCESS;
+
+                }
+                else
+                {
+                    if (ai.WorkingMemory.GetItem<bool>("hatarake"))
+                    {
+                        ai.Motor.DefaultSpeed = ai.WorkingMemory.GetItem<int>("scaredSpeed");
+                    }
+                    //*3/4 de chances de bosser dans son Box
+                    target = ai.Body.GetComponent<Employe>().boxDeTravail;
+
+                    return ActionResult.SUCCESS;
+                }
+            }
+      //  }
         return ActionResult.RUNNING;
     }
 

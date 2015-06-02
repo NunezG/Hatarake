@@ -127,10 +127,12 @@ public class CharacterManager : MonoBehaviour {
                 boxie.GetComponent<Employe>().tMemory.SetItem("enDeplacement", true);
 
                 //boxie.GetComponent<Employe>().setTaget(box);
-                box.assigne = true;
+                //box.assigne = true;
                 break;
             }
         }
+
+        //boxie.GetComponent<Employe>().tMemory.SetItem("ongoingHiring", true);
         boxie.transform.localScale = boxie.transform.localScale * gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.localScale.x;
 
         boxie.transform.position = gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.position;
