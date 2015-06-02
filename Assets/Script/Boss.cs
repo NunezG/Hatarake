@@ -108,7 +108,7 @@ public class Boss : MonoBehaviour {
                 }
                 else if (colliders.Length > 0 && colliders[0].GetComponent<BreakableFurniture>() != null && (transform.position - colliders[0].transform.position).magnitude < 5)
                 {
-                        colliders[0].gameObject.GetComponentInChildren<BreakableFurniture>().Hit(50.0f);
+                        colliders[0].gameObject.GetComponentInChildren<BreakableFurniture>().Hit();
 
                        // tMemory.SetItem("sabotage", true);
                       //  tMemory.SetItem("enDeplacement", true);

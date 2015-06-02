@@ -5,7 +5,6 @@ public class BreakableFurniture : MonoBehaviour {
     public bool broken = false;
 	private int resistance = 5;
     private int damage = 0;
-	}
 
 	void Update () {
 

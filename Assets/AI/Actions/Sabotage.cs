@@ -15,7 +15,7 @@ public class Sabotage : RAINAction
     public override ActionResult Execute(RAIN.Core.AI ai)
     {
         if  (ai.WorkingMemory.GetItem<GameObject>("target") != null)
-        ai.WorkingMemory.GetItem<GameObject>("target").GetComponentInChildren<BreakableFurniture>().Hit(50.0f);
+        ai.WorkingMemory.GetItem<GameObject>("target").GetComponentInChildren<BreakableFurniture>().Hit();
 
         return ActionResult.SUCCESS;
     }
