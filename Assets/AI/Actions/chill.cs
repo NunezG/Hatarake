@@ -11,6 +11,7 @@ public class chill : RAINAction
     float motivation;
     float fatigue;
     GameObject target;
+    public Expression DemotivationSiCasse = new Expression();
 
     public override void Start(RAIN.Core.AI ai)
     {
@@ -29,7 +30,7 @@ public class chill : RAINAction
     {
 
         //Si l'objet n'est pas cassé
-        if (target.GetComponent<BreakableFurniture>()==null || !target.GetComponent<BreakableFurniture>().broken)
+        if (target.transform.parent.GetComponentInChildren<BreakableFurniture>() == null || !target.transform.parent.GetComponentInChildren<BreakableFurniture>().broken)
         {
             //Reduction de la fatigue si existante
             if (fatigue > 0)
@@ -54,10 +55,9 @@ public class chill : RAINAction
         else
         {
             //Motivation reduite si machine cassee (Fatigue augmente?)
-            motivation = motivation - Time.deltaTime * ai.Body.GetComponent<Employe>().data.vitesseDemotivation * 20;
+            motivation = motivation - Time.deltaTime * ai.Body.GetComponent<Employe>().data.vitesseDemotivation * DemotivationSiCasse.Evaluate(ai.DeltaTime, ai.WorkingMemory).GetValue<float>(); ;
             return ActionResult.SUCCESS;
         }
-
     }
 
     public override void Stop(RAIN.Core.AI ai)

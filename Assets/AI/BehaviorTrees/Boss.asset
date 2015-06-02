@@ -26,7 +26,7 @@ MonoBehaviour:
       delay=&quot;0&quot; debugbreak=&quot;False&quot; audiosource=&quot;soundbossFootsteps&quot;
       /&gt;&lt;move turnspeed=&quot;&quot; repeatuntil=&quot;&quot; name=&quot;move&quot;
       movetarget=&quot;target&quot; movespeed=&quot;&quot; facetarget=&quot;&quot;
-      debugbreak=&quot;False&quot; closeenoughdistance=&quot;5&quot; closeenoughangle=&quot;&quot;
+      debugbreak=&quot;False&quot; closeenoughdistance=&quot;&quot; closeenoughangle=&quot;&quot;
       /&gt;&lt;/parallel&gt;&lt;expression returnvalue=&quot;success&quot; repeatuntil=&quot;&quot;
       priority=&quot;&quot; name=&quot;enDeplacement = false&quot; expression=&quot;enDeplacement
       = false&quot; debugbreak=&quot;False&quot; /&gt;&lt;/sequencer&gt;&lt;/constraint&gt;&lt;sequencer

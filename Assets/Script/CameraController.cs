@@ -73,11 +73,15 @@ public class CameraController : MonoBehaviour {
 				focusTimer--;
 				fixedCamera = true;
 				pointer.SetActive(true);
+				dampTime = 0.0f;
+
+
 				if (focusTimer < 0.0f) {
 					focusTimer = 100.0f;
 					target = null;
 					onOtherTarget = false;
 					fixedCamera = false;
+					dampTime = 0.2f;
 				}
 			}
 
