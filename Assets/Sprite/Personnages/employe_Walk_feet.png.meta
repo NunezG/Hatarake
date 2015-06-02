@@ -1,12 +1,12 @@
 fileFormatVersion: 2
 guid: d8f9ce5a963edb04b8d003d93a3e0322
-timeCreated: 1433264670
+timeCreated: 1433268914
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: employe_Walk_feet_0
-    21300002: employe_Walk_feet_1
-    21300004: employe_Walk_feet_2
+    21300002: employe_Walk_feet_2
+    21300004: employe_Walk_feet_1
     21300006: employe_Walk_feet_3
   serializedVersion: 2
   mipmaps:
@@ -63,17 +63,17 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: employe_Walk_feet_1
+    - name: employe_Walk_feet_2
       rect:
         serializedVersion: 2
-        x: 0
+        x: 1
         y: 0
         width: 64
         height: 64
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: employe_Walk_feet_2
+    - name: employe_Walk_feet_1
       rect:
         serializedVersion: 2
         x: 64
