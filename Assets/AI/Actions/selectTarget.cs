@@ -15,6 +15,18 @@ public class selectTarget : RAINAction
     {
         base.Start(ai);
        float motivation = (int)ai.Body.gameObject.GetComponent<Employe>().data.motivation;
+
+       target = ai.WorkingMemory.GetItem<GameObject>("myTarget");
+
+
+       if (target.CompareTag("Repos") && !Employe.emptyChill.Contains(target))
+           Employe.emptyChill.Add(target);
+        
+
+       ai.WorkingMemory.SetItem<bool>("wander", false);
+
+
+
 	}
 	
 	public override ActionResult Execute(RAIN.Core.AI ai)
@@ -33,8 +45,6 @@ public class selectTarget : RAINAction
             }
             else if (!ai.WorkingMemory.GetItem<bool>("auTravail"))
             {
-                ai.WorkingMemory.SetItem<bool>("wander", false);
-
                 int pos = Random.Range(0, 10);
 
                 if (pos == 1 && Employe.emptyChill.Count != 0)
@@ -47,7 +57,7 @@ public class selectTarget : RAINAction
 
                     ai.WorkingMemory.SetItem<bool>("wander", true);
 
-                    Employe.emptyChill.RemoveAt(pos);
+                  //  Employe.emptyChill.RemoveAt(pos);
                     return ActionResult.SUCCESS;
                 }
 
@@ -56,12 +66,14 @@ public class selectTarget : RAINAction
                 {
                     //*cherche une place vide pour glander
                     pos = Random.Range(0, Employe.emptyChill.Count);
+                    Debug.Log("Employe.emptyChill.Count" + Employe.emptyChill.Count);
 
                     target = Employe.emptyChill[pos];
                     Employe.emptyChill.RemoveAt(pos);
                     return ActionResult.SUCCESS;
 
                 }
+
                 //*Si pas de place il retourne a son Box pour se connecter sur facebook
                 target = ai.Body.GetComponent<Employe>().boxDeTravail;
                 return ActionResult.SUCCESS;

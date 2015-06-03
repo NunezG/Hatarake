@@ -48,8 +48,7 @@ public class chill : RAINAction
 
             //Si motivation Max, cesse de glander
             if (motivation >= (int)ai.Body.gameObject.GetComponent<Employe>().data.motivationMax)
-            {
-                ai.WorkingMemory.SetItem<bool>("wander", false);
+            {    
                 ai.WorkingMemory.SetItem("auTravail", true);
                 //Libere la place (encore en test)
                 return ActionResult.SUCCESS;
@@ -61,22 +60,18 @@ public class chill : RAINAction
 
         else
         {
-            //Motivation reduite si machine cassee (Fatigue augmente?)
-            motivation = motivation - Time.deltaTime * ai.Body.GetComponent<Employe>().data.vitesseDemotivation * DemotivationSiCasse.Evaluate(ai.DeltaTime, ai.WorkingMemory).GetValue<float>(); ;
+            //Motivation reduite si machine cassee, Fatigue augmente
+            motivation -= Time.deltaTime * ai.Body.GetComponent<Employe>().data.vitesseDemotivation * DemotivationSiCasse.Evaluate(ai.DeltaTime, ai.WorkingMemory).GetValue<float>();
+            fatigue += Time.deltaTime * ai.Body.GetComponent<Employe>().data.vitesseDemotivation * DemotivationSiCasse.Evaluate(ai.DeltaTime, ai.WorkingMemory).GetValue<float>();
             ai.Body.gameObject.GetComponent<Employe>().data.motivation = motivation;
+            ai.Body.gameObject.GetComponent<Employe>().data.fatigue = fatigue;
             return ActionResult.SUCCESS;
         }
     }
 
     public override void Stop(RAIN.Core.AI ai)
-    {
-        
-        
+    {           
         //ai.WorkingMemory.SetItem("motivation", motivation);
-
-        if (!target.CompareTag("Box"))
-            // ai.WorkingMemory.GetItem<GameObject>("myTarget").GetComponent<Repos>().occupe = false;
-            Employe.emptyChill.Add(target);
 
         ai.Body.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionY;
 
