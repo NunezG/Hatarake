@@ -25,12 +25,13 @@ MonoBehaviour:
       repeatuntil=&quot;&quot; name=&quot;sequencer&quot; debugbreak=&quot;False&quot;&gt;&lt;expression
       returnvalue=&quot;evaluate&quot; repeatuntil=&quot;&quot; priority=&quot;&quot;
       name=&quot;wander == true&quot; expression=&quot;wander == true&quot; debugbreak=&quot;False&quot;
-      /&gt;&lt;timer waitforsec=&quot;random(3,5)&quot; returnvalue=&quot;success&quot;
-      priority=&quot;&quot; name=&quot;timer&quot; debugbreak=&quot;False&quot; /&gt;&lt;/sequencer&gt;&lt;/parallel&gt;&lt;mecparam
-      valueexpression=&quot;true&quot; repeatuntil=&quot;&quot; parametertype=&quot;boolean&quot;
-      parametername=&quot;playing&quot; name=&quot;playing = true&quot; debugbreak=&quot;False&quot;
-      damptime=&quot;0&quot; /&gt;&lt;parallel tiebreaker=&quot;succeed&quot; succeed=&quot;any&quot;
-      repeatuntil=&quot;&quot; name=&quot;parallel&quot; fail=&quot;any&quot; debugbreak=&quot;False&quot;&gt;&lt;action
+      /&gt;&lt;timer waitforsec=&quot;random(1,3)&quot; returnvalue=&quot;success&quot;
+      priority=&quot;&quot; name=&quot;wander timer&quot; debugbreak=&quot;False&quot;
+      /&gt;&lt;/sequencer&gt;&lt;/parallel&gt;&lt;mecparam valueexpression=&quot;true&quot;
+      repeatuntil=&quot;&quot; parametertype=&quot;boolean&quot; parametername=&quot;playing&quot;
+      name=&quot;playing = true&quot; debugbreak=&quot;False&quot; damptime=&quot;0&quot;
+      /&gt;&lt;parallel tiebreaker=&quot;succeed&quot; succeed=&quot;any&quot; repeatuntil=&quot;&quot;
+      name=&quot;parallel&quot; fail=&quot;any&quot; debugbreak=&quot;False&quot;&gt;&lt;action
       repeatuntil=&quot;&quot; parametervalues=&quot;NzAw&quot; parameters=&quot;RGVtb3RpdmF0aW9uU2lDYXNzZQ==&quot;
       namespace=&quot;&quot; name=&quot;chill&quot; debugbreak=&quot;False&quot; classname=&quot;chill&quot;
       /&gt;&lt;timer waitforsec=&quot;2&quot; returnvalue=&quot;failure&quot; name=&quot;timer&quot;

@@ -1653,7 +1653,9 @@ MonoBehaviour:
     vitesseDemotivation: 0
     maxVitesseDemotivation: 20
     minVitesseDemotivation: 2
-    effetRepos: 60
+    effetRepos: 0
+    maxEffetRepos: 20
+    minEffetRepos: 1
     firstName: 
     surname: 
     isMale: 0
