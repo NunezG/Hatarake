@@ -4,6 +4,7 @@ using System.Collections;
 public class ProgressBar : MonoBehaviour {
 
     public Texture progressForeground;
+    public Texture progressBackground;
     public Texture waitScreen;
     public Texture ki;
     public RectTransform valueKi;
@@ -50,6 +51,7 @@ public class ProgressBar : MonoBehaviour {
 	
     void DrawProgressObjective(float progress )
     {
+        GUI.DrawTexture(new Rect(10, 10, 200, 30), progressBackground);
         GUI.DrawTexture(new Rect(10, 10, 200 * progress, 30), progressForeground);
 		   // if (progress > 1.0) Destroy (this);
     }

@@ -25,8 +25,8 @@ public class GameManager : MonoBehaviour {
    public int nbEmployeeLeftToHire;
    bool hiringTime = false;
 
-   public bool workingIsActuallyUsefull = true;
-   public bool victory = false;
+   public bool workingIsActuallyUsefull = false;
+   public bool victory = true;
 
 	//Awake is always called before any Start functions
 	void Awake()
@@ -136,12 +136,14 @@ public class GameManager : MonoBehaviour {
     {
         victory = false;
         victoryButton.SetActive(true);
-        victoryButton.GetComponentInChildren<Text>().text = "VICTORY ! \n We triumph once again : " + levelObjective * time + " funbucks obtained!";
+        if (objectiveCompletion == 0)
+            victoryButton.GetComponentInChildren<Text>().text = "TIME FOR \n ANOTHER PRODUCTIVE DAY !!!";
+        else
+            victoryButton.GetComponentInChildren<Text>().text = "VICTORY ! \n We triumph once again : " + levelObjective * time + " funbucks obtained!";
         boss.GetComponent<Boss>().moveLocked = true;
         boss.GetComponent<Boss>().hatarakeLocked = true;
         //levelObjective = 10000;
         objectiveCompletion = time = 0;
-
     }
 
     public void activateHiringRound()
@@ -202,6 +204,7 @@ public class GameManager : MonoBehaviour {
         if (tutoIsOn) nextTutoStep();
         else
         {
+            if (levelObjective == 0) levelObjective = 50;
             levelObjective = levelObjective * objectiveIncreaseFactor;
             objectiveCompletion = 0;
             time = 0;
