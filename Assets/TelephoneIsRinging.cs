@@ -3,6 +3,8 @@ using System.Collections;
 
 public class TelephoneIsRinging : MonoBehaviour {
 
+    public AudioSource ringring;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -10,6 +12,10 @@ public class TelephoneIsRinging : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (GameManager.instance.victory)
+        {
+            if (!ringring.isPlaying) ringring.Play();
+        }
 	
 	}
 
@@ -17,11 +23,16 @@ public class TelephoneIsRinging : MonoBehaviour {
     void OnTriggerEnter(Collider other)
     {
         //print("SOnTriggerEnterOnTriggerEnterOnTriggerEnter"+other.name);
-
-        if (other.tag == "Boss")
+        if (GameManager.instance.victory)
         {
-            print(this.name +" TRIGGERED BY " + other.name +" BURN HIM !");
-            GameManager.instance.activateHiringRound();
+            if (other.tag == "Boss")
+            {
+                print(this.name + " TRIGGERED BY " + other.name + " BURN HIM !");
+                //GameManager.instance.activateHiringRound();
+                ringring.Stop();
+                GameManager.instance.activateGloriousVictory();
+
+            }
         }
     }
 
