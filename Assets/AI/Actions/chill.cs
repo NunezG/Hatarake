@@ -36,19 +36,22 @@ public class chill : RAINAction
             //Reduction de la fatigue si existante
             if (fatigue > 0)
             {
-                fatigue = fatigue - Time.deltaTime * (int)ai.Body.gameObject.GetComponent<Employe>().data.effetRepos;
+                fatigue -= Time.deltaTime * (int)ai.Body.gameObject.GetComponent<Employe>().data.effetRepos;
                 //rends le resultat
                // ai.WorkingMemory.SetItem("fatigue", fatigue);
+                if (fatigue < 0)
+                    fatigue = 0;
                 ai.Body.gameObject.GetComponent<Employe>().data.fatigue = fatigue;
             }
 
             //Augmente la motivation
-            motivation = motivation + Time.deltaTime * (int)ai.Body.gameObject.GetComponent<Employe>().data.effetRepos;
+            motivation += Time.deltaTime * (int)ai.Body.gameObject.GetComponent<Employe>().data.effetRepos;               
             ai.Body.gameObject.GetComponent<Employe>().data.motivation = motivation;
 
             //Si motivation Max, cesse de glander
             if (motivation >= (int)ai.Body.gameObject.GetComponent<Employe>().data.motivationMax)
-            {    
+            {
+                ai.Body.gameObject.GetComponent<Employe>().data.motivation = ai.Body.GetComponent<Employe>().data.motivationMax;
                 ai.WorkingMemory.SetItem("auTravail", true);
                 //Libere la place (encore en test)
                 return ActionResult.SUCCESS;
@@ -60,9 +63,13 @@ public class chill : RAINAction
 
         else
         {
-            //Motivation reduite si machine cassee, Fatigue augmente
+            //Motivation reduite si machine cassee, Fatigue augmente         
             motivation -= Time.deltaTime * ai.Body.GetComponent<Employe>().data.vitesseDemotivation * DemotivationSiCasse.Evaluate(ai.DeltaTime, ai.WorkingMemory).GetValue<float>();
+            if (motivation < 0)
+                motivation = 0;
+
             fatigue += Time.deltaTime * ai.Body.GetComponent<Employe>().data.vitesseDemotivation * DemotivationSiCasse.Evaluate(ai.DeltaTime, ai.WorkingMemory).GetValue<float>();
+
             ai.Body.gameObject.GetComponent<Employe>().data.motivation = motivation;
             ai.Body.gameObject.GetComponent<Employe>().data.fatigue = fatigue;
             return ActionResult.SUCCESS;

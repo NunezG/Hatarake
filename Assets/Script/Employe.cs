@@ -327,7 +327,10 @@ public class Employe : MonoBehaviour {
 	public void Engueule (){
 		//Chaque seconde : motivation -= feignantise DONC si feignantise est grand, les pauses seront plus fréquentes.
 		data.fatigue += data.effetEngueulement;
+        
         data.motivation += data.effetEngueulement;
+        if (data.motivation > data.motivationMax)
+            data.motivation = data.motivationMax;
 
 		//if (data.fatigue < data.fatigueMAX) {
 			//suicidaire = true;	

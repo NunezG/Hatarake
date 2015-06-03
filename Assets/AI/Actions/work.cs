@@ -29,11 +29,12 @@ public class work : RAINAction
     public override ActionResult Execute(RAIN.Core.AI ai)
     {
 			//Reduction de la motivation
-			motivation = motivation - Time.deltaTime * ai.Body.GetComponent<Employe> ().data.vitesseDemotivation;
+			motivation -= Time.deltaTime * ai.Body.GetComponent<Employe> ().data.vitesseDemotivation;
             ai.Body.GetComponent<Employe>().data.motivation = motivation;
 
 			//Finis de travailler quand la motivation est 0
 			if (motivation <= 0) {
+                ai.Body.GetComponent<Employe>().data.motivation = 0;
 				ai.WorkingMemory.SetItem ("auTravail", false);
 				return ActionResult.SUCCESS;
 			}
