@@ -1,13 +1,11 @@
 fileFormatVersion: 2
-guid: afd399db6c8069b4e8d97caf2ae0a95c
-timeCreated: 1433101603
+guid: 03f7f4f580eccf44b8265da0da33b20e
+timeCreated: 1433264734
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: employee_feet_Walk_0
-    21300002: employee_feet_Walk_2
-    21300004: employee_feet_Walk_1
-    21300006: employee_feet_Walk_3
+    21300000: employee_Type_feet_0
+    21300002: employee_Type_feet_1
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -47,23 +45,13 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 128
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: employee_feet_Walk_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 64
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: employee_feet_Walk_2
+    - name: employee_Type_feet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -71,19 +59,9 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: employee_feet_Walk_1
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 64
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: employee_feet_Walk_3
+    - name: employee_Type_feet_1
       rect:
         serializedVersion: 2
         x: 64
@@ -91,7 +69,7 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
