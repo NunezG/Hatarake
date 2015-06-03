@@ -21,7 +21,7 @@ public class work : RAINAction
         
         //bouge plus
         ai.WorkingMemory.SetItem("enDeplacement", false);
-        ai.Body.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY| RigidbodyConstraints.FreezePositionZ;
+        ai.Body.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;
 		target = ai.WorkingMemory.GetItem<GameObject>("myTarget");
 
 	}
@@ -58,7 +58,7 @@ public class work : RAINAction
             //target.GetComponent<Box>().occupe = false;
             Employe.emptyWorkingHelp.Add(target);
         }
-        ai.Body.GetComponent<Rigidbody>().constraints =  RigidbodyConstraints.FreezePositionY ;
+        ai.Body.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionY;
 
 		ai.Motor.DefaultSpeed = ai.WorkingMemory.GetItem<int>("normalSpeed");
 
