@@ -52,10 +52,9 @@ public class CharacterManager : MonoBehaviour {
 				if (box.CompareTag("Box") && box.assigne == false)
 				{
 					boxie.GetComponent<Employe>().setBox(box.gameObject);
-                    boxie.GetComponent<Employe>().tMemory.SetItem("myTarget", box.gameObject);
-                    boxie.GetComponent<Employe>().tMemory.SetItem("enDeplacement", true);
+                   // boxie.GetComponent<Employe>().tMemory.SetItem("myTarget", box.gameObject);
+                   // boxie.GetComponent<Employe>().tMemory.SetItem("enDeplacement", true);
 
-					//boxie.GetComponent<Employe>().setTaget(box);
 					box.assigne = true;
 					break;
 				}

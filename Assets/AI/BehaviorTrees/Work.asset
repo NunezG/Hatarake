@@ -29,8 +29,8 @@ MonoBehaviour:
       repeatuntil=&quot;&quot; priority=&quot;&quot; name=&quot;parallel&quot; fail=&quot;any&quot;
       debugbreak=&quot;False&quot;&gt;&lt;action repeatuntil=&quot;&quot; parametervalues=&quot;&quot;
       parameters=&quot;&quot; namespace=&quot;(global)&quot; name=&quot;work&quot;
-      debugbreak=&quot;False&quot; classname=&quot;work&quot; /&gt;&lt;timer waitforsec=&quot;2&quot;
-      returnvalue=&quot;success&quot; name=&quot;timer&quot; debugbreak=&quot;False&quot;
+      debugbreak=&quot;False&quot; classname=&quot;work&quot; /&gt;&lt;timer waitforsec=&quot;random(2,
+      6)&quot; returnvalue=&quot;success&quot; name=&quot;PATIENCE travail&quot; debugbreak=&quot;False&quot;
       /&gt;&lt;/parallel&gt;&lt;mecparam valueexpression=&quot;false&quot; repeatuntil=&quot;&quot;
       priority=&quot;&quot; parametertype=&quot;boolean&quot; parametername=&quot;typing&quot;
       name=&quot;typing = false&quot; debugbreak=&quot;False&quot; damptime=&quot;0&quot;
