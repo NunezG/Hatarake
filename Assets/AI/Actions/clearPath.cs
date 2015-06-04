@@ -21,7 +21,7 @@ public class clearPath : RAINAction
 		//ai.Navigator.Start ();
 		//tNav.RestartPathfindingSearch();
 
-        return ActionResult.FAILURE;
+        return ActionResult.SUCCESS;
     }
 
     public override void Stop(RAIN.Core.AI ai)

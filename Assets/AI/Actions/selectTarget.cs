@@ -115,8 +115,16 @@ public class selectTarget : RAINAction
         //*set des variables après succès
         if (target != ai.WorkingMemory.GetItem<GameObject>("myTarget"))
         {
-            ai.WorkingMemory.SetItem("enDeplacement", true);
-            ai.WorkingMemory.SetItem("myTarget", target);
+            ai.WorkingMemory.SetItem<bool>("enDeplacement", true);
+            ai.WorkingMemory.SetItem<GameObject>("myTarget", target);
+
+            Transform tr = target.transform.parent.transform.FindChild("lookAt");
+           // GameObject parent = target.transform.parent.transform.FindChild("lookAt").gameObject;
+            if (tr != null)
+            {
+                ai.WorkingMemory.SetItem<GameObject>("viewTarget", tr.gameObject);
+            }
+
         }
         base.Stop(ai);
     }
