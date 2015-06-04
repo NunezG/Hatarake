@@ -40,11 +40,11 @@ public class CharacterManager : MonoBehaviour {
 		for (int i = 0; i < nombreBoxies; i++) 
 		{
 			GameObject boxie = (GameObject)Instantiate (boxiePrefab);
-            
+
             boxie.GetComponent<Employe>().floor = floor;
+            boxie.GetComponent<Employe>().SetEmployeeLocations();
             boxie.GetComponent<Rigidbody>().mass = Random.Range(1, 100);
             boxie.name = boxiePrefab.name + i;
-            boxie.GetComponent<Employe>().SetEmployeeLocations();
             boxie.GetComponent<Employe>().tMemory.SetItem("auTravail", true);
 
 			foreach(Box box in boxes )

@@ -18,8 +18,7 @@ public class selectTarget : RAINAction
 
        target = ai.WorkingMemory.GetItem<GameObject>("myTarget");
 
-
-       if (target.CompareTag("Repos") && !Employe.emptyChill.Contains(target))
+       if (target != null && Employe.emptyChill != null && (target.CompareTag("Repos") && !Employe.emptyChill.Contains(target)))
            Employe.emptyChill.Add(target);
         
 
