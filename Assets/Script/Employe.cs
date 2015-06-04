@@ -7,7 +7,7 @@ public class Employe : MonoBehaviour {
 
     GameObject employeProfile;
 	public GameObject boxDeTravail;// Box de l’employé
-   
+   public static bool suicideLock = false;
 	/**
 	 * true = au taff
 	 * false = en train de glander (engueulable)
@@ -61,6 +61,9 @@ public class Employe : MonoBehaviour {
         employeProfile = GameObject.Find("EmployeeProfile");
 
         data.InitializeEmployee();
+
+        this.transform.GetChild(0).GetComponent<SpriteRenderer>().color = this.GetComponent<Employe>().data.hairColor;
+        this.transform.GetChild(1).GetComponent<SpriteRenderer>().color = this.GetComponent<Employe>().data.topColor;
     }
 
 
@@ -99,15 +102,16 @@ public class Employe : MonoBehaviour {
 
 	void Update () 
 	{
-        if (data.fatigue >= data.fatigueMAX)
+        if (data.fatigue >= data.fatigueMAX && !suicideLock)
         {
+            suicideLock = true;
             tMemory.SetItem<bool>("suicidaire", true);
+            employeProfile.GetComponent<employeeID>().setJProfile(0, this.gameObject);
+            GameManager.instance.cameraController.FollowEmployee(this.gameObject, 1000);
         }
 
 
         Vector3 distance = boss.transform.position - this.transform.position;
-
-        //if (boss == null) print("patate");
 
         if (distance.magnitude < 15 && !isAlreadyInRange) // si il vient d'entrer dans le champ de vision du boss
         {
@@ -262,11 +266,11 @@ public class Employe : MonoBehaviour {
         {
             if (target.CompareTag("Repos"))
             {
-                SignEmitter.Create(this.transform.position, SignType.GoingToGlande);
+                //SignEmitter.Create(this.transform.position, SignType.GoingToGlande);
             }
             if (target.CompareTag("WorkHelp") || target.CompareTag("Box"))
             {
-                SignEmitter.Create(this.transform.position, SignType.GoingToWork);
+                //SignEmitter.Create(this.transform.position, SignType.GoingToWork);
             }
         }
        
@@ -357,6 +361,7 @@ public class Employe : MonoBehaviour {
 
             //Destroy (this.gameObject);
             this.gameObject.SetActive(false);
+            suicideLock = false;
 	}
 
 }

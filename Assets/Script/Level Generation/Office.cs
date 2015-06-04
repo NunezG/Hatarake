@@ -407,6 +407,16 @@ public class Office : MonoBehaviour
             case RoomType.Corridor:
                 newCell.name = "Corridor Cell " + x + ", " + z;
                 newCell.GetComponent<Renderer>().material = materials[0];
+                Color color =                newCell.GetComponent<Renderer>().material.color;
+                float H=0, S=0, V=0;
+                ColorConverter.RGBToHSV(color,out H,out S,out V);
+                float rdm = UnityEngine.Random.Range(-0.02f,0.02f);
+                V = V + rdm;
+                if (V > 1) V = 1;
+                Color noiseColor = ColorConverter.HSVToRGB(H, S, V);
+                newCell.GetComponent<Renderer>().material.color = noiseColor;
+                //print("H : " + H + " ,S :" + S + " ,V: " + V);
+
                 break;
             case RoomType.Bossroom:
                 newCell.name = "BossRoom Cell " + x + ", " + z;

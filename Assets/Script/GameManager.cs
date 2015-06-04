@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour {
 	public static GameManager instance = null;              //Static instance of GameManager which allows it to be accessed by any other script.
 	//public GameObject sceneObject;
 	//public GameObject menu;
+    public CameraController cameraController;
     public GameObject canvaEmbauche;
     public GameObject tutoButton,victoryButton;
     public GameObject boss;
@@ -68,11 +69,14 @@ public class GameManager : MonoBehaviour {
             time = time + Time.deltaTime; 
         }
 		else if(boss!=null){
+            int minutes = (int)(time / 60);
+            int secondes = (int)(time - 60 * minutes);
+            int millisecondes = (int)((time - 60 * minutes - secondes)*1000);
             victoryButton.SetActive(true);
             if (objectiveCompletion == 0)
-                victoryButton.GetComponentInChildren<Text>().text = "Time for anotheyr productive day !";
+                victoryButton.GetComponentInChildren<Text>().text = "Time for another productive day !";
             else
-                victoryButton.GetComponentInChildren<Text>().text = "VICTORY ! \n We triumph once again : " + levelObjective*time +" funbucks obtained!";
+                victoryButton.GetComponentInChildren<Text>().text = "VICTORY ! \n We triumph once again, objective completed in \n: " + minutes + " :" + secondes + ":" + millisecondes;
             boss.GetComponent<Boss>().moveLocked = true;
             boss.GetComponent<Boss>().hatarakeLocked = true;
             workingIsActuallyUsefull = false;
@@ -118,6 +122,7 @@ public class GameManager : MonoBehaviour {
         {
             hiringTime = false;
             workingIsActuallyUsefull = true;
+            time = 0;
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
