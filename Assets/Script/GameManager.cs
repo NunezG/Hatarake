@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour {
 	//public GameObject menu;
     public GameObject canvaEmbauche;
     public GameObject tutoButton,victoryButton;
-    private GameObject boss;
+    public GameObject boss;
     private GameObject tutoCoffee, tutoElevator, tutoBossDesk;
     private GameObject[] tempHiringBoxiesBuffer = new GameObject[3];
 	public int tutoStep = 0;
@@ -23,10 +23,10 @@ public class GameManager : MonoBehaviour {
 
    public int nbEmployeeToHire = 3;
    public int nbEmployeeLeftToHire;
-   bool hiringTime = false;
+   public bool hiringTime = false;
 
-   public bool workingIsActuallyUsefull = true;
-   public bool victory = false;
+   public bool workingIsActuallyUsefull = false;
+   public bool ringingPhone = false;
 
 	//Awake is always called before any Start functions
 	void Awake()
@@ -67,18 +67,16 @@ public class GameManager : MonoBehaviour {
 		if (objectiveCompletion < levelObjective) { 
             time = time + Time.deltaTime; 
         }
-		else if(!victory){
-            victory = true;
-            /*victoryButton.SetActive(true);
-            victoryButton.GetComponentInChildren<Text>().text = "VICTORY ! \n We triumph once again : " + levelObjective*time +" funbucks obtained!";
+		else if(boss!=null){
+            victoryButton.SetActive(true);
+            if (objectiveCompletion == 0)
+                victoryButton.GetComponentInChildren<Text>().text = "Time for anotheyr productive day !";
+            else
+                victoryButton.GetComponentInChildren<Text>().text = "VICTORY ! \n We triumph once again : " + levelObjective*time +" funbucks obtained!";
             boss.GetComponent<Boss>().moveLocked = true;
             boss.GetComponent<Boss>().hatarakeLocked = true;
             workingIsActuallyUsefull = false;
-            //levelObjective = 10000;
-            objectiveCompletion=time = 0;*/
-
-            workingIsActuallyUsefull = false;
-
+            ringingPhone = true;
 
         }
         if (tutoIsOn)
@@ -114,8 +112,6 @@ public class GameManager : MonoBehaviour {
 
         if (hiringTime && !ongoingHiring && nbEmployeeLeftToHire!=0)
         {
-            //nombre d'employe a embaucher
-            //temps à attendre entre chaque embauche
             activateHiringRound();
         }
         else if (hiringTime && nbEmployeeLeftToHire == 0) // on a finit d'embaucher pour le nouvelle objectif
@@ -134,14 +130,6 @@ public class GameManager : MonoBehaviour {
 
     public void activateGloriousVictory()
     {
-        victory = false;
-        victoryButton.SetActive(true);
-        victoryButton.GetComponentInChildren<Text>().text = "VICTORY ! \n We triumph once again : " + levelObjective * time + " funbucks obtained!";
-        boss.GetComponent<Boss>().moveLocked = true;
-        boss.GetComponent<Boss>().hatarakeLocked = true;
-        //levelObjective = 10000;
-        objectiveCompletion = time = 0;
-
     }
 
     public void activateHiringRound()
@@ -202,13 +190,16 @@ public class GameManager : MonoBehaviour {
         if (tutoIsOn) nextTutoStep();
         else
         {
+            if (levelObjective == 0) levelObjective = 50;
             levelObjective = levelObjective * objectiveIncreaseFactor;
             objectiveCompletion = 0;
             time = 0;
         }
-        hiringTime = true;
+        //hiringTime = true;
         //nbEmployeeToHire++;
-        nbEmployeeLeftToHire = nbEmployeeToHire;
+        int freeBoxes=20-this.GetComponent<CharacterManager>().GetTotalNumberOfBoxies();
+        if (freeBoxes >= nbEmployeeToHire) nbEmployeeLeftToHire = nbEmployeeToHire;
+        else nbEmployeeLeftToHire = freeBoxes;
 
     }
 

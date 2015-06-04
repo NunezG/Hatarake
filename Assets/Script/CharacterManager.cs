@@ -20,7 +20,7 @@ public class CharacterManager : MonoBehaviour {
   //  public GameObject[] workingHelp;
 
 	List<GameObject> boxies=new List<GameObject>();
-	GameObject boss;
+	public GameObject boss;
 
 	public void Spawn()
 	{
@@ -65,8 +65,8 @@ public class CharacterManager : MonoBehaviour {
 			boxie.transform.position = gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.position;
 			boxie.transform.Translate(Random.Range(0,40),boxie.GetComponent<Collider>().bounds.extents.y,Random.Range(0,30));
 
-            boxie.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color(Random.value, Random.value, Random.value);
-            boxie.transform.GetChild(1).GetComponent<SpriteRenderer>().color = new Color(Random.value, Random.value, Random.value);
+            boxie.transform.GetChild(0).GetComponent<SpriteRenderer>().color = boxie.GetComponent<Employe>().data.hairColor;
+            boxie.transform.GetChild(1).GetComponent<SpriteRenderer>().color = boxie.GetComponent<Employe>().data.topColor;
 
 		}				
 	}
@@ -188,7 +188,7 @@ public class CharacterManager : MonoBehaviour {
 
     public void sendBoxieToHell(GameObject boxie)
     {
-        boxie.GetComponent<Employe>().boxDeTravail.GetComponent<Box>().assigne = false;
+        if (boxie.GetComponent<Employe>().boxDeTravail!=null)boxie.GetComponent<Employe>().boxDeTravail.GetComponent<Box>().assigne = false;
         boxies.Remove(boxie);
         Destroy(boxie);
     }

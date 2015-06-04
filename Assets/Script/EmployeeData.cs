@@ -6,12 +6,12 @@ using System.Collections.Generic;
 public class EmployeeData {
 
 	public float vitesseDemotivation;
-	public float maxVitesseDemotivation = 1;
-	public float minVitesseDemotivation = 0.2f;
+	public float maxVitesseDemotivation = 1f;
+	public float minVitesseDemotivation = 20.0f;
 
 	public float effetRepos;
-	private float maxEffetRepos = 1 ;
-	private float minEffetRepos = 0.2f;
+    public float maxEffetRepos = 20.0f;
+    public float minEffetRepos = 1f;
 
 	public string firstName;
 	public string surname;

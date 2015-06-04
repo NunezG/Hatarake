@@ -15,6 +15,18 @@ public class selectTarget : RAINAction
     {
         base.Start(ai);
        float motivation = (int)ai.Body.gameObject.GetComponent<Employe>().data.motivation;
+
+       target = ai.WorkingMemory.GetItem<GameObject>("myTarget");
+
+
+       if (target.CompareTag("Repos") && !Employe.emptyChill.Contains(target))
+           Employe.emptyChill.Add(target);
+        
+
+       ai.WorkingMemory.SetItem<bool>("wander", false);
+
+
+
 	}
 	
 	public override ActionResult Execute(RAIN.Core.AI ai)
@@ -33,32 +45,35 @@ public class selectTarget : RAINAction
             }
             else if (!ai.WorkingMemory.GetItem<bool>("auTravail"))
             {
-                int pos = Random.Range(0, 4);
+                int pos = Random.Range(0, 10);
 
                 if (pos == 1 && Employe.emptyChill.Count != 0)
                 {
                     //*cherche une place vide pour glander
-                    pos = Random.Range(0, Employe.emptyChill.Count);
+                    
+                        pos = Random.Range(0, Employe.emptyChill.Count);
 
-                    target = Employe.emptyChill[pos];
+                        target = Employe.emptyChill[pos];           
 
                     ai.WorkingMemory.SetItem<bool>("wander", true);
 
-                    Employe.emptyChill.RemoveAt(pos);
+                  //  Employe.emptyChill.RemoveAt(pos);
                     return ActionResult.SUCCESS;
                 }
 
-                //*1/4 de chances de bosser sur une photocopieuse
-                else if (pos != 0 && Employe.emptyChill.Count != 0)
+                //*1/4 de chances de glander dehors
+                 else if (pos < 7 && Employe.emptyChill.Count != 0)
                 {
                     //*cherche une place vide pour glander
                     pos = Random.Range(0, Employe.emptyChill.Count);
+                    Debug.Log("Employe.emptyChill.Count" + Employe.emptyChill.Count);
 
                     target = Employe.emptyChill[pos];
                     Employe.emptyChill.RemoveAt(pos);
                     return ActionResult.SUCCESS;
 
                 }
+
                 //*Si pas de place il retourne a son Box pour se connecter sur facebook
                 target = ai.Body.GetComponent<Employe>().boxDeTravail;
                 return ActionResult.SUCCESS;

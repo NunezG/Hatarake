@@ -99,6 +99,12 @@ public class Employe : MonoBehaviour {
 
 	void Update () 
 	{
+        if (data.fatigue >= data.fatigueMAX)
+        {
+            tMemory.SetItem<bool>("suicidaire", true);
+        }
+
+
         Vector3 distance = boss.transform.position - this.transform.position;
 
         //if (boss == null) print("patate");
@@ -321,19 +327,19 @@ public class Employe : MonoBehaviour {
 	public void Engueule (){
 		//Chaque seconde : motivation -= feignantise DONC si feignantise est grand, les pauses seront plus fréquentes.
 		data.fatigue += data.effetEngueulement;
+        
         data.motivation += data.effetEngueulement;
+        if (data.motivation > data.motivationMax)
+            data.motivation = data.motivationMax;
 
-		if (data.fatigue < data.fatigueMAX) {
+		//if (data.fatigue < data.fatigueMAX) {
 			//suicidaire = true;	
 			tMemory.SetItem<bool>("hatarake", true);
 			tMemory.SetItem<bool>("auTravail", true);
-            tMemory.SetItem<bool>("wander", false);
+         //   tMemory.SetItem<bool>("wander", false);
             this.setActiveSound(true, false, false, false, false, false, false, false, false);
 
-		}else {
-            tMemory.SetItem<bool>("suicidaire", true);
-        }
-		
+		//}	
 	}
 
 	// Use this for initialization
