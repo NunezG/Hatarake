@@ -62,10 +62,10 @@ public class CharacterManager : MonoBehaviour {
             boxie.transform.localScale = boxie.transform.localScale * gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.localScale.x;
 
 			boxie.transform.position = gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.position;
-			boxie.transform.Translate(Random.Range(0,40),boxie.GetComponent<Collider>().bounds.extents.y,Random.Range(0,30));
+            GameObject[] corridorsCell = GameObject.FindGameObjectsWithTag("Corridor");
+            int rdmIndex = Random.Range(0, corridorsCell.Length);
+            boxie.transform.Translate(corridorsCell[rdmIndex].transform.position.x, boxie.GetComponent<Collider>().bounds.extents.y, corridorsCell[rdmIndex].transform.position.z);
 
-            boxie.transform.GetChild(0).GetComponent<SpriteRenderer>().color = boxie.GetComponent<Employe>().data.hairColor;
-            boxie.transform.GetChild(1).GetComponent<SpriteRenderer>().color = boxie.GetComponent<Employe>().data.topColor;
 
 		}				
 	}
@@ -98,8 +98,6 @@ public class CharacterManager : MonoBehaviour {
         boxie.transform.position=new Vector3(floor.transform.Find("Elevator Cell 4, 0").position.x, boxie.GetComponent<Collider>().bounds.extents.y, 0);
         boxie.name = boxiePrefab.name + (boxies.Count);
 
-        boxie.transform.GetChild(0).GetComponent<SpriteRenderer>().color = boxie.GetComponent<Employe>().data.hairColor;
-        boxie.transform.GetChild(1).GetComponent<SpriteRenderer>().color= boxie.GetComponent<Employe>().data.topColor;
         boxies.Add(boxie);
     }
 

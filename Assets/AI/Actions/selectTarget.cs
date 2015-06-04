@@ -65,7 +65,7 @@ public class selectTarget : RAINAction
                 {
                     //*cherche une place vide pour glander
                     pos = Random.Range(0, Employe.emptyChill.Count);
-                    Debug.Log("Employe.emptyChill.Count" + Employe.emptyChill.Count);
+                   // Debug.Log("Employe.emptyChill.Count" + Employe.emptyChill.Count);
 
                     target = Employe.emptyChill[pos];
                     Employe.emptyChill.RemoveAt(pos);

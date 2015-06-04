@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour {
 	public static GameManager instance = null;              //Static instance of GameManager which allows it to be accessed by any other script.
 	//public GameObject sceneObject;
 	//public GameObject menu;
+    public CameraController cameraController;
     public GameObject canvaEmbauche;
     public GameObject tutoButton,victoryButton;
     public GameObject boss;
@@ -15,6 +16,7 @@ public class GameManager : MonoBehaviour {
 	public int tutoStep = 0;
 	public float levelObjective;
     public float objectiveCompletion = 0;
+    public Text clock;
     public float time = 0;
     public bool tutoIsOn = true, ongoingHiring = false;
 
@@ -63,16 +65,35 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        int minutes = (int)(time / 60);
+        int secondes = (int)(time - 60 * minutes);
+        int centisecondes = (int)((time - 60 * minutes - secondes)*100);
+        string strMinutes="";
+        string strSecondes="";
+        string strCentiSecondes="";
+        if (minutes < 10)
+            strMinutes = "0" + minutes;
+        else
+            strMinutes = "" + minutes;
+        if(secondes<10)
+            strSecondes = "0" + secondes;
+        else
+            strSecondes = "" + secondes;
+        if(centisecondes<10)
+            strCentiSecondes = "0" + centisecondes;
+        else
+            strCentiSecondes = "" + centisecondes;
 
-		if (objectiveCompletion < levelObjective) { 
-            time = time + Time.deltaTime; 
+        clock.text = strMinutes + "\'" + strSecondes + "\"" + strCentiSecondes;
+		if (objectiveCompletion < levelObjective ) { 
+            if(workingIsActuallyUsefull)time = time + Time.deltaTime; 
         }
 		else if(boss!=null){
             victoryButton.SetActive(true);
             if (objectiveCompletion == 0)
-                victoryButton.GetComponentInChildren<Text>().text = "Time for anotheyr productive day !";
+                victoryButton.GetComponentInChildren<Text>().text = "Time for another productive day !";
             else
-                victoryButton.GetComponentInChildren<Text>().text = "VICTORY ! \n We triumph once again : " + levelObjective*time +" funbucks obtained!";
+                victoryButton.GetComponentInChildren<Text>().text = "VICTORY ! \n We triumph once again, objective completed in \n" + strMinutes + ":" + strSecondes + ":" + strCentiSecondes;
             boss.GetComponent<Boss>().moveLocked = true;
             boss.GetComponent<Boss>().hatarakeLocked = true;
             workingIsActuallyUsefull = false;
@@ -118,6 +139,7 @@ public class GameManager : MonoBehaviour {
         {
             hiringTime = false;
             workingIsActuallyUsefull = true;
+            time = 0;
         }
 
         if (Input.GetKeyDown(KeyCode.Space))

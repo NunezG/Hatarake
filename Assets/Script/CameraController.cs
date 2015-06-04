@@ -29,6 +29,7 @@ public class CameraController : MonoBehaviour {
      void Start(){
 
 		pointer = GameObject.Find ("notifArrow");
+
 	}
 
      void Update () 
@@ -36,6 +37,7 @@ public class CameraController : MonoBehaviour {
 		// Follow Target, once Boss is created
 		if (target != null && bossCreated) {
 
+            if (target == null) print("plonkiplonka");
 			//Nullify target is on suicided employee
 			if(!target.activeInHierarchy){
 				target = null;
@@ -60,8 +62,9 @@ public class CameraController : MonoBehaviour {
 			}
 
 			//Follow the target if it's needed
-			if (cameraIsToMove) {
-				FollowTargetTillOnIt ();
+            if (cameraIsToMove)
+            {
+                if (target != null) FollowTargetTillOnIt ();
 			}
 
 			//Shake Your Booty, yeahhh !!!
@@ -94,7 +97,7 @@ public class CameraController : MonoBehaviour {
 		}
 		//target is null, lookin for Boss
 		else {
-			target = GameObject.FindGameObjectWithTag ("Boss");
+			target = GameManager.instance.boss;
 			if (target != null)
 				bossCreated = true;
 		}
@@ -133,6 +136,7 @@ public class CameraController : MonoBehaviour {
 	//changes focus and focusTimer
 	public void FollowEmployee(GameObject employee, float fT)
 	{
+
 		target = employee;
 		focusTimer = fT;
 		fixedCamera = false;
