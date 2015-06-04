@@ -1408,10 +1408,10 @@ MonoBehaviour:
   tutoLock: 0
   moveLocked: 0
   hatarakeLocked: 0
-  yellingO_Meter: 1
-  maxYellingO_Meter: 50
-  gainByBubble: 2
-  maxLossByScream: 10
+  yellingO_Meter: 0
+  maxYellingO_Meter: 8
+  gainByBubble: 1
+  maxLossByScream: 8
   bossSounds:
   - {fileID: 8205420}
   - {fileID: 8276232}

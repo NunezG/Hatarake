@@ -1,20 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class ProgressBar : MonoBehaviour {
 
     public Texture progressForeground;
     public Texture progressBackground;
     public Texture waitScreen;
-    public Texture ki;
-    public RectTransform valueKi;
-    float unitaryX, unitaryWidth;
+	public GameObject qiBar;
+	public Sprite[] qiBarSteps;
     public GameObject boss = null;
 
     void Start()
     {
-        unitaryX = valueKi.anchoredPosition.x;
-        unitaryWidth = valueKi.rect.width;
 
     }
 
@@ -23,9 +21,7 @@ public class ProgressBar : MonoBehaviour {
         if (boss == null) boss = GameObject.FindGameObjectWithTag("Boss");
         else
         {
-
-            valueKi.sizeDelta = new Vector2(unitaryWidth * ((float)boss.GetComponent<Boss>().yellingO_Meter/2), valueKi.rect.height);
-            valueKi.anchoredPosition = new Vector2(valueKi.sizeDelta.x/2, valueKi.anchoredPosition.y);
+			DrawYellingOMeter();
         }
 
     }
@@ -37,10 +33,7 @@ public class ProgressBar : MonoBehaviour {
 		if (!NavMesh.isNavMeshDone) {
 			GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), waitScreen);
 		}
-        if (boss != null)
-        {
-            //DrawYellingOMeter((float)(boss.GetComponent<Boss>().yellingO_Meter) / (float)(boss.GetComponent<Boss>().maxYellingO_Meter));
-        }
+
         DrawProgressObjective(GameManager.instance.objectiveCompletion / GameManager.instance.levelObjective);
         if (GameManager.instance.GetComponent<CharacterManager>().GetTotalNumberOfBoxies() != 0)
             DrawNumberOfWorkingEmploye(GameManager.instance.GetComponent<CharacterManager>().GetNumberOfWorkingBoxies(), GameManager.instance.GetComponent<CharacterManager>().GetTotalNumberOfBoxies());
@@ -55,12 +48,15 @@ public class ProgressBar : MonoBehaviour {
         GUI.DrawTexture(new Rect(10, 10, 200 * progress, 30), progressForeground);
 		   // if (progress > 1.0) Destroy (this);
     }
-    void DrawYellingOMeter(float value)
+
+    void DrawYellingOMeter()
     {
-        //print("value : " + value);
-        GUI.DrawTexture(new Rect(10, 100, 200 * value, 30), ki);
-        // if (progress > 1.0) Destroy (this);
+		int valueQi = (int)(boss.GetComponent<Boss> ().yellingO_Meter / (float)boss.GetComponent<Boss> ().maxYellingO_Meter * 9.0f);
+		if(valueQi > 8) valueQi = 8;
+		qiBar.GetComponent<Image> ().sprite = qiBarSteps[valueQi];
+		Debug.Log (valueQi);
     }
+
     void DrawNumberOfWorkingEmploye(int working,int total)
     {
         for (int i = 0; i < working; i++)

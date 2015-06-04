@@ -26,8 +26,6 @@ public class Boss : MonoBehaviour {
     public AudioSource[] bossSounds;
     public AudioSource[] bubbleSound;
 
-	//float jaugeEngueulage; //se remplit quand on appuie sur le boss.
-
     public  float jaugeEngueulageMax = 15.0f; //se remplit quand on appuie sur le boss.
 
     public float vitesseJauge = 2.0f; //se remplit quand on appuie sur le boss.
@@ -157,9 +155,11 @@ public class Boss : MonoBehaviour {
             yield return null;
         }
 
-        yellingO_Meter = (int)(yellingO_Meter - (pos / jaugeEngueulageMax) * maxLossByScream);
-        //print("HATARAKE!!!!!!!!!!!!!!!!! ");
-        Sign.Create(pos,this.transform.position,SignType.Hatarake);
+		if(yellingO_Meter == 8){
+        	yellingO_Meter = 0;
+        	Sign.Create(pos,this.transform.position,SignType.Hatarake);
+		}
+
         if (pos > 7)
         {
 
