@@ -31,4 +31,17 @@ public class BreakableFurniture : MonoBehaviour {
 		damage = 0;
 	}
 
+     void OnMouseDown() 
+    {
+
+        if (( GameManager.instance.boss.transform.position - transform.position).magnitude < 5)
+                {
+                        Hit();
+
+                       // tMemory.SetItem("sabotage", true);
+                      //  tMemory.SetItem("enDeplacement", true);
+                       // tMemory.SetItem<GameObject>("target", colliders[0].gameObject);
+                } 
+    }
+
 }
