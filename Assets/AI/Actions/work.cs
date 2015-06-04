@@ -21,7 +21,7 @@ public class work : RAINAction
         
         //bouge plus
         ai.WorkingMemory.SetItem("enDeplacement", false);
-        ai.Body.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;
+        ai.Body.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;
 		target = ai.WorkingMemory.GetItem<GameObject>("myTarget");
 
 	}
@@ -29,10 +29,12 @@ public class work : RAINAction
     public override ActionResult Execute(RAIN.Core.AI ai)
     {
 			//Reduction de la motivation
-			motivation = motivation - Time.deltaTime * ai.Body.GetComponent<Employe> ().data.vitesseDemotivation;
-   		
+			motivation -= Time.deltaTime * ai.Body.GetComponent<Employe> ().data.vitesseDemotivation;
+            ai.Body.GetComponent<Employe>().data.motivation = motivation;
+
 			//Finis de travailler quand la motivation est 0
 			if (motivation <= 0) {
+                ai.Body.GetComponent<Employe>().data.motivation = 0;
 				ai.WorkingMemory.SetItem ("auTravail", false);
 				return ActionResult.SUCCESS;
 			}
@@ -45,12 +47,8 @@ public class work : RAINAction
     public override void Stop(RAIN.Core.AI ai)
     {
         
-
-
-
         //Remets la motivation
        // ai.WorkingMemory.SetItem("motivation", motivation);
-        ai.Body.GetComponent<Employe>().data.motivation = motivation;
 
         //libère l'espace
         if (target.CompareTag("WorkHelp"))
