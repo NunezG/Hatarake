@@ -150,6 +150,7 @@ public class Boss : MonoBehaviour {
         while (charge)
         {
             pos = Mathf.Lerp(actionArea.localScale.x, jaugeEngueulageMax * (Mathf.Min(maxLossByScream, yellingO_Meter) / maxLossByScream), vitesseJauge * Time.deltaTime);
+            //print("pos : " + pos + " , deltaTime" + Time.deltaTime + " , vitesseJauge * Time.deltaTime" + vitesseJauge * Time.deltaTime);
             actionArea.localScale = new Vector3(pos, actionArea.localScale.y, pos);
 
             yield return null;

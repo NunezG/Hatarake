@@ -15,6 +15,12 @@ TagManager:
   - Obj
   - WorkHelp
   - profile
+  - Box Cell
+  - BossRoom Cell
+  - Elevator Cell
+  - CoffeeRoom Cell
+  - Bathroom Cell
+  - Corridor
   layers:
   - Default
   - TransparentFX

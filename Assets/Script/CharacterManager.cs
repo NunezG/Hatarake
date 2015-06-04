@@ -63,7 +63,9 @@ public class CharacterManager : MonoBehaviour {
             boxie.transform.localScale = boxie.transform.localScale * gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.localScale.x;
 
 			boxie.transform.position = gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.position;
-			boxie.transform.Translate(Random.Range(0,40),boxie.GetComponent<Collider>().bounds.extents.y,Random.Range(0,30));
+            GameObject[] corridorsCell = GameObject.FindGameObjectsWithTag("Corridor");
+            int rdmIndex = Random.Range(0, corridorsCell.Length);
+            boxie.transform.Translate(corridorsCell[rdmIndex].transform.position.x, boxie.GetComponent<Collider>().bounds.extents.y, corridorsCell[rdmIndex].transform.position.z);
 
 
 		}				
