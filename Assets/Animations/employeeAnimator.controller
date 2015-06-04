@@ -13,31 +13,31 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: action
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Speed
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: typing
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: cellphone
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Head
@@ -50,7 +50,7 @@ AnimatorController:
     m_DefaultWeight: 0
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - serializedVersion: 5
     m_Name: Top
     m_StateMachine: {fileID: 110773522}
@@ -62,7 +62,7 @@ AnimatorController:
     m_DefaultWeight: 1
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - serializedVersion: 5
     m_Name: Feet
     m_StateMachine: {fileID: 110708136}
@@ -74,7 +74,7 @@ AnimatorController:
     m_DefaultWeight: 1
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_MultiThreadedStateMachine: 1
 --- !u!1101 &110108978
 AnimatorStateTransition:
@@ -563,7 +563,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: idle
-  m_Speed: 1
+  m_Speed: .100000001
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 110179956}
@@ -673,7 +673,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: idle
-  m_Speed: 1
+  m_Speed: .5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 110154432}
@@ -749,7 +749,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: idle
-  m_Speed: 1
+  m_Speed: .5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 110147718}

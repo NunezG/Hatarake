@@ -24,6 +24,7 @@ public class Boss : MonoBehaviour {
 	//GameObject[] boxies;
 
     public AudioSource[] bossSounds;
+    public AudioSource[] bubbleSound;
 
 	//float jaugeEngueulage; //se remplit quand on appuie sur le boss.
 
@@ -79,9 +80,17 @@ public class Boss : MonoBehaviour {
 
     public void addBubble()
     {
+        for (int i = 0; i < bubbleSound.Length;i++ )
+            if (!bubbleSound[i].isPlaying)
+            {
+                bubbleSound[i].Play();
+                break;
+            }
         yellingO_Meter = yellingO_Meter + gainByBubble;
         if (yellingO_Meter > maxYellingO_Meter) yellingO_Meter = maxYellingO_Meter;
     }
+    
+    public bool moveSoundLock=false;
 
 	// Update is called once per frame
 	void Update () {
@@ -93,7 +102,9 @@ public class Boss : MonoBehaviour {
             pos.y = 2;
             //navComponent.SetDestination (pos);
             //colliders = Physics.OverlapSphere(pos, 1f /* Radius */);
-           
+
+            //print("un deux un deux");
+
             Collider[] colliders = Physics.OverlapSphere(pos, 1f /* Radius */);
 
             if (!(colliders.Length > 0 && colliders[0].tag == "Employe") && pos != null && pos != transform.position)
@@ -116,6 +127,19 @@ public class Boss : MonoBehaviour {
                 } 
             }
         }
+
+        if (tMemory.GetItem<bool>("enDeplacement") && !moveSoundLock)
+        {
+
+            int rdmIndex = Random.Range(0,bossSounds.Length);
+            bossSounds[rdmIndex].Play();
+            moveSoundLock = true;
+        }
+        else if (!tMemory.GetItem<bool>("enDeplacement") && moveSoundLock)
+        {
+            moveSoundLock = false;
+        }
+
 	}
 
     public IEnumerator Engueulade()

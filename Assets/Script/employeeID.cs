@@ -117,8 +117,8 @@ public class employeeID : MonoBehaviour
                 {
 
                     //update de la motivation et de la fatigue
-                    profile.FindChild("motivation").GetComponent<Slider>().value = currentEmployee[j].GetComponent<Employe>().data.motivation;
-                    profile.FindChild("fatigue").GetComponent<Slider>().value = currentEmployee[j].GetComponent<Employe>().data.fatigue;
+                    if(profile.FindChild("motivation")!=null)profile.FindChild("motivation").GetComponent<Slider>().value = currentEmployee[j].GetComponent<Employe>().data.motivation;
+                    if (profile.FindChild("fatigue") != null) profile.FindChild("fatigue").GetComponent<Slider>().value = currentEmployee[j].GetComponent<Employe>().data.fatigue;
 
                     //if new focus
                     if (previousEmployee[j] != currentEmployee[j])
