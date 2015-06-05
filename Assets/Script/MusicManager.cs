@@ -4,28 +4,24 @@ using System.Collections;
 public class MusicManager : MonoBehaviour {
 
 	public AudioSource mainBG;
-	public AudioSource[] tensionsLayers;
-	public float[] tensionsLayersVolumes;
+	public AudioSource tensionLayer;
+	public float[] volumes;
 
 
 	void Start () {
 	
-		// triggering ambiance sound
+		// getting musics
 		mainBG = transform.FindChild ("mainBackground").GetComponent<AudioSource> ();
+		tensionLayer = transform.FindChild ("tensionLayer").GetComponent<AudioSource> ();
 
-		// triggering BG music
+		// triggering musics
 		mainBG.Play ();
-
-		// triggering tension layers so they are in synch
-		for (int i = 0 ; i < tensionsLayers.Length ; i++)
-		{
-			tensionsLayers[i].Play();
-			tensionsLayers[i].volume = 0.0f;
-		}
+		tensionLayer.Play();
 
 	}
 
 	void Update () {
-	
+		mainBG.volume = volumes [0];
+		tensionLayer.volume = volumes [1];
 	}
 }
