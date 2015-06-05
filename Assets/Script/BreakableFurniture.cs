@@ -8,27 +8,25 @@ public class BreakableFurniture : MonoBehaviour {
 
 	void Update () {
 
-        if (damage == resistance) {
-			transform.parent.GetComponentInChildren<SpriteRenderer> ().color = new Color (1.0f, 0.0f, 0.0f);
-			broken = true;
-		}
-
-        else
-		{
-			transform.parent.GetComponentInChildren<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f);
-			broken = false;
-		}
+       
 	}
 
     public void Hit()
-    {
-		if(damage < 5)
-        	damage++;
+    {     
+        damage++;
+
+        if (damage >= resistance)
+        {
+            transform.parent.GetComponentInChildren<SpriteRenderer>().color = new Color(1.0f, 0.0f, 0.0f);
+            broken = true;
+        }
     }
 
 	public void Repair()
 	{
 		damage = 0;
+        transform.parent.GetComponentInChildren<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f);
+        broken = false;
 	}
 
      void OnMouseDown() 

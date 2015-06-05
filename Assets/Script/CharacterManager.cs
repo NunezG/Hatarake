@@ -7,6 +7,7 @@ using System.Collections.Generic;
 public class CharacterManager : MonoBehaviour {
 		
 	public GameObject boxiePrefab;
+    public GameObject decrasseurPrefab;
 	public GameObject bossPrefab;
 
 	public int nombreBoxies = 10;
@@ -36,6 +37,8 @@ public class CharacterManager : MonoBehaviour {
         boss.transform.Translate(0,boss.GetComponent<Collider>().bounds.extents.y,0);
         GameManager.instance.SetBoss(boss);
 
+        GameObject[] corridorsCell = GameObject.FindGameObjectsWithTag("Corridor");
+
 		// create Player
 		for (int i = 0; i < nombreBoxies; i++) 
 		{
@@ -43,7 +46,7 @@ public class CharacterManager : MonoBehaviour {
 
             boxie.GetComponent<Employe>().floor = floor;
             boxie.GetComponent<Employe>().SetEmployeeLocations();
-            boxie.GetComponent<Rigidbody>().mass = Random.Range(1, 100);
+           // boxie.GetComponent<Rigidbody>().mass = Random.Range(1, 100);
             boxie.name = boxiePrefab.name + i;
             boxie.GetComponent<Employe>().tMemory.SetItem("auTravail", true);
 
@@ -62,12 +65,30 @@ public class CharacterManager : MonoBehaviour {
             boxie.transform.localScale = boxie.transform.localScale * gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.localScale.x;
 
 			boxie.transform.position = gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.position;
-            GameObject[] corridorsCell = GameObject.FindGameObjectsWithTag("Corridor");
             int rdmIndex = Random.Range(0, corridorsCell.Length);
             boxie.transform.Translate(corridorsCell[rdmIndex].transform.position.x, boxie.GetComponent<Collider>().bounds.extents.y, corridorsCell[rdmIndex].transform.position.z);
 
 
-		}				
+		}
+
+
+
+
+
+        GameObject decrasseur = (GameObject)Instantiate(decrasseurPrefab);
+        decrasseur.GetComponent<Employe>().floor = floor;
+        decrasseur.GetComponent<Rigidbody>().mass = Random.Range(1, 100);
+        decrasseur.transform.localScale = decrasseur.transform.localScale * gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.localScale.x;
+        decrasseur.transform.position = gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.position;
+        int rdmInd = Random.Range(0, corridorsCell.Length);
+        decrasseur.transform.Translate(corridorsCell[rdmInd].transform.position.x, decrasseur.GetComponent<Collider>().bounds.extents.y, corridorsCell[rdmInd].transform.position.z);
+	
+        decrasseur.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color(1, 0, 0);
+        decrasseur.transform.GetChild(1).GetComponent<SpriteRenderer>().color = new Color(1, 0, 0);
+        decrasseur.transform.GetChild(2).GetComponent<SpriteRenderer>().color = new Color(1, 0, 0);
+
+
+
 	}
 
 

@@ -85,7 +85,7 @@ public class Employe : MonoBehaviour {
             foreach (Window window in suicidesWindows)
             {
                 suicide.Add(window.gameObject);
-				emptyChill.Add(window.gameObject);
+				//emptyChill.Add(window.gameObject);
             }
 			
             emptyWorkingHelp = new List<GameObject>();
