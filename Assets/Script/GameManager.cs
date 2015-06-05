@@ -69,10 +69,17 @@ public class GameManager : MonoBehaviour {
         }
 		else if(boss!=null){
             victoryButton.SetActive(true);
-            if (objectiveCompletion == 0)
-                victoryButton.GetComponentInChildren<Text>().text = "Time for anotheyr productive day !";
-            else
-                victoryButton.GetComponentInChildren<Text>().text = "VICTORY ! \n We triumph once again : " + levelObjective*time +" funbucks obtained!";
+            
+			if (objectiveCompletion == 0)
+                victoryButton.GetComponentInChildren<Text>().text = "Allez va décrocher, du noeud!";
+            
+			else
+			{
+				string[] phrases = {"Hmm pas si mal!", "Des enfants Phillipins seraient plus efficaces", "Le supplice du bambou pour le prochain qui glande!"};
+				string phrase = phrases[(int)Random.Range(0, phrases.Length)];
+				victoryButton.GetComponentInChildren<Text>().text = levelObjective*time + "\n" + phrase;
+			}
+
             boss.GetComponent<Boss>().moveLocked = true;
             boss.GetComponent<Boss>().hatarakeLocked = true;
             workingIsActuallyUsefull = false;

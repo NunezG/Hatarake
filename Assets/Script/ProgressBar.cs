@@ -54,7 +54,6 @@ public class ProgressBar : MonoBehaviour {
 		int valueQi = (int)(boss.GetComponent<Boss> ().yellingO_Meter / (float)boss.GetComponent<Boss> ().maxYellingO_Meter * 9.0f);
 		if(valueQi > 8) valueQi = 8;
 		qiBar.GetComponent<Image> ().sprite = qiBarSteps[valueQi];
-		Debug.Log (valueQi);
     }
 
     void DrawNumberOfWorkingEmploye(int working,int total)
