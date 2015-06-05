@@ -98,7 +98,6 @@ public class GameManager : MonoBehaviour {
             boss.GetComponent<Boss>().hatarakeLocked = true;
             workingIsActuallyUsefull = false;
             ringingPhone = true;
-
         }
         if (tutoIsOn)
         {
@@ -219,7 +218,12 @@ public class GameManager : MonoBehaviour {
         }
         //hiringTime = true;
         //nbEmployeeToHire++;
-        int freeBoxes=20-this.GetComponent<CharacterManager>().GetTotalNumberOfBoxies();
+
+    }
+
+    public void CalculateNumberOfEmployeeToHire()
+    {
+        int freeBoxes = 20 - this.GetComponent<CharacterManager>().GetTotalNumberOfBoxies();
         if (freeBoxes >= nbEmployeeToHire) nbEmployeeLeftToHire = nbEmployeeToHire;
         else nbEmployeeLeftToHire = freeBoxes;
 

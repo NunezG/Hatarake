@@ -37,7 +37,7 @@ public class CameraController : MonoBehaviour {
 		// Follow Target, once Boss is created
 		if (target != null && bossCreated) {
 
-            if (target == null) print("plonkiplonka");
+
 			//Nullify target is on suicided employee
 			if(!target.activeInHierarchy){
 				target = null;
@@ -71,7 +71,10 @@ public class CameraController : MonoBehaviour {
 			ShakeMyBooty ();
 
 			//If the target changes, triggers the timer, get back to Boss when finished
-			if (target != GameObject.Find ("Boss(Clone)")) {
+            if (target != GameManager.instance.boss)
+            {
+                GameManager.instance.boss.GetComponent<Boss>().moveLocked = true;
+                GameManager.instance.boss.GetComponent<Boss>().hatarakeLocked = true;
 				onOtherTarget = true;
 				focusTimer--;
 				fixedCamera = true;
@@ -91,6 +94,8 @@ public class CameraController : MonoBehaviour {
 				//Camera is follwing Boss
 			else{
 
+                if(GameManager.instance.boss.GetComponent<Boss>().moveLocked)GameManager.instance.boss.GetComponent<Boss>().moveLocked = false;
+                if (GameManager.instance.boss.GetComponent<Boss>().hatarakeLocked) GameManager.instance.boss.GetComponent<Boss>().hatarakeLocked = false;
 				pointer.SetActive(false);
 
 			}

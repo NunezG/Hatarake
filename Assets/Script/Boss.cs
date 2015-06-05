@@ -28,7 +28,7 @@ public class Boss : MonoBehaviour {
 
     public  float jaugeEngueulageMax = 15.0f; //se remplit quand on appuie sur le boss.
 
-    public float vitesseJauge = 2.0f; //se remplit quand on appuie sur le boss.
+    public float tempsRemplissageJauge = 2.0f; 
 
 	//float timer = 0;
 
@@ -147,10 +147,15 @@ public class Boss : MonoBehaviour {
 
         actionArea.gameObject.SetActive(true);
         float pos=0;
+        float time = 0;
         while (charge)
         {
-            pos = Mathf.Lerp(actionArea.localScale.x, jaugeEngueulageMax * (Mathf.Min(maxLossByScream, yellingO_Meter) / maxLossByScream), vitesseJauge * Time.deltaTime);
-            //print("pos : " + pos + " , deltaTime" + Time.deltaTime + " , vitesseJauge * Time.deltaTime" + vitesseJauge * Time.deltaTime);
+            time = time + Time.deltaTime;
+            //pos = Mathf.Lerp(actionArea.localScale.x, jaugeEngueulageMax * (Mathf.Min(maxLossByScream, yellingO_Meter) / maxLossByScream), vitesseJauge * Time.deltaTime);
+            //print("pos : " + pos + " , deltaTime : " + Time.deltaTime + " , vitesseJauge * Time.deltaTime : " + vitesseJauge * Time.deltaTime);
+            //actionArea.localScale = new Vector3(pos, actionArea.localScale.y, pos);
+
+            pos = Mathf.Lerp(1, jaugeEngueulageMax * (Mathf.Min(maxLossByScream, yellingO_Meter) / maxLossByScream), time/tempsRemplissageJauge);
             actionArea.localScale = new Vector3(pos, actionArea.localScale.y, pos);
 
             yield return null;

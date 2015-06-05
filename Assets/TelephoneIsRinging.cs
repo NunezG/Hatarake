@@ -35,6 +35,7 @@ public class TelephoneIsRinging : MonoBehaviour {
             ringring.Stop();
             pickUp.Play();
             GameManager.instance.hiringTime = true;
+            GameManager.instance.CalculateNumberOfEmployeeToHire();
         }
     }
 

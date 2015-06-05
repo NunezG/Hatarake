@@ -1422,7 +1422,7 @@ MonoBehaviour:
   - {fileID: 8228500}
   - {fileID: 8228500}
   jaugeEngueulageMax: 15
-  vitesseJauge: 2
+  tempsRemplissageJauge: 1
   moveSoundLock: 0
 --- !u!114 &11440450
 MonoBehaviour:

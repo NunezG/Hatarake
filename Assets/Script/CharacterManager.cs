@@ -66,8 +66,8 @@ public class CharacterManager : MonoBehaviour {
             int rdmIndex = Random.Range(0, corridorsCell.Length);
             boxie.transform.Translate(corridorsCell[rdmIndex].transform.position.x, boxie.GetComponent<Collider>().bounds.extents.y, corridorsCell[rdmIndex].transform.position.z);
 
-
-		}				
+            boxies.Add(boxie);
+		}
 	}
 
 
