@@ -62,8 +62,8 @@ public class Employe : MonoBehaviour {
 
         data.InitializeEmployee();
 
-        this.transform.GetChild(0).GetComponent<SpriteRenderer>().color = this.GetComponent<Employe>().data.hairColor;
-        this.transform.GetChild(1).GetComponent<SpriteRenderer>().color = this.GetComponent<Employe>().data.topColor;
+        this.transform.GetChild(0).GetComponent<SpriteRenderer>().color = data.hairColor;
+        this.transform.GetChild(1).GetComponent<SpriteRenderer>().color = data.topColor;
     }
 
 
@@ -85,7 +85,7 @@ public class Employe : MonoBehaviour {
             foreach (Window window in suicidesWindows)
             {
                 suicide.Add(window.gameObject);
-				emptyChill.Add(window.gameObject);
+				//emptyChill.Add(window.gameObject);
             }
 			
             emptyWorkingHelp = new List<GameObject>();
@@ -327,7 +327,6 @@ public class Employe : MonoBehaviour {
 	//}
 
 
-	// Use this for initialization
 	public void Engueule (){
 		//Chaque seconde : motivation -= feignantise DONC si feignantise est grand, les pauses seront plus fréquentes.
 		data.fatigue += data.effetEngueulement;
@@ -346,7 +345,6 @@ public class Employe : MonoBehaviour {
 		//}	
 	}
 
-	// Use this for initialization
 	public void Suicide (){
 
         //tMemory.GetItem("suicidaire"); 

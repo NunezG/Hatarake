@@ -329,9 +329,9 @@ GameObject:
   - 136: {fileID: 13660728}
   - 54: {fileID: 5401646}
   - 95: {fileID: 9503852}
-  - 114: {fileID: 11408596}
+  - 114: {fileID: 11458140}
   m_Layer: 0
-  m_Name: Boxie
+  m_Name: Decrasseur
   m_TagString: Employe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -645,12 +645,12 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 192460}
   serializedVersion: 2
-  m_Mass: 100
+  m_Mass: 1
   m_Drag: 3.40282347e+38
-  m_AngularDrag: 3.40282306e+38
-  m_UseGravity: 1
+  m_AngularDrag: 3.40282347e+38
+  m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 2
 --- !u!82 &8215460
@@ -1636,62 +1636,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11408596
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 192460}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44ed7e867878db94c8084e53f20df8ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boxDeTravail: {fileID: 0}
-  floor: {fileID: 0}
-  data:
-    vitesseDemotivation: 0
-    maxVitesseDemotivation: 20
-    minVitesseDemotivation: 2
-    effetRepos: 0
-    maxEffetRepos: 20
-    minEffetRepos: 1
-    firstName: 
-    surname: 
-    isMale: 0
-    physicalCaracteristics: 
-    skinColor: {r: 0, g: 0, b: 0, a: 0}
-    hairColor: {r: 0, g: 0, b: 0, a: 0}
-    topColor: {r: 0, g: 0, b: 0, a: 0}
-    backColor: {r: 0, g: 0, b: 0, a: 0}
-    hobbies: []
-    fatigue: 0
-    motivation: 0
-    fatigueMAX: 700
-    motivationMax: 500
-    effetEngueulement: 100
-    vitesseTravail: .5
-  isAlreadyInRange: 0
-  moveMemory: 0
-  workingMemory: 0
-  suicideMemory: 0
-  coffeeSound: {fileID: 8215460}
-  keyboardSound: {fileID: 8293896}
-  photocopierSound: {fileID: 8292056}
-  depressionSound: {fileID: 8255578}
-  gamingSound: {fileID: 8247782}
-  facebookSound: {fileID: 8250500}
-  vendingMachineSound: {fileID: 8221040}
-  engueulageSound:
-  - {fileID: 8270216}
-  - {fileID: 8227524}
-  - {fileID: 8253824}
-  - {fileID: 8299650}
-  - {fileID: 8290900}
-  - {fileID: 8279826}
-  - {fileID: 8293228}
-  seuilDepression: .800000012
-  depressif: 0
 --- !u!114 &11416068
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1712,8 +1656,8 @@ MonoBehaviour:
       id="0"><field value="True" type="System.Boolean" id="_isActive" /><field type="UnityEngine.GameObject"
       id="_body" gameobject="0" /><field type="RAIN.Memory.BasicMemory" reference="1"
       id="_workingMemory" childrenvisible="False" /><field type="RAIN.Minds.BasicMind"
-      reference="2" id="_mind" childrenvisible="False" /><field type="RAIN.Motion.MecanimMotor"
-      reference="3" id="_motor" childrenvisible="True" /><field type="RAIN.Animation.MecanimAnimator"
+      reference="2" id="_mind" childrenvisible="True" /><field type="RAIN.Motion.MecanimMotor"
+      reference="3" id="_motor" childrenvisible="False" /><field type="RAIN.Animation.MecanimAnimator"
       reference="4" id="_animator" childrenvisible="False" /><field type="RAIN.Navigation.BasicNavigator"
       reference="10" id="_navigator" childrenvisible="False" /><field type="RAIN.Perception.BasicSenses"
       reference="11" id="_senses" childrenvisible="False" /><field type="System.Collections.Generic.List"
@@ -1734,10 +1678,7 @@ MonoBehaviour:
       type="RAIN.Minds.BasicMind" refcount="1" id="2"><field type="RAIN.BehaviorTrees.BTAsset"
       id="_behaviorTreeAsset" gameobject="1" /><field type="System.Collections.Generic.List"
       id="_behaviorTreeBindings" elementtype="RAIN.BehaviorTrees.BTAssetBinding"><field
-      type="RAIN.BehaviorTrees.BTAssetBinding" reference="20" id="element0" /><field
-      type="RAIN.BehaviorTrees.BTAssetBinding" reference="23" id="element1" /><field
-      type="RAIN.BehaviorTrees.BTAssetBinding" reference="24" id="element2" /><field
-      type="RAIN.BehaviorTrees.BTAssetBinding" reference="25" id="element3" /></field></reference><reference
+      type="RAIN.BehaviorTrees.BTAssetBinding" reference="25" id="element0" /></field></reference><reference
       type="RAIN.Motion.MecanimMotor" refcount="1" id="3"><field value="10" type="System.Single"
       id="_speed" /><field value="3000" type="System.Single" id="_rotationSpeed" /><field
       value="0.1" type="System.Single" id="_closeEnoughDistance" /><field value="1"
@@ -1816,20 +1757,15 @@ MonoBehaviour:
       refcount="1" id="19"><field value="Speed" type="System.String" id="parameterName"
       /><field value="Speed" type="RAIN.Motion.MecanimMotor+MotorField" id="motorField"
       /><field value="0" type="System.Single" id="dampTime" /></reference><reference
-      type="RAIN.BehaviorTrees.BTAssetBinding" refcount="1" id="20"><field value="Work"
-      type="System.String" id="binding" /><field type="RAIN.BehaviorTrees.BTAsset"
-      id="behaviorTree" gameobject="4" /></reference><reference type="RAIN.Memory.BasicMemory+MemoryItem"
+      type="RAIN.BehaviorTrees.BTAssetBinding" refcount="0" id="20" /><reference type="RAIN.Memory.BasicMemory+MemoryItem"
       refcount="1" id="21"><field value="auTravail" type="System.String" id="Key"
       /><field value="System.Boolean" type="System.Type" id="ValueType" /><field value="False"
       type="System.Boolean" id="Value" /></reference><reference type="RAIN.Memory.BasicMemory+MemoryItem"
-      refcount="0" id="22" /><reference type="RAIN.BehaviorTrees.BTAssetBinding" refcount="1"
-      id="23"><field value="Chill" type="System.String" id="binding" /><field type="RAIN.BehaviorTrees.BTAsset"
-      id="behaviorTree" gameobject="2" /></reference><reference type="RAIN.BehaviorTrees.BTAssetBinding"
-      refcount="1" id="24"><field value="Suicide" type="System.String" id="binding"
-      /><field type="RAIN.BehaviorTrees.BTAsset" id="behaviorTree" gameobject="3"
-      /></reference><reference type="RAIN.BehaviorTrees.BTAssetBinding" refcount="1"
-      id="25"><field value="Move" type="System.String" id="binding" /><field type="RAIN.BehaviorTrees.BTAsset"
-      id="behaviorTree" gameobject="5" /></reference><reference type="RAIN.Memory.BasicMemory+MemoryItem"
+      refcount="0" id="22" /><reference type="RAIN.BehaviorTrees.BTAssetBinding" refcount="0"
+      id="23" /><reference type="RAIN.BehaviorTrees.BTAssetBinding" refcount="0" id="24"
+      /><reference type="RAIN.BehaviorTrees.BTAssetBinding" refcount="1" id="25"><field
+      value="Move" type="System.String" id="binding" /><field type="RAIN.BehaviorTrees.BTAsset"
+      id="behaviorTree" gameobject="4" /></reference><reference type="RAIN.Memory.BasicMemory+MemoryItem"
       refcount="1" id="26"><field value="normalSpeed" type="System.String" id="Key"
       /><field value="System.Int32" type="System.Type" id="ValueType" /><field value="10"
       type="System.Int32" id="Value" /></reference><reference type="RAIN.Memory.BasicMemory+MemoryItem"
@@ -1846,10 +1782,9 @@ MonoBehaviour:
       id="33" customdata="19" /></references></component>
     _serializedGameObjects:
     - {fileID: 192460}
-    - {fileID: 11400000, guid: 62c622395b7ce8d49918a00d5c007c17, type: 2}
-    - {fileID: 11400000, guid: 7fe719ceee8aa6f478c019563766a222, type: 2}
-    - {fileID: 11400000, guid: d14258556a450024290af983f1c44f9b, type: 2}
-    - {fileID: 11400000, guid: 55966509e4eb1ac4683d7f6a42949878, type: 2}
+    - {fileID: 11400000, guid: 826b61a9587658042bb7fe65a968e63c, type: 2}
+    - {fileID: 0}
+    - {fileID: 0}
     - {fileID: 11400000, guid: 30d126659ec9ba14a9fe358fedca45f3, type: 2}
     _serializedCustomData:
     - _data: 
@@ -1892,6 +1827,41 @@ MonoBehaviour:
       _stringData: DQo=
     - _data: 
       _stringData: DQo=
+--- !u!114 &11458140
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 192460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f518f6fb170a55640a80c9f07417bfda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emptyChill: []
+  floor: {fileID: 0}
+  data:
+    vitesseDemotivation: 0
+    maxVitesseDemotivation: 1
+    minVitesseDemotivation: 20
+    effetRepos: 0
+    maxEffetRepos: 20
+    minEffetRepos: 1
+    firstName: 
+    surname: 
+    isMale: 0
+    physicalCaracteristics: 
+    skinColor: {r: 0, g: 0, b: 0, a: 0}
+    hairColor: {r: 0, g: 0, b: 0, a: 0}
+    topColor: {r: 0, g: 0, b: 0, a: 0}
+    backColor: {r: 0, g: 0, b: 0, a: 0}
+    hobbies: []
+    fatigue: 0
+    motivation: 0
+    fatigueMAX: 100
+    motivationMax: 500
+    effetEngueulement: 40
+    vitesseTravail: .5
 --- !u!136 &13660728
 CapsuleCollider:
   m_ObjectHideFlags: 1

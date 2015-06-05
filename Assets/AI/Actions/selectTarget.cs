@@ -49,10 +49,11 @@ public class selectTarget : RAINAction
                 if (pos == 1 && Employe.emptyChill.Count != 0)
                 {
                     //*cherche une place vide pour glander
-                    
-                        pos = Random.Range(0, Employe.emptyChill.Count);
+                    GameObject[] corridorsCell = GameObject.FindGameObjectsWithTag("Corridor");
 
-                        target = Employe.emptyChill[pos];           
+                    pos = Random.Range(0, corridorsCell.Length);
+
+                    target = corridorsCell[pos];           
 
                     ai.WorkingMemory.SetItem<bool>("wander", true);
 
