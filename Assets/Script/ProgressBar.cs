@@ -10,7 +10,9 @@ public class ProgressBar : MonoBehaviour {
 	public GameObject qiBar;
 	public Sprite[] qiBarSteps;
     public GameObject boss = null;
-
+    public float time = 0;
+    public float poutPoutAmplitude = 0.1f;
+    public float poutPoutFrequence = 1f;
     void Start()
     {
 
@@ -23,21 +25,25 @@ public class ProgressBar : MonoBehaviour {
         {
 			DrawYellingOMeter();
         }
-
     }
 
 
     void OnGUI()
     {
 
-		if (!NavMesh.isNavMeshDone) {
-			GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), waitScreen);
-		}
-
-        DrawProgressObjective(GameManager.instance.objectiveCompletion / GameManager.instance.levelObjective);
-        if (GameManager.instance.GetComponent<CharacterManager>().GetTotalNumberOfBoxies() != 0)
-            DrawNumberOfWorkingEmploye(GameManager.instance.GetComponent<CharacterManager>().GetNumberOfWorkingBoxies(), GameManager.instance.GetComponent<CharacterManager>().GetTotalNumberOfBoxies());
-       
+        if (!NavMesh.isNavMeshDone)
+        {
+            GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), waitScreen);
+        }
+        else if(GameManager.instance.workingIsActuallyUsefull)
+        {
+            DrawProgressObjective(GameManager.instance.objectiveCompletion / GameManager.instance.levelObjective);
+            if (GameManager.instance.GetComponent<CharacterManager>().GetTotalNumberOfBoxies() != 0)
+                DrawNumberOfWorkingEmploye(GameManager.instance.GetComponent<CharacterManager>().GetNumberOfWorkingBoxies(), GameManager.instance.GetComponent<CharacterManager>().GetTotalNumberOfBoxies());
+        }
+        else
+        {
+        }
     
     }
 
@@ -53,7 +59,18 @@ public class ProgressBar : MonoBehaviour {
     {
 		int valueQi = (int)(boss.GetComponent<Boss> ().yellingO_Meter / (float)boss.GetComponent<Boss> ().maxYellingO_Meter * 9.0f);
 		if(valueQi > 8) valueQi = 8;
+        if (valueQi == 8)
+        {
+            float scalePoutPout = (Mathf.Sin(time * poutPoutFrequence) + 1) * poutPoutAmplitude;
+            qiBar.gameObject.transform.localScale = new Vector3(1 + scalePoutPout, 1 + scalePoutPout, 1 + scalePoutPout);
+            time = time + Time.deltaTime;
+        }
+        else {
+            time = 0;
+            qiBar.gameObject.transform.localScale = new Vector3(1, 1, 1);
+        }
 		qiBar.GetComponent<Image> ().sprite = qiBarSteps[valueQi];
+		//Debug.Log (valueQi);
     }
 
     void DrawNumberOfWorkingEmploye(int working,int total)

@@ -92,8 +92,8 @@ public class Boss : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-
-        if (Input.GetMouseButton(0) && !charge && !moveLocked)
+       
+        if (Input.GetMouseButtonUp(0) && !charge && !moveLocked)
         {
             pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             //pos.y = transform.position.y;
@@ -115,14 +115,7 @@ public class Boss : MonoBehaviour {
 
                     
                 }
-                else if (colliders.Length > 0 && colliders[0].GetComponent<BreakableFurniture>() != null && (transform.position - colliders[0].transform.position).magnitude < 5)
-                {
-                        colliders[0].gameObject.GetComponentInChildren<BreakableFurniture>().Hit();
-
-                       // tMemory.SetItem("sabotage", true);
-                      //  tMemory.SetItem("enDeplacement", true);
-                      //  tMemory.SetItem<GameObject>("target", colliders[0].gameObject);
-                } 
+               
             }
         }
 
@@ -150,6 +143,7 @@ public class Boss : MonoBehaviour {
         while (charge)
         {
             pos = Mathf.Lerp(actionArea.localScale.x, jaugeEngueulageMax * (Mathf.Min(maxLossByScream, yellingO_Meter) / maxLossByScream), vitesseJauge * Time.deltaTime);
+            //print("pos : " + pos + " , deltaTime" + Time.deltaTime + " , vitesseJauge * Time.deltaTime" + vitesseJauge * Time.deltaTime);
             actionArea.localScale = new Vector3(pos, actionArea.localScale.y, pos);
 
             yield return null;

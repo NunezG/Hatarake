@@ -4,15 +4,17 @@ using System.Collections.Generic;
 using RAIN.Action;
 using RAIN.Core;
 
+
 [RAINAction]
 public class work : RAINAction
 {
     float motivation;
 	GameObject target;
-
+     Animator animator;
 
 	public override void Start(RAIN.Core.AI ai)
     {
+        animator = ai.Body.GetComponent<Animator>();
         //Commence a travailler
         base.Start(ai);
         motivation = ai.Body.GetComponent<Employe>().data.motivation;
@@ -23,7 +25,7 @@ public class work : RAINAction
         ai.WorkingMemory.SetItem("enDeplacement", false);
         ai.Body.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;
 		target = ai.WorkingMemory.GetItem<GameObject>("myTarget");
-
+        animator.SetBool("typing", true);
 	}
 
     public override ActionResult Execute(RAIN.Core.AI ai)
@@ -59,6 +61,7 @@ public class work : RAINAction
         ai.Body.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionY;
 
 		ai.Motor.DefaultSpeed = ai.WorkingMemory.GetItem<int>("normalSpeed");
+        animator.SetBool("typing", false);
 
 		base.Stop(ai);
     }

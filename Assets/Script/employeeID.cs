@@ -115,11 +115,12 @@ public class employeeID : MonoBehaviour
                 // Boucle d'affichage normale
                 else
                 {
-
-                    //update de la motivation et de la fatigue
-                    if(profile.FindChild("motivation")!=null)profile.FindChild("motivation").GetComponent<Slider>().value = currentEmployee[j].GetComponent<Employe>().data.motivation;
-                    if (profile.FindChild("fatigue") != null) profile.FindChild("fatigue").GetComponent<Slider>().value = currentEmployee[j].GetComponent<Employe>().data.fatigue;
-
+                    if (currentEmployee[j] != null)
+                    {
+                        //update de la motivation et de la fatigue
+                        if (profile.FindChild("motivation") != null) profile.FindChild("motivation").GetComponent<Slider>().value = currentEmployee[j].GetComponent<Employe>().data.motivation;
+                        if (profile.FindChild("fatigue") != null) profile.FindChild("fatigue").GetComponent<Slider>().value = currentEmployee[j].GetComponent<Employe>().data.fatigue;
+                    }
                     //if new focus
                     if (previousEmployee[j] != currentEmployee[j])
                     {

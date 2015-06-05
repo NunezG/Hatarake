@@ -406,26 +406,42 @@ public class Office : MonoBehaviour
         {
             case RoomType.Corridor:
                 newCell.name = "Corridor Cell " + x + ", " + z;
+                newCell.tag = "Corridor";
                 newCell.GetComponent<Renderer>().material = materials[0];
+                Color color =                newCell.GetComponent<Renderer>().material.color;
+                float H=0, S=0, V=0;
+                ColorConverter.RGBToHSV(color,out H,out S,out V);
+                float rdm = UnityEngine.Random.Range(-0.02f,0.02f);
+                V = V + rdm;
+                if (V > 1) V = 1;
+                Color noiseColor = ColorConverter.HSVToRGB(H, S, V);
+                newCell.GetComponent<Renderer>().material.color = noiseColor;
+                //print("H : " + H + " ,S :" + S + " ,V: " + V);
+
                 break;
             case RoomType.Bossroom:
                 newCell.name = "BossRoom Cell " + x + ", " + z;
+                newCell.tag = "BossRoom Cell";
                 newCell.GetComponent<Renderer>().material = materials[1];
                 break;
             case RoomType.Coffeeroom:
                 newCell.name = "CoffeeRoom Cell " + x + ", " + z;
+                newCell.tag = "CoffeeRoom Cell";
                 newCell.GetComponent<Renderer>().material = materials[2];
                 break;
             case RoomType.Bathroom:
                 newCell.name = "Bathroom Cell " + x + ", " + z;
+                newCell.tag = "Bathroom Cell";
                 newCell.GetComponent<Renderer>().material = materials[3];
                 break;
             case RoomType.Box:
                 newCell.name = "Box Cell " + x + ", " + z;
+                newCell.tag = "Box Cell";
                 newCell.GetComponent<Renderer>().material = materials[4];
                 break;
             case RoomType.Elevator:
                 newCell.name = "Elevator Cell " + x + ", " + z;
+                newCell.tag = "Elevator Cell";
                 newCell.GetComponent<Renderer>().material = materials[5];
                 break;
         }

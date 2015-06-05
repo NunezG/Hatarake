@@ -22,7 +22,6 @@ public class LevelManager : MonoBehaviour {
             StartCoroutine(NavMesh.GenerateNavmesh(officeInstance));
             
         }
-
 	}
 
     public void addFloor()
