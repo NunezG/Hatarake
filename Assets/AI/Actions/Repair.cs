@@ -33,5 +33,7 @@ public class Repair : RAINAction
     public override void Stop(RAIN.Core.AI ai)
     {
         base.Stop(ai);
+        ai.Motor.DefaultSpeed = ai.WorkingMemory.GetItem<int>("normalSpeed");
+
     }
 }

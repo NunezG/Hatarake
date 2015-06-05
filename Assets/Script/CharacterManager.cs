@@ -71,12 +71,9 @@ public class CharacterManager : MonoBehaviour {
 
 		}
 
-
-
-
-
         GameObject decrasseur = (GameObject)Instantiate(decrasseurPrefab);
-        decrasseur.GetComponent<Employe>().floor = floor;
+        decrasseur.GetComponent<Decrasseur>().floor = floor;
+        decrasseur.GetComponent<Decrasseur>().SetEmployeeLocations();
         decrasseur.GetComponent<Rigidbody>().mass = Random.Range(1, 100);
         decrasseur.transform.localScale = decrasseur.transform.localScale * gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.localScale.x;
         decrasseur.transform.position = gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.position;
@@ -86,7 +83,7 @@ public class CharacterManager : MonoBehaviour {
         decrasseur.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color(1, 0, 0);
         decrasseur.transform.GetChild(1).GetComponent<SpriteRenderer>().color = new Color(1, 0, 0);
         decrasseur.transform.GetChild(2).GetComponent<SpriteRenderer>().color = new Color(1, 0, 0);
-
+        
 
 
 	}

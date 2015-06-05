@@ -329,7 +329,7 @@ GameObject:
   - 136: {fileID: 13660728}
   - 54: {fileID: 5401646}
   - 95: {fileID: 9503852}
-  - 114: {fileID: 11408596}
+  - 114: {fileID: 11458140}
   m_Layer: 0
   m_Name: Decrasseur
   m_TagString: Employe
@@ -1636,62 +1636,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11408596
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 192460}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44ed7e867878db94c8084e53f20df8ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boxDeTravail: {fileID: 0}
-  floor: {fileID: 0}
-  data:
-    vitesseDemotivation: 0
-    maxVitesseDemotivation: 20
-    minVitesseDemotivation: 2
-    effetRepos: 0
-    maxEffetRepos: 20
-    minEffetRepos: 1
-    firstName: 
-    surname: 
-    isMale: 0
-    physicalCaracteristics: 
-    skinColor: {r: 0, g: 0, b: 0, a: 0}
-    hairColor: {r: 0, g: 0, b: 0, a: 0}
-    topColor: {r: 0, g: 0, b: 0, a: 0}
-    backColor: {r: 0, g: 0, b: 0, a: 0}
-    hobbies: []
-    fatigue: 0
-    motivation: 0
-    fatigueMAX: 700
-    motivationMax: 500
-    effetEngueulement: 100
-    vitesseTravail: .5
-  isAlreadyInRange: 0
-  moveMemory: 0
-  workingMemory: 0
-  suicideMemory: 0
-  coffeeSound: {fileID: 8215460}
-  keyboardSound: {fileID: 8293896}
-  photocopierSound: {fileID: 8292056}
-  depressionSound: {fileID: 8255578}
-  gamingSound: {fileID: 8247782}
-  facebookSound: {fileID: 8250500}
-  vendingMachineSound: {fileID: 8221040}
-  engueulageSound:
-  - {fileID: 8270216}
-  - {fileID: 8227524}
-  - {fileID: 8253824}
-  - {fileID: 8299650}
-  - {fileID: 8290900}
-  - {fileID: 8279826}
-  - {fileID: 8293228}
-  seuilDepression: .800000012
-  depressif: 0
 --- !u!114 &11416068
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1883,6 +1827,41 @@ MonoBehaviour:
       _stringData: DQo=
     - _data: 
       _stringData: DQo=
+--- !u!114 &11458140
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 192460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f518f6fb170a55640a80c9f07417bfda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emptyChill: []
+  floor: {fileID: 0}
+  data:
+    vitesseDemotivation: 0
+    maxVitesseDemotivation: 1
+    minVitesseDemotivation: 20
+    effetRepos: 0
+    maxEffetRepos: 20
+    minEffetRepos: 1
+    firstName: 
+    surname: 
+    isMale: 0
+    physicalCaracteristics: 
+    skinColor: {r: 0, g: 0, b: 0, a: 0}
+    hairColor: {r: 0, g: 0, b: 0, a: 0}
+    topColor: {r: 0, g: 0, b: 0, a: 0}
+    backColor: {r: 0, g: 0, b: 0, a: 0}
+    hobbies: []
+    fatigue: 0
+    motivation: 0
+    fatigueMAX: 100
+    motivationMax: 500
+    effetEngueulement: 40
+    vitesseTravail: .5
 --- !u!136 &13660728
 CapsuleCollider:
   m_ObjectHideFlags: 1

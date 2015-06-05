@@ -25,11 +25,15 @@ public class work : RAINAction
         ai.WorkingMemory.SetItem("enDeplacement", false);
         ai.Body.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;
 		target = ai.WorkingMemory.GetItem<GameObject>("myTarget");
-        animator.SetBool("typing", true);
+
+        if (target == ai.Body.GetComponent<Employe>().boxDeTravail)
+            animator.SetBool("typing", true);
+       // else ai.Body.transform.FindChild("top").GetComponent<SpriteRenderer>().sprite =  new Sprite();
 	}
 
     public override ActionResult Execute(RAIN.Core.AI ai)
     {
+
 			//Reduction de la motivation
 			motivation -= Time.deltaTime * ai.Body.GetComponent<Employe> ().data.vitesseDemotivation;
             ai.Body.GetComponent<Employe>().data.motivation = motivation;
