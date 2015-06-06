@@ -56,10 +56,10 @@ MonoBehaviour:
       id="_unwalkableTags" elementtype="System.String"><field value="Mur" type="System.String"
       id="element0" /><field value="Furniture" type="System.String" id="element1"
       /></field><field type="System.Collections.Generic.List" id="_graphTags" elementtype="System.String"
-      /><field value="0" type="System.Single" id="_maxSlope" /><field value="0.01"
-      type="System.Single" id="_walkableHeight" /><field value="0.7" type="System.Single"
+      /><field value="0.01" type="System.Single" id="_maxSlope" /><field value="0.01"
+      type="System.Single" id="_walkableHeight" /><field value="1.2" type="System.Single"
       id="_walkableRadius" /><field value="0.01" type="System.Single" id="_stepHeight"
-      /><field value="0.6" type="System.Single" id="_cellSize" /><field value="0.2"
+      /><field value="0.35" type="System.Single" id="_cellSize" /><field value="0.01"
       type="System.Single" id="_maxVertexError" /><field type="RAIN.Navigation.NavMesh.NavMeshPathGraph"
       reference="1" id="_graph" /></reference><reference type="RAIN.Navigation.NavMesh.NavMeshPathGraph"
       refcount="1" id="1" customdata="0" /></references></component>

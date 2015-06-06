@@ -177,6 +177,9 @@ public class Boss : MonoBehaviour {
         List<GameObject> employesEngueulable = actionArea.GetComponent<jaugeEngueulage>().getEmployesJauge();
         foreach (GameObject emp in employesEngueulable)
         {
+            if (emp.GetComponent<Decrasseur>() != null)
+                emp.GetComponent<Decrasseur>().Engueule();
+            else
             emp.GetComponent<Employe>().Engueule();
         }
         if (GameManager.instance.tutoIsOn && GameManager.instance.goingToHatarakeSlacker)

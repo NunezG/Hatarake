@@ -645,12 +645,12 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 192460}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 100
   m_Drag: 3.40282347e+38
-  m_AngularDrag: 3.40282347e+38
-  m_UseGravity: 0
+  m_AngularDrag: 3.40282306e+38
+  m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 84
   m_CollisionDetection: 2
 --- !u!82 &8215460
@@ -1651,11 +1651,11 @@ MonoBehaviour:
   floor: {fileID: 0}
   data:
     vitesseDemotivation: 0
-    maxVitesseDemotivation: 20
-    minVitesseDemotivation: 2
+    maxVitesseDemotivation: 50
+    minVitesseDemotivation: 20
     effetRepos: 0
-    maxEffetRepos: 20
-    minEffetRepos: 1
+    maxEffetRepos: 30
+    minEffetRepos: 20
     firstName: 
     surname: 
     isMale: 0
@@ -1670,7 +1670,7 @@ MonoBehaviour:
     fatigueMAX: 700
     motivationMax: 500
     effetEngueulement: 100
-    vitesseTravail: .5
+    vitesseTravail: 5
   isAlreadyInRange: 0
   moveMemory: 0
   workingMemory: 0

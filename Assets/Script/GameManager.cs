@@ -70,6 +70,10 @@ public class GameManager : MonoBehaviour {
             //bossLock(true, true);
             tutoFirstButton.gameObject.SetActive(true); 
         }
+        else
+        {
+            workingIsActuallyUsefull = true;
+        }
         canvaEmbauche.SetActive(false);
 
 	}

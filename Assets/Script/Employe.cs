@@ -329,7 +329,6 @@ public class Employe : MonoBehaviour {
 	//}
     public void TotalDemotivation()
     {
-
         data.motivation = data.motivation - data.motivation;
     }
 
