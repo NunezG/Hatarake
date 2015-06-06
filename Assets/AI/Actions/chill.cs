@@ -12,11 +12,15 @@ public class chill : RAINAction
     float fatigue;
     GameObject target;
     public Expression DemotivationSiCasse = new Expression();
+    Animator animator;
+
+
 
     public override void Start(RAIN.Core.AI ai)
     {
         motivation = (int)ai.Body.gameObject.GetComponent<Employe>().data.motivation;
-        
+        animator = ai.Body.GetComponent<Animator>();
+
 
 		//Set de bool, sert a rien pour l'instant
         ai.WorkingMemory.SetItem("enDeplacement", false);
@@ -24,6 +28,28 @@ public class chill : RAINAction
         target = ai.WorkingMemory.GetItem<GameObject>("myTarget");
 
         base.Start(ai);
+
+        if (target.name == "ToiletTrigger" || target.transform.parent.name == "TV")
+        {
+           // animator.SetBool("typing", true);
+            animator.SetBool("sit", true);
+        }
+        if (target.transform.parent.name == "TV")
+        {
+            animator.SetBool("playing", true);
+
+        }
+        if (target.name == "DrinkTrigger" || target.name == "CoffeeTrigger")
+        {
+            animator.SetBool("drinking", true);
+
+        }
+
+        if (target.tag == "Corridor")
+        {
+            animator.SetBool("cellphone", true);
+
+        }
     }
 
     public override ActionResult Execute(RAIN.Core.AI ai)
@@ -79,6 +105,10 @@ public class chill : RAINAction
     public override void Stop(RAIN.Core.AI ai)
     {           
         //ai.WorkingMemory.SetItem("motivation", motivation);
+        animator.SetBool("sit", false);
+        animator.SetBool("playing", false);
+        animator.SetBool("drinking", false);
+        animator.SetBool("cellphone", false);
 
         ai.Body.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionY;
 

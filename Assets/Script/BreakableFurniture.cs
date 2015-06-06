@@ -12,7 +12,8 @@ public class BreakableFurniture : MonoBehaviour {
 	}
 
     public void Hit()
-    {     
+    {
+        GameManager.instance.boss.GetComponent<Boss>().action();
         damage++;
 
         if (damage >= resistance)
@@ -32,14 +33,16 @@ public class BreakableFurniture : MonoBehaviour {
      void OnMouseDown() 
     {
 
-        if (( GameManager.instance.boss.transform.position - transform.position).magnitude < 5)
+        if ( GameManager.instance.boss.GetComponent<Boss>().getTarget() == transform.parent.GetComponentInChildren<Repos>().transform.position)
                 {
+                    
                         Hit();
 
                        // tMemory.SetItem("sabotage", true);
                       //  tMemory.SetItem("enDeplacement", true);
                        // tMemory.SetItem<GameObject>("target", colliders[0].gameObject);
-                } 
+                }
+        else GameManager.instance.boss.GetComponent<Boss>().setTarget(transform.parent.GetComponentInChildren<Repos>().transform.position);
     }
 
 }

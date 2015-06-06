@@ -110,10 +110,8 @@ public class Boss : MonoBehaviour {
                 if (tNav.OnGraph(pos, 0))
                 {
                     tMemory.SetItem("sabotage", false);
-                    tMemory.SetItem("enDeplacement", true);
-                    tMemory.SetItem("target", pos);
-
-                    
+                    setTarget(pos);
+            
                 }
                
             }
@@ -133,11 +131,26 @@ public class Boss : MonoBehaviour {
 
 	}
 
+    public void setTarget(Vector3 target)
+    {
+        tMemory.SetItem("enDeplacement", true);
+        tMemory.SetItem("target", target);
+
+    }
+
+    public Vector3 getTarget()
+    {     
+        return tMemory.GetItem<Vector3>("target");
+    }
+
+    public void action()
+    {
+        Animator ann = gameObject.transform.FindChild("BossSprite"). GetComponent<Animator>();
+        ann.SetTrigger("doingStuff");
+    }
+
     public IEnumerator Engueulade()
     {
-
-        //print("ENGUEULADE!!!!!!!!!!!!!!");
-
         actionArea.gameObject.SetActive(true);
         float pos=0;
         while (charge)
