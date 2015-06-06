@@ -30,12 +30,20 @@ public class TelephoneIsRinging : MonoBehaviour {
         Vector3 distance =  GameManager.instance.boss.transform.position - this.transform.position;
         if (distance.magnitude < 10 && GameManager.instance.ringingPhone)
         {
-            //GameManager.instance.activateHiringRound();
             GameManager.instance.ringingPhone = false;
             ringring.Stop();
             pickUp.Play();
-            GameManager.instance.hiringTime = true;
-            GameManager.instance.CalculateNumberOfEmployeeToHire();
+            if (!GameManager.instance.tutoIsOn)
+            {
+                GameManager.instance.hiringTime = true;
+                GameManager.instance.CalculateNumberOfEmployeeToHire();
+            }
+            else
+            {
+                GameManager.instance.ringingPhone = false;
+                ringring.Stop();
+                GameManager.instance.activateHiringRound();
+            }
         }
     }
 

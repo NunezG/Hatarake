@@ -238,11 +238,13 @@ public class Employe : MonoBehaviour {
 
     void OnMouseDown() 
     {
-        //GameObject camera = GameObject.Find("Main Camera");
-       // GameObject boss = GameObject.FindGameObjectWithTag("Boss");
-       //oss.getmoveLocked = true;
-        //camera.GetComponent<CameraController>().FollowEmployee(this.gameObject, 10000);
-        employeProfile.GetComponent<employeeID>().setJProfile(0,this.gameObject);
+        if(GameManager.instance.profileOnClickIsOn){
+            employeProfile.GetComponent<employeeID>().setJProfile(0,this.gameObject);
+            
+            if(GameManager.instance.tutoIsOn && GameManager.instance.goingToLookProfile){
+                GameManager.instance.profileLookedAt = true;
+            }
+        }
     }
 
 
@@ -325,7 +327,11 @@ public class Employe : MonoBehaviour {
 	//{
 	//	auTravail = true;
 	//}
+    public void TotalDemotivation()
+    {
 
+        data.motivation = data.motivation - data.motivation;
+    }
 
 	// Use this for initialization
 	public void Engueule (){
@@ -351,15 +357,12 @@ public class Employe : MonoBehaviour {
 
         //tMemory.GetItem("suicidaire"); 
         GameObject window = tMemory.GetItem<GameObject>("myTarget");
-        window.transform.Find("tache").gameObject.SetActive(true);
-        window.transform.Find("brokenWindow").gameObject.GetComponent<ParticleSystem>().Play();
+        //window.transform.Find("tache").gameObject.SetActive(true);
+        //window.transform.Find("brokenWindow").gameObject.GetComponent<ParticleSystem>().Play();
         GameManager.instance.GetComponent<CharacterManager>().sendBoxieToHell(this.gameObject);
 
         window.GetComponent<Window>().playSuicide(data.isMale);
 
-            //window.transform.Find("suicideFemale").GetComponent<AudioSource>().Play();
-
-            //Destroy (this.gameObject);
             this.gameObject.SetActive(false);
             suicideLock = false;
 	}

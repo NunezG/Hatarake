@@ -10,7 +10,6 @@ using RAIN.Motion;
 public class Boss : MonoBehaviour {
 
    // public GameObject gameManager;
-    public bool tutoLock = false;
 
 	//Vector2 position; //peut utiliser son transform
 	float vitesseDep;
@@ -41,15 +40,10 @@ public class Boss : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-       // gameManager = GameObject.Find("GameManager");
-        if (GameManager.instance.tutoIsOn)
-        {
-            moveLocked = hatarakeLocked = true ;
+        if (GameManager.instance.tutoIsOn) { 
+            moveLocked = hatarakeLocked = true;
         }
-        else
-        {
-            moveLocked = hatarakeLocked = false;
-        }
+        else { }
 
 		AIRig aiRig = GetComponentInChildren<AIRig>();		
 		tMemory = aiRig.AI.WorkingMemory as RAIN.Memory.BasicMemory;
@@ -144,9 +138,6 @@ public class Boss : MonoBehaviour {
         while (charge)
         {
             time = time + Time.deltaTime;
-            //pos = Mathf.Lerp(actionArea.localScale.x, jaugeEngueulageMax * (Mathf.Min(maxLossByScream, yellingO_Meter) / maxLossByScream), vitesseJauge * Time.deltaTime);
-            //print("pos : " + pos + " , deltaTime : " + Time.deltaTime + " , vitesseJauge * Time.deltaTime : " + vitesseJauge * Time.deltaTime);
-            //actionArea.localScale = new Vector3(pos, actionArea.localScale.y, pos);
 
             pos = Mathf.Lerp(1, jaugeEngueulageMax * (Mathf.Min(maxLossByScream, yellingO_Meter) / maxLossByScream), time/tempsRemplissageJauge);
             actionArea.localScale = new Vector3(pos, actionArea.localScale.y, pos);
@@ -188,10 +179,12 @@ public class Boss : MonoBehaviour {
         {
             emp.GetComponent<Employe>().Engueule();
         }
-        if (!tutoLock && employesEngueulable.Count > 0)
+        if (GameManager.instance.tutoIsOn && GameManager.instance.goingToHatarakeSlacker)
         {
-            tutoLock = true;
-            GameManager.instance.nextTutoStep();
+            if (employesEngueulable.Count >= 1)
+            {
+                GameManager.instance.TutoEmployeeHataraked();
+            }
         }
 
         actionArea.GetComponent<jaugeEngueulage>().clearEmployesJauge();

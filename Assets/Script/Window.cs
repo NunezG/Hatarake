@@ -6,7 +6,12 @@ using System.Collections;
 
 public class Window : MonoBehaviour
 {
+    public GameObject bloodStain;
     public AudioSource suicideMale, suicideFemale;
+
+    public ParticleSystem brokenGlass;
+
+    public Animator suicideAnimator;
 
     //public bool occupe = false;
 
@@ -39,6 +44,14 @@ public class Window : MonoBehaviour
             }
             suicideFemale.Play();
         }
+        bloodStain.SetActive(true);
+        if (!suicideAnimator.gameObject.activeInHierarchy)
+        {
+            suicideAnimator.gameObject.SetActive(true);
+        }
+        suicideAnimator.Play("idle");
+        brokenGlass.Play();
+
     }
 
     void OnTriggerEnter(Collider other)

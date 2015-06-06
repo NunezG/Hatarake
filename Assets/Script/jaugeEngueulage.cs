@@ -31,23 +31,19 @@ public class jaugeEngueulage : MonoBehaviour {
 	void OnTriggerExit(Collider other)
 	{
 		if (other.tag == "Employe") 
-		{		
-			
-			employes.Remove(other.gameObject);
-	
+		{			
+			employes.Remove(other.gameObject);	
 		}
 		
 	}
 
     public List<GameObject> getEmployesJauge()
     {
-
         return employes;
     }
 
     public void clearEmployesJauge()
     {
-
         employes.Clear(); 
     }
 

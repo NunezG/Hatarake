@@ -79,7 +79,7 @@ public class CameraController : MonoBehaviour {
 				focusTimer--;
 				fixedCamera = true;
 				pointer.SetActive(true);
-				dampTime = 0.0f;
+				//dampTime = 0.0f;
 
 
 				if (focusTimer < 0.0f) {
@@ -93,10 +93,19 @@ public class CameraController : MonoBehaviour {
 
 				//Camera is follwing Boss
 			else{
+                if (!GameManager.instance.tutoMoveLock && GameManager.instance.boss.GetComponent<Boss>().moveLocked)
+                {
+                    //print("hahahhah");
+                    GameManager.instance.boss.GetComponent<Boss>().moveLocked = false;
+                }
+                if (!GameManager.instance.tutoHatarakeLock && GameManager.instance.boss.GetComponent<Boss>().hatarakeLocked)
+                {
 
-                if(GameManager.instance.boss.GetComponent<Boss>().moveLocked)GameManager.instance.boss.GetComponent<Boss>().moveLocked = false;
-                if (GameManager.instance.boss.GetComponent<Boss>().hatarakeLocked) GameManager.instance.boss.GetComponent<Boss>().hatarakeLocked = false;
-				pointer.SetActive(false);
+                    //print("hahahhah bis");
+                    GameManager.instance.boss.GetComponent<Boss>().hatarakeLocked = false;
+                }
+
+				if(pointer.activeInHierarchy)pointer.SetActive(false);
 
 			}
 		}
@@ -141,10 +150,10 @@ public class CameraController : MonoBehaviour {
 	//changes focus and focusTimer
 	public void FollowEmployee(GameObject employee, float fT)
 	{
-
+        //print("name  :"+employee.name);
 		target = employee;
 		focusTimer = fT;
-		fixedCamera = false;
+		fixedCamera = true;
 	}
 
     public void BackToTheBoss()

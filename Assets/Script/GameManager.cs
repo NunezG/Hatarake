@@ -9,19 +9,15 @@ public class GameManager : MonoBehaviour {
 	//public GameObject menu;
     public CameraController cameraController;
     public GameObject canvaEmbauche;
-    public GameObject tutoButton,victoryButton;
+    public GameObject victoryButton;
     public GameObject boss;
-    private GameObject tutoCoffee, tutoElevator, tutoBossDesk;
     private GameObject[] tempHiringBoxiesBuffer = new GameObject[3];
-	public int tutoStep = 0;
 	public float levelObjective;
     public float objectiveCompletion = 0;
     public Text clock;
     public float time = 0;
-    public bool tutoIsOn = true, ongoingHiring = false;
+    public bool ongoingHiring = false;
 
-    public bool lookingForCoffee, lookingForElevator, telephoneIsRinging,
-                hiring, profile,waitingForObjectiveCompletion,hatarakeTime;//boolean pour tuto
 
    public int nbEmployeeToHire = 3;
    public int nbEmployeeLeftToHire;
@@ -30,6 +26,21 @@ public class GameManager : MonoBehaviour {
    public bool workingIsActuallyUsefull = false;
    public bool ringingPhone = false;
 
+   public bool profileOnClickIsOn;
+    //---------------------------
+   public bool tutoIsOn;
+   public bool tutoMoveLock=true, tutoHatarakeLock=true;
+   public bool cameraLookingForCoffee, fetchingCoffee, cameraLookingForElevator, goingToElevator,
+                cameraLookingForPhone, goingToPhone, freshMeatHired, cameraLookingForFreshMeat,
+                goingToLookProfile, profileLookedAt, cameraLookingAtSlacker,
+                goingToHatarakeSlacker, employeeHataraked, cameraFollowingEmployeeHataraked;
+   public TutoEnum currentTutoState;
+   public Button tutoFirstButton, tutoCoffeeButton, tutoDeliciousCoffeeButton,
+       tutoLookingForElevatorButton, tutoNobodyHereButton, tutoWtfButton,
+       tutoHiringTimeButton, tutoFreshMeatButton, tutoExplicationProfileButton, tutoGoingToGlandeButton,
+       tutoHatarakeExplicationButton, tutoSuccessfulHatarakingButton;
+
+   public GameObject coffeeTable, elevator, phone;
 	//Awake is always called before any Start functions
 	void Awake()
 	{
@@ -53,112 +64,290 @@ public class GameManager : MonoBehaviour {
 	// Use this for initialization
     void Start()
     {
-        if (!tutoIsOn)
-        {
-            tutoButton.SetActive(false);
-        }
        // StartCoroutine(gameObject.GetComponent<NavMesh>().GenerateNavmesh());
-        
+        if (tutoIsOn)
+        {
+            //bossLock(true, true);
+            tutoFirstButton.gameObject.SetActive(true); 
+        }
         canvaEmbauche.SetActive(false);
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        int minutes = (int)(time / 60);
-        int secondes = (int)(time - 60 * minutes);
-        int centisecondes = (int)((time - 60 * minutes - secondes)*100);
-        string strMinutes="";
-        string strSecondes="";
-        string strCentiSecondes="";
-        if (minutes < 10)
-            strMinutes = "0" + minutes;
-        else
-            strMinutes = "" + minutes;
-        if(secondes<10)
-            strSecondes = "0" + secondes;
-        else
-            strSecondes = "" + secondes;
-        if(centisecondes<10)
-            strCentiSecondes = "0" + centisecondes;
-        else
-            strCentiSecondes = "" + centisecondes;
 
-        clock.text = strMinutes + "\'" + strSecondes + "\"" + strCentiSecondes;
-		if (objectiveCompletion < levelObjective ) { 
-            if(workingIsActuallyUsefull)time = time + Time.deltaTime; 
-        }
-		else if(boss!=null){
-            victoryButton.SetActive(true);
-            if (objectiveCompletion == 0)
-                victoryButton.GetComponentInChildren<Text>().text = "Time for another productive day !";
-            else
-                victoryButton.GetComponentInChildren<Text>().text = "VICTORY ! \n We triumph once again, objective completed in \n" + strMinutes + ":" + strSecondes + ":" + strCentiSecondes;
-            boss.GetComponent<Boss>().moveLocked = true;
-            boss.GetComponent<Boss>().hatarakeLocked = true;
-            workingIsActuallyUsefull = false;
-            ringingPhone = true;
-        }
+        if (coffeeTable == null) coffeeTable = GameObject.Find("CoffeeTrigger");
+        if (elevator == null) elevator = GameObject.Find("Elevator Cell 4, 0");
+        if (phone == null) phone = GameObject.Find("phoneCollider");
+
         if (tutoIsOn)
         {
-            if (lookingForCoffee)
+            if (cameraLookingForCoffee)
             {
-                if (tutoCoffee == null) tutoCoffee = GameObject.Find("CoffeeTrigger");
-                Vector3 distance = boss.transform.position - tutoCoffee.transform.position;
-                if (distance.magnitude <= 5)
+                //print("camera looking for coffee");
+                if (!cameraController.cameraIsToMove && cameraController.target == GameManager.instance.boss)
                 {
-                    nextTutoStep();
-                }
-            }
-            else if (lookingForElevator)
-            {
-                if (tutoElevator == null) tutoElevator = GameObject.Find("Elevator Cell 4, 0");
-                Vector3 distance = boss.transform.position - tutoElevator.transform.position;
-                if (distance.magnitude <= 5)
-                {
-                    nextTutoStep();
-                }
-            }
-            else if (telephoneIsRinging)
-            {
-                if (tutoBossDesk == null) tutoBossDesk = GameObject.Find("spawnBoss");
-                Vector3 distance = boss.transform.position - tutoBossDesk.transform.position;
-                if (distance.magnitude <= 5)
-                {
-                    nextTutoStep();
-                }
-            }
-        }
 
-        if (hiringTime && !ongoingHiring && nbEmployeeLeftToHire!=0)
-        {
-            activateHiringRound();
-        }
-        else if (hiringTime && nbEmployeeLeftToHire == 0) // on a finit d'embaucher pour le nouvelle objectif
-        {
-            hiringTime = false;
-            workingIsActuallyUsefull = true;
-            time = 0;
-        }
+                    //print("camera looked for coffee, back to boss");
+                    cameraLookingForCoffee = false;
+                    //TUTO NEXT 
+                    fetchingCoffee = true;
 
+                }
+            }
+
+            if (fetchingCoffee)
+            {
+                //print("fetching coffee");
+                Vector3 distance = boss.transform.position - coffeeTable.transform.position;
+                if (distance.magnitude < 5)
+                {
+                    //print("coffee fetched");
+                    fetchingCoffee = false;
+                    bossLock(true, true);
+                    tutoDeliciousCoffeeButton.gameObject.SetActive(true);
+
+                }
+            }
+            if (cameraLookingForElevator)
+            {
+                //print("camera looking for elevator");
+                if (!cameraController.cameraIsToMove && cameraController.target == GameManager.instance.boss)
+                {
+                    //print("camera looked for elevator, back to boss");
+                    bossLock(false, true);
+                    cameraLookingForElevator = false;
+                    //TUTO NEXT 
+                    goingToElevator = true;
+
+                }
+            }
+            if (goingToElevator)
+            {
+                //print("going to elevator");
+                Vector3 distance = boss.transform.position - elevator.transform.position;
+                if (distance.magnitude < 5)
+                {
+                    //print("at elevator");
+                    goingToElevator = false;
+                    tutoNobodyHereButton.gameObject.SetActive(true);
+                    bossLock(true, true);
+                }
+            }
+
+            if (cameraLookingForPhone)
+            {
+                //print("looking for phone");
+                if (!cameraController.cameraIsToMove && cameraController.target == GameManager.instance.boss)
+                {
+                    //print("looked for phone, back to boss");
+                    cameraLookingForPhone = false;
+                    //TUTO NEXT 
+                    tutoHiringTimeButton.gameObject.SetActive(true);
+
+                }
+            }
+            if (freshMeatHired)
+            {
+                //print("fresh meat hired");
+                freshMeatHired = false;
+                cameraController.FollowEmployee(this.gameObject.GetComponent<CharacterManager>().boxies[0], 100);
+
+                cameraLookingForFreshMeat = true;
+            }
+
+            if (cameraLookingForFreshMeat)
+            {
+                if (!cameraController.cameraIsToMove && cameraController.target == GameManager.instance.boss)
+                {
+                    cameraLookingForFreshMeat = false;
+                    //TUTO NEXT 
+                    tutoFreshMeatButton.gameObject.SetActive(true);
+                    bossLock(true, true);
+                }
+            }
+            if (profileLookedAt)
+            {
+                profileLookedAt = false;
+                tutoExplicationProfileButton.gameObject.SetActive(true);
+                bossLock(true, true);
+            }
+            if (cameraLookingAtSlacker)
+            {
+                if (!cameraController.cameraIsToMove && cameraController.target == GameManager.instance.boss)
+                {
+                    cameraLookingAtSlacker = false;
+                    //TUTO NEXT 
+                    tutoGoingToGlandeButton.gameObject.SetActive(false);
+                    tutoHatarakeExplicationButton.gameObject.SetActive(true);
+                    bossLock(true, true);
+                }
+            }
+
+            if (employeeHataraked)
+            {
+                employeeHataraked = false;
+                cameraController.FollowEmployee(this.gameObject.GetComponent<CharacterManager>().boxies[0], 100);
+                cameraFollowingEmployeeHataraked = true;
+            }
+            if (cameraFollowingEmployeeHataraked)
+            {
+                //print("looking for phone");
+                if (!cameraController.cameraIsToMove && cameraController.target == GameManager.instance.boss)
+                {
+                    //print("looked for phone, back to boss");
+                    cameraFollowingEmployeeHataraked = false;
+                    //TUTO NEXT 
+                    tutoSuccessfulHatarakingButton.gameObject.SetActive(true);
+                    bossLock(true, true);
+
+                }
+            }
+        }
+        else
+        {
+            int minutes = (int)(time / 60);
+            int secondes = (int)(time - 60 * minutes);
+            int centisecondes = (int)((time - 60 * minutes - secondes) * 100);
+            string strMinutes = "";
+            string strSecondes = "";
+            string strCentiSecondes = "";
+            if (minutes < 10)
+                strMinutes = "0" + minutes;
+            else
+                strMinutes = "" + minutes;
+            if (secondes < 10)
+                strSecondes = "0" + secondes;
+            else
+                strSecondes = "" + secondes;
+            if (centisecondes < 10)
+                strCentiSecondes = "0" + centisecondes;
+            else
+                strCentiSecondes = "" + centisecondes;
+
+            clock.text = strMinutes + "\'" + strSecondes + "\"" + strCentiSecondes;
+            if (objectiveCompletion < levelObjective)
+            {
+                if (workingIsActuallyUsefull) time = time + Time.deltaTime;
+            }
+            else if (boss != null)
+            {
+                victoryButton.SetActive(true);
+
+                victoryButton.GetComponentInChildren<Text>().text = "VICTORY ! \n We triumph once again, objective completed in \n" + strMinutes + ":" + strSecondes + ":" + strCentiSecondes;
+                boss.GetComponent<Boss>().moveLocked = true;
+                boss.GetComponent<Boss>().hatarakeLocked = true;
+                workingIsActuallyUsefull = false;
+                ringingPhone = true;
+            }
+
+
+            if (hiringTime && !ongoingHiring && nbEmployeeLeftToHire != 0)
+            {
+                activateHiringRound();
+            }
+            else if (hiringTime && nbEmployeeLeftToHire == 0) // on a finit d'embaucher pour le nouvelle objectif
+            {
+                hiringTime = false;
+                workingIsActuallyUsefull = true;
+                time = 0;
+            }
+
+
+        }
         if (Input.GetKeyDown(KeyCode.Space))
         {
             print("space key was pressed");
             //gameObject.GetComponent<CharacterManager>().SpawnOneBoxieInElevator(1);
-            if (!ongoingHiring)activateHiringRound();
+            //if (!ongoingHiring) activateHiringRound();
         }
 	}
 
-    public void activateGloriousVictory()
+    public void bossLock(bool move, bool hatarake)
     {
+        //print("boss locking, move :" +move+" ,hatarake : "+hatarake );
+        tutoMoveLock= boss.GetComponent<Boss>().moveLocked = move;
+        tutoHatarakeLock  = boss.GetComponent<Boss>().hatarakeLocked = hatarake;
     }
+
+    //<------------------------Method Tuto
+
+    public void TutoCoffeeButtonClick()
+    {
+        cameraController.FollowEmployee(coffeeTable, 100);
+        cameraLookingForCoffee = true;
+        bossLock(false, true);
+    }
+
+    public void TutoLookingForElevatorClick()
+    {
+        cameraController.FollowEmployee(elevator, 100);
+        cameraLookingForElevator = true;
+        //while (cameraController.onOtherTarget) { }
+
+    }
+
+    public void TutoNobodyHereClick()
+    {
+        ringingPhone = true;
+
+        //panneau ???
+        // camera vers telephone
+    }
+    public void TutoWtfClick()
+    {
+        cameraController.FollowEmployee(phone, 100);
+        cameraLookingForPhone = true;
+    }
+    public void TutoHiringTimeClick()
+    {
+        goingToPhone = true;
+        bossLock(false, true);
+    }
+
+
+    public void TutoGoClickProfileClick()
+    {
+        profileOnClickIsOn = true;
+        goingToLookProfile = true;
+        bossLock(false, true);
+    }
+
+    public void TutoExplicationProfileClick()
+    {
+        //vider motivation employer + follow avec cam
+        this.gameObject.GetComponent<CharacterManager>().boxies[0].GetComponent<Employe>().TotalDemotivation();
+        cameraController.FollowEmployee(this.gameObject.GetComponent<CharacterManager>().boxies[0], 200);
+        cameraLookingAtSlacker = true;
+    }
+
+    public void TutoExplicationHatarakeClick()
+    {
+        goingToHatarakeSlacker = true;
+        boss.GetComponent<Boss>().yellingO_Meter = 50;
+        bossLock(false, false);
+    }
+
+    public void TutoEmployeeHataraked()
+    {
+        goingToHatarakeSlacker = false;
+        employeeHataraked = true;
+    }
+
+    public void TutoNextObjectiveExplicationClick(){
+        workingIsActuallyUsefull = true;
+        tutoIsOn = false;
+        bossLock(false, false);
+    }
+
+    // Methode Tuto --------------------------->
 
     public void activateHiringRound()
     {
         if (!ongoingHiring)
         {
-            boss.GetComponent<Boss>().moveLocked = true;
-            boss.GetComponent<Boss>().hatarakeLocked = true;
+            bossLock(true, true);
             ongoingHiring = true;
             canvaEmbauche.SetActive(true);
             tempHiringBoxiesBuffer[0] = this.GetComponent<CharacterManager>().GenerateOneBoxieForHire();
@@ -176,14 +365,11 @@ public class GameManager : MonoBehaviour {
             objectiveCompletion = objectiveCompletion + (deltaTime * workSpeed); 
     }
 
-    public bool tutoHiringBool = false;
     public void terminateHiringRound(int j)
     {
-        if (!tutoHiringBool)
-        {
-            tutoHiringBool = true;
+        bossLock(false, false);
+        if (tutoIsOn) freshMeatHired = true;
 
-        }
         canvaEmbauche.GetComponent<employeeID>().nullifyAllProfile(); // get rid of all the profile
         GameObject boxieToHire = tempHiringBoxiesBuffer[j];
         for (int i = 0; i < tempHiringBoxiesBuffer.Length; i++)
@@ -201,6 +387,7 @@ public class GameManager : MonoBehaviour {
         boss.GetComponent<Boss>().moveLocked = false;
         boss.GetComponent<Boss>().hatarakeLocked = false;
         nbEmployeeLeftToHire--;
+
     }
     public float objectiveIncreaseFactor = 2;
     public void nextObjective()
@@ -208,14 +395,11 @@ public class GameManager : MonoBehaviour {
         boss.GetComponent<Boss>().moveLocked = false;
         boss.GetComponent<Boss>().hatarakeLocked = false;
 
-        if (tutoIsOn) nextTutoStep();
-        else
-        {
+
             if (levelObjective == 0) levelObjective = 50;
             levelObjective = levelObjective * objectiveIncreaseFactor;
             objectiveCompletion = 0;
             time = 0;
-        }
         //hiringTime = true;
         //nbEmployeeToHire++;
 
@@ -229,134 +413,6 @@ public class GameManager : MonoBehaviour {
 
     }
 
-    public void nextTutoStep()
-    {
-        if (tutoIsOn)
-        {
-            if (tutoStep == 0)// on vient de cliquer sur le bouton vous etes ici, on affiche va checher café
-            {
-                tutoStep++;
-                tutoButton.GetComponentInChildren<Text>().text = "Va chercher café";
-            }
-            else if (tutoStep == 1)//on vient de cliquer sur va chercher cafe, donc on se met en mode recherche de cafe
-            {
-                tutoStep++;
-                boss.GetComponent<Boss>().moveLocked = false;
-                lookingForCoffee = true;
-                tutoButton.SetActive(false);
-            }
-            else if (tutoStep == 2)//on vient de trouver la machine a cafe, on affiche va chercher ascenseur
-            {
-                lookingForCoffee = false;
-                tutoStep++;
-                boss.GetComponent<Boss>().moveLocked = true;
-                tutoButton.SetActive(true);
-                tutoButton.GetComponentInChildren<Text>().text = "Va chercher ascenseur";
-            }
-            else if (tutoStep == 3)//on vient de cliquer sur le bouton va chercher ascenseur, on se met en mode recherche d'ascenseur
-            {
-                tutoStep++;
-                lookingForElevator = true;
-                boss.GetComponent<Boss>().moveLocked = false;
-                tutoButton.SetActive(false);
-            }
-            else if (tutoStep == 4)//on vient de trouver l'ascenseur, on affiche va chercher telephone
-            {
-                lookingForElevator = false;
-                tutoStep++;
-                boss.GetComponent<Boss>().moveLocked = true;
-                tutoButton.SetActive(true);
-                tutoButton.GetComponentInChildren<Text>().text = "Va chercher téléphone";
-            }
-            else if (tutoStep == 5)//on vient de cliquer sur va cherche téléphone, on se met en mode recherche de téléphone
-            {
-                tutoStep++;
-                boss.GetComponent<Boss>().moveLocked = false;
-                tutoButton.SetActive(false);
-                telephoneIsRinging = true;
-            }
-            else if (tutoStep == 6)//on vient de trouver le téléphone, on affiche l'embauche
-            {
-                telephoneIsRinging = false;
-                tutoStep++;
-                boss.GetComponent<Boss>().moveLocked = true;
-                tutoButton.SetActive(true);
-                tutoButton.GetComponentInChildren<Text>().text = "Embauche pékin numéro 0";
-            }
-            else if (tutoStep == 7)//on vient de cliquer sur embauche boxie n0, on affiche la seconde embauche
-            {
-                this.GetComponent<CharacterManager>().SpawnOneBoxieInElevator(0);
-                tutoStep++;
-                boss.GetComponent<Boss>().moveLocked = true;
-                tutoButton.GetComponentInChildren<Text>().text = "Embauche pékin numéro 1";
-            }
-            else if (tutoStep == 8)//on vient de cliquer sur embauche boxie n1, maintenant on attends que l'objectif se remplisse
-            {
-                this.GetComponent<CharacterManager>().SpawnOneBoxieInElevator(0);
-                tutoStep++;
-                boss.GetComponent<Boss>().moveLocked = false;
-                tutoButton.SetActive(false);
-            }
-            else if (tutoStep == 9)//on vient de cliquer sur le panneau de victoire
-            {
-                tutoStep++;
-                boss.GetComponent<Boss>().moveLocked = true;
-                tutoButton.SetActive(true);
-                tutoButton.GetComponentInChildren<Text>().text = "Va cliquer profil";
-            }
-            else if (tutoStep == 10)//on vient de cliquer sur le panneau va cliquer profil, il faut qu'on aille cliquer sur un profil
-            {
-                tutoStep++;
-                boss.GetComponent<Boss>().moveLocked = false;
-                tutoButton.SetActive(false);
-                profile = true;
-            }
-            else if (tutoStep == 11)//on vient de sortir d'un profil
-            {
-                tutoStep++;
-                boss.GetComponent<Boss>().moveLocked = true;
-                tutoButton.SetActive(true);
-                tutoButton.GetComponentInChildren<Text>().text = "Embauche de X pekins";
-            }
-            else if (tutoStep == 12)//on vient de finir l'embauche
-            {
-                tutoStep++;
-                tutoButton.GetComponentInChildren<Text>().text = "Va gueuler sur quelqu'un";
-            }
-            else if (tutoStep == 13)//on vient de cliquer sur le panneau va gueuler
-            {
-                tutoStep++;
-                boss.GetComponent<Boss>().moveLocked = false;
-                boss.GetComponent<Boss>().hatarakeLocked = false;
-                tutoButton.SetActive(false);
-            }
-            else if (tutoStep == 14)//on vient de gueuler sur quelqu'un, fin du tuto
-            {
-                tutoStep++;
-                boss.GetComponent<Boss>().moveLocked = true;
-                tutoButton.SetActive(true);
-                tutoButton.GetComponentInChildren<Text>().text = "TUTO FINI !!! ";
-            }
-            else if (tutoStep == 15)//on vient de cliquer sur tuto fini
-            {
-                tutoStep++;
-                tutoIsOn = false;
-                boss.GetComponent<Boss>().moveLocked = false;
-                boss.GetComponent<Boss>().hatarakeLocked = false;
-                tutoButton.SetActive(false);
-            }
-        }
-    }
-
-    bool boolLock = false;
-    public void tutoOutOfProfile()
-    {
-        if (!boolLock)
-        {
-            boolLock = true;
-            nextTutoStep();
-        }
-    }
 
 
     public void SetBoss(GameObject boss)

@@ -19,7 +19,7 @@ public class CharacterManager : MonoBehaviour {
 	//public Box[]  boxes;
   //  public GameObject[] workingHelp;
 
-	List<GameObject> boxies=new List<GameObject>();
+	public List<GameObject> boxies=new List<GameObject>();
 	public GameObject boss;
 
 	public void Spawn()

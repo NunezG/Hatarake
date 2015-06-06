@@ -23,6 +23,7 @@ public class ProgressBar : MonoBehaviour {
         if (boss == null) boss = GameObject.FindGameObjectWithTag("Boss");
         else
         {
+            //print("boss name : "+boss.name);
 			DrawYellingOMeter();
         }
     }

@@ -1,22 +1,25 @@
 fileFormatVersion: 2
-guid: e4daf1974e9627d449d30c4255e95886
-timeCreated: 1433516082
+guid: 56e650b797b22824ca9e0932f42d8005
+timeCreated: 1433497181
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: notif9patch_0
-    21300002: notif9patch_1
-    21300004: notif9patch_2
-    21300006: notif9patch_3
-    21300008: notif9patch_4
-    21300010: notif9patch_5
-    21300012: notif9patch_6
-    21300014: notif9patch_7
-    21300016: notif9patch_8
+    21300000: suicide_0
+    21300002: suicide_1
+    21300004: suicide_2
+    21300006: suicide_3
+    21300008: suicide_4
+    21300010: suicide_5
+    21300012: suicide_6
+    21300014: suicide_7
+    21300016: suicide_8
+    21300018: suicide_9
+    21300020: suicide_10
+    21300022: suicide_11
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -39,112 +42,142 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: 0
-    aniso: 1
+    aniso: 16
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
-  spriteBorder: {x: 40, y: 40, z: 40, w: 40}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 128
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: notif9patch_0
+    - name: suicide_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 171
-        width: 85
-        height: 85
+        y: 256
+        width: 64
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: notif9patch_1
+    - name: suicide_1
       rect:
         serializedVersion: 2
-        x: 85
-        y: 171
-        width: 85
-        height: 85
+        x: 64
+        y: 256
+        width: 64
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: notif9patch_2
+    - name: suicide_2
       rect:
         serializedVersion: 2
-        x: 170
-        y: 171
-        width: 85
-        height: 85
+        x: 128
+        y: 256
+        width: 64
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: notif9patch_3
+    - name: suicide_3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 86
-        width: 85
-        height: 85
+        x: 192
+        y: 256
+        width: 64
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: notif9patch_4
-      rect:
-        serializedVersion: 2
-        x: 85
-        y: 86
-        width: 85
-        height: 85
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: notif9patch_5
-      rect:
-        serializedVersion: 2
-        x: 170
-        y: 86
-        width: 85
-        height: 85
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: notif9patch_6
+    - name: suicide_4
       rect:
         serializedVersion: 2
         x: 0
-        y: 1
-        width: 85
-        height: 85
+        y: 128
+        width: 64
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: notif9patch_7
+    - name: suicide_5
       rect:
         serializedVersion: 2
-        x: 85
-        y: 1
-        width: 85
-        height: 85
+        x: 64
+        y: 128
+        width: 64
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: notif9patch_8
+    - name: suicide_6
       rect:
         serializedVersion: 2
-        x: 170
-        y: 1
-        width: 85
-        height: 85
+        x: 128
+        y: 128
+        width: 64
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: suicide_7
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 64
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: suicide_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: suicide_9
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: suicide_10
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: suicide_11
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
