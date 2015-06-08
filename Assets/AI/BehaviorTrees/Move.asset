@@ -15,8 +15,8 @@ MonoBehaviour:
     _serializedData: <scriptableobject version="1.2" type="RAIN.BehaviorTrees.BTAsset"><fields><field
       value="&lt;behaviortree version=&quot;1.1&quot; repeatuntil=&quot;&quot; name=&quot;Move&quot;
       debugbreak=&quot;False&quot;&gt;&lt;sequencer usepriorities=&quot;False&quot;
-      repeatuntil=&quot;&quot; name=&quot;sequencer&quot; debugbreak=&quot;False&quot;&gt;&lt;sequencer
-      usepriorities=&quot;False&quot; repeatuntil=&quot;success&quot; priority=&quot;&quot;
+      repeatuntil=&quot;success&quot; name=&quot;sequencer&quot; debugbreak=&quot;False&quot;&gt;&lt;sequencer
+      usepriorities=&quot;False&quot; repeatuntil=&quot;&quot; priority=&quot;&quot;
       name=&quot;move sequencer&quot; debugbreak=&quot;False&quot;&gt;&lt;action repeatuntil=&quot;&quot;
       priority=&quot;&quot; parametervalues=&quot;&quot; parameters=&quot;&quot; namespace=&quot;&quot;
       name=&quot;clear&quot; debugbreak=&quot;False&quot; classname=&quot;clearPath&quot;
@@ -25,7 +25,7 @@ MonoBehaviour:
       turnspeed=&quot;&quot; repeatuntil=&quot;&quot; name=&quot;move to target&quot;
       movetarget=&quot;myTarget&quot; movespeed=&quot;&quot; facetarget=&quot;&quot;
       debugbreak=&quot;False&quot; closeenoughdistance=&quot;&quot; closeenoughangle=&quot;&quot;
-      /&gt;&lt;timer waitforsec=&quot;1&quot; returnvalue=&quot;failure&quot; name=&quot;timer&quot;
+      /&gt;&lt;timer waitforsec=&quot;0.8&quot; returnvalue=&quot;failure&quot; name=&quot;timer&quot;
       debugbreak=&quot;False&quot; /&gt;&lt;/parallel&gt;&lt;/sequencer&gt;&lt;move
       turnspeed=&quot;&quot; repeatuntil=&quot;&quot; priority=&quot;&quot; name=&quot;move&quot;
       movetarget=&quot;&quot; movespeed=&quot;&quot; facetarget=&quot;viewTarget&quot;

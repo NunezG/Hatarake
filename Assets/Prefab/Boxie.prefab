@@ -329,7 +329,7 @@ GameObject:
   - 54: {fileID: 5401646}
   - 95: {fileID: 9503852}
   - 114: {fileID: 11408596}
-  - 135: {fileID: 13552804}
+  - 136: {fileID: 13628680}
   m_Layer: 0
   m_Name: Boxie
   m_TagString: Employe
@@ -646,9 +646,9 @@ Rigidbody:
   m_GameObject: {fileID: 192460}
   serializedVersion: 2
   m_Mass: 100
-  m_Drag: .100000001
-  m_AngularDrag: .100000001
-  m_UseGravity: 1
+  m_Drag: 3.40282347e+38
+  m_AngularDrag: 3.40282306e+38
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 84
@@ -1712,8 +1712,8 @@ MonoBehaviour:
       id="0"><field value="True" type="System.Boolean" id="_isActive" /><field type="UnityEngine.GameObject"
       id="_body" gameobject="0" /><field type="RAIN.Memory.BasicMemory" reference="1"
       id="_workingMemory" childrenvisible="False" /><field type="RAIN.Minds.BasicMind"
-      reference="2" id="_mind" childrenvisible="True" /><field type="RAIN.Motion.MecanimMotor"
-      reference="3" id="_motor" childrenvisible="False" /><field type="RAIN.Animation.MecanimAnimator"
+      reference="2" id="_mind" childrenvisible="False" /><field type="RAIN.Motion.MecanimMotor"
+      reference="3" id="_motor" childrenvisible="True" /><field type="RAIN.Animation.MecanimAnimator"
       reference="4" id="_animator" childrenvisible="False" /><field type="RAIN.Navigation.BasicNavigator"
       reference="10" id="_navigator" childrenvisible="False" /><field type="RAIN.Perception.BasicSenses"
       reference="11" id="_senses" childrenvisible="False" /><field type="System.Collections.Generic.List"
@@ -1892,8 +1892,8 @@ MonoBehaviour:
       _stringData: DQo=
     - _data: 
       _stringData: DQo=
---- !u!135 &13552804
-SphereCollider:
+--- !u!136 &13628680
+CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -1901,8 +1901,9 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
   m_Radius: .5
+  m_Height: 1
+  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!212 &21203808
 SpriteRenderer:
