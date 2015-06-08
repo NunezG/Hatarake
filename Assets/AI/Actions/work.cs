@@ -27,7 +27,10 @@ public class work : RAINAction
 		target = ai.WorkingMemory.GetItem<GameObject>("myTarget");
 
         if (target == ai.Body.GetComponent<Employe>().boxDeTravail)
+        {
             animator.SetBool("typing", true);
+            animator.SetBool("sit", true);
+        }
        // else ai.Body.transform.FindChild("top").GetComponent<SpriteRenderer>().sprite =  new Sprite();
 	}
 
@@ -66,7 +69,7 @@ public class work : RAINAction
 
 		ai.Motor.DefaultSpeed = ai.WorkingMemory.GetItem<int>("normalSpeed");
         animator.SetBool("typing", false);
-
+        animator.SetBool("sit", false);
 		base.Stop(ai);
     }
 }

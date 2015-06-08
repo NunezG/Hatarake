@@ -74,11 +74,6 @@ public class Employe : MonoBehaviour {
 		{
 			boss = GameObject.FindGameObjectWithTag("Boss");
             emptyChill = new List<GameObject>();
-			Repos[] chills = floor.GetComponentsInChildren<Repos>();
-			foreach (Repos chi in chills)
-			{
-                emptyChill.Add(chi.gameObject);
-			}
 
             suicide = new List<GameObject>();
             Window[] suicidesWindows = floor.GetComponentsInChildren<Window>();
@@ -92,6 +87,11 @@ public class Employe : MonoBehaviour {
 			Box[] boxes = floor.GetComponentsInChildren<Box>();
 			foreach (Box box in boxes)
 			{
+                if (box.CompareTag("Repos"))
+                {
+                    emptyChill.Add(box.gameObject);
+                }
+
 				if (box.CompareTag("WorkHelp"))
 				{
                     emptyWorkingHelp.Add(box.gameObject);
@@ -148,6 +148,7 @@ public class Employe : MonoBehaviour {
                     this.setActiveSound(false, false, false, false, true, false, false, false, false);
                 }
             }
+
             else if (workingMemory && !moveMemory && target.CompareTag("WorkHelp"))
             {
                 depressif = false;
@@ -166,7 +167,7 @@ public class Employe : MonoBehaviour {
                 //play facebook
                 this.setActiveSound(false, false, false, false, false, true, false, false, false);
             }
-            else if (!workingMemory && !moveMemory && target.name.Equals("CoffeeTrigger") )
+            else if (!workingMemory && !moveMemory && (target.name.Equals("CoffeeTrigger") || target.name.Equals("CoffeeTrigger 1")))
             {
                 depressif = false;
                 //play coffee
@@ -178,7 +179,7 @@ public class Employe : MonoBehaviour {
                 //play vending machine
                 this.setActiveSound(false, false, false, false, false, false, false, true, false);
             }
-            else if (!workingMemory && !moveMemory && target.name.Equals("TVTrigger"))
+            else if (!workingMemory && !moveMemory && (target.name.Equals("TVTrigger") || target.name.Equals("TVTrigger 1") ))
             {
                 depressif = false;
                 //play gaming
@@ -216,8 +217,8 @@ public class Employe : MonoBehaviour {
 
         }
 
-        if (keyboard && !keyboardSound.isPlaying) keyboardSound.Play();
-        else keyboardSound.Stop();
+        keyboardSound.Play();
+      
 
         if (photocopier && !photocopierSound.isPlaying) photocopierSound.Play();
         else photocopierSound.Stop();
@@ -278,39 +279,14 @@ public class Employe : MonoBehaviour {
        
         else if (tMemory.GetItem<bool>("auTravail"))
         {
-            if (target.name.Equals("PhotocopierTrigger"))
-            {
-                SignEmitter.Create(this.transform.position, SignType.Photocopier);
-            }
-            else if (target.name.Equals("WorkBoxTrigger"))
-            {
-                SignEmitter.Create(this.transform.position, SignType.Work);
-            }
-        }
-        else
+            SignEmitter.Create(this.transform.position, target.GetComponent<Box>().signToEmitWork);       
+       }
+       else
         {
-            if (target.name.Equals("CoffeeTrigger"))
-            {
-                SignEmitter.Create(this.transform.position, SignType.Coffee);
-            }
-            else if (target.name.Equals("ToiletTrigger"))
-            {
-                SignEmitter.Create(this.transform.position, SignType.Toilet);
-            }
-            else if (target.name.Equals("DrinkTrigger"))
-            {
-                SignEmitter.Create(this.transform.position, SignType.Drink);
-            }
-            else if (target.name.Equals("WorkBoxTrigger"))
-            {
-                SignEmitter.Create(this.transform.position, SignType.Facebook);
-            }
-            else if (target.name.Equals("TVTrigger") || target.name.Equals("TVTrigger 1") || target.name.Equals("TVTrigger 2"))
-            {
-                SignEmitter.Create(this.transform.position, SignType.Tv);
-            }
+            SignEmitter.Create(this.transform.position, target.GetComponent<Box>().signToEmitChill);      
         }
     }
+
 
 	public void setBox (GameObject box)
 	{
