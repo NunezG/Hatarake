@@ -20,7 +20,9 @@ public class ProgressBar : MonoBehaviour {
 
     void Update()
     {
-        if (boss == null) boss = GameObject.FindGameObjectWithTag("Boss");
+        if (boss == null) {
+            boss = GameObject.FindGameObjectWithTag("Boss");
+        }
         else
         {
             //print("boss name : "+boss.name);
@@ -58,7 +60,7 @@ public class ProgressBar : MonoBehaviour {
 
     void DrawYellingOMeter()
     {
-		int valueQi = (int)(boss.GetComponent<Boss> ().yellingO_Meter / (float)boss.GetComponent<Boss> ().maxYellingO_Meter * 9.0f);
+		int valueQi = (int) ( (boss.GetComponent<Boss> ().yellingO_Meter / (float)boss.GetComponent<Boss> ().maxYellingO_Meter )*8 );
 		if(valueQi > 8) valueQi = 8;
         if (valueQi == 8)
         {
@@ -70,6 +72,7 @@ public class ProgressBar : MonoBehaviour {
             time = 0;
             qiBar.gameObject.transform.localScale = new Vector3(1, 1, 1);
         }
+        //print("valueQi" + valueQi + ", ");
 		qiBar.GetComponent<Image> ().sprite = qiBarSteps[valueQi];
 		//Debug.Log (valueQi);
     }

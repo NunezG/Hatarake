@@ -13,6 +13,8 @@ public class CameraController : MonoBehaviour {
 
 	 public bool cameraIsToMove;
 	 public bool fixedCamera;
+     public bool endFollowByShaking=false;
+     public float focusTimeToStartShaking;
 
 	 public float dampTime = 0.15f;
 
@@ -80,9 +82,14 @@ public class CameraController : MonoBehaviour {
 				fixedCamera = true;
 				pointer.SetActive(true);
 				//dampTime = 0.0f;
-
+                if (endFollowByShaking && focusTimer == focusTimeToStartShaking)
+                {
+                    shaking = true;
+                }
 
 				if (focusTimer < 0.0f) {
+                    shaking = false;
+                    endFollowByShaking = false;
 					focusTimer = 100.0f;
 					target = null;
 					onOtherTarget = false;
@@ -154,7 +161,19 @@ public class CameraController : MonoBehaviour {
 		target = employee;
 		focusTimer = fT;
 		fixedCamera = true;
+
 	}
+
+    public void FollowObjectAndShakeAtTheEnd(GameObject gObject, float fT, float focusTimeToStartShaking)
+    {
+
+        //print("name  :"+employee.name);
+        target = gObject;
+        focusTimer = fT;
+        fixedCamera = true;
+        endFollowByShaking = true;
+        this.focusTimeToStartShaking = focusTimeToStartShaking;
+    }
 
     public void BackToTheBoss()
     {

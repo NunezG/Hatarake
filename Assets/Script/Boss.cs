@@ -17,25 +17,29 @@ public class Boss : MonoBehaviour {
     public bool hatarakeLocked ;
     public int yellingO_Meter = 0;
 
-    public int maxYellingO_Meter = 50;
-    public int gainByBubble = 2;
-    public int maxLossByScream = 10;
+    public int maxYellingO_Meter = 8;
+    public int gainByBubble = 1;
+    public int maxLossByScream = 8;
+
+
+    public float jaugeEngueulageMin = 4.0f; //se remplit quand on appuie sur le boss.
+    public float jaugeEngueulageMax = 15.0f; //se remplit quand on appuie sur le boss.
+    public float tempsRemplissageJauge = 1.0f; 
+
 	//GameObject[] boxies;
 
-    public AudioSource[] bossSounds;
+    public AudioSource[] bossMovingSounds;
+    public AudioSource[] voicelessBossSounds;
     public AudioSource[] bubbleSound;
 
-    public  float jaugeEngueulageMax = 15.0f; //se remplit quand on appuie sur le boss.
-
-    public float tempsRemplissageJauge = 2.0f; 
 
 	//float timer = 0;
 
-	bool charge = false;
+	public bool charge = false;
     Vector3 pos;
 
 	Transform actionArea;
-	private RAIN.Memory.BasicMemory tMemory;
+	public RAIN.Memory.BasicMemory tMemory;
     private RAIN.Navigation.BasicNavigator tNav;
 
 	// Use this for initialization
@@ -64,10 +68,32 @@ public class Boss : MonoBehaviour {
 	}
 
     public void playRandomBossSound(){
-        int rdmIndex=Random.Range(0, bossSounds.Length);
-        bossSounds[rdmIndex].Play();
-        for (int i = 0; i < bossSounds.Length; i++)
-            if (bossSounds[i].isPlaying) print(i + "eme sound is playing");
+        bool alreadyPlaying=false;
+        for (int i = 0; i < bossMovingSounds.Length; i++)
+            if (bossMovingSounds[i].isPlaying) {
+                alreadyPlaying = true; 
+            };
+
+        if (!alreadyPlaying)
+        {
+            int rdmIndex = Random.Range(0, bossMovingSounds.Length);
+            bossMovingSounds[rdmIndex].Play();
+        }
+    }
+
+    public void playRandomVoicelessBossSound()
+    {
+        bool alreadyPlaying = false;
+        for (int i = 0; i < voicelessBossSounds.Length; i++)
+            if (voicelessBossSounds[i].isPlaying) {
+                alreadyPlaying = true; 
+            };
+
+        if (!alreadyPlaying)
+        {
+            int rdmIndex = Random.Range(0, voicelessBossSounds.Length);
+            voicelessBossSounds[rdmIndex].Play();
+        }
     }
 
     public void addBubble()
@@ -105,9 +131,7 @@ public class Boss : MonoBehaviour {
                 {
                     tMemory.SetItem("sabotage", false);
                     tMemory.SetItem("enDeplacement", true);
-                    tMemory.SetItem("target", pos);
-
-                    
+                    tMemory.SetItem("target", pos);                    
                 }
                
             }
@@ -115,10 +139,7 @@ public class Boss : MonoBehaviour {
 
         if (tMemory.GetItem<bool>("enDeplacement") && !moveSoundLock)
         {
-
-            int rdmIndex = Random.Range(0,bossSounds.Length);
-            bossSounds[rdmIndex].Play();
-            moveSoundLock = true;
+            playRandomBossSound();
         }
         else if (!tMemory.GetItem<bool>("enDeplacement") && moveSoundLock)
         {
@@ -129,8 +150,8 @@ public class Boss : MonoBehaviour {
 
     public IEnumerator Engueulade()
     {
-
-        //print("ENGUEULADE!!!!!!!!!!!!!!");
+        float currentYellingOMeter = yellingO_Meter;
+        float top = Mathf.Min(maxLossByScream, yellingO_Meter);
 
         actionArea.gameObject.SetActive(true);
         float pos=0;
@@ -139,18 +160,24 @@ public class Boss : MonoBehaviour {
         {
             time = time + Time.deltaTime;
 
-            pos = Mathf.Lerp(1, jaugeEngueulageMax * (Mathf.Min(maxLossByScream, yellingO_Meter) / maxLossByScream), time/tempsRemplissageJauge);
+            pos = Mathf.Lerp(jaugeEngueulageMin, jaugeEngueulageMin + jaugeEngueulageMax * (top / maxLossByScream), time  / (tempsRemplissageJauge* (top / maxLossByScream))    );
+
             actionArea.localScale = new Vector3(pos, actionArea.localScale.y, pos);
 
             yield return null;
         }
+        int yellingO_OnEight = (int)(((pos - jaugeEngueulageMin) / jaugeEngueulageMax) * 8);
+        yellingO_Meter = yellingO_Meter - yellingO_OnEight*maxYellingO_Meter/8;
 
+        Sign.Create(pos, this.transform.position, SignType.Hatarake);
+        print("pos : "+pos+" ,yellingO_OnEight : " + yellingO_OnEight);
+        /*
 		if(yellingO_Meter == 8){
         	yellingO_Meter = 0;
         	Sign.Create(pos,this.transform.position,SignType.Hatarake);
-		}
+		}*/
 
-        if (pos > 7)
+        if (yellingO_OnEight > 6)
         {
 
             GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>().shaking = true;
@@ -158,14 +185,14 @@ public class Boss : MonoBehaviour {
             GameObject audio =this.transform.Find("hatarake_strong").gameObject;
             audio.GetComponent<AudioSource>().Play();
         }
-        else if (pos > 3)
+        else if (yellingO_OnEight > 1)
         {
             GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>().shaking = true;
             GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>().shakeMagnitude = pos;
             GameObject audio = this.transform.Find("hatarake_medium").gameObject;
             audio.GetComponent<AudioSource>().Play();
         }
-        else if (pos > 0)
+        else if (yellingO_OnEight > 0)
         {
             GameObject audio = this.transform.Find("hatarake_low").gameObject;
             audio.GetComponent<AudioSource>().Play();
@@ -200,10 +227,18 @@ public class Boss : MonoBehaviour {
 	{
         if (!hatarakeLocked)
         {
-            //print("START CHARGE ");
-            charge = true;
-            tMemory.SetItem("charge", true);
-            StartCoroutine(Engueulade());
+            if (yellingO_Meter == 0)
+            {
+                playRandomVoicelessBossSound();
+            }
+            else
+            {
+                //print("START CHARGE ");
+                charge = true;
+                tMemory.SetItem("charge", true);
+                StartCoroutine(Engueulade());
+
+            }
         }
 
 	}

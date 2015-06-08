@@ -20,7 +20,7 @@ public class CharacterManager : MonoBehaviour {
 	//public Box[]  boxes;
   //  public GameObject[] workingHelp;
 
-	List<GameObject> boxies=new List<GameObject>();
+	public List<GameObject> boxies=new List<GameObject>();
 	public GameObject boss;
 
 	public void Spawn()
@@ -71,6 +71,16 @@ public class CharacterManager : MonoBehaviour {
 
 		}
 
+        //SpawnDecrasseur();
+
+
+	}
+
+    public void SpawnDecrasseur()
+    {
+
+        GameObject floor = GameObject.Find("Office floor n0");			
+        GameObject[] corridorsCell = GameObject.FindGameObjectsWithTag("Corridor");
         GameObject decrasseur = (GameObject)Instantiate(decrasseurPrefab);
         decrasseur.GetComponent<Decrasseur>().floor = floor;
         decrasseur.GetComponent<Decrasseur>().SetEmployeeLocations();
@@ -79,15 +89,12 @@ public class CharacterManager : MonoBehaviour {
         decrasseur.transform.position = gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.position;
         int rdmInd = Random.Range(0, corridorsCell.Length);
         decrasseur.transform.Translate(corridorsCell[rdmInd].transform.position.x, decrasseur.GetComponent<Collider>().bounds.extents.y, corridorsCell[rdmInd].transform.position.z);
-	
+
         decrasseur.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color(1, 0, 0);
         decrasseur.transform.GetChild(1).GetComponent<SpriteRenderer>().color = new Color(1, 0, 0);
         decrasseur.transform.GetChild(2).GetComponent<SpriteRenderer>().color = new Color(1, 0, 0);
         
-
-
-	}
-
+    }
 
     public int GetNumberOfWorkingBoxies()
     {

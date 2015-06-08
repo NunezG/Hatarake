@@ -1058,8 +1058,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxiePrefab: {fileID: 192460, guid: c7ee810d6529ba340916106e675eee8c, type: 2}
+  decrasseurPrefab: {fileID: 192460, guid: a87ab07792d486b44a81726adf8069c2, type: 2}
   bossPrefab: {fileID: 163092, guid: 5134b76fd8d64f14aacdbb095f67182c, type: 2}
-  nombreBoxies: 0
+  nombreBoxies: 10
   boxies: []
   boss: {fileID: 0}
 --- !u!4 &268217652
@@ -1113,7 +1114,7 @@ MonoBehaviour:
   canvaEmbauche: {fileID: 1228620638}
   victoryButton: {fileID: 2111000940}
   boss: {fileID: 0}
-  levelObjective: 100
+  levelObjective: 7000
   objectiveCompletion: 0
   clock: {fileID: 1234538996}
   time: 0
@@ -1124,7 +1125,7 @@ MonoBehaviour:
   workingIsActuallyUsefull: 0
   ringingPhone: 0
   profileOnClickIsOn: 0
-  tutoIsOn: 1
+  tutoIsOn: 0
   tutoMoveLock: 1
   tutoHatarakeLock: 1
   cameraLookingForCoffee: 0
@@ -1141,7 +1142,6 @@ MonoBehaviour:
   goingToHatarakeSlacker: 0
   employeeHataraked: 0
   cameraFollowingEmployeeHataraked: 0
-  currentTutoState: 0
   tutoFirstButton: {fileID: 34613728}
   tutoCoffeeButton: {fileID: 1614155978}
   tutoDeliciousCoffeeButton: {fileID: 781307158}
@@ -1551,6 +1551,8 @@ GameObject:
   - 224: {fileID: 350667196}
   - 222: {fileID: 350667199}
   - 114: {fileID: 350667198}
+  - 114: {fileID: 350667197}
+  - 114: {fileID: 350667200}
   m_Layer: 5
   m_Name: kiBar
   m_TagString: Untagged
@@ -1575,6 +1577,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: .5, y: .5}
+--- !u!114 &350667197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 350667195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bf9a0cd4ef9db5469b76656bb88ffcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boss: {fileID: 0}
 --- !u!114 &350667198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1602,6 +1616,90 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 350667195}
+--- !u!114 &350667200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 350667195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 350667197}
+          m_MethodName: QiBarOnMouseDown
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+              Culture=neutral, PublicKeyToken=null
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 350667197}
+          m_MethodName: QiBarOnMouseUp
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+              Culture=neutral, PublicKeyToken=null
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 268217655}
+          m_MethodName: BossLockMove
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+              Culture=neutral, PublicKeyToken=null
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 268217655}
+          m_MethodName: BossLockMove
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+              Culture=neutral, PublicKeyToken=null
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!1 &353888183
 GameObject:
   m_ObjectHideFlags: 0
@@ -1636,6 +1734,8 @@ MonoBehaviour:
   pointer: {fileID: 0}
   cameraIsToMove: 0
   fixedCamera: 0
+  endFollowByShaking: 0
+  focusTimeToStartShaking: 0
   dampTime: .200000003
   shaking: 0
   shakeMagnitude: 0

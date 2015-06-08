@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour {
     public CameraController cameraController;
     public GameObject canvaEmbauche;
     public GameObject victoryButton;
-    public GameObject boss;
+    public GameObject boss=null;
     private GameObject[] tempHiringBoxiesBuffer = new GameObject[3];
 	public float levelObjective;
     public float objectiveCompletion = 0;
@@ -34,8 +34,8 @@ public class GameManager : MonoBehaviour {
                 cameraLookingForPhone, goingToPhone, freshMeatHired, cameraLookingForFreshMeat,
                 goingToLookProfile, profileLookedAt, cameraLookingAtSlacker,
                 goingToHatarakeSlacker, employeeHataraked, cameraFollowingEmployeeHataraked;
-   public TutoEnum currentTutoState;
-   public Button tutoFirstButton, tutoCoffeeButton, tutoDeliciousCoffeeButton,
+
+    public Button tutoFirstButton, tutoCoffeeButton, tutoDeliciousCoffeeButton,
        tutoLookingForElevatorButton, tutoNobodyHereButton, tutoWtfButton,
        tutoHiringTimeButton, tutoFreshMeatButton, tutoExplicationProfileButton, tutoGoingToGlandeButton,
        tutoHatarakeExplicationButton, tutoSuccessfulHatarakingButton;
@@ -211,6 +211,7 @@ public class GameManager : MonoBehaviour {
         }
         else
         {
+            if (cameraController.dampTime != 0) cameraController.dampTime = 0;
             int minutes = (int)(time / 60);
             int secondes = (int)(time - 60 * minutes);
             int centisecondes = (int)((time - 60 * minutes - secondes) * 100);
@@ -273,6 +274,10 @@ public class GameManager : MonoBehaviour {
         //print("boss locking, move :" +move+" ,hatarake : "+hatarake );
         tutoMoveLock= boss.GetComponent<Boss>().moveLocked = move;
         tutoHatarakeLock  = boss.GetComponent<Boss>().hatarakeLocked = hatarake;
+    }
+    public void BossLockMove(bool move)
+    {
+        boss.GetComponent<Boss>().moveLocked = move;
     }
 
     //<------------------------Method Tuto
