@@ -9,7 +9,7 @@ public class ProgressBar : MonoBehaviour {
     public Texture waitScreen;
 	public GameObject qiBar;
 	public Sprite[] qiBarSteps;
-    public GameObject boss = null;
+   // public GameObject boss = null;
     public float time = 0;
     public float poutPoutAmplitude = 0.1f;
     public float poutPoutFrequence = 1f;
@@ -20,14 +20,7 @@ public class ProgressBar : MonoBehaviour {
 
     void Update()
     {
-        if (boss == null) {
-            boss = GameObject.FindGameObjectWithTag("Boss");
-        }
-        else
-        {
-
-			DrawYellingOMeter();
-        }
+			DrawYellingOMeter();    
     }
 
 
@@ -60,7 +53,7 @@ public class ProgressBar : MonoBehaviour {
 
     void DrawYellingOMeter()
     {
-		int valueQi = (int) ( (boss.GetComponent<Boss> ().yellingO_Meter / (float)boss.GetComponent<Boss> ().maxYellingO_Meter )*8 );
+		int valueQi = (int) ( (GameManager.instance.boss.GetComponent<Boss> ().yellingO_Meter / (float)GameManager.instance.boss.GetComponent<Boss> ().maxYellingO_Meter )*8 );
 		if(valueQi > 8) valueQi = 8;
         if (valueQi == 8)
         {

@@ -24,12 +24,17 @@ public class work : RAINAction
         //bouge plus
         ai.WorkingMemory.SetItem("enDeplacement", false);
         ai.Body.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;
-		target = ai.WorkingMemory.GetItem<GameObject>("myTarget");
+	    
+        target = ai.WorkingMemory.GetItem<GameObject>("myTarget");
 
-        if (target == ai.Body.GetComponent<Employe>().boxDeTravail)
+        if (target != null)
         {
-            animator.SetBool("typing", true);
-            animator.SetBool("sit", true);
+            target.GetComponent<Box>().glande = false;
+
+            for (int i = 0; i < target.GetComponent<Box>().animatorStates.Length; i++)
+            {
+                animator.SetBool(target.GetComponent<Box>().animatorStates[i], true);
+            }
         }
        // else ai.Body.transform.FindChild("top").GetComponent<SpriteRenderer>().sprite =  new Sprite();
 	}
@@ -60,16 +65,22 @@ public class work : RAINAction
        // ai.WorkingMemory.SetItem("motivation", motivation);
 
         //libère l'espace
-        if (target.CompareTag("WorkHelp"))
-        {
-            //target.GetComponent<Box>().occupe = false;
-            Employe.emptyWorkingHelp.Add(target);
-        }
         ai.Body.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionY;
+        ai.Motor.DefaultSpeed = ai.WorkingMemory.GetItem<int>("normalSpeed");
 
-		ai.Motor.DefaultSpeed = ai.WorkingMemory.GetItem<int>("normalSpeed");
-        animator.SetBool("typing", false);
-        animator.SetBool("sit", false);
+        if (target != null)
+        {
+            if (target.CompareTag("WorkHelp"))
+            {
+                //target.GetComponent<Box>().occupe = false;
+                Employe.emptyWorkingHelp.Add(target);
+            }
+           
+            for (int i = 0; i < target.GetComponent<Box>().animatorStates.Length; i++)
+            {
+                animator.SetBool(target.GetComponent<Box>().animatorStates[i], false);
+            }
+        }
 		base.Stop(ai);
     }
 }
