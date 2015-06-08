@@ -42,10 +42,7 @@ public class chill : RAINAction
             for (int i = 0; i < target.GetComponent<Box>().animatorStates.Length; i++)
             {
                 animator.SetBool(target.GetComponent<Box>().animatorStates[i], true);
-
-
             }
-
         }
 
 

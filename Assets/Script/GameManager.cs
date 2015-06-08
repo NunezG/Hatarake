@@ -68,11 +68,13 @@ public class GameManager : MonoBehaviour {
         if (tutoIsOn)
         {
             //bossLock(true, true);
-            tutoFirstButton.gameObject.SetActive(true); 
+            tutoFirstButton.gameObject.SetActive(true);
+            profileOnClickIsOn = false;
         }
         else
         {
             workingIsActuallyUsefull = true;
+            profileOnClickIsOn = true;
         }
         canvaEmbauche.SetActive(false);
 

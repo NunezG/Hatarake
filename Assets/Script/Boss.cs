@@ -24,20 +24,23 @@ public class Boss : MonoBehaviour {
     public int maxLossByScream = 10;
 	//GameObject[] boxies;
 
-    public AudioSource[] bossSounds;
+    public AudioSource[] bossMovingSounds;
+    public AudioSource[] voicelessBossSounds;
     public AudioSource[] bubbleSound;
 
-    public  float jaugeEngueulageMax = 15.0f; //se remplit quand on appuie sur le boss.
+    public float jaugeEngueulageMin = 4.0f; //se remplit quand on appuie sur le boss.
+    public float jaugeEngueulageMax = 15.0f; //se remplit quand on appuie sur le boss.
+    public float tempsRemplissageJauge = 1.0f; 
 
     public float vitesseJauge = 2.0f; //se remplit quand on appuie sur le boss.
 
 	//float timer = 0;
 
-	bool charge = false;
+	public bool charge = false;
     Vector3 pos;
 
 	Transform actionArea;
-	private RAIN.Memory.BasicMemory tMemory;
+	public RAIN.Memory.BasicMemory tMemory;
     private RAIN.Navigation.BasicNavigator tNav;
     private RAIN.Motion.MecanimMotor tMotor;
 	// Use this for initialization
@@ -72,11 +75,36 @@ public class Boss : MonoBehaviour {
 
 	}
 
-    public void playRandomBossSound(){
-        int rdmIndex=Random.Range(0, bossSounds.Length);
-        bossSounds[rdmIndex].Play();
-        for (int i = 0; i < bossSounds.Length; i++)
-            if (bossSounds[i].isPlaying) print(i + "eme sound is playing");
+    public void playRandomBossSound()
+    {
+        bool alreadyPlaying = false;
+        for (int i = 0; i < bossMovingSounds.Length; i++)
+            if (bossMovingSounds[i].isPlaying)
+            {
+                alreadyPlaying = true;
+            };
+
+        if (!alreadyPlaying)
+        {
+            int rdmIndex = Random.Range(0, bossMovingSounds.Length);
+            bossMovingSounds[rdmIndex].Play();
+        }
+    }
+
+    public void playRandomVoicelessBossSound()
+    {
+        bool alreadyPlaying = false;
+        for (int i = 0; i < voicelessBossSounds.Length; i++)
+            if (voicelessBossSounds[i].isPlaying)
+            {
+                alreadyPlaying = true;
+            };
+
+        if (!alreadyPlaying)
+        {
+            int rdmIndex = Random.Range(0, voicelessBossSounds.Length);
+            voicelessBossSounds[rdmIndex].Play();
+        }
     }
 
     public void addBubble()
@@ -123,8 +151,8 @@ public class Boss : MonoBehaviour {
         if (tMemory.GetItem<bool>("enDeplacement") && !moveSoundLock)
         {
 
-            int rdmIndex = Random.Range(0,bossSounds.Length);
-            bossSounds[rdmIndex].Play();
+            int rdmIndex = Random.Range(0, bossMovingSounds.Length);
+            bossMovingSounds[rdmIndex].Play();
             moveSoundLock = true;
         }
         else if (!tMemory.GetItem<bool>("enDeplacement") && moveSoundLock)
@@ -164,38 +192,49 @@ public class Boss : MonoBehaviour {
 
     public IEnumerator Engueulade()
     {
+        float currentYellingOMeter = yellingO_Meter;
+        float top = Mathf.Min(maxLossByScream, yellingO_Meter);
+
         actionArea.gameObject.SetActive(true);
-        float pos=0;
+        float pos = 0;
+        float time = 0;
         while (charge)
         {
-            pos = Mathf.Lerp(actionArea.localScale.x, jaugeEngueulageMax * (Mathf.Min(maxLossByScream, yellingO_Meter) / maxLossByScream), vitesseJauge * Time.deltaTime);
-            //print("pos : " + pos + " , deltaTime" + Time.deltaTime + " , vitesseJauge * Time.deltaTime" + vitesseJauge * Time.deltaTime);
+            time = time + Time.deltaTime;
+
+            pos = Mathf.Lerp(jaugeEngueulageMin, jaugeEngueulageMin + jaugeEngueulageMax * (top / maxLossByScream), time / (tempsRemplissageJauge * (top / maxLossByScream)));
+
             actionArea.localScale = new Vector3(pos, actionArea.localScale.y, pos);
 
             yield return null;
         }
+        int yellingO_OnEight = (int)(((pos - jaugeEngueulageMin) / jaugeEngueulageMax) * 8);
+        yellingO_Meter = yellingO_Meter - yellingO_OnEight * maxYellingO_Meter / 8;
 
-		if(yellingO_Meter == 8){
-        	yellingO_Meter = 0;
-        	Sign.Create(pos,this.transform.position,SignType.Hatarake);
-		}
+        Sign.Create(pos, this.transform.position, SignType.Hatarake);
+        print("pos : " + pos + " ,yellingO_OnEight : " + yellingO_OnEight);
+        /*
+        if(yellingO_Meter == 8){
+            yellingO_Meter = 0;
+            Sign.Create(pos,this.transform.position,SignType.Hatarake);
+        }*/
 
-        if (pos > 7)
+        if (yellingO_OnEight > 6)
         {
 
             GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>().shaking = true;
-            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>().shakeMagnitude =  pos;
-            GameObject audio =this.transform.Find("hatarake_strong").gameObject;
+            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>().shakeMagnitude = pos;
+            GameObject audio = this.transform.Find("hatarake_strong").gameObject;
             audio.GetComponent<AudioSource>().Play();
         }
-        else if (pos > 3)
+        else if (yellingO_OnEight > 1)
         {
             GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>().shaking = true;
             GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>().shakeMagnitude = pos;
             GameObject audio = this.transform.Find("hatarake_medium").gameObject;
             audio.GetComponent<AudioSource>().Play();
         }
-        else if (pos > 0)
+        else if (yellingO_OnEight > 0)
         {
             GameObject audio = this.transform.Find("hatarake_low").gameObject;
             audio.GetComponent<AudioSource>().Play();
@@ -203,35 +242,40 @@ public class Boss : MonoBehaviour {
         actionArea.gameObject.SetActive(false);
         actionArea.localScale = new Vector3(0.8f, actionArea.localScale.y, 0.8f);
         //ResetTimer
-       // jaugeEngueulage = 0;
+        // jaugeEngueulage = 0;
         List<GameObject> employesEngueulable = actionArea.GetComponent<jaugeEngueulage>().getEmployesJauge();
         foreach (GameObject emp in employesEngueulable)
         {
             if (emp.GetComponent<Decrasseur>() != null)
                 emp.GetComponent<Decrasseur>().Engueule();
             else
-            emp.GetComponent<Employe>().Engueule();
+                emp.GetComponent<Employe>().Engueule();
         }
-        if (!tutoLock && employesEngueulable.Count > 0)
+        if (GameManager.instance.tutoIsOn && GameManager.instance.goingToHatarakeSlacker)
         {
-            tutoLock = true;
-            GameManager.instance.nextTutoStep();
+            if (employesEngueulable.Count >= 1)
+            {
+                GameManager.instance.TutoEmployeeHataraked();
+            }
         }
 
         actionArea.GetComponent<jaugeEngueulage>().clearEmployesJauge();
-
         //actionArea.GetComponent<jaugeEngueulage>().Engueule();
     }
 
 
 	void OnMouseDown () 
 	{
-        if (!hatarakeLocked)
+        if (!hatarakeLocked && yellingO_Meter >0 )
         {
             //print("START CHARGE ");
             charge = true;
             tMemory.SetItem("charge", true);
             StartCoroutine(Engueulade());
+        }
+        else
+        {
+            playRandomVoicelessBossSound();
         }
 
 	}
