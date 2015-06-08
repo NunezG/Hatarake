@@ -35,7 +35,8 @@ public class BossMove : RAINMind
 	public override void Start()
 	{
 		tMemory = AI.WorkingMemory as RAIN.Memory.BasicMemory;
-       
+        tMemory.RemoveItem("lookTarget");
+
 	}
 
 

@@ -7,6 +7,7 @@ using RAIN.Minds;
 using RAIN.Serialization;
 using RAIN.Motion;
 
+
 public class Boss : MonoBehaviour {
 
    // public GameObject gameManager;
@@ -38,7 +39,7 @@ public class Boss : MonoBehaviour {
 	Transform actionArea;
 	private RAIN.Memory.BasicMemory tMemory;
     private RAIN.Navigation.BasicNavigator tNav;
-
+    private RAIN.Motion.MecanimMotor tMotor;
 	// Use this for initialization
 	void Start () {
        // gameManager = GameObject.Find("GameManager");
@@ -53,6 +54,8 @@ public class Boss : MonoBehaviour {
 
 		AIRig aiRig = GetComponentInChildren<AIRig>();		
 		tMemory = aiRig.AI.WorkingMemory as RAIN.Memory.BasicMemory;
+        tMotor = aiRig.AI.Motor as RAIN.Motion.MecanimMotor;
+
         /*
         moveLocked = true;
         hatarakeLocked = true;*/
@@ -110,10 +113,8 @@ public class Boss : MonoBehaviour {
                 if (tNav.OnGraph(pos, 0))
                 {
                     tMemory.SetItem("sabotage", false);
-                    tMemory.SetItem("enDeplacement", true);
-                    tMemory.SetItem("target", pos);
-
-                    
+                    setTarget(pos);
+            
                 }
                
             }
@@ -133,11 +134,36 @@ public class Boss : MonoBehaviour {
 
 	}
 
+    public void setTarget(Vector3 target)
+    {
+        tMemory.SetItem("enDeplacement", true);
+        tMemory.SetItem("target", target);
+
+    }
+
+      public void faceTarget(Vector3 target)
+    {
+       // tMotor.FaceTarget = new MoveLookTarget();
+     //   tMotor.FaceAt(target);
+        tMemory.SetItem("lookTarget", target);
+    }
+    
+                   
+
+
+    public Vector3 getTarget()
+    {     
+        return tMemory.GetItem<Vector3>("target");
+    }
+
+    public void action()
+    {
+        Animator ann = gameObject.transform.FindChild("BossSprite"). GetComponent<Animator>();
+        ann.SetTrigger("doingStuff");
+    }
+
     public IEnumerator Engueulade()
     {
-
-        //print("ENGUEULADE!!!!!!!!!!!!!!");
-
         actionArea.gameObject.SetActive(true);
         float pos=0;
         while (charge)

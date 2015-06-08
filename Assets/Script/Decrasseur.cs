@@ -44,9 +44,13 @@ public class Decrasseur : MonoBehaviour {
     {
        
             emptyChill = new List<GameObject>();
-            Repos[] chills = floor.GetComponentsInChildren<Repos>();
-            foreach (Repos chi in chills)
+            Box[] chills = floor.GetComponentsInChildren<Box>();
+            foreach (Box chi in chills)
             {
+
+                if (chi.transform.parent.Find("breakPos") != null)
+                    emptyChill.Add(chi.transform.parent.Find("breakPos").gameObject);
+                else
                 if (chi.transform.parent.GetComponentInChildren<BreakableFurniture>() != null)
                 emptyChill.Add(chi.gameObject);
 

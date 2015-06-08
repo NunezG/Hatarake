@@ -9,24 +9,37 @@ public class Repair : RAINAction
 {
 
     GameObject target;
+    Animator animator;
 
     public override void Start(RAIN.Core.AI ai)
     {
         base.Start(ai);
 
+        animator = ai.Body.GetComponent<Animator>();
+        animator.SetBool("action", true);
+
         target = ai.WorkingMemory.GetItem<GameObject>("myTarget");
+        ai.Body.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;
 
     }
 
     public override ActionResult Execute(RAIN.Core.AI ai)
     {
-
         if (target.transform.parent.GetComponentInChildren<BreakableFurniture>().broken)
         {
-            target.transform.parent.GetComponentInChildren<BreakableFurniture>().Repair();
+           if (target.transform.parent.GetComponentInChildren<BreakableFurniture>().Repair())
+           {
+               ai.Body.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionY;
 
+               animator.SetBool("action", false);
+               return ActionResult.SUCCESS;
+
+           }
+           return ActionResult.FAILURE;
         }
+        ai.Body.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionY;
 
+        animator.SetBool("action", false);
         return ActionResult.SUCCESS;
     }
 
@@ -34,6 +47,8 @@ public class Repair : RAINAction
     {
         base.Stop(ai);
         ai.Motor.DefaultSpeed = ai.WorkingMemory.GetItem<int>("normalSpeed");
+
+
 
     }
 }
