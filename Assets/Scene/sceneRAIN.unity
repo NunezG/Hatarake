@@ -1126,8 +1126,8 @@ MonoBehaviour:
   ringingPhone: 0
   profileOnClickIsOn: 0
   tutoIsOn: 0
-  tutoMoveLock: 1
-  tutoHatarakeLock: 1
+  tutoMoveLock: 0
+  tutoHatarakeLock: 0
   cameraLookingForCoffee: 0
   fetchingCoffee: 0
   cameraLookingForElevator: 0
@@ -1738,7 +1738,7 @@ MonoBehaviour:
   focusTimeToStartShaking: 0
   dampTime: .200000003
   shaking: 0
-  shakeMagnitude: 0
+  shakeMagnitude: 5
   shakeTimer: 20
   onOtherTarget: 0
   focusTimer: 100

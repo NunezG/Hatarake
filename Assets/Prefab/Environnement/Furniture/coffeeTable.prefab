@@ -181,11 +181,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   assigne: 0
   animatorStates: []
-  signToEmitWork: 0
+  signToEmitWork: 1
   signToEmitChill: 1
   soundToEmitWork: {fileID: 0}
   soundToEmitChill: {fileID: 0}
-  glande: 1
+  glande: 0
 --- !u!114 &11480786
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -203,7 +203,7 @@ MonoBehaviour:
   signToEmitChill: 1
   soundToEmitWork: {fileID: 0}
   soundToEmitChill: {fileID: 0}
-  glande: 1
+  glande: 0
 --- !u!212 &21257626
 SpriteRenderer:
   m_ObjectHideFlags: 1

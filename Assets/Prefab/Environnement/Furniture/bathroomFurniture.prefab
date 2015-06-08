@@ -222,11 +222,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   assigne: 0
   animatorStates: []
-  signToEmitWork: 6
-  signToEmitChill: 5
+  signToEmitWork: 8
+  signToEmitChill: 8
   soundToEmitWork: {fileID: 0}
   soundToEmitChill: {fileID: 0}
-  glande: 1
+  glande: 0
 --- !u!212 &21250544
 SpriteRenderer:
   m_ObjectHideFlags: 1

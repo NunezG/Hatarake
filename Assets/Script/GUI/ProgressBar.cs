@@ -25,7 +25,7 @@ public class ProgressBar : MonoBehaviour {
         }
         else
         {
-            //print("boss name : "+boss.name);
+
 			DrawYellingOMeter();
         }
     }

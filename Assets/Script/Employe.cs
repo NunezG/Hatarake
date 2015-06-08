@@ -127,7 +127,7 @@ public class Employe : MonoBehaviour {
 
             isAlreadyInRange = false;
         }else if((suicideMemory  != tMemory.GetItem<bool>("suicidaire") ||
-            moveMemory != tMemory.GetItem<bool>("enDeplacement") || workingMemory != tMemory.GetItem<bool>("auTravail")) )
+            /*moveMemory != tMemory.GetItem<bool>("enDeplacement") || */workingMemory != tMemory.GetItem<bool>("auTravail")) )
         { // si il change d'état
             
             if( isAlreadyInRange)emitActivitySign();
@@ -263,7 +263,7 @@ public class Employe : MonoBehaviour {
         }
         else if (tMemory.GetItem<bool>("wander"))
         {
-                SignEmitter.Create(this.transform.position, SignType.Cellphone);
+            SignEmitter.Create(this.transform.position, SignType.Cellphone);
         }
         else if (tMemory.GetItem<bool>("enDeplacement"))
         {
@@ -334,7 +334,7 @@ public class Employe : MonoBehaviour {
         GameObject window = tMemory.GetItem<GameObject>("myTarget");
         //window.transform.Find("tache").gameObject.SetActive(true);
         //window.transform.Find("brokenWindow").gameObject.GetComponent<ParticleSystem>().Play();
-        GameManager.instance.cameraController.FollowObjectAndShakeAtTheEnd(window, 100,80);
+        GameManager.instance.cameraController.FollowObjectAndShakeAtTheEnd(window, 140,20);
         GameManager.instance.GetComponent<CharacterManager>().sendBoxieToHell(this.gameObject);
 
         window.GetComponent<Window>().playSuicide(data.isMale);

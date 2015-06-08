@@ -158,6 +158,7 @@ public class GameManager : MonoBehaviour {
             {
                 //print("fresh meat hired");
                 freshMeatHired = false;
+                cameraController.dampTime = 0;
                 cameraController.FollowEmployee(this.gameObject.GetComponent<CharacterManager>().boxies[0], 100);
 
                 cameraLookingForFreshMeat = true;
@@ -194,6 +195,7 @@ public class GameManager : MonoBehaviour {
             if (employeeHataraked)
             {
                 employeeHataraked = false;
+                cameraController.dampTime = 0;
                 cameraController.FollowEmployee(this.gameObject.GetComponent<CharacterManager>().boxies[0], 100);
                 cameraFollowingEmployeeHataraked = true;
             }

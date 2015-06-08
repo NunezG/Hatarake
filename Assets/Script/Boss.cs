@@ -10,6 +10,8 @@ using RAIN.Motion;
 
 public class Boss : MonoBehaviour {
 
+    public Animator animator;
+
    // public GameObject gameManager;
     public bool tutoLock = false;
 
@@ -194,7 +196,7 @@ public class Boss : MonoBehaviour {
     {
         float currentYellingOMeter = yellingO_Meter;
         float top = Mathf.Min(maxLossByScream, yellingO_Meter);
-
+        animator.SetTrigger("chargingHatarake");
         actionArea.gameObject.SetActive(true);
         float pos = 0;
         float time = 0;
@@ -260,6 +262,8 @@ public class Boss : MonoBehaviour {
         }
 
         actionArea.GetComponent<jaugeEngueulage>().clearEmployesJauge();
+
+        animator.SetTrigger("releasingHatarake");
         //actionArea.GetComponent<jaugeEngueulage>().Engueule();
     }
 

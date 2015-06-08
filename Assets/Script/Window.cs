@@ -49,7 +49,9 @@ public class Window : MonoBehaviour
         {
             suicideAnimator.gameObject.SetActive(true);
         }
-        suicideAnimator.Play("idle");
+        //suicideAnimator.Play("idle");
+        suicideAnimator.Play("Suicide", -1, 0f);
+        suicideAnimator.CrossFade("Suicide", 0);
         brokenGlass.Play();
 
     }

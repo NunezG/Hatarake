@@ -146,6 +146,7 @@ public class CameraController : MonoBehaviour {
 			                                 transform.position.y,
 			                                 transform.position.z + Random.Range(-shakeMagnitude, shakeMagnitude)*0.1f);
 			timer++;
+
 		}
 
 		else {

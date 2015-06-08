@@ -297,8 +297,8 @@ MonoBehaviour:
   assigne: 0
   animatorStates:
   - 
-  signToEmitWork: 0
-  signToEmitChill: 0
+  signToEmitWork: 9
+  signToEmitChill: 9
   soundToEmitWork: {fileID: 0}
   soundToEmitChill: {fileID: 0}
   glande: 0
