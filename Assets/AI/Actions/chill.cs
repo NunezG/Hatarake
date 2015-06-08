@@ -18,6 +18,8 @@ public class chill : RAINAction
 
     public override void Start(RAIN.Core.AI ai)
     {
+        base.Start(ai);
+
         motivation = (int)ai.Body.gameObject.GetComponent<Employe>().data.motivation;
         animator = ai.Body.GetComponent<Animator>();
 
@@ -25,9 +27,32 @@ public class chill : RAINAction
 		//Set de bool, sert a rien pour l'instant
         ai.WorkingMemory.SetItem("enDeplacement", false);
         ai.Body.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;
+     
         target = ai.WorkingMemory.GetItem<GameObject>("myTarget");
 
-        base.Start(ai);
+        if (target.tag == "Corridor")
+        {
+            animator.SetBool("cellphone", true);
+
+        }
+        else
+        {
+            target.GetComponent<Box>().glande = true;
+
+            for (int i = 0; i < target.GetComponent<Box>().animatorStates.Length; i++)
+            {
+                animator.SetBool(target.GetComponent<Box>().animatorStates[i], true);
+
+
+            }
+
+        }
+
+
+/*
+
+
+        animator.SetBool("sit", true);
 
         if (target.name == "ToiletTrigger" || target.transform.parent.name == "TV")
         {
@@ -45,11 +70,7 @@ public class chill : RAINAction
 
         }
 
-        if (target.tag == "Corridor")
-        {
-            animator.SetBool("cellphone", true);
-
-        }
+      */
     }
 
     public override ActionResult Execute(RAIN.Core.AI ai)
@@ -105,12 +126,32 @@ public class chill : RAINAction
     public override void Stop(RAIN.Core.AI ai)
     {           
         //ai.WorkingMemory.SetItem("motivation", motivation);
+        if (target.tag == "Corridor")
+        {
+            animator.SetBool("cellphone", false);
+
+        }
+        else
+        {
+            for (int i = 0; i < target.GetComponent<Box>().animatorStates.Length; i++)
+            {
+                animator.SetBool(target.GetComponent<Box>().animatorStates[i], false);
+
+
+            }
+            target.GetComponent<Box>().glande = false;
+
+        }
+        
+        /*
+        
         animator.SetBool("sit", false);
         animator.SetBool("playing", false);
         animator.SetBool("drinking", false);
         animator.SetBool("cellphone", false);
-
+        */
         ai.Body.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionY;
+       
 
         base.Stop(ai);
     }

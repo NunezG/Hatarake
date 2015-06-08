@@ -7,6 +7,7 @@ using RAIN.Minds;
 using RAIN.Serialization;
 using RAIN.Motion;
 
+
 public class Boss : MonoBehaviour {
 
    // public GameObject gameManager;
@@ -38,7 +39,7 @@ public class Boss : MonoBehaviour {
 	Transform actionArea;
 	private RAIN.Memory.BasicMemory tMemory;
     private RAIN.Navigation.BasicNavigator tNav;
-
+    private RAIN.Motion.MecanimMotor tMotor;
 	// Use this for initialization
 	void Start () {
        // gameManager = GameObject.Find("GameManager");
@@ -53,6 +54,8 @@ public class Boss : MonoBehaviour {
 
 		AIRig aiRig = GetComponentInChildren<AIRig>();		
 		tMemory = aiRig.AI.WorkingMemory as RAIN.Memory.BasicMemory;
+        tMotor = aiRig.AI.Motor as RAIN.Motion.MecanimMotor;
+
         /*
         moveLocked = true;
         hatarakeLocked = true;*/
@@ -137,6 +140,16 @@ public class Boss : MonoBehaviour {
         tMemory.SetItem("target", target);
 
     }
+
+      public void faceTarget(Vector3 target)
+    {
+       // tMotor.FaceTarget = new MoveLookTarget();
+     //   tMotor.FaceAt(target);
+        tMemory.SetItem("lookTarget", target);
+    }
+    
+                   
+
 
     public Vector3 getTarget()
     {     

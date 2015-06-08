@@ -5,10 +5,28 @@ public class BreakableFurniture : MonoBehaviour {
     public bool broken = false;
 	private int resistance = 5;
     private int damage = 0;
+    private Vector3 breakTarget;
+
+
+    void Start(){
+
+        if (transform.parent.FindChild("breakPos") != null)
+        {
+            breakTarget = transform.parent.FindChild("breakPos").position;
+        }
+        else breakTarget = transform.parent.GetComponentInChildren<Box>().transform.position;
+
+    }
 
 	void Update () {
+       // if (GameManager.instance.boss.GetComponent<Boss>().getTarget() == breakTarget)
+     //   {
 
-       
+            
+
+
+      //  }
+       //
 	}
 
     public void Hit()
@@ -23,26 +41,37 @@ public class BreakableFurniture : MonoBehaviour {
         }
     }
 
-	public void Repair()
+	public bool Repair()
 	{
-		damage = 0;
-        transform.parent.GetComponentInChildren<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f);
-        broken = false;
+		damage -= 1;
+
+        if (damage <= 0)
+        {
+            transform.parent.GetComponentInChildren<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f);
+            broken = false;
+            return true;
+        }
+        return false;
 	}
 
      void OnMouseDown() 
     {
+        if (GameManager.instance.boss.GetComponent<Boss>().getTarget() == breakTarget)
+        {
+            Hit();
 
-        if ( GameManager.instance.boss.GetComponent<Boss>().getTarget() == transform.parent.GetComponentInChildren<Repos>().transform.position)
-                {
-                    
-                        Hit();
+            // tMemory.SetItem("sabotage", true);
+            //  tMemory.SetItem("enDeplacement", true);
+            // tMemory.SetItem<GameObject>("target", colliders[0].gameObject);
+        }
+        else
+        {
+            GameManager.instance.boss.GetComponent<Boss>().setTarget(breakTarget);
 
-                       // tMemory.SetItem("sabotage", true);
-                      //  tMemory.SetItem("enDeplacement", true);
-                       // tMemory.SetItem<GameObject>("target", colliders[0].gameObject);
-                }
-        else GameManager.instance.boss.GetComponent<Boss>().setTarget(transform.parent.GetComponentInChildren<Repos>().transform.position);
+            GameManager.instance.boss.GetComponent<Boss>().faceTarget(transform.parent.FindChild("lookAt").position);
+
+           // GameManager.instance.boss.transform.LookAt(transform.parent.FindChild("lookAt"));
+        }
+
     }
-
 }
