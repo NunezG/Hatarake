@@ -16,7 +16,7 @@ Platform assembly: D:\Github\HatarakeClone\hatarake_vef_Data\Managed\RAIN.dll (t
 Loading D:\Github\HatarakeClone\hatarake_vef_Data\Managed\RAIN.dll into Unity Child Domain
 Platform assembly: D:\Github\HatarakeClone\hatarake_vef_Data\Managed\RAINMetaform.dll (this message is harmless)
 Loading D:\Github\HatarakeClone\hatarake_vef_Data\Managed\RAINMetaform.dll into Unity Child Domain
-- Completed reload, in  0.042 seconds
+- Completed reload, in  0.089 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
@@ -25,19 +25,15 @@ Platform assembly: D:\Github\HatarakeClone\hatarake_vef_Data\Managed\System.Core
 Platform assembly: D:\Github\HatarakeClone\hatarake_vef_Data\Managed\System.dll (this message is harmless)
 Platform assembly: D:\Github\HatarakeClone\hatarake_vef_Data\Managed\System.Xml.dll (this message is harmless)
 Platform assembly: D:\Github\HatarakeClone\hatarake_vef_Data\Managed\Mono.Security.dll (this message is harmless)
-NavMesh generated in 2.018332s!!! That's frikkin' fast, man!!!
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
-
 MecanimAnimator: No Animator present on AI Body (adding a temporary one)
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
 
-spawnBoss TRIGGERED BY Boss(Clone) BURN HIM !
+NavMesh generated in 2.024884s!!! That's frikkin' fast, man!!!
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
 
-spawnBoss TRIGGERED BY Boss(Clone) BURN HIM !
+Look rotation viewing vector is zero
  
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+(Filename:  Line: 71)
 

@@ -138,7 +138,7 @@ public class CameraController : MonoBehaviour {
 			cameraIsToMove = false;
 		}
 	}
-	
+
 	//Shakes the camera for a certain amount of time
 	public void ShakeMyBooty()
 	{

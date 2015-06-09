@@ -209,6 +209,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   broken: 0
+  shaking: 0
+  shakingDuration: 5
+  shakeMagnitude: 1
+  initialPosition: {x: 0, y: 0, z: 0}
+  initialScale: {x: 0, y: 0, z: 0}
+  initialRotate: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &11477898
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -223,8 +229,8 @@ MonoBehaviour:
   assigne: 0
   animatorStates:
   - sit
-  signToEmitWork: 6
-  signToEmitChill: 5
+  signToEmitWork: 8
+  signToEmitChill: 8
   soundToEmitWork: {fileID: 0}
   soundToEmitChill: {fileID: 0}
   glande: 1

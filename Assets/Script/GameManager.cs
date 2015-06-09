@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour {
     public GameObject canvaEmbauche;
     public GameObject victoryButton;
     public Button newMissionButton;
+    public Button EndOfDemo;
     public GameObject boss=null;
     private GameObject[] tempHiringBoxiesBuffer = new GameObject[3];
 	public float levelObjective;
@@ -18,7 +19,7 @@ public class GameManager : MonoBehaviour {
     public Text clock;
     public float time = 0;
     public bool ongoingHiring = false;
-
+    public AudioSource gongOfVictorySound;
 
    public int nbEmployeeToHire = 3;
    public int nbEmployeeLeftToHire;
@@ -180,6 +181,7 @@ public class GameManager : MonoBehaviour {
                 profileLookedAt = false;
                 tutoExplicationProfileButton.gameObject.SetActive(true);
                 bossLock(true, true);
+                goingToLookProfile = false;
             }
             if (cameraLookingAtSlacker)
             {
@@ -244,26 +246,40 @@ public class GameManager : MonoBehaviour {
             }
             else if (boss != null)
             {
-                bossLock(true, true);
-                victoryButton.SetActive(true);
 
-                victoryButton.GetComponentInChildren<Text>().text = "VICTORY ! \n We triumph once again, objective completed in \n" + strMinutes + ":" + strSecondes + ":" + strCentiSecondes;
-                boss.GetComponent<Boss>().moveLocked = true;
-                boss.GetComponent<Boss>().hatarakeLocked = true;
-                workingIsActuallyUsefull = false;
-                ringingPhone = true;
+                if (this.GetComponent<CharacterManager>().GetTotalNumberOfBoxies() == 20)
+                {
+                    EndOfDemo.gameObject.SetActive(true);
+                    bossLock(true, true);
+                    workingIsActuallyUsefull = false;
+                }
+                else
+                {
+                    boss.GetComponent<Boss>().gongOfVictory.Play();
+                    bossLock(true, true);
+                    victoryButton.SetActive(true);
+                    victoryButton.GetComponentInChildren<Text>().text = "YATTTTA ! \n Nous avons encore rempli notre devoir en \n" + strMinutes + "\'\'" + strSecondes + "\'" + strCentiSecondes;
+                    boss.GetComponent<Boss>().moveLocked = true;
+                    boss.GetComponent<Boss>().hatarakeLocked = true;
+                    workingIsActuallyUsefull = false;
+                    ringingPhone = true;
+
+                }
             }
 
 
             if (hiringTime && !ongoingHiring && nbEmployeeLeftToHire != 0)
             {
                 activateHiringRound();
+                bossLock(true, true);
             }
             else if (hiringTime && nbEmployeeLeftToHire == 0) // on a finit d'embaucher pour le nouvelle objectif
             {
                 hiringTime = false;
                 workingIsActuallyUsefull = true;
                 time = 0;
+
+                bossLock(false, false);
             }
 
 
@@ -287,7 +303,14 @@ public class GameManager : MonoBehaviour {
         boss.GetComponent<Boss>().moveLocked = move;
     }
 
+    public void DemoEndOnClick()
+    {
+        Application.Quit();
+    }
+
     //<------------------------Method Tuto
+
+
 
     public void TutoCoffeeButtonClick()
     {
@@ -373,6 +396,8 @@ public class GameManager : MonoBehaviour {
     public void activateHiringRound()
     {
         //CalculateNumberOfEmployeeToHire();
+
+        if (tutoIsOn) nbEmployeeLeftToHire = 1;
         if (!ongoingHiring && nbEmployeeLeftToHire>0)
         {
             print("nbEmployeeLeftToHire :" + nbEmployeeLeftToHire);
@@ -416,14 +441,16 @@ public class GameManager : MonoBehaviour {
         boss.GetComponent<Boss>().hatarakeLocked = false;
         nbEmployeeLeftToHire--;
 
+        print("nbEmployeeLeftToHire :" + nbEmployeeLeftToHire);
+
     }
-    public float objectiveIncreaseFactor = 2;
+    public float objectiveIncreaseFactor = 3;
     public void nextObjective()
     {
         bossLock(false, false);
 
 
-            if (levelObjective == 0) levelObjective = 50;
+            if (levelObjective == 10) levelObjective = 50;
             levelObjective = levelObjective * objectiveIncreaseFactor;
             objectiveCompletion = 0;
             time = 0;

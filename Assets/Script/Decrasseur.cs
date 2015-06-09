@@ -22,12 +22,6 @@ public class Decrasseur : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        employeProfile = GameObject.Find("EmployeeProfile");
-
-        data.InitializeEmployee();
-
-        this.transform.GetChild(0).GetComponent<SpriteRenderer>().color = data.hairColor;
-        this.transform.GetChild(1).GetComponent<SpriteRenderer>().color = data.topColor;
 
 	}
 	

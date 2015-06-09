@@ -38,7 +38,7 @@ public class TelephoneIsRinging : MonoBehaviour {
                 GameManager.instance.hiringTime = true;
                 GameManager.instance.CalculateNumberOfEmployeeToHire();*/
 
-                GameManager.instance.cameraController.BackToTheBoss();
+                GameManager.instance.cameraController.FollowEmployee(GameManager.instance.boss,1,0);
                 GameManager.instance.activateNextMissionButton();
             }
             else
