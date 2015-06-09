@@ -296,7 +296,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   assigne: 0
   animatorStates:
-  - 
+  - sit
   signToEmitWork: 9
   signToEmitChill: 9
   soundToEmitWork: {fileID: 0}
@@ -364,7 +364,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   assigne: 0
-  animatorStates: []
+  animatorStates:
+  - sit
   signToEmitWork: 9
   signToEmitChill: 9
   soundToEmitWork: {fileID: 0}

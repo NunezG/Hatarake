@@ -168,7 +168,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 160270}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.234999999, y: -.100000001, z: -.247999996}
+  m_LocalPosition: {x: -.234999999, y: -.100000001, z: -.200000003}
   m_LocalScale: {x: .112088241, y: 1, z: .096059747}
   m_Children: []
   m_Father: {fileID: 464664}
@@ -221,12 +221,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   assigne: 0
-  animatorStates: []
-  signToEmitWork: 8
-  signToEmitChill: 8
+  animatorStates:
+  - sit
+  signToEmitWork: 6
+  signToEmitChill: 5
   soundToEmitWork: {fileID: 0}
   soundToEmitChill: {fileID: 0}
-  glande: 0
+  glande: 1
 --- !u!212 &21250544
 SpriteRenderer:
   m_ObjectHideFlags: 1

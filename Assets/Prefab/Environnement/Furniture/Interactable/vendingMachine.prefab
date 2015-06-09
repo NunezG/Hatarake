@@ -157,7 +157,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   assigne: 0
-  animatorStates: []
+  animatorStates:
+  - typing
   signToEmitWork: 3
   signToEmitChill: 3
   soundToEmitWork: {fileID: 0}

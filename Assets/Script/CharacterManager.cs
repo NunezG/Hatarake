@@ -22,23 +22,28 @@ public class CharacterManager : MonoBehaviour {
   //  public GameObject[] workingHelp;
 
 	public List<GameObject> boxies=new List<GameObject>();
-	public GameObject boss;
+    private GameObject boss;
+
+    public void Start()
+    {
+        boss = (GameObject)Instantiate(bossPrefab);
+        boss.transform.localScale = boss.transform.localScale * gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.localScale.x;
+        GameManager.instance.SetBoss(boss);
+
+    }
+
+
 
 	public void Spawn()
 	{
         GameObject spawn = GameObject.Find("spawnBoss");
 		GameObject floor = GameObject.Find ("Office floor n0");			
-
-		Box[] boxes = floor.GetComponentsInChildren<Box> ();
 		
-		boss =(GameObject)Instantiate (bossPrefab);
-        boss.transform.localScale = boss.transform.localScale * gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.localScale.x;
-
         boss.transform.position = spawn.transform.position;
         boss.transform.Translate(0,boss.GetComponent<Collider>().bounds.extents.y,0);
-        GameManager.instance.SetBoss(boss);
-
+       
         GameObject[] corridorsCell = GameObject.FindGameObjectsWithTag("Corridor");
+        Box[] boxes = floor.GetComponentsInChildren<Box>();
 
 		// create Player
 		for (int i = 0; i < nombreBoxies; i++) 
@@ -50,6 +55,8 @@ public class CharacterManager : MonoBehaviour {
            // boxie.GetComponent<Rigidbody>().mass = Random.Range(1, 100);
             boxie.name = boxiePrefab.name + i;
             boxie.GetComponent<Employe>().tMemory.SetItem("auTravail", true);
+
+
 
 			foreach(Box box in boxes )
 			{

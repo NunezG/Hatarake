@@ -68,7 +68,7 @@ public class BreakableFurniture : MonoBehaviour {
 
 	public bool Repair()
 	{
-		damage -= 1;
+        damage -= Random.Range(0, resistance);
 
         if (damage <= 0)
         {
