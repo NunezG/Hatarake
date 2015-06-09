@@ -41,8 +41,8 @@ public class ProgressBar : MonoBehaviour {
         else if(GameManager.instance.workingIsActuallyUsefull)
         {
             DrawProgressObjective(GameManager.instance.objectiveCompletion / GameManager.instance.levelObjective);
-            if (GameManager.instance.GetComponent<CharacterManager>().GetTotalNumberOfBoxies() != 0)
-                DrawNumberOfWorkingEmploye(GameManager.instance.GetComponent<CharacterManager>().GetNumberOfWorkingBoxies(), GameManager.instance.GetComponent<CharacterManager>().GetTotalNumberOfBoxies());
+            //if (GameManager.instance.GetComponent<CharacterManager>().GetTotalNumberOfBoxies() != 0)
+                //DrawNumberOfWorkingEmploye(GameManager.instance.GetComponent<CharacterManager>().GetNumberOfWorkingBoxies(), GameManager.instance.GetComponent<CharacterManager>().GetTotalNumberOfBoxies());
         }
         else
         {

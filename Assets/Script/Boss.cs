@@ -213,13 +213,8 @@ public class Boss : MonoBehaviour {
         int yellingO_OnEight = (int)(((pos - jaugeEngueulageMin) / jaugeEngueulageMax) * 8);
         yellingO_Meter = yellingO_Meter - yellingO_OnEight * maxYellingO_Meter / 8;
 
-        Sign.Create(pos, this.transform.position, SignType.Hatarake);
-        print("pos : " + pos + " ,yellingO_OnEight : " + yellingO_OnEight);
-        /*
-        if(yellingO_Meter == 8){
-            yellingO_Meter = 0;
-            Sign.Create(pos,this.transform.position,SignType.Hatarake);
-        }*/
+        //Sign.Create(pos, this.transform.position, SignType.Hatarake);
+        SignEmitter.Create(this.transform.position, SignType.Hatarake,pos);
 
         if (yellingO_OnEight > 6)
         {

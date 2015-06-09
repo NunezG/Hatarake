@@ -6,7 +6,11 @@ public class BreakableFurniture : MonoBehaviour {
 	private int resistance = 5;
     private int damage = 0;
     private Vector3 breakTarget;
-
+    public bool shaking = false;
+    public int shakingDuration = 5;
+    public float shakeMagnitude = 1;
+    public Vector3 initialPosition,initialScale;
+    public Quaternion initialRotate;
 
     void Start(){
 
@@ -16,24 +20,45 @@ public class BreakableFurniture : MonoBehaviour {
         }
         else breakTarget = transform.parent.GetComponentInChildren<Box>().transform.position;
 
+
+        this.initialPosition = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
+        this.initialScale = new Vector3(this.transform.localScale.x, this.transform.localScale.y, this.transform.localScale.z);
+        this.initialRotate = new Quaternion(this.transform.localRotation.x, this.transform.localRotation.y, this.transform.localRotation.z, this.transform.localRotation.w);
+
     }
 
 	void Update () {
        // if (GameManager.instance.boss.GetComponent<Boss>().getTarget() == breakTarget)
      //   {
-
-            
-
-
-      //  }
+        //  }
        //
-	}
+        ShakeMyBooty();
 
+
+	}
+    //Shakes the camera for a certain amount of time
+    public void ShakeMyBooty()
+    {
+        if (shaking && shakingDuration>0)
+        {
+            transform.Rotate(0, 0, Random.Range(-shakeMagnitude, shakeMagnitude) * 1);
+            shakingDuration--;
+        }
+
+        else
+        {
+            this.transform.position = initialPosition;
+            this.transform.localScale = initialScale;
+            this.transform.localRotation = initialRotate;
+            shaking = false;
+        }
+    }
     public void Hit()
     {
         GameManager.instance.boss.GetComponent<Boss>().action();
         damage++;
-
+        shaking = true;
+        shakingDuration = 20;
         if (damage >= resistance)
         {
             transform.parent.GetComponentInChildren<SpriteRenderer>().color = new Color(1.0f, 0.0f, 0.0f);
@@ -67,10 +92,7 @@ public class BreakableFurniture : MonoBehaviour {
         else
         {
             GameManager.instance.boss.GetComponent<Boss>().setTarget(breakTarget);
-
             GameManager.instance.boss.GetComponent<Boss>().faceTarget(transform.parent.FindChild("lookAt").position);
-
-           // GameManager.instance.boss.transform.LookAt(transform.parent.FindChild("lookAt"));
         }
 
     }

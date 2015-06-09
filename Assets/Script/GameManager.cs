@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour {
     public CameraController cameraController;
     public GameObject canvaEmbauche;
     public GameObject victoryButton;
+    public Button newMissionButton;
     public GameObject boss=null;
     private GameObject[] tempHiringBoxiesBuffer = new GameObject[3];
 	public float levelObjective;
@@ -159,7 +160,7 @@ public class GameManager : MonoBehaviour {
                 //print("fresh meat hired");
                 freshMeatHired = false;
                 cameraController.dampTime = 0;
-                cameraController.FollowEmployee(this.gameObject.GetComponent<CharacterManager>().boxies[0], 100);
+                cameraController.FollowEmployee(this.gameObject.GetComponent<CharacterManager>().boxies[0], 100,0);
 
                 cameraLookingForFreshMeat = true;
             }
@@ -196,7 +197,7 @@ public class GameManager : MonoBehaviour {
             {
                 employeeHataraked = false;
                 cameraController.dampTime = 0;
-                cameraController.FollowEmployee(this.gameObject.GetComponent<CharacterManager>().boxies[0], 100);
+                cameraController.FollowEmployee(this.gameObject.GetComponent<CharacterManager>().boxies[0], 100,0);
                 cameraFollowingEmployeeHataraked = true;
             }
             if (cameraFollowingEmployeeHataraked)
@@ -215,7 +216,8 @@ public class GameManager : MonoBehaviour {
         }
         else
         {
-            if (cameraController.dampTime != 0) cameraController.dampTime = 0;
+            //if (cameraController.dampTime != 0) cameraController.dampTime = 0;
+
             int minutes = (int)(time / 60);
             int secondes = (int)(time - 60 * minutes);
             int centisecondes = (int)((time - 60 * minutes - secondes) * 100);
@@ -235,13 +237,14 @@ public class GameManager : MonoBehaviour {
             else
                 strCentiSecondes = "" + centisecondes;
 
-            clock.text = strMinutes + "\'" + strSecondes + "\"" + strCentiSecondes;
+            clock.text = strMinutes + "\'" + strSecondes + "\'\'" + strCentiSecondes;
             if (objectiveCompletion < levelObjective)
             {
-                if (workingIsActuallyUsefull) time = time + Time.deltaTime;
+                if (workingIsActuallyUsefull && boss!=null) time = time + Time.deltaTime;
             }
             else if (boss != null)
             {
+                bossLock(true, true);
                 victoryButton.SetActive(true);
 
                 victoryButton.GetComponentInChildren<Text>().text = "VICTORY ! \n We triumph once again, objective completed in \n" + strMinutes + ":" + strSecondes + ":" + strCentiSecondes;
@@ -288,14 +291,14 @@ public class GameManager : MonoBehaviour {
 
     public void TutoCoffeeButtonClick()
     {
-        cameraController.FollowEmployee(coffeeTable, 100);
+        cameraController.FollowEmployee(coffeeTable, 100,0.2f);
         cameraLookingForCoffee = true;
         bossLock(false, true);
     }
 
     public void TutoLookingForElevatorClick()
     {
-        cameraController.FollowEmployee(elevator, 100);
+        cameraController.FollowEmployee(elevator, 100,0.2f);
         cameraLookingForElevator = true;
         //while (cameraController.onOtherTarget) { }
 
@@ -310,7 +313,7 @@ public class GameManager : MonoBehaviour {
     }
     public void TutoWtfClick()
     {
-        cameraController.FollowEmployee(phone, 100);
+        cameraController.FollowEmployee(phone, 100,0.2f);
         cameraLookingForPhone = true;
     }
     public void TutoHiringTimeClick()
@@ -331,7 +334,7 @@ public class GameManager : MonoBehaviour {
     {
         //vider motivation employer + follow avec cam
         this.gameObject.GetComponent<CharacterManager>().boxies[0].GetComponent<Employe>().TotalDemotivation();
-        cameraController.FollowEmployee(this.gameObject.GetComponent<CharacterManager>().boxies[0], 200);
+        cameraController.FollowEmployee(this.gameObject.GetComponent<CharacterManager>().boxies[0], 200,0);
         cameraLookingAtSlacker = true;
     }
 
@@ -355,12 +358,24 @@ public class GameManager : MonoBehaviour {
     }
 
     // Methode Tuto --------------------------->
+    public void activateNextMissionButton()
+    {
+        bossLock(true, true);
+        newMissionButton.gameObject.SetActive(true);
+        newMissionButton.GetComponentInChildren<Text>().text = JobText.GenerateRandomJob();
+    }
+    public void NextMissionButtonOnClick()
+    {
+        CalculateNumberOfEmployeeToHire();
+        hiringTime = true;
+    }
 
     public void activateHiringRound()
     {
-        if (!ongoingHiring)
+        //CalculateNumberOfEmployeeToHire();
+        if (!ongoingHiring && nbEmployeeLeftToHire>0)
         {
-            bossLock(true, true);
+            print("nbEmployeeLeftToHire :" + nbEmployeeLeftToHire);
             ongoingHiring = true;
             canvaEmbauche.SetActive(true);
             tempHiringBoxiesBuffer[0] = this.GetComponent<CharacterManager>().GenerateOneBoxieForHire();
@@ -405,8 +420,7 @@ public class GameManager : MonoBehaviour {
     public float objectiveIncreaseFactor = 2;
     public void nextObjective()
     {
-        boss.GetComponent<Boss>().moveLocked = false;
-        boss.GetComponent<Boss>().hatarakeLocked = false;
+        bossLock(false, false);
 
 
             if (levelObjective == 0) levelObjective = 50;
@@ -456,8 +470,4 @@ public class GameManager : MonoBehaviour {
 		gameObject.GetComponent<CharacterManager>().Spawn();
 	}
 
-    public void launchHiring()
-    {
-
-    }
 }

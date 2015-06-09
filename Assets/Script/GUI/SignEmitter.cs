@@ -5,23 +5,38 @@ public class SignEmitter : MonoBehaviour {
 
 
     public Material[] materials = new Material[10];
-    public static Object SignGenerator=Resources.Load("SignGenerator");
+    public static Object SignGeneratorEmploye = Resources.Load("SignGenerator");
+    public static Object SignGeneratorBoss = Resources.Load("HatarakeGenerator");
 
     ParticleSystemRenderer partiSysRender;
     ParticleSystem partiSys;
     public SignType type;
     SpriteRenderer spriteRenderer;
-    public float  alpha;
+    public float  size;
     public GameObject boss;
-    public static SignEmitter Create(Vector3 position, SignType type)
+
+    public static SignEmitter Create(Vector3 position, SignType type,float size)
     {
         Vector3 pos = new Vector3(position.x, position.y + 10, position.z);
-        GameObject newObject = Instantiate(SignGenerator) as GameObject;
+        GameObject newObject;
+        if (type != SignType.Hatarake)
+            newObject = Instantiate(SignGeneratorEmploye) as GameObject;
+        else
+        {
+            newObject = Instantiate(SignGeneratorBoss) as GameObject;
+
+
+            //newObject.transform.localScale = newObject.transform.localScale * size * 50;
+        }
+
         newObject.transform.position = pos;
         SignEmitter yourObject = newObject.GetComponent<SignEmitter>();
         yourObject.type = type;
+        yourObject.size = size;
         yourObject.partiSysRender = newObject.GetComponent<ParticleSystemRenderer>();
         yourObject.partiSys = newObject.GetComponent<ParticleSystem>();
+        if(type==SignType.Hatarake)
+            yourObject.partiSys.startSize = yourObject.partiSys.startSize*size;
         //do additional initialization steps here
 
         return yourObject;
@@ -34,6 +49,7 @@ public class SignEmitter : MonoBehaviour {
         {
             case SignType.Hatarake:
                 //partiSysRender.material=material;
+                partiSys.startSize = 50 * size;
                 break;
             case SignType.Cellphone:
                 partiSysRender.material = materials[0];
@@ -69,20 +85,22 @@ public class SignEmitter : MonoBehaviour {
                 partiSysRender.material = materials[10];
                 break;
             default:
-                partiSysRender.material = materials[10];
+                //partiSysRender.material = materials[10];
                 break;
         }
 	}
 
 	void Update () {
 
-        if (!partiSys.IsAlive())
+        if (!partiSys.IsAlive() )
         {
-            boss.GetComponent<Boss>().addBubble();
+            if( type != SignType.Hatarake)
+                boss.GetComponent<Boss>().addBubble();
+
             Destroy(this.gameObject);
         }
 
-		if (partiSys.time > 0.6f) {
+		if (partiSys.time > 0.6f && type != SignType.Hatarake) {
 			transform.position = Vector3.Lerp(transform.position, boss.transform.position, 0.2f);
 		}
 

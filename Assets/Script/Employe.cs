@@ -107,7 +107,7 @@ public class Employe : MonoBehaviour {
             suicideLock = true;
             tMemory.SetItem<bool>("suicidaire", true);
             employeProfile.GetComponent<employeeID>().setJProfile(0, this.gameObject);
-            GameManager.instance.cameraController.FollowEmployee(this.gameObject, 1000);
+            GameManager.instance.cameraController.FollowEmployee(this.gameObject, 1000,0f);
         }
 
 
@@ -259,11 +259,11 @@ public class Employe : MonoBehaviour {
         }
         if (tMemory.GetItem<bool>("suicidaire"))
         {
-            SignEmitter.Create(this.transform.position, SignType.Death);
+            SignEmitter.Create(this.transform.position, SignType.Death,1);
         }
         else if (tMemory.GetItem<bool>("wander"))
         {
-            SignEmitter.Create(this.transform.position, SignType.Cellphone);
+            SignEmitter.Create(this.transform.position, SignType.Cellphone,1);
         }
         else if (tMemory.GetItem<bool>("enDeplacement"))
         {
@@ -279,11 +279,11 @@ public class Employe : MonoBehaviour {
        
         else if (tMemory.GetItem<bool>("auTravail"))
         {
-            SignEmitter.Create(this.transform.position, target.GetComponent<Box>().signToEmitWork);       
+            SignEmitter.Create(this.transform.position, target.GetComponent<Box>().signToEmitWork,1);       
        }
        else
         {
-            SignEmitter.Create(this.transform.position, target.GetComponent<Box>().signToEmitChill);      
+            SignEmitter.Create(this.transform.position, target.GetComponent<Box>().signToEmitChill,1);      
         }
     }
 
@@ -334,7 +334,7 @@ public class Employe : MonoBehaviour {
         GameObject window = tMemory.GetItem<GameObject>("myTarget");
         //window.transform.Find("tache").gameObject.SetActive(true);
         //window.transform.Find("brokenWindow").gameObject.GetComponent<ParticleSystem>().Play();
-        GameManager.instance.cameraController.FollowObjectAndShakeAtTheEnd(window, 140,20);
+        GameManager.instance.cameraController.FollowObjectAndShakeAtTheEnd(window, 140,20,0);
         GameManager.instance.GetComponent<CharacterManager>().sendBoxieToHell(this.gameObject);
 
         window.GetComponent<Window>().playSuicide(data.isMale);

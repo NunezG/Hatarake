@@ -11,6 +11,7 @@ public class CharacterManager : MonoBehaviour {
 	public GameObject bossPrefab;
 
 	public int nombreBoxies = 10;
+    public int nbDecrasseur;
 	int nombreDecrasseurs;
 	int nombreMarketeux;
 	float production; //(production actuel)
@@ -68,6 +69,7 @@ public class CharacterManager : MonoBehaviour {
             int rdmIndex = Random.Range(0, corridorsCell.Length);
             boxie.transform.Translate(corridorsCell[rdmIndex].transform.position.x, boxie.GetComponent<Collider>().bounds.extents.y, corridorsCell[rdmIndex].transform.position.z);
 
+            boxies.Add(boxie);
 
 		}
 
@@ -90,9 +92,6 @@ public class CharacterManager : MonoBehaviour {
         int rdmInd = Random.Range(0, corridorsCell.Length);
         decrasseur.transform.Translate(corridorsCell[rdmInd].transform.position.x, decrasseur.GetComponent<Collider>().bounds.extents.y, corridorsCell[rdmInd].transform.position.z);
 
-        decrasseur.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color(1, 0, 0);
-        decrasseur.transform.GetChild(1).GetComponent<SpriteRenderer>().color = new Color(1, 0, 0);
-        decrasseur.transform.GetChild(2).GetComponent<SpriteRenderer>().color = new Color(1, 0, 0);
         
     }
 
@@ -162,13 +161,6 @@ public class CharacterManager : MonoBehaviour {
         boxie.transform.position = gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.position;
         boxie.transform.Translate(-10*Random.Range(0, 40), boxie.GetComponent<Collider>().bounds.extents.y,-10* Random.Range(0, 30));
 
-        /*
-        boxie.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color(Random.value, Random.value, Random.value);
-        boxie.transform.GetChild(1).GetComponent<SpriteRenderer>().color = new Color(Random.value, Random.value, Random.value);*/
-        
-        //boxie.transform.GetChild(1).GetComponent<SpriteRenderer>().color = boxie.GetComponent<Employe>().data.topColor;
-
-        //boxies.Add(boxie);
         return boxie;
     }
 
@@ -213,5 +205,13 @@ public class CharacterManager : MonoBehaviour {
         if (boxie.GetComponent<Employe>().boxDeTravail!=null)boxie.GetComponent<Employe>().boxDeTravail.GetComponent<Box>().assigne = false;
         boxies.Remove(boxie);
         Destroy(boxie);
+    }
+    void Update()
+    {
+        if (boxies.Count / 10 > nbDecrasseur)
+        {
+            nbDecrasseur++;
+            SpawnDecrasseur();
+        }
     }
 }

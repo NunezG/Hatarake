@@ -54,7 +54,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 1bfa7f9090cfff64db2b0baa498b07f8, type: 2}
   - {fileID: 2100000, guid: 24e795711b961ad4abe4b62bedd7bb78, type: 2}
   type: 0
-  alpha: 0
+  size: 0
   boss: {fileID: 0}
 --- !u!198 &19879502
 ParticleSystem:

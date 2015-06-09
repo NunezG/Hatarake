@@ -13,13 +13,13 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Speed
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Head
@@ -211,7 +211,7 @@ AnimatorState:
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
   m_Mirror: 0
-  m_Motion: {fileID: 7400000, guid: 6cce7267bf8f9534e85147278f0c2b63, type: 2}
+  m_Motion: {fileID: 7400000, guid: 00a442220df91994f95842c390a740be, type: 2}
   m_Tag: 
 --- !u!1102 &110254090
 AnimatorState:
@@ -380,13 +380,13 @@ AnimatorStateMachine:
   m_EntryTransitions: []
   m_StateMachineTransitions:
     data:
-      first: {fileID: 110708136}
-      second: []
-    data:
       first: {fileID: 110768214}
       second: []
     data:
       first: {fileID: 110773522}
+      second: []
+    data:
+      first: {fileID: 110708136}
       second: []
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: -36, y: 24, z: 0}

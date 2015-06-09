@@ -34,14 +34,15 @@ public class TelephoneIsRinging : MonoBehaviour {
             ringring.Stop();
             pickUp.Play();
             if (!GameManager.instance.tutoIsOn)
-            {
+            {/*
                 GameManager.instance.hiringTime = true;
-                GameManager.instance.CalculateNumberOfEmployeeToHire();
+                GameManager.instance.CalculateNumberOfEmployeeToHire();*/
+
+                GameManager.instance.cameraController.BackToTheBoss();
+                GameManager.instance.activateNextMissionButton();
             }
             else
             {
-                GameManager.instance.ringingPhone = false;
-                ringring.Stop();
                 GameManager.instance.activateHiringRound();
             }
         }
