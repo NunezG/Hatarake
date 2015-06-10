@@ -119,7 +119,7 @@ public class EmployeeData {
 		backColor = HSVToRGB(Random.value, 0.4f, 1.0f);
 
 		//On met la motiv' à une valeur aléatoire en début de jeu !
-        motivation = Random.Range(0, motivationMax);
+        motivation = Random.Range(0, motivationMax/2);
 
 	}
 
@@ -486,7 +486,10 @@ public class Data{
 		"aider les vieux à traverser",
 		"Organiser des kermesses",
 		"Organiser des bals",
-		"Organiser des dons de sang"
+		"Organiser des dons de sang",
+        "Boire du thé",
+        "faire des virées en Porsche",
+        "coder"
 	};
 	
 		public List<string> mediumClassHobbies = new List<string>{
@@ -523,9 +526,9 @@ public class Data{
 		public List<string> lowClassHobbies = new List<string>{
 		"sortir en boîte",
 		"sortir au bar",
-		"les partouzes entre amis",
-		"les partouzes entre collègues",
-		"se regarder langoureusement dans un miroir",
+		"les parties fines entre amis",
+		"les parties fines entre collègues",
+		"s'admirer durant des heures",
 		"écarter ses doigts de pieds",
 		"jouer aux jeux-vidéo",
 		"jouer au flipper",
@@ -541,7 +544,8 @@ public class Data{
 		"se droguer",
 		"fumer des joints",
 		"faire des jeux-vidéos",
-		"se lever à 8:46"
+		"se lever à 8:46",
+        "regarder les murs"
 	};
 
 }

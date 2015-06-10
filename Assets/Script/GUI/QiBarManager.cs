@@ -21,9 +21,10 @@ public class QiBarManager : MonoBehaviour {
         if (boss == null) boss = GameManager.instance.boss.GetComponent<Boss>();
         //if (!GameManager.instance.boss.GetComponent<Boss>().moveLocked) GameManager.instance.bossLock(true, false);
 
-        if (!boss.hatarakeLocked)
+        if (!boss.hatarakeLocked && boss.yellingO_Meter>0)
         {
             //print("START CHARGE ");
+            boss.hatarakeLocked = true;
             boss.charge = true;
             boss.tMemory.SetItem("charge", true);
             StartCoroutine(boss.Engueulade());
@@ -37,6 +38,7 @@ public class QiBarManager : MonoBehaviour {
     public void QiBarOnMouseUp()
     {
         boss.charge = false;
+        boss.hatarakeLocked = false;
         boss.tMemory.SetItem("charge", false);
         //GameManager.instance.bossLock(false, false);
     }

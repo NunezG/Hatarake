@@ -950,7 +950,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Select your next slav... employee!
+  m_Text: Choisi ton prochain esc ... collaborateur
 --- !u!222 &235996280
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1038,7 +1038,6 @@ GameObject:
   - 114: {fileID: 268217651}
   - 114: {fileID: 268217655}
   - 114: {fileID: 268217656}
-  - 81: {fileID: 268217653}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1060,10 +1059,9 @@ MonoBehaviour:
   boxiePrefab: {fileID: 192460, guid: c7ee810d6529ba340916106e675eee8c, type: 2}
   decrasseurPrefab: {fileID: 192460, guid: a87ab07792d486b44a81726adf8069c2, type: 2}
   bossPrefab: {fileID: 105744, guid: 5134b76fd8d64f14aacdbb095f67182c, type: 2}
-  nombreBoxies: 7
+  nombreBoxies: 0
   nbDecrasseur: 0
   boxies: []
-  boss: {fileID: 0}
 --- !u!4 &268217652
 Transform:
   m_ObjectHideFlags: 0
@@ -1077,13 +1075,6 @@ Transform:
   - {fileID: 353888188}
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!81 &268217653
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 268217650}
-  m_Enabled: 1
 --- !u!114 &268217654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1115,21 +1106,23 @@ MonoBehaviour:
   canvaEmbauche: {fileID: 1228620638}
   victoryButton: {fileID: 2111000940}
   newMissionButton: {fileID: 331497636}
+  EndOfDemo: {fileID: 524748417}
   boss: {fileID: 0}
   levelObjective: 10
   objectiveCompletion: 0
   clock: {fileID: 1234538996}
   time: 0
   ongoingHiring: 0
+  gongOfVictorySound: {fileID: 0}
   nbEmployeeToHire: 3
   nbEmployeeLeftToHire: 0
   hiringTime: 0
   workingIsActuallyUsefull: 0
   ringingPhone: 0
   profileOnClickIsOn: 0
-  tutoIsOn: 0
-  tutoMoveLock: 0
-  tutoHatarakeLock: 0
+  tutoIsOn: 1
+  tutoMoveLock: 1
+  tutoHatarakeLock: 1
   cameraLookingForCoffee: 0
   fetchingCoffee: 0
   cameraLookingForElevator: 0
@@ -1185,7 +1178,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9c3b51c0ee3b0c14a9e513a0a382a642, type: 3}
   - {fileID: 21300000, guid: 6b93e0762f4385a46a9a7e5a730feef8, type: 3}
   - {fileID: 21300000, guid: c59c655fe9ae54342b11c8f0557985cb, type: 3}
-  boss: {fileID: 0}
   time: 0
   poutPoutAmplitude: .0500000007
   poutPoutFrequence: 20
@@ -1257,6 +1249,7 @@ RectTransform:
   - {fileID: 1683660608}
   - {fileID: 2121349215}
   - {fileID: 331497635}
+  - {fileID: 524748416}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 0}
@@ -1577,8 +1570,8 @@ RectTransform:
   m_RootOrder: 11
   m_AnchorMin: {x: 0, y: .75047195}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 6.10351562e-05, y: 132.027359}
-  m_SizeDelta: {x: 800, y: 112.398041}
+  m_AnchoredPosition: {x: 0, y: 120}
+  m_SizeDelta: {x: 800, y: 137}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &345336777
 MonoBehaviour:
@@ -1775,6 +1768,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 268217655}
+          m_MethodName: BossLockMove
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+              Culture=neutral, PublicKeyToken=null
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 3
@@ -1792,6 +1797,18 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 268217655}
+          m_MethodName: BossLockMove
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+              Culture=neutral, PublicKeyToken=null
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
           m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
@@ -1874,8 +1891,8 @@ MonoBehaviour:
   shakeTimer: 20
   onOtherTarget: 0
   focusTimer: 100
-  upDownMargin: .150000006
-  leftRightMargin: .150000006
+  upDownMargin: .219999999
+  leftRightMargin: .219999999
 --- !u!124 &353888185
 Behaviour:
   m_ObjectHideFlags: 0
@@ -2033,8 +2050,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 7, y: 1}
+  m_SizeDelta: {x: -70, y: -34}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &409121587
 MonoBehaviour:
@@ -2050,7 +2067,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: .196078435, g: .196078435, b: .196078435, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 5643d7e443827d24380c5a0c5388b7e8, type: 3}
+    m_Font: {fileID: 12800000, guid: 59d34ee4912e1664f8e9c1ddf3f5a8e4, type: 3}
     m_FontSize: 48
     m_FontStyle: 0
     m_BestFit: 1
@@ -2061,7 +2078,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Go fetch some coffee
+  m_Text: "Pourquoi aller se faire un p'tit caf\xE9, le temps que les clients arrivent.\nDEPLACE-TOI
+    EN TAPOTANT SUR L'ECRAN"
 --- !u!222 &409121588
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2694,7 +2712,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: .196078435, g: .196078435, b: .196078435, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 5643d7e443827d24380c5a0c5388b7e8, type: 3}
+    m_Font: {fileID: 12800000, guid: 59d34ee4912e1664f8e9c1ddf3f5a8e4, type: 3}
     m_FontSize: 48
     m_FontStyle: 0
     m_BestFit: 1
@@ -2705,7 +2723,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: ???
+  m_Text: "\u4F55\u3067\u3059\u304B\uFF1F"
 --- !u!222 &474300643
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2892,6 +2910,122 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 515014323}
+--- !u!1 &524748415
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 524748416}
+  - 222: {fileID: 524748419}
+  - 114: {fileID: 524748418}
+  - 114: {fileID: 524748417}
+  m_Layer: 5
+  m_Name: EndButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &524748416
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 524748415}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2016025472}
+  m_Father: {fileID: 295031079}
+  m_RootOrder: 6
+  m_AnchorMin: {x: .5, y: .5}
+  m_AnchorMax: {x: .5, y: .5}
+  m_AnchoredPosition: {x: 1.52587891e-05, y: 149}
+  m_SizeDelta: {x: 800, y: 178}
+  m_Pivot: {x: .5, y: .5}
+--- !u!114 &524748417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 524748415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
+    m_PressedColor: {r: .784313738, g: .784313738, b: .784313738, a: 1}
+    m_DisabledColor: {r: .784313738, g: .784313738, b: .784313738, a: .501960814}
+    m_ColorMultiplier: 1
+    m_FadeDuration: .100000001
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 524748418}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 268217655}
+        m_MethodName: DemoEndOnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &524748418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 524748415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: e4daf1974e9627d449d30c4255e95886, type: 3}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &524748419
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 524748415}
 --- !u!1 &563024505
 GameObject:
   m_ObjectHideFlags: 0
@@ -3053,8 +3187,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -8, y: 0}
+  m_SizeDelta: {x: -68, y: -42}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &578192335
 MonoBehaviour:
@@ -3070,7 +3204,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: .196078435, g: .196078435, b: .196078435, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 5643d7e443827d24380c5a0c5388b7e8, type: 3}
+    m_Font: {fileID: 12800000, guid: 59d34ee4912e1664f8e9c1ddf3f5a8e4, type: 3}
     m_FontSize: 48
     m_FontStyle: 0
     m_BestFit: 1
@@ -3081,7 +3215,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Explication du prochainObjectif, du HUD, etc ...
+  m_Text: "Bon, il est temps de se lancer. Ce larbin va te faire ta page Facebook
+    en deux-deux\nG\xE8re au mieux ton employ\xE9 pour compl\xE9ter l'objectif LE
+    PLUS RAPIDEMENT POSSIBLE."
 --- !u!222 &578192336
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3255,8 +3391,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -5, y: 0}
+  m_SizeDelta: {x: -62, y: 0}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &635838377
 MonoBehaviour:
@@ -3272,7 +3408,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: .196078435, g: .196078435, b: .196078435, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 5643d7e443827d24380c5a0c5388b7e8, type: 3}
+    m_Font: {fileID: 12800000, guid: 59d34ee4912e1664f8e9c1ddf3f5a8e4, type: 3}
     m_FontSize: 48
     m_FontStyle: 0
     m_BestFit: 1
@@ -3283,7 +3419,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: AH ! Back to work you lazy ass !
+  m_Text: "AH! AH! Tout comme ton p\xE8re, il serait fier de toi."
 --- !u!222 &635838378
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3338,7 +3474,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: .196078435, g: .196078435, b: .196078435, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 5643d7e443827d24380c5a0c5388b7e8, type: 3}
+    m_Font: {fileID: 12800000, guid: 59d34ee4912e1664f8e9c1ddf3f5a8e4, type: 3}
     m_FontSize: 48
     m_FontStyle: 0
     m_BestFit: 1
@@ -3349,7 +3485,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Hmmm, fresh meat
+  m_Text: "Haa, de la chair fra\xEEche!"
 --- !u!222 &670495975
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3634,8 +3770,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 14, y: 0}
+  m_SizeDelta: {x: -28, y: 0}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &749338246
 MonoBehaviour:
@@ -3651,7 +3787,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: .196078435, g: .196078435, b: .196078435, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 5643d7e443827d24380c5a0c5388b7e8, type: 3}
+    m_Font: {fileID: 12800000, guid: 59d34ee4912e1664f8e9c1ddf3f5a8e4, type: 3}
     m_FontSize: 48
     m_FontStyle: 0
     m_BestFit: 1
@@ -3662,7 +3798,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: I should probably go spy on him, by mercilessly tapping on its head
+  m_Text: "Pourquoi pas aller lui tapoter sur la tronche pour tout conna\xEEtre de
+    lui ?!"
 --- !u!222 &749338247
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3965,8 +4102,8 @@ RectTransform:
   m_RootOrder: 13
   m_AnchorMin: {x: 0, y: .75047195}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 3.05175781e-05, y: 132.027328}
-  m_SizeDelta: {x: 800, y: 112.398041}
+  m_AnchoredPosition: {x: 0, y: 150}
+  m_SizeDelta: {x: 800, y: 160}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &866851688
 MonoBehaviour:
@@ -4177,7 +4314,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: .196078435, g: .196078435, b: .196078435, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 5643d7e443827d24380c5a0c5388b7e8, type: 3}
+    m_Font: {fileID: 12800000, guid: 59d34ee4912e1664f8e9c1ddf3f5a8e4, type: 3}
     m_FontSize: 48
     m_FontStyle: 0
     m_BestFit: 1
@@ -4188,7 +4325,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Let's see if any sl... collaborator will spontaneously show up ...
+  m_Text: "Voyons voir si les escl -- futurs employ\xE9s se pr\xE9sentent d'eux-m\xEAme."
 --- !u!222 &902560518
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4482,7 +4619,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: .196078435, g: .196078435, b: .196078435, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 5643d7e443827d24380c5a0c5388b7e8, type: 3}
+    m_Font: {fileID: 12800000, guid: 59d34ee4912e1664f8e9c1ddf3f5a8e4, type: 3}
     m_FontSize: 48
     m_FontStyle: 0
     m_BestFit: 1
@@ -4493,7 +4630,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Nope, nobody here.
+  m_Text: Bon, bah non ... Personne.
 --- !u!222 &1044054946
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4816,7 +4953,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: .196078435, g: .196078435, b: .196078435, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 5643d7e443827d24380c5a0c5388b7e8, type: 3}
+    m_Font: {fileID: 12800000, guid: 59d34ee4912e1664f8e9c1ddf3f5a8e4, type: 3}
     m_FontSize: 48
     m_FontStyle: 0
     m_BestFit: 1
@@ -4827,7 +4964,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Vous etes ici
+  m_Text: "\u3053\u308C\u306F\u3042\u306A\u305F\u3067\u3059 ... Ha oui non, heu, \xE7a
+    c'est toi !"
 --- !u!222 &1201245213
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4899,7 +5037,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: .196078435, g: .196078435, b: .196078435, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 5643d7e443827d24380c5a0c5388b7e8, type: 3}
+    m_Font: {fileID: 12800000, guid: 59d34ee4912e1664f8e9c1ddf3f5a8e4, type: 3}
     m_FontSize: 48
     m_FontStyle: 0
     m_BestFit: 1
@@ -4910,7 +5048,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'But ... but... why is it not working ? '
+  m_Text: Mais ... mais ... c'est qu'il s'enfuit le manant !
 --- !u!222 &1209220539
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5400,7 +5538,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: .196078435, g: .196078435, b: .196078435, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 5643d7e443827d24380c5a0c5388b7e8, type: 3}
+    m_Font: {fileID: 12800000, guid: 59d34ee4912e1664f8e9c1ddf3f5a8e4, type: 3}
     m_FontSize: 48
     m_FontStyle: 0
     m_BestFit: 1
@@ -5411,7 +5549,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Hmmm, delicious coffee
+  m_Text: Hmmm, tastyyyy!
 --- !u!222 &1336994068
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6604,8 +6742,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -1, y: -6}
+  m_SizeDelta: {x: -51, y: -12}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1604817905
 MonoBehaviour:
@@ -6621,7 +6759,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: .196078435, g: .196078435, b: .196078435, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 5643d7e443827d24380c5a0c5388b7e8, type: 3}
+    m_Font: {fileID: 12800000, guid: 59d34ee4912e1664f8e9c1ddf3f5a8e4, type: 3}
     m_FontSize: 48
     m_FontStyle: 0
     m_BestFit: 1
@@ -6632,9 +6770,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Maybe it needs some motivation ?
-
-    EXPLICATION HATARAKE'
+  m_Text: "Peut-\xEAtre a-t-il besoin d'un petit peu de motivation ?\nApproche-toi
+    de lui pour lui voler son energie vitale (Qi). La barre en bas se remplira te
+    permettant de lib\xE9rer ta rage EN CLIQUANT SUR ELLE."
 --- !u!222 &1604817906
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7395,8 +7533,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -2, y: -1}
+  m_SizeDelta: {x: -39, y: -33}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1823677712
 MonoBehaviour:
@@ -7412,7 +7550,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: .196078435, g: .196078435, b: .196078435, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 5643d7e443827d24380c5a0c5388b7e8, type: 3}
+    m_Font: {fileID: 12800000, guid: 59d34ee4912e1664f8e9c1ddf3f5a8e4, type: 3}
     m_FontSize: 48
     m_FontStyle: 0
     m_BestFit: 1
@@ -7423,7 +7561,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: EXPLICATION PROFILE
+  m_Text: "Dans sa fiche, tu peux voir son nom, ses hobbies, sa motivation actuelle
+    et son stress. Evite de trop les pousser, ils peuvent \xEAtre ... comment dire
+    ... capricieux, parfois."
 --- !u!222 &1823677713
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8064,7 +8204,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: .196078435, g: .196078435, b: .196078435, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 5643d7e443827d24380c5a0c5388b7e8, type: 3}
+    m_Font: {fileID: 12800000, guid: 59d34ee4912e1664f8e9c1ddf3f5a8e4, type: 3}
     m_FontSize: 48
     m_FontStyle: 0
     m_BestFit: 1
@@ -8075,13 +8215,80 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: It's hiring time !!!
+  m_Text: "Commen\xE7ons par engager les meilleurs, apparemment ils sont rares."
 --- !u!222 &1970756435
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1970756432}
+--- !u!1 &2016025471
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 2016025472}
+  - 222: {fileID: 2016025474}
+  - 114: {fileID: 2016025473}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2016025472
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2016025471}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 524748416}
+  m_RootOrder: 0
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: .5, y: .5}
+--- !u!114 &2016025473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2016025471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: .196078435, g: .196078435, b: .196078435, a: 1}
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 59d34ee4912e1664f8e9c1ddf3f5a8e4, type: 3}
+    m_FontSize: 31
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "Il serait peut-\xEAtre temps de passer \xE0 la vitesse sup\xE9rieure. Ou
+    pourquoi pas \xE0 l'\xE9tage sup\xE9rieur !"
+--- !u!222 &2016025474
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2016025471}
 --- !u!1 &2020670270
 GameObject:
   m_ObjectHideFlags: 0

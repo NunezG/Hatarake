@@ -30,6 +30,8 @@ public class Boss : MonoBehaviour {
     public AudioSource[] voicelessBossSounds;
     public AudioSource[] bubbleSound;
 
+    public AudioSource gongOfVictory;
+
     public float jaugeEngueulageMin = 4.0f; //se remplit quand on appuie sur le boss.
     public float jaugeEngueulageMax = 15.0f; //se remplit quand on appuie sur le boss.
     public float tempsRemplissageJauge = 1.0f; 
@@ -47,6 +49,7 @@ public class Boss : MonoBehaviour {
     private RAIN.Motion.MecanimMotor tMotor;
 	// Use this for initialization
 	void Start () {
+        
        // gameManager = GameObject.Find("GameManager");
         if (GameManager.instance.tutoIsOn)
         {
@@ -200,6 +203,7 @@ public class Boss : MonoBehaviour {
         actionArea.gameObject.SetActive(true);
         float pos = 0;
         float time = 0;
+        moveLocked = true;
         while (charge)
         {
             time = time + Time.deltaTime;
@@ -211,8 +215,12 @@ public class Boss : MonoBehaviour {
             yield return null;
         }
         int yellingO_OnEight = (int)(((pos - jaugeEngueulageMin) / jaugeEngueulageMax) * 8);
-        yellingO_Meter = yellingO_Meter - yellingO_OnEight * maxYellingO_Meter / 8;
-
+        //print("yellingO_OnEight : " + yellingO_OnEight);
+        if (yellingO_OnEight == 0) yellingO_OnEight = 1;
+        //print("yellingO_OnEight * maxYellingO_Meter / 8" + yellingO_OnEight * maxYellingO_Meter / 8);
+        //yellingO_Meter = yellingO_Meter - yellingO_OnEight * maxYellingO_Meter / 8;
+        yellingO_Meter = yellingO_Meter - yellingO_OnEight;
+        //print("yellingO_Meter : " + yellingO_Meter);
         //Sign.Create(pos, this.transform.position, SignType.Hatarake);
         SignEmitter.Create(this.transform.position, SignType.Hatarake,pos);
 
@@ -259,14 +267,19 @@ public class Boss : MonoBehaviour {
         actionArea.GetComponent<jaugeEngueulage>().clearEmployesJauge();
 
         animator.SetTrigger("releasingHatarake");
+
+
+        moveLocked = false;
         //actionArea.GetComponent<jaugeEngueulage>().Engueule();
     }
 
 
 	void OnMouseDown () 
 	{
+        /*
         if (!hatarakeLocked && yellingO_Meter >0 )
         {
+            hatarakeLocked = true;
             //print("START CHARGE ");
             charge = true;
             tMemory.SetItem("charge", true);
@@ -275,7 +288,7 @@ public class Boss : MonoBehaviour {
         else
         {
             playRandomVoicelessBossSound();
-        }
+        }*/
 
 	}
     void OnPreviewMouseRightButtonDown( )
