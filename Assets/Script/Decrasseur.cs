@@ -5,7 +5,7 @@ using RAIN.Core;
 using RAIN.Navigation;
 
 public class Decrasseur : MonoBehaviour {
-    public List<GameObject> emptyChill;
+    public static List<GameObject> emptyRepair;
     public GameObject floor;
 
     public RAIN.Memory.BasicMemory tMemory;
@@ -22,18 +22,11 @@ public class Decrasseur : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        employeProfile = GameObject.Find("EmployeeProfile");
-
-        data.InitializeEmployee();
-
-        this.transform.GetChild(0).GetComponent<SpriteRenderer>().color = data.hairColor;
-        this.transform.GetChild(1).GetComponent<SpriteRenderer>().color = data.topColor;
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
 
 
 	}
@@ -42,22 +35,19 @@ public class Decrasseur : MonoBehaviour {
     // mets les repères pour l'employé
     public void SetEmployeeLocations()
     {
-       
-            emptyChill = new List<GameObject>();
+        if (emptyRepair == null)
+        {
+            emptyRepair = new List<GameObject>();
             Box[] chills = floor.GetComponentsInChildren<Box>();
             foreach (Box chi in chills)
             {
-
                 if (chi.transform.parent.Find("breakPos") != null)
-                    emptyChill.Add(chi.transform.parent.Find("breakPos").gameObject);
+                    emptyRepair.Add(chi.transform.parent.Find("breakPos").gameObject);
                 else
-                if (chi.transform.parent.GetComponentInChildren<BreakableFurniture>() != null)
-                emptyChill.Add(chi.gameObject);
-
+                    if (chi.transform.parent.GetComponentInChildren<BreakableFurniture>() != null)
+                        emptyRepair.Add(chi.gameObject);
             }
-
-            
-        
+        }
     }
 
 
