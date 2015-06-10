@@ -16,6 +16,18 @@ public class selectTargetDecrasseur : RAINAction
 
         target = ai.WorkingMemory.GetItem<GameObject>("myTarget");
 
+
+        if (target != null)
+        {
+            if (target.transform.parent.Find("breakPos") == null)
+            {
+                if (!Employe.emptyChill.Contains(target))
+                    Employe.emptyChill.Add(target);
+
+            }
+            Decrasseur.emptyRepair.Add(target);
+        }
+
        // if (target != null && Employe.emptyChill != null && (target.CompareTag("Repos") && !Employe.emptyChill.Contains(target)))
           //  Employe.emptyChill.Add(target);
     }
@@ -28,18 +40,47 @@ public class selectTargetDecrasseur : RAINAction
         }
 
           //*1/4 de chances de glander dehors
-        if (ai.Body.gameObject.GetComponent<Decrasseur>().emptyChill.Count != 0)
+        if (Decrasseur.emptyRepair.Count != 0)
                 {          
                     //*cherche une place vide pour glander
-                    int pos = Random.Range(0, ai.Body.gameObject.GetComponent<Decrasseur>().emptyChill.Count);
+                    int pos = Random.Range(0, Decrasseur.emptyRepair.Count);
                    // Debug.Log("Employe.emptyChill.Count" + Employe.emptyChill.Count);
 
                    // if (Employe.emptyChill[pos].transform.parent.GetComponentInChildren<BreakableFurniture>() != null)
                   //  {
-                    target = ai.Body.gameObject.GetComponent<Decrasseur>().emptyChill[pos];
-                       // Employe.emptyChill.RemoveAt(pos);
-                        return ActionResult.SUCCESS;
 
+                    target = Decrasseur.emptyRepair[pos];
+
+                    bool good = true;
+
+                    foreach (Transform t in target.transform.parent)
+                    {
+                        if (t.CompareTag("Repos"))
+                        {
+                            if (!Employe.emptyChill.Contains(t.gameObject))
+                            {
+                                good = false;
+                                return ActionResult.RUNNING;
+                            }
+                        }
+                    }
+
+                    if (target.transform.parent.Find("breakPos") == null && good) 
+                    {
+                        if (Employe.emptyChill.Contains(target))
+                            Employe.emptyChill.Remove(target);
+                        
+                        else return ActionResult.RUNNING;
+                    }
+                    else
+                    {
+                       
+
+                    }
+
+                    Decrasseur.emptyRepair.RemoveAt(pos);
+
+                        return ActionResult.SUCCESS;
                    // }
                 }
 
