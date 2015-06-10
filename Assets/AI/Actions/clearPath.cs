@@ -56,15 +56,15 @@ public class clearPath : RAINAction
 
 
            if (randDir == 0)
-             tempTarget = ai.Body.transform.position +  ai.Body.transform.TransformDirection(Vector3.left)*3;
-           else tempTarget = ai.Body.transform.position + ai.Body.transform.TransformDirection(Vector3.right) * 3;
+               tempTarget = ai.Body.transform.position + ai.Body.transform.TransformDirection(Vector3.left) * 4 + ai.Body.transform.TransformDirection(Vector3.forward);
+           else tempTarget = ai.Body.transform.position + ai.Body.transform.TransformDirection(Vector3.right) * 4 + ai.Body.transform.TransformDirection(Vector3.forward);
 
 
 
             ai.Motor.MoveTo(tempTarget);
 
             tempDeviation = true;
-            countDeviation = 7;
+            countDeviation = 10;
             return ActionResult.RUNNING;
         }
     }
