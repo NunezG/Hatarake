@@ -139,7 +139,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   assigne: 0
-  animatorStates: []
+  animatorStates:
+  - drinking
   signToEmitWork: 0
   signToEmitChill: 1
   soundToEmitWork: {fileID: 0}
@@ -157,6 +158,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   broken: 0
+  shaking: 0
+  shakingDuration: 5
+  shakeMagnitude: 1
+  initialPosition: {x: 0, y: 0, z: 0}
+  initialScale: {x: 0, y: 0, z: 0}
+  initialRotate: {x: 0, y: 0, z: 0, w: 0}
 --- !u!212 &21247540
 SpriteRenderer:
   m_ObjectHideFlags: 1
