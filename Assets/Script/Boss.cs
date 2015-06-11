@@ -32,14 +32,18 @@ public class Boss : MonoBehaviour {
 
     public AudioSource gongOfVictory;
 
-    public float jaugeEngueulageMin = 4.0f; //se remplit quand on appuie sur le boss.
+    public float jaugeEngueulageMin = 0.9f; //se remplit quand on appuie sur le boss.
     public float jaugeEngueulageMax = 15.0f; //se remplit quand on appuie sur le boss.
     public float tempsRemplissageJauge = 1.0f; 
 
     public float vitesseJauge = 2.0f; //se remplit quand on appuie sur le boss.
 
 	//float timer = 0;
-
+    //-------micro
+    public MicrophoneInput microphone;
+    bool ongoingHatarakading=false;
+    public float maxVolumeLevel = 0;
+    //----------------
 	public bool charge = false;
     Vector3 pos;
 
@@ -120,14 +124,42 @@ public class Boss : MonoBehaviour {
                 bubbleSound[i].Play();
                 break;
             }
-        yellingO_Meter = yellingO_Meter + gainByBubble;
-        if (yellingO_Meter > maxYellingO_Meter) yellingO_Meter = maxYellingO_Meter;
+        //yellingO_Meter = yellingO_Meter + gainByBubble;
+        //if (yellingO_Meter > maxYellingO_Meter) yellingO_Meter = maxYellingO_Meter;
     }
     
     public bool moveSoundLock=false;
 
 	// Update is called once per frame
+    public float seuilHatarake=20;
+    public bool onCoolDown = false;
+    float coolDownTickTime = 0;
+    public float maxOfTheMax=0;
+    public float maxLoudness = 40;
 	void Update () {
+
+
+        if (microphone.loudness > maxOfTheMax)
+        {
+            maxOfTheMax = microphone.loudness;
+        }
+        if (microphone.loudness > seuilHatarake && !ongoingHatarakading && !enumLock && yellingO_Meter == 8)
+        {
+            StartCoroutine(GrowingAreaOfEffect());
+        }
+        if (onCoolDown)
+        {
+            coolDownTickTime = coolDownTickTime + Time.deltaTime;
+            if (coolDownTickTime>0.5f)
+            {
+                coolDownTickTime = 0;
+                yellingO_Meter++;
+            }
+            if (yellingO_Meter >= 8)
+            {
+                onCoolDown = false;
+            }
+        }
        
         if (Input.GetMouseButtonUp(0) && !charge && !moveLocked)
         {
@@ -148,8 +180,7 @@ public class Boss : MonoBehaviour {
                     tMemory.SetItem("sabotage", false);
                     setTarget(pos);
             
-                }
-               
+                }               
             }
         }
 
@@ -171,18 +202,16 @@ public class Boss : MonoBehaviour {
     {
         tMemory.SetItem("enDeplacement", true);
         tMemory.SetItem("target", target);
+        GameManager.instance.employeeProfile.nullifyAllProfile();
 
     }
 
-      public void faceTarget(Vector3 target)
+    public void faceTarget(Vector3 target)
     {
        // tMotor.FaceTarget = new MoveLookTarget();
      //   tMotor.FaceAt(target);
         tMemory.SetItem("lookTarget", target);
     }
-    
-                   
-
 
     public Vector3 getTarget()
     {     
@@ -193,6 +222,102 @@ public class Boss : MonoBehaviour {
     {
         Animator ann = gameObject.transform.FindChild("BossSprite"). GetComponent<Animator>();
         ann.SetTrigger("doingStuff");
+    }
+    bool enumLock = false;
+    public IEnumerator GrowingAreaOfEffect()
+    {
+
+        enumLock = true;
+            print("~~~~~~~~ENTERING~~~~~~~~");
+
+            animator.SetTrigger("chargingHatarake");
+            ongoingHatarakading = true;
+            //animator.SetTrigger("chargingHatarake");
+            actionArea.gameObject.SetActive(true);
+            float pos = 0;
+            float time = 0;
+            moveLocked = true;
+
+            while (ongoingHatarakading)
+            {
+
+                time = time + Time.deltaTime;
+                if (maxVolumeLevel < microphone.loudness)
+                {
+                    maxVolumeLevel = microphone.loudness;
+                    print("new maximum : " + maxVolumeLevel);
+                }
+                else if (microphone.loudness < seuilHatarake)
+                {
+                    //ongoingHatarakading = false;
+                }
+
+                pos = Mathf.Lerp(0, maxVolumeLevel, time / tempsRemplissageJauge);
+
+                actionArea.localScale = new Vector3(pos, actionArea.localScale.y, pos);
+                if (time > 1)
+                {
+                    print("--------------TimeOver---------------");
+                    ongoingHatarakading = false;
+                }
+                if (!ongoingHatarakading)
+                    maxVolumeLevel = 0;
+                yield return null;
+            }
+            actionArea.gameObject.SetActive(false);
+            actionArea.localScale = new Vector3(0.8f, actionArea.localScale.y, 0.8f);
+            yellingO_Meter = 0;
+        //-------------------
+            if (pos > 40)
+            {
+
+                GameManager.instance.cameraController.shaking = true;
+                GameManager.instance.cameraController.shakeMagnitude = pos;
+                //GameObject audio = this.transform.Find("hatarake_strong").gameObject;
+                //audio.GetComponent<AudioSource>().Play();
+            }
+            else if (pos > 20)
+            {
+                GameManager.instance.cameraController.shaking = true;
+                GameManager.instance.cameraController.shakeMagnitude = pos;
+                //GameObject audio = this.transform.Find("hatarake_medium").gameObject;
+                //audio.GetComponent<AudioSource>().Play();
+            }
+            else if (pos > 0)
+            {
+                //GameObject audio = this.transform.Find("hatarake_low").gameObject;
+                //audio.GetComponent<AudioSource>().Play();
+            }
+            actionArea.gameObject.SetActive(false);
+            actionArea.localScale = new Vector3(0.8f, actionArea.localScale.y, 0.8f);
+            //ResetTimer
+            // jaugeEngueulage = 0;
+            List<GameObject> employesEngueulable = actionArea.GetComponent<jaugeEngueulage>().getEmployesJauge();
+            foreach (GameObject emp in employesEngueulable)
+            {
+                if (emp.GetComponent<Decrasseur>() != null)
+                    emp.GetComponent<Decrasseur>().Engueule();
+                else
+                    emp.GetComponent<Employe>().Engueule();
+            }
+            if (GameManager.instance.tutoIsOn && GameManager.instance.goingToHatarakeSlacker)
+            {
+                if (employesEngueulable.Count >= 1)
+                {
+                    GameManager.instance.TutoEmployeeHataraked();
+                }
+            }
+
+            actionArea.GetComponent<jaugeEngueulage>().clearEmployesJauge();
+
+            animator.SetTrigger("releasingHatarake");
+
+
+
+
+            print("~~~~~~~~LEAVING~~~~~~~~");
+            enumLock = false;
+            onCoolDown = true;
     }
 
     public IEnumerator Engueulade()
@@ -214,6 +339,7 @@ public class Boss : MonoBehaviour {
 
             yield return null;
         }
+
         int yellingO_OnEight = (int)(((pos - jaugeEngueulageMin) / jaugeEngueulageMax) * 8);
         //print("yellingO_OnEight : " + yellingO_OnEight);
         if (yellingO_OnEight == 0) yellingO_OnEight = 1;

@@ -94,7 +94,7 @@ public class CameraController : MonoBehaviour {
 					focusTimer = 100.0f;
 					target = null;
 					onOtherTarget = false;
-					fixedCamera = false;
+					//fixedCamera = false;
 					dampTime = 0.2f;
 				}
 			}
@@ -184,7 +184,7 @@ public class CameraController : MonoBehaviour {
         focusTimer = 100.0f;
         target = null;
         onOtherTarget = false;
-        fixedCamera = false;
+        //fixedCamera = false;
     }
 
  }

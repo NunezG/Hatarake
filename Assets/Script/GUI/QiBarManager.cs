@@ -15,7 +15,7 @@ public class QiBarManager : MonoBehaviour {
 
 	
 	}
-
+    /*
     public void QiBarOnMouseDown()
     {
         if (boss == null) boss = GameManager.instance.boss.GetComponent<Boss>();
@@ -29,17 +29,21 @@ public class QiBarManager : MonoBehaviour {
             boss.tMemory.SetItem("charge", true);
             StartCoroutine(boss.Engueulade());
         }
+    }*/
 
-    }
+
+
+
     void OnPreviewMouseRightButtonDown()
     {
 
     }
+    /*
     public void QiBarOnMouseUp()
     {
         boss.charge = false;
         boss.hatarakeLocked = false;
         boss.tMemory.SetItem("charge", false);
         //GameManager.instance.bossLock(false, false);
-    }
+    }*/
 }

@@ -5,9 +5,9 @@ using RAIN.Core;
 using RAIN.Navigation;
 public class Employe : MonoBehaviour {
 
-    GameObject employeProfile;
+    public employeeID employeProfile;
 	public GameObject boxDeTravail;// Box de l’employé
-   public static bool suicideLock = false;
+    public static bool suicideLock = false;
 	/**
 	 * true = au taff
 	 * false = en train de glander (engueulable)
@@ -58,7 +58,7 @@ public class Employe : MonoBehaviour {
         moveMemory = tMemory.GetItem<bool>("enDeplacement");
         workingMemory = tMemory.GetItem<bool>("auTravail");
 
-        employeProfile = GameObject.Find("EmployeeProfile");
+        employeProfile = GameObject.Find("EmployeeProfile").GetComponent<employeeID>();
 
         data.InitializeEmployee();
 
@@ -106,7 +106,7 @@ public class Employe : MonoBehaviour {
         {
             suicideLock = true;
             tMemory.SetItem<bool>("suicidaire", true);
-            employeProfile.GetComponent<employeeID>().setJProfile(0, this.gameObject);
+            employeProfile.setJProfile(0, this.gameObject);
             GameManager.instance.cameraController.FollowEmployee(this.gameObject, 1000,0f);
         }
 
@@ -240,7 +240,7 @@ public class Employe : MonoBehaviour {
     void OnMouseDown() 
     {
         if(GameManager.instance.profileOnClickIsOn){
-            employeProfile.GetComponent<employeeID>().setJProfile(0,this.gameObject);
+            employeProfile.setJProfile(0,this.gameObject);
             
             if(GameManager.instance.tutoIsOn && GameManager.instance.goingToLookProfile){
                 GameManager.instance.profileLookedAt = true;
