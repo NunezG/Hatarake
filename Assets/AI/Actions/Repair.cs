@@ -29,17 +29,11 @@ public class Repair : RAINAction
         {
            if (target.transform.parent.GetComponentInChildren<BreakableFurniture>().Repair())
            {
-               ai.Body.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionY;
 
-               animator.SetBool("action", false);
                return ActionResult.SUCCESS;
 
-           }
-           return ActionResult.FAILURE;
-        }
-        ai.Body.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionY;
-
-        animator.SetBool("action", false);
+           }else return ActionResult.RUNNING;
+        }else   
         return ActionResult.SUCCESS;
     }
 
@@ -47,8 +41,8 @@ public class Repair : RAINAction
     {
         base.Stop(ai);
         ai.Motor.DefaultSpeed = ai.WorkingMemory.GetItem<int>("normalSpeed");
-
-
+        animator.SetBool("action", false);
+        ai.Body.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionY;
 
     }
 }
