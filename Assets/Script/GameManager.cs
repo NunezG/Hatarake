@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour {
 	//public GameObject sceneObject;
 	//public GameObject menu;
     public CameraController cameraController;
+    public employeeID employeeProfile;
     public GameObject canvaEmbauche;
     public GameObject victoryButton;
     public Button newMissionButton;
@@ -281,15 +282,15 @@ public class GameManager : MonoBehaviour {
 
                 bossLock(false, false);
             }
-
-
         }
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             print("space key was pressed");
             //gameObject.GetComponent<CharacterManager>().SpawnOneBoxieInElevator(1);
             //if (!ongoingHiring) activateHiringRound();
         }
+
 	}
 
     public void bossLock(bool move, bool hatarake)

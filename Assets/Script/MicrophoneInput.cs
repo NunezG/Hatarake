@@ -7,7 +7,7 @@ public class MicrophoneInput : MonoBehaviour
     public float sensitivity = 100.0f;
     public float loudness = 0.0f;
     public float frequency = 0.0f;
-    public int samplerate = 11024;
+    public int samplerate = 20024;
 
     void Start()
     {
@@ -21,6 +21,7 @@ public class MicrophoneInput : MonoBehaviour
     void Update()
     {
         loudness = GetAveragedVolume() * sensitivity;
+
         frequency = GetFundamentalFrequency();
     }
 

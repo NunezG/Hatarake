@@ -1059,7 +1059,7 @@ MonoBehaviour:
   boxiePrefab: {fileID: 192460, guid: c7ee810d6529ba340916106e675eee8c, type: 2}
   decrasseurPrefab: {fileID: 192460, guid: a87ab07792d486b44a81726adf8069c2, type: 2}
   bossPrefab: {fileID: 105744, guid: 5134b76fd8d64f14aacdbb095f67182c, type: 2}
-  nombreBoxies: 0
+  nombreBoxies: 10
   nbDecrasseur: 0
   boxies: []
 --- !u!4 &268217652
@@ -1103,6 +1103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraController: {fileID: 353888184}
+  employeeProfile: {fileID: 1791663992}
   canvaEmbauche: {fileID: 1228620638}
   victoryButton: {fileID: 2111000940}
   newMissionButton: {fileID: 331497636}
@@ -1120,9 +1121,9 @@ MonoBehaviour:
   workingIsActuallyUsefull: 0
   ringingPhone: 0
   profileOnClickIsOn: 0
-  tutoIsOn: 1
-  tutoMoveLock: 1
-  tutoHatarakeLock: 1
+  tutoIsOn: 0
+  tutoMoveLock: 0
+  tutoHatarakeLock: 0
   cameraLookingForCoffee: 0
   fetchingCoffee: 0
   cameraLookingForElevator: 0
@@ -1881,7 +1882,7 @@ MonoBehaviour:
   target: {fileID: 0}
   pointer: {fileID: 0}
   cameraIsToMove: 0
-  fixedCamera: 0
+  fixedCamera: 1
   endFollowByShaking: 0
   focusTimeToStartShaking: 0
   dampTime: .200000003
