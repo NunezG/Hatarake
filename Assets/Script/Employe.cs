@@ -84,8 +84,8 @@ public class Employe : MonoBehaviour {
             }
 			
             emptyWorkingHelp = new List<GameObject>();
-			Box[] boxes = floor.GetComponentsInChildren<Box>();
-			foreach (Box box in boxes)
+            InteractWithEmployee[] boxes = floor.GetComponentsInChildren<InteractWithEmployee>();
+            foreach (InteractWithEmployee box in boxes)
 			{
                 if (box.CompareTag("Repos"))
                 {
@@ -279,11 +279,11 @@ public class Employe : MonoBehaviour {
        
         else if (tMemory.GetItem<bool>("auTravail"))
         {
-            SignEmitter.Create(this.transform.position, target.GetComponent<Box>().signToEmitWork,1);       
+            SignEmitter.Create(this.transform.position, target.GetComponent<InteractWithEmployee>().signToEmitWork, 1);       
        }
        else
         {
-            SignEmitter.Create(this.transform.position, target.GetComponent<Box>().signToEmitChill,1);      
+            SignEmitter.Create(this.transform.position, target.GetComponent<InteractWithEmployee>().signToEmitChill, 1);      
         }
     }
 
@@ -333,7 +333,7 @@ public class Employe : MonoBehaviour {
         //tMemory.GetItem("suicidaire"); 
         GameObject window = tMemory.GetItem<GameObject>("myTarget");
         //window.transform.Find("tache").gameObject.SetActive(true);
-        //window.transform.Find("brokenWindow").gameObject.GetComponent<ParticleSystem>().Play();
+        //window.GetComponentInChildren<ParticleSystem>().Play();
         GameManager.instance.cameraController.FollowObjectAndShakeAtTheEnd(window, 140,20,0);
         GameManager.instance.GetComponent<CharacterManager>().sendBoxieToHell(this.gameObject);
 

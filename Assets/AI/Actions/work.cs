@@ -29,11 +29,11 @@ public class work : RAINAction
 
         if (target != null)
         {
-            target.GetComponent<Box>().glande = false;
+            target.GetComponent<InteractWithEmployee>().glande = false;
 
-            for (int i = 0; i < target.GetComponent<Box>().animatorStates.Length; i++)
+            for (int i = 0; i < target.GetComponent<InteractWithEmployee>().animatorStates.Length; i++)
             {
-                animator.SetBool(target.GetComponent<Box>().animatorStates[i], true);
+                animator.SetBool(target.GetComponent<InteractWithEmployee>().animatorStates[i], true);
             }
         }
        // else ai.Body.transform.FindChild("top").GetComponent<SpriteRenderer>().sprite =  new Sprite();
@@ -75,10 +75,10 @@ public class work : RAINAction
                 //target.GetComponent<Box>().occupe = false;
                 Employe.emptyWorkingHelp.Add(target);
             }
-           
-            for (int i = 0; i < target.GetComponent<Box>().animatorStates.Length; i++)
+
+            for (int i = 0; i < target.GetComponent<InteractWithEmployee>().animatorStates.Length; i++)
             {
-                animator.SetBool(target.GetComponent<Box>().animatorStates[i], false);
+                animator.SetBool(target.GetComponent<InteractWithEmployee>().animatorStates[i], false);
             }
         }
 		base.Stop(ai);
