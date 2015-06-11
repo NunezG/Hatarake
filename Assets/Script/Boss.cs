@@ -247,7 +247,7 @@ public class Boss : MonoBehaviour {
                     //ongoingHatarakading = false;
                 }
 
-                pos = Mathf.Lerp(0, maxVolumeLevel, time / tempsRemplissageJauge);
+                pos = Mathf.Lerp(0, Mathf.Max(jaugeEngueulageMin, maxVolumeLevel*jaugeEngueulageMax/maxLoudness), time / tempsRemplissageJauge);
 
                 actionArea.localScale = new Vector3(pos, actionArea.localScale.y, pos);
                 if (time > 1)
