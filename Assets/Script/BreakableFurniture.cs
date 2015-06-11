@@ -12,6 +12,9 @@ public class BreakableFurniture : MonoBehaviour {
     public Vector3 initialPosition,initialScale;
     public Quaternion initialRotate;
 
+    public Sprite normalSprite;
+    public Sprite brokenSprite;
+
     void Start(){
 
         if (transform.parent.FindChild("breakPos") != null)
@@ -61,8 +64,12 @@ public class BreakableFurniture : MonoBehaviour {
         shakingDuration = 20;
         if (damage >= resistance)
         {
-            transform.parent.GetComponentInChildren<SpriteRenderer>().color = new Color(1.0f, 0.0f, 0.0f);
+            transform.parent.GetComponentInChildren<SpriteRenderer>().sprite = brokenSprite;
+           // transform.parent.GetComponentInChildren<SpriteRenderer>().color = new Color(0.0f, 0.0f, 0.0f);
+
+            if (transform.parent.GetComponentInChildren<ParticleSystem>()!= null)
             transform.parent.GetComponentInChildren<ParticleSystem>().Play();
+
             broken = true;
         }
     }
@@ -73,7 +80,12 @@ public class BreakableFurniture : MonoBehaviour {
 
         if (damage <= 0)
         {
-            transform.parent.GetComponentInChildren<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f);
+            transform.parent.GetComponentInChildren<SpriteRenderer>().sprite = normalSprite;
+           // transform.parent.GetComponentInChildren<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f);
+          
+            if (transform.parent.GetComponentInChildren<ParticleSystem>() != null)
+            transform.parent.GetComponentInChildren<ParticleSystem>().Stop();
+
             broken = false;
             return true;
         }
