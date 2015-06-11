@@ -2048,9 +2048,8 @@ MonoBehaviour:
   maxVolumeLevel: 0
   charge: 0
   moveSoundLock: 0
-  seuilHatarake: 1
+  seuilHatarake: 10
   onCoolDown: 0
-  maxOfTheMax: 0
   maxLoudness: 40
 --- !u!114 &11454414
 MonoBehaviour:
