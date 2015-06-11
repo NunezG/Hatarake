@@ -43,7 +43,7 @@ public class CharacterManager : MonoBehaviour {
         boss.transform.Translate(0,boss.GetComponent<Collider>().bounds.extents.y,0);
        
         GameObject[] corridorsCell = GameObject.FindGameObjectsWithTag("Corridor");
-        Box[] boxes = floor.GetComponentsInChildren<Box>();
+        InteractWithEmployee[] targets = floor.GetComponentsInChildren<InteractWithEmployee>();
 
 		// create Player
 		for (int i = 0; i < nombreBoxies; i++) 
@@ -58,15 +58,15 @@ public class CharacterManager : MonoBehaviour {
 
 
 
-			foreach(Box box in boxes )
+            foreach (InteractWithEmployee target in targets)
 			{
-				if (box.CompareTag("Box") && box.assigne == false)
+                if (target.CompareTag("Box") && target.assigne == false)
 				{
-					boxie.GetComponent<Employe>().setBox(box.gameObject);
+                    boxie.GetComponent<Employe>().setBox(target.gameObject);
                    // boxie.GetComponent<Employe>().tMemory.SetItem("myTarget", box.gameObject);
                    // boxie.GetComponent<Employe>().tMemory.SetItem("enDeplacement", true);
 
-					box.assigne = true;
+                    target.assigne = true;
 					break;
 				}
 			}
@@ -122,7 +122,7 @@ public class CharacterManager : MonoBehaviour {
     {
         int floorNb = 0;
         GameObject floor = GameObject.Find("Office floor n" + floorNb);
-        boxie.GetComponent<Employe>().boxDeTravail.GetComponent<Box>().assigne = true;
+        boxie.GetComponent<Employe>().boxDeTravail.GetComponent<InteractWithEmployee>().assigne = true;
 
 
         boxie.transform.position = this.gameObject.GetComponent<LevelManager>().getOfficeInstance()[floorNb].transform.position;
@@ -147,8 +147,8 @@ public class CharacterManager : MonoBehaviour {
         boxie.GetComponent<Employe>().floor = floor;
         boxie.GetComponent<Employe>().SetEmployeeLocations();
 
-        Box[] boxes = floor.GetComponentsInChildren<Box>();
-        foreach (Box box in boxes)
+        InteractWithEmployee[] boxes = floor.GetComponentsInChildren<InteractWithEmployee>();
+        foreach (InteractWithEmployee box in boxes)
         {
             if (box.CompareTag("Box") && box.assigne == false)
             {
@@ -176,7 +176,7 @@ public class CharacterManager : MonoBehaviour {
     {
         GameObject floor = GameObject.Find("Office floor n" + floorNb);
 
-        Box[] boxes = floor.GetComponentsInChildren<Box>();
+        InteractWithEmployee[] boxes = floor.GetComponentsInChildren<InteractWithEmployee>();
 
         GameObject boxie = (GameObject)Instantiate(boxiePrefab);
 
@@ -187,7 +187,7 @@ public class CharacterManager : MonoBehaviour {
         boxie.GetComponent<Employe>().tMemory.SetItem("auTravail", true);
         boxie.GetComponent<Employe>().floor = floor;
 
-        foreach (Box box in boxes)
+        foreach (InteractWithEmployee box in boxes)
         {
             if (box.CompareTag("Box") && box.assigne == false)
             {
@@ -209,7 +209,7 @@ public class CharacterManager : MonoBehaviour {
 
     public void sendBoxieToHell(GameObject boxie)
     {
-        if (boxie.GetComponent<Employe>().boxDeTravail!=null)boxie.GetComponent<Employe>().boxDeTravail.GetComponent<Box>().assigne = false;
+        if (boxie.GetComponent<Employe>().boxDeTravail != null) boxie.GetComponent<Employe>().boxDeTravail.GetComponent<InteractWithEmployee>().assigne = false;
         boxies.Remove(boxie);
         Destroy(boxie);
     }

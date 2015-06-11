@@ -18,7 +18,7 @@ public class BreakableFurniture : MonoBehaviour {
         {
             breakTarget = transform.parent.FindChild("breakPos").position;
         }
-        else breakTarget = transform.parent.GetComponentInChildren<Box>().transform.position;
+        else breakTarget = transform.parent.GetComponentInChildren<InteractWithEmployee>().transform.position;
 
 
         this.initialPosition = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
@@ -62,6 +62,7 @@ public class BreakableFurniture : MonoBehaviour {
         if (damage >= resistance)
         {
             transform.parent.GetComponentInChildren<SpriteRenderer>().color = new Color(1.0f, 0.0f, 0.0f);
+            transform.parent.GetComponentInChildren<ParticleSystem>().Play();
             broken = true;
         }
     }

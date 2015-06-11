@@ -38,8 +38,8 @@ public class Decrasseur : MonoBehaviour {
         if (emptyRepair == null)
         {
             emptyRepair = new List<GameObject>();
-            Box[] chills = floor.GetComponentsInChildren<Box>();
-            foreach (Box chi in chills)
+            InteractWithEmployee[] chills = floor.GetComponentsInChildren<InteractWithEmployee>();
+            foreach (InteractWithEmployee chi in chills)
             {
                 if (chi.transform.parent.Find("breakPos") != null)
                     emptyRepair.Add(chi.transform.parent.Find("breakPos").gameObject);
