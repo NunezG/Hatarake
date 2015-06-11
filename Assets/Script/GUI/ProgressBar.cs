@@ -4,8 +4,7 @@ using UnityEngine.UI;
 
 public class ProgressBar : MonoBehaviour {
 
-    public Texture progressForeground;
-    public Texture progressBackground;
+    public Texture progressForeground,progressBackground,progressCursor;
     public Texture waitScreen;
 	public GameObject qiBar;
 	public Sprite[] qiBarSteps;
@@ -31,7 +30,7 @@ public class ProgressBar : MonoBehaviour {
         {
             GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), waitScreen);
         }
-        else if(GameManager.instance.workingIsActuallyUsefull)
+        else if (true)/*GameManager.instance.workingIsActuallyUsefull*/
         {
             DrawProgressObjective(GameManager.instance.objectiveCompletion / GameManager.instance.levelObjective);
             //if (GameManager.instance.GetComponent<CharacterManager>().GetTotalNumberOfBoxies() != 0)
@@ -46,8 +45,9 @@ public class ProgressBar : MonoBehaviour {
 	
     void DrawProgressObjective(float progress )
     {
-        GUI.DrawTexture(new Rect(10, 10, 200, 30), progressBackground);
-        GUI.DrawTexture(new Rect(10, 10, 200 * progress, 30), progressForeground);
+        GUI.DrawTexture(new Rect(0, 0, Screen.width, 19), progressBackground);
+        GUI.DrawTexture(new Rect(0, 0, Screen.width * progress, 19), progressForeground);
+        GUI.DrawTexture(new Rect(Screen.width * progress-8, 0,15 , 17), progressCursor);
 		   // if (progress > 1.0) Destroy (this);
     }
 

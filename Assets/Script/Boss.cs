@@ -131,18 +131,13 @@ public class Boss : MonoBehaviour {
     public bool moveSoundLock=false;
 
 	// Update is called once per frame
-    public float seuilHatarake=20;
+    public float seuilHatarake;
     public bool onCoolDown = false;
     float coolDownTickTime = 0;
-    public float maxOfTheMax=0;
+    float coolDownTickThreshold = 0.5f;
     public float maxLoudness = 40;
 	void Update () {
 
-
-        if (microphone.loudness > maxOfTheMax)
-        {
-            maxOfTheMax = microphone.loudness;
-        }
         if (microphone.loudness > seuilHatarake && !ongoingHatarakading && !enumLock && yellingO_Meter == 8)
         {
             StartCoroutine(GrowingAreaOfEffect());
@@ -150,7 +145,7 @@ public class Boss : MonoBehaviour {
         if (onCoolDown)
         {
             coolDownTickTime = coolDownTickTime + Time.deltaTime;
-            if (coolDownTickTime>0.5f)
+            if (coolDownTickTime > coolDownTickThreshold)
             {
                 coolDownTickTime = 0;
                 yellingO_Meter++;
@@ -242,7 +237,7 @@ public class Boss : MonoBehaviour {
             {
 
                 time = time + Time.deltaTime;
-                if (maxVolumeLevel < microphone.loudness)
+                if (maxVolumeLevel < microphone.loudness && maxVolumeLevel <=maxLoudness)
                 {
                     maxVolumeLevel = microphone.loudness;
                     print("new maximum : " + maxVolumeLevel);
@@ -252,7 +247,7 @@ public class Boss : MonoBehaviour {
                     //ongoingHatarakading = false;
                 }
 
-                pos = Mathf.Lerp(0, maxVolumeLevel, time / tempsRemplissageJauge);
+                pos = Mathf.Lerp(0, Mathf.Max(jaugeEngueulageMin, maxVolumeLevel*jaugeEngueulageMax/maxLoudness), time / tempsRemplissageJauge);
 
                 actionArea.localScale = new Vector3(pos, actionArea.localScale.y, pos);
                 if (time > 1)
@@ -261,7 +256,10 @@ public class Boss : MonoBehaviour {
                     ongoingHatarakading = false;
                 }
                 if (!ongoingHatarakading)
+                {
                     maxVolumeLevel = 0;
+                    SignEmitter.Create(this.transform.position, SignType.Hatarake, pos);
+                }
                 yield return null;
             }
             actionArea.gameObject.SetActive(false);
