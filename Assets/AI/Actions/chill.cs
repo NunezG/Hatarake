@@ -37,11 +37,11 @@ public class chill : RAINAction
         }
         else
         {
-            target.GetComponent<Box>().glande = true;
+            target.GetComponent<InteractWithEmployee>().glande = true;
 
-            for (int i = 0; i < target.GetComponent<Box>().animatorStates.Length; i++)
+            for (int i = 0; i < target.GetComponent<InteractWithEmployee>().animatorStates.Length; i++)
             {
-                animator.SetBool(target.GetComponent<Box>().animatorStates[i], true);
+                animator.SetBool(target.GetComponent<InteractWithEmployee>().animatorStates[i], true);
             }
         }
 
@@ -130,13 +130,13 @@ public class chill : RAINAction
         }
         else
         {
-            for (int i = 0; i < target.GetComponent<Box>().animatorStates.Length; i++)
+            for (int i = 0; i < target.GetComponent<InteractWithEmployee>().animatorStates.Length; i++)
             {
-                animator.SetBool(target.GetComponent<Box>().animatorStates[i], false);
+                animator.SetBool(target.GetComponent<InteractWithEmployee>().animatorStates[i], false);
 
 
             }
-            target.GetComponent<Box>().glande = false;
+            target.GetComponent<InteractWithEmployee>().glande = false;
 
         }
         
