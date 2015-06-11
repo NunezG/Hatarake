@@ -1647,6 +1647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44ed7e867878db94c8084e53f20df8ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  employeProfile: {fileID: 0}
   boxDeTravail: {fileID: 0}
   floor: {fileID: 0}
   data:
