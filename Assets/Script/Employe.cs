@@ -217,8 +217,8 @@ public class Employe : MonoBehaviour {
 
         }
 
-        keyboardSound.Play();
-      
+        if (keyboard && !keyboardSound.isPlaying) keyboardSound.Play();
+        else keyboardSound.Stop();      
 
         if (photocopier && !photocopierSound.isPlaying) photocopierSound.Play();
         else photocopierSound.Stop();

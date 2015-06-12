@@ -41,7 +41,7 @@ public class Boss : MonoBehaviour {
 	//float timer = 0;
     //-------micro
     public MicrophoneInput microphone;
-    bool ongoingHatarakading=false;
+    public bool ongoingHatarakading=false;
     public float maxVolumeLevel = 0;
     //----------------
 	public bool charge = false;
@@ -138,6 +138,7 @@ public class Boss : MonoBehaviour {
     public float maxLoudness = 40;
 	void Update () {
 
+        //print("micro name : "+microphone);
         if (microphone.loudness > seuilHatarake && !ongoingHatarakading && !enumLock && yellingO_Meter == 8)
         {
             StartCoroutine(GrowingAreaOfEffect());
@@ -218,7 +219,7 @@ public class Boss : MonoBehaviour {
         Animator ann = gameObject.transform.FindChild("BossSprite"). GetComponent<Animator>();
         ann.SetTrigger("doingStuff");
     }
-    bool enumLock = false;
+    public bool enumLock = false;
     public IEnumerator GrowingAreaOfEffect()
     {
 
@@ -279,11 +280,6 @@ public class Boss : MonoBehaviour {
                 GameManager.instance.cameraController.shaking = true;
                 GameManager.instance.cameraController.shakeMagnitude = pos;
                 //GameObject audio = this.transform.Find("hatarake_medium").gameObject;
-                //audio.GetComponent<AudioSource>().Play();
-            }
-            else if (pos > 0)
-            {
-                //GameObject audio = this.transform.Find("hatarake_low").gameObject;
                 //audio.GetComponent<AudioSource>().Play();
             }
             actionArea.gameObject.SetActive(false);

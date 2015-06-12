@@ -85,7 +85,7 @@ MonoBehaviour:
   nbLavabo: 0
   nbVendingMachine: 2
   nbPhotocopier: 5
-  nbFlowerPot: 20
+  nbFlowerPot: 15
   nbTV: 1
   nbCasier: 20
   floor: 0
