@@ -208,7 +208,7 @@ public class Office : MonoBehaviour
         }
         int rdmOrientationIndex = UnityEngine.Random.Range(0, possibleOrientation.Count); // on en tire un au hasard
         cell.furnitures.Add(new Furniture(cell.posX, cell.posY, type, possibleOrientation[rdmOrientationIndex]));
-
+        //print(type + ", placed :" + furniturePlaced);
         return furniturePlaced;
     }
 
@@ -262,11 +262,27 @@ public class Office : MonoBehaviour
                 int rdmCellBagIndex = UnityEngine.Random.Range(0, randomIndexBagForCells.Count); // on tire un index au hasard dans la liste des index
                 int rdmCellIndex = randomIndexBagForCells[rdmCellBagIndex]; // on recupere l'index de case correspondant
                 randomIndexBagForCells.RemoveAt(rdmCellBagIndex); // on retire l'index en question de la liste des index
+                //---------------
+                /*
+                if (roomFurnitures[rdmFurnitureIndex] == FurnitureType.VendingMachine)
+                {
+                    bool noOtherVendingMachineAround = false;
+                    int centerX = room.cells[rdmCellIndex].posX;
+                    int centerY = room.cells[rdmCellIndex].posY;
+                    for (int l = -1; l < 2; l++)
+                        for (int m = -1; m < 2; m++)
+                        {
+                            if (!noOtherVendingMachineAround)
+                                noOtherVendingMachineAround = grid[centerX - l, centerY - m].IsThereAnyVendingMachine();
+                        }
+                }
+                else
+                {
+
+                }*/
+                //---------------
                 furniturePlaced = placingFurniture(room.cells[rdmCellIndex], roomFurnitures[rdmFurnitureIndex]);
                 room.cells[rdmCellIndex].locked = true;
-
-
-
 
                 //if (furniturePlaced) print(roomFurnitures[rdmFurnitureIndex] + " successfully placed in cell" + room.cells[rdmCellIndex].posX + ":" + room.cells[rdmCellIndex].posY);
                 //else print(" failed to place " + roomFurnitures[rdmFurnitureIndex] + "in cell" + room.cells[rdmCellIndex].posX + ":" + room.cells[rdmCellIndex].posY);

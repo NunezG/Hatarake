@@ -23,6 +23,16 @@ public class Cell  {
 		wallNorth = wallEast = wallSouth = wallWest = doorEast = doorNorth = doorSouth = doorWest = false;
 	}
 
+    public bool IsThereAnyVendingMachine()
+    {
+        foreach (Furniture furniture in furnitures)
+        {
+            if (furniture.type == FurnitureType.VendingMachine)
+                return true;
+        }
+        return false;
+    }
+
 	public void init(Office office,int posX,int posY, bool north,bool east,bool south,bool west,RoomType type ){
 		this.office = office;
 		
