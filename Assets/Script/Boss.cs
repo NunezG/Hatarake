@@ -139,7 +139,7 @@ public class Boss : MonoBehaviour {
 	void Update () {
 
         //print("micro name : "+microphone);
-        if (microphone.loudness > seuilHatarake && !ongoingHatarakading && !enumLock && yellingO_Meter == 8)
+        if (microphone.loudness > seuilHatarake && !ongoingHatarakading && !enumLock && yellingO_Meter == 8 && !hatarakeLocked)
         {
             StartCoroutine(GrowingAreaOfEffect());
         }

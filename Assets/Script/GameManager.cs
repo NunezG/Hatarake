@@ -365,7 +365,7 @@ public class GameManager : MonoBehaviour {
     public void TutoExplicationHatarakeClick()
     {
         goingToHatarakeSlacker = true;
-        boss.GetComponent<Boss>().yellingO_Meter = 50;
+        boss.GetComponent<Boss>().yellingO_Meter = boss.GetComponent<Boss>().maxYellingO_Meter;
         bossLock(false, false);
     }
 

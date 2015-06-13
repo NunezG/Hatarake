@@ -236,6 +236,9 @@ public class Office : MonoBehaviour
         grid[6, 8].wallSouth = false;
     }
 
+
+
+
     public bool placingRoomFurnitures(List<FurnitureType> roomFurnitures, Room room)
     {
         List<int> randomIndexBagForFurnitures = new List<int>(); // on cree une liste nous permettant de tirer aleatoirement un index dans la liste des fournitures
