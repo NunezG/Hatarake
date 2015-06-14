@@ -28,7 +28,9 @@ public class clearPath : RAINAction
             countDeviation--;
             if (countDeviation == 0)
             {
-                ai.Navigator.CurrentPath = null;
+              //  ai.Navigator.CurrentPath = null;
+
+                ai.WorkingMemory.SetItem("noPath", false);
 
                 tempDeviation = !tempDeviation;
                 return ActionResult.SUCCESS;
@@ -39,7 +41,8 @@ public class clearPath : RAINAction
 
        else if ((ai.Navigator.CurrentGraph != null && ai.Navigator.OnGraph(ai.Body.transform.position, 3)) && !(Physics.Raycast(ai.Body.transform.position, ai.Body.transform.TransformDirection(Vector3.forward), out hit, 2.0f) && (hit.transform.tag == "Employe" || hit.transform.tag == "Boss")))  
         {
-            ai.Navigator.CurrentPath = null;
+           // ai.Navigator.CurrentPath = null;
+            ai.WorkingMemory.SetItem("noPath", false);
 
             return ActionResult.SUCCESS;
         }   
@@ -48,17 +51,18 @@ public class clearPath : RAINAction
         {
             if (ai.Navigator.CurrentGraph != null && !ai.Navigator.OnGraph(ai.Body.transform.position, 3))
             {
-                ai.Navigator.CurrentPath = null;
+               // ai.Navigator.CurrentPath = null;
+                ai.WorkingMemory.SetItem("noPath", false);
+
                 return ActionResult.SUCCESS;
             }
 
             int randDir = Random.Range(0,2);
-
-
            if (randDir == 0)
                tempTarget = ai.Body.transform.position + ai.Body.transform.TransformDirection(Vector3.left) * 4 + ai.Body.transform.TransformDirection(Vector3.forward);
            else tempTarget = ai.Body.transform.position + ai.Body.transform.TransformDirection(Vector3.right) * 4 + ai.Body.transform.TransformDirection(Vector3.forward);
 
+           ai.WorkingMemory.SetItem("noPath", true);
 
 
             ai.Motor.MoveTo(tempTarget);
