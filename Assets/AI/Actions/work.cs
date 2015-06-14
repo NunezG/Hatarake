@@ -8,7 +8,7 @@ using RAIN.Core;
 [RAINAction]
 public class work : RAINAction
 {
-    float motivation;
+    EmployeeData employe;
 	GameObject target;
      Animator animator;
 
@@ -17,7 +17,7 @@ public class work : RAINAction
         animator = ai.Body.GetComponent<Animator>();
         //Commence a travailler
         base.Start(ai);
-        motivation = ai.Body.GetComponent<Employe>().data.motivation;
+        employe = ai.Body.GetComponent<Employe>().data;
 		//Set de bools, sert a rien pour l'instant
 		//ai.WorkingMemory.SetItem("working", true);
         
@@ -43,17 +43,18 @@ public class work : RAINAction
     {
 
 			//Reduction de la motivation
-			motivation -= Time.deltaTime * ai.Body.GetComponent<Employe> ().data.vitesseDemotivation;
-            ai.Body.GetComponent<Employe>().data.motivation = motivation;
+            employe.motivation -= Time.deltaTime * employe.vitesseDemotivation;
+            //ai.Body.GetComponent<Employe>().data.motivation = motivation;
 
 			//Finis de travailler quand la motivation est 0
-			if (motivation <= 0) {
-                ai.Body.GetComponent<Employe>().data.motivation = 0;
+            if (employe.motivation <= 0)
+            {
+                employe.motivation = 0;
 				ai.WorkingMemory.SetItem ("auTravail", false);
 				return ActionResult.SUCCESS;
 			}
 
-            GameManager.instance.employeeWork( Time.deltaTime , ai.Body.GetComponent<Employe>().data.vitesseTravail );
+            GameManager.instance.employeeWork(Time.deltaTime, employe.vitesseTravail);
 			//Continue a travailler
 			return ActionResult.RUNNING;
     }
