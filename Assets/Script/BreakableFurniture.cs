@@ -36,10 +36,15 @@ public class BreakableFurniture : MonoBehaviour {
         //  }
        //
         ShakeMyBooty();
+        if ( GameManager.instance.goingToBreakShit && this.gameObject.name=="tableCafe" && broken)
+        {
+            GameManager.instance.shitBroken = true;
+
+        }
 
 
 	}
-    //Shakes the camera for a certain amount of time
+    //shakes the furniture
     public void ShakeMyBooty()
     {
         if (shaking && shakingDuration>0)

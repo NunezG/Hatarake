@@ -30,7 +30,7 @@ public class ProgressBar : MonoBehaviour {
         {
             GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), waitScreen);
         }
-        else if (true)/*GameManager.instance.workingIsActuallyUsefull*/
+        else if (GameManager.instance.displayProgressionBar)/*GameManager.instance.workingIsActuallyUsefull*/
         {
             DrawProgressObjective(GameManager.instance.objectiveCompletion / GameManager.instance.levelObjective);
             //if (GameManager.instance.GetComponent<CharacterManager>().GetTotalNumberOfBoxies() != 0)

@@ -1200,7 +1200,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6e5da624d75549340b9e9b65211dc1b2, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1947,12 +1947,15 @@ MonoBehaviour:
   tempsRemplissageJauge: 1
   vitesseJauge: 2
   microphone: {fileID: 11488596}
+  ongoingHatarakading: 0
   maxVolumeLevel: 0
   charge: 0
   moveSoundLock: 0
   seuilHatarake: 10
   onCoolDown: 0
   maxLoudness: 40
+  enumLock: 0
+  hatarakeTime: 1
 --- !u!114 &11454414
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -21,7 +21,8 @@ public class CharacterManager : MonoBehaviour {
 	//public Box[]  boxes;
   //  public GameObject[] workingHelp;
 
-	public List<GameObject> boxies=new List<GameObject>();
+    public List<GameObject> boxies = new List<GameObject>();
+    public List<GameObject> decrasseurs = new List<GameObject>();
     private GameObject boss;
 
     public void Start()
@@ -85,9 +86,10 @@ public class CharacterManager : MonoBehaviour {
 
 	}
 
+
+    public bool tutoDecrasseurLock = true;
     public void SpawnDecrasseur()
     {
-
         GameObject floor = GameObject.Find("Office floor n0");			
         GameObject[] corridorsCell = GameObject.FindGameObjectsWithTag("Corridor");
         GameObject decrasseur = (GameObject)Instantiate(decrasseurPrefab);
@@ -97,8 +99,8 @@ public class CharacterManager : MonoBehaviour {
         decrasseur.transform.localScale = decrasseur.transform.localScale * gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.localScale.x;
         decrasseur.transform.position = gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.position;
         int rdmInd = Random.Range(0, corridorsCell.Length);
-        decrasseur.transform.Translate(corridorsCell[rdmInd].transform.position.x, decrasseur.GetComponent<Collider>().bounds.extents.y, corridorsCell[rdmInd].transform.position.z);
-
+        decrasseur.transform.Translate(floor.transform.Find("Elevator Cell 4, 0").position.x, decrasseur.GetComponent<Collider>().bounds.extents.y, 0);
+        decrasseurs.Add(decrasseur);
         
     }
 
@@ -219,6 +221,15 @@ public class CharacterManager : MonoBehaviour {
         {
             nbDecrasseur++;
             SpawnDecrasseur();
+        }
+
+
+        if (nbDecrasseur==1 && !GameManager.instance.hiringTime && tutoDecrasseurLock)
+        {
+            tutoDecrasseurLock = false;
+            GameManager.instance.decrasseurJustArrived = true;
+            GameManager.instance.tutoIsOn = true;
+
         }
     }
 }

@@ -36,15 +36,29 @@ public class GameManager : MonoBehaviour {
    public bool cameraLookingForCoffee, fetchingCoffee, cameraLookingForElevator, goingToElevator,
                 cameraLookingForPhone, goingToPhone, freshMeatHired, cameraLookingForFreshMeat,
                 goingToLookProfile, profileLookedAt, cameraLookingAtSlacker,
-                goingToHatarakeSlacker, employeeHataraked, cameraFollowingEmployeeHataraked;
+                goingToHatarakeSlacker, employeeHataraked, cameraFollowingEmployeeHataraked,
+                tutoBreakIsNotComplete = true,
+                timeToStartBreakingShit, cameraLookingForShitToBreak, goingToBreakShit,
+                shitBroken,
+                decrasseurJustArrived,cameraLookingAtDecrasseur;
 
     public Button tutoFirstButton, tutoCoffeeButton, tutoDeliciousCoffeeButton,
        tutoLookingForElevatorButton, tutoNobodyHereButton, tutoWtfButton,
        tutoHiringTimeButton, tutoFreshMeatButton, tutoExplicationProfileButton, tutoGoingToGlandeButton,
-       tutoHatarakeExplicationButton, tutoSuccessfulHatarakingButton;
+       tutoHatarakeExplicationButton, tutoSuccessfulHatarakingButton,
+       tutoTooMuchGlande,tutoGoBreakShitButton, tutoSweetDestruction, 
+       tutoDecrasseurButton;
 
    public GameObject coffeeTable, elevator, phone;
 	//Awake is always called before any Start functions
+
+
+    //----------------GUI
+   public GameObject GUIClock, GUIQiBar;
+   public bool displayProgressionBar;
+    //--------------------------
+
+
 	void Awake()
 	{
 		//Check if instance already exists
@@ -82,7 +96,8 @@ public class GameManager : MonoBehaviour {
         canvaEmbauche.SetActive(false);
 
 	}
-	
+    public bool victoryLocked = false;
+    public bool ringingLocked = false;
 	// Update is called once per frame
 	void Update () {
 
@@ -192,6 +207,7 @@ public class GameManager : MonoBehaviour {
                     //TUTO NEXT 
                     tutoGoingToGlandeButton.gameObject.SetActive(false);
                     tutoHatarakeExplicationButton.gameObject.SetActive(true);
+                    GUIQiBar.SetActive(true);
                     bossLock(true, true);
                 }
             }
@@ -216,6 +232,58 @@ public class GameManager : MonoBehaviour {
 
                 }
             }
+
+            if (timeToStartBreakingShit)
+            {
+                timeToStartBreakingShit = false;
+                cameraController.FollowEmployee(coffeeTable, 100, 0.2f);
+                tutoTooMuchGlande.gameObject.SetActive(true);
+                bossLock(true, true);
+                cameraLookingForShitToBreak = true;
+            }
+            if (cameraLookingForShitToBreak)
+            {
+                if (!cameraController.cameraIsToMove && cameraController.target == GameManager.instance.boss)
+                {
+                    //print("looked for phone, back to boss");
+                    cameraLookingForShitToBreak = false;
+                    //TUTO NEXT 
+                    goingToBreakShit = true;
+                }
+            }
+            if (goingToBreakShit)
+            {
+                if (boss.GetComponent<Boss>().moveLocked)
+                {
+                    boss.GetComponent<Boss>().moveLocked = false;
+                }
+            }
+            if (shitBroken)
+            {
+                shitBroken = false;
+                goingToBreakShit = false;
+                tutoSweetDestruction.gameObject.SetActive(true);
+                bossLock(true, true);
+            }
+
+            if (decrasseurJustArrived)
+            {
+                print("decrasseurJustArrived");
+                decrasseurJustArrived = false;
+                tutoDecrasseurButton.gameObject.SetActive(true);
+                cameraController.FollowEmployee(this.gameObject.GetComponent<CharacterManager>().decrasseurs[0], 100, 0);
+                bossLock(true, true);
+                cameraLookingAtDecrasseur = true;
+            }
+            if (cameraLookingAtDecrasseur)
+            {
+                if (!cameraController.cameraIsToMove && cameraController.target == GameManager.instance.boss)
+                {
+                    cameraLookingAtDecrasseur = false;
+                    bossLock(true, true);
+                }
+            }
+
         }
         else
         {
@@ -254,16 +322,23 @@ public class GameManager : MonoBehaviour {
                     bossLock(true, true);
                     workingIsActuallyUsefull = false;
                 }
+                else if (this.GetComponent<CharacterManager>().GetTotalNumberOfBoxies() == 7 && tutoBreakIsNotComplete){
+                    timeToStartBreakingShit = true;
+                    tutoIsOn = true;
+                }
                 else
                 {
-                    boss.GetComponent<Boss>().gongOfVictory.Play();
-                    bossLock(true, true);
-                    victoryButton.SetActive(true);
-                    victoryButton.GetComponentInChildren<Text>().text = "YATTTTA ! \n Nous avons encore rempli notre devoir en \n" + strMinutes + "\'\'" + strSecondes + "\'" + strCentiSecondes;
-                    boss.GetComponent<Boss>().moveLocked = true;
-                    boss.GetComponent<Boss>().hatarakeLocked = true;
+                    if (!victoryLocked)
+                    {
+                        boss.GetComponent<Boss>().gongOfVictory.Play();
+                        bossLock(true, true);
+                        victoryButton.SetActive(true);
+                        victoryButton.GetComponentInChildren<Text>().text = "YATTTTA ! \n Nous avons encore rempli notre devoir en \n" + strMinutes + "\'\'" + strSecondes + "\'" + strCentiSecondes;
+                        boss.GetComponent<Boss>().moveLocked = true;
+                        boss.GetComponent<Boss>().hatarakeLocked = true;
+                    }
                     workingIsActuallyUsefull = false;
-                    ringingPhone = true;
+
 
                 }
             }
@@ -303,7 +378,10 @@ public class GameManager : MonoBehaviour {
     {
         boss.GetComponent<Boss>().moveLocked = move;
     }
-
+    public void BossLockHatarake(bool hatarake)
+    {
+        boss.GetComponent<Boss>().hatarakeLocked = hatarake;
+    }
     public void DemoEndOnClick()
     {
         Application.Quit();
@@ -379,6 +457,26 @@ public class GameManager : MonoBehaviour {
         workingIsActuallyUsefull = true;
         tutoIsOn = false;
         bossLock(false, false);
+        GUIClock.SetActive(true);
+        displayProgressionBar = true;
+    }
+
+    public void TutoWellBreakOtherShitLaterOnClick()
+    {
+        tutoIsOn = false;
+        tutoBreakIsNotComplete = false;
+        bossLock(false, false);
+
+    }
+    public void TutoDecrasseurOnClick()
+    {
+        if (!cameraLookingAtDecrasseur)
+        {
+            tutoIsOn = false;
+            bossLock(false, false);
+            tutoDecrasseurButton.gameObject.SetActive(false);
+        }
+
     }
 
     // Methode Tuto --------------------------->
@@ -442,7 +540,7 @@ public class GameManager : MonoBehaviour {
         boss.GetComponent<Boss>().hatarakeLocked = false;
         nbEmployeeLeftToHire--;
 
-        print("nbEmployeeLeftToHire :" + nbEmployeeLeftToHire);
+
 
     }
     public float objectiveIncreaseFactor = 3;
@@ -450,6 +548,7 @@ public class GameManager : MonoBehaviour {
     {
         bossLock(false, false);
 
+        ringingPhone = true;
 
             if (levelObjective == 10) levelObjective = 50;
             levelObjective = levelObjective * objectiveIncreaseFactor;
