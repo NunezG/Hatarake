@@ -40,8 +40,8 @@ public class CharacterManager : MonoBehaviour {
         GameObject spawn = GameObject.Find("spawnBoss");
 		GameObject floor = GameObject.Find ("Office floor n0");			
 		
-        boss.transform.position = spawn.transform.position;
-        boss.transform.Translate(0,boss.GetComponent<Collider>().bounds.extents.y,0);
+        boss.transform.position = gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.position;
+        boss.transform.Translate(spawn.transform.position.x, boss.GetComponent<Collider>().bounds.extents.y, spawn.transform.position.z);
        
         GameObject[] corridorsCell = GameObject.FindGameObjectsWithTag("Corridor");
         InteractWithEmployee[] targets = floor.GetComponentsInChildren<InteractWithEmployee>();
