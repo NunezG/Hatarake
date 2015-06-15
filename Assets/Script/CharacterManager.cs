@@ -138,6 +138,7 @@ public class CharacterManager : MonoBehaviour {
         boxie.GetComponent<Employe>().floor = floor;
         boxie.GetComponent<Employe>().SetEmployeeLocations();
 
+        boxie.transform.Translate(-100, -100, -100);
         //boxie.GetComponent<Rigidbody>().mass = Random.Range(1, 100);
 
         return boxie;
