@@ -11,7 +11,7 @@ public class BreakableFurniture : MonoBehaviour {
     public float shakeMagnitude = 1;
     public Vector3 initialPosition,initialScale;
     public Quaternion initialRotate;
-
+    public AudioSource hitSound;
     public Sprite normalSprite;
     public Sprite brokenSprite;
 
@@ -67,6 +67,7 @@ public class BreakableFurniture : MonoBehaviour {
         damage++;
         shaking = true;
         shakingDuration = 20;
+        hitSound.Play();
         if (damage >= resistance)
         {
             transform.parent.GetComponentInChildren<SpriteRenderer>().sprite = brokenSprite;
