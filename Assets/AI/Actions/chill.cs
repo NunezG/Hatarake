@@ -8,10 +8,10 @@ using RAIN.Representation;
 [RAINAction]
 public class chill : RAINAction
 {
-    float motivation;
-    float fatigue;
+    EmployeeData employe;
+    // float fatigue;
     GameObject target;
-    public Expression DemotivationSiCasse = new Expression();
+    //public Expression DemotivationSiCasse = new Expression();
     Animator animator;
 
 
@@ -20,7 +20,7 @@ public class chill : RAINAction
     {
         base.Start(ai);
 
-        motivation = (int)ai.Body.gameObject.GetComponent<Employe>().data.motivation;
+        employe = ai.Body.gameObject.GetComponent<Employe>().data;
         animator = ai.Body.GetComponent<Animator>();
 
 
@@ -76,26 +76,26 @@ public class chill : RAINAction
         //Si l'objet n'est pas cassé
         if (ai.WorkingMemory.GetItem<bool>("wander") || target.transform.parent.GetComponentInChildren<BreakableFurniture>() == null || !target.transform.parent.GetComponentInChildren<BreakableFurniture>().broken)
         {
-            fatigue = (int)ai.Body.gameObject.GetComponent<Employe>().data.fatigue;
+            //fatigue = (int)ai.Body.gameObject.GetComponent<Employe>().data.fatigue;
             //Reduction de la fatigue si existante
-            if (fatigue > 0)
+            if (employe.fatigue > 0)
             {
-                fatigue -= Time.deltaTime * (int)ai.Body.gameObject.GetComponent<Employe>().data.effetRepos;
+                employe.fatigue -= Time.deltaTime * (int)employe.effetRepos;
                 //rends le resultat
                // ai.WorkingMemory.SetItem("fatigue", fatigue);
-                if (fatigue < 0)
-                    fatigue = 0;
-                ai.Body.gameObject.GetComponent<Employe>().data.fatigue = fatigue;
+                if (employe.fatigue < 0)
+                    employe.fatigue = 0;
+                //ai.Body.gameObject.GetComponent<Employe>().data.fatigue = fatigue;
             }
 
             //Augmente la motivation
-            motivation += Time.deltaTime * (int)ai.Body.gameObject.GetComponent<Employe>().data.effetRepos;               
-            ai.Body.gameObject.GetComponent<Employe>().data.motivation = motivation;
+            employe.motivation += Time.deltaTime * (int)employe.effetRepos;               
+            //ai.Body.gameObject.GetComponent<Employe>().data.motivation = motivation;
 
             //Si motivation Max, cesse de glander
-            if (motivation >= (int)ai.Body.gameObject.GetComponent<Employe>().data.motivationMax)
+            if (employe.motivation >= (int)employe.motivationMax)
             {
-                ai.Body.gameObject.GetComponent<Employe>().data.motivation = ai.Body.GetComponent<Employe>().data.motivationMax;
+                employe.motivation = employe.motivationMax;
                 ai.WorkingMemory.SetItem("auTravail", true);
                 //Libere la place (encore en test)
                 return ActionResult.SUCCESS;
@@ -107,15 +107,19 @@ public class chill : RAINAction
 
         else
         {
-            //Motivation reduite si machine cassee, Fatigue augmente         
-            motivation -= Time.deltaTime * ai.Body.GetComponent<Employe>().data.vitesseDemotivation * DemotivationSiCasse.Evaluate(ai.DeltaTime, ai.WorkingMemory).GetValue<float>();
-            if (motivation < 0)
-                motivation = 0;
+            //Motivation augmente si machine cassee, Fatigue augmente         
+            employe.motivation += employe.effetEngueulement * employe.fatigueSiCasse;
+            employe.fatigue +=  employe.effetEngueulement * employe.fatigueSiCasse;
 
-            fatigue += Time.deltaTime * ai.Body.GetComponent<Employe>().data.vitesseDemotivation * DemotivationSiCasse.Evaluate(ai.DeltaTime, ai.WorkingMemory).GetValue<float>();
+            //Au travail!
+            if (employe.motivation >= (int)employe.motivationMax)
+            {
+                employe.motivation = employe.motivationMax;      
+            }
+            ai.WorkingMemory.SetItem("auTravail", true);
 
-            ai.Body.gameObject.GetComponent<Employe>().data.motivation = motivation;
-            ai.Body.gameObject.GetComponent<Employe>().data.fatigue = fatigue;
+            //ai.Body.gameObject.GetComponent<Employe>().data.motivation = motivation;
+           // ai.Body.gameObject.GetComponent<Employe>().data.fatigue = fatigue;
             return ActionResult.SUCCESS;
         }
     }
