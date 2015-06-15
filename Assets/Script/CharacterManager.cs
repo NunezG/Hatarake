@@ -18,9 +18,6 @@ public class CharacterManager : MonoBehaviour {
 	float productionParSec; //(somme de chaque vitesseDeTravail des employés)
 	float objectifNiveau; //(production à atteindre pour atteindre le niveau suivant)
 
-	//public Box[]  boxes;
-  //  public GameObject[] workingHelp;
-
     public List<GameObject> boxies = new List<GameObject>();
     public List<GameObject> decrasseurs = new List<GameObject>();
     private GameObject boss;
@@ -30,10 +27,7 @@ public class CharacterManager : MonoBehaviour {
         boss = (GameObject)Instantiate(bossPrefab);
         boss.transform.localScale = boss.transform.localScale * gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.localScale.x;
         GameManager.instance.SetBoss(boss);
-
     }
-
-
 
 	public void Spawn()
 	{
@@ -55,18 +49,14 @@ public class CharacterManager : MonoBehaviour {
             boxie.GetComponent<Employe>().SetEmployeeLocations();
            // boxie.GetComponent<Rigidbody>().mass = Random.Range(1, 100);
             boxie.name = boxiePrefab.name + i;
-            boxie.GetComponent<Employe>().tMemory.SetItem("auTravail", true);
-
-
 
             foreach (InteractWithEmployee target in targets)
 			{
                 if (target.CompareTag("Box") && target.assigne == false)
 				{
                     boxie.GetComponent<Employe>().setBox(target.gameObject);
+                    boxie.GetComponent<Employe>().tMemory.SetItem("auTravail", true);
                    // boxie.GetComponent<Employe>().tMemory.SetItem("myTarget", box.gameObject);
-                   // boxie.GetComponent<Employe>().tMemory.SetItem("enDeplacement", true);
-
                     target.assigne = true;
 					break;
 				}
@@ -78,14 +68,9 @@ public class CharacterManager : MonoBehaviour {
             boxie.transform.Translate(corridorsCell[rdmIndex].transform.position.x, boxie.GetComponent<Collider>().bounds.extents.y, corridorsCell[rdmIndex].transform.position.z);
 
             boxies.Add(boxie);
-
 		}
-
         //SpawnDecrasseur();
-
-
 	}
-
 
     public bool tutoDecrasseurLock = true;
     public void SpawnDecrasseur()
@@ -95,7 +80,7 @@ public class CharacterManager : MonoBehaviour {
         GameObject decrasseur = (GameObject)Instantiate(decrasseurPrefab);
         decrasseur.GetComponent<Decrasseur>().floor = floor;
         decrasseur.GetComponent<Decrasseur>().SetEmployeeLocations();
-        decrasseur.GetComponent<Rigidbody>().mass = Random.Range(1, 100);
+        //decrasseur.GetComponent<Rigidbody>().mass = Random.Range(1, 100);
         decrasseur.transform.localScale = decrasseur.transform.localScale * gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.localScale.x;
         decrasseur.transform.position = gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.position;
         int rdmInd = Random.Range(0, corridorsCell.Length);
@@ -122,13 +107,23 @@ public class CharacterManager : MonoBehaviour {
 
     public void AddBoxieFromeHire(GameObject boxie)
     {
-        int floorNb = 0;
-        GameObject floor = GameObject.Find("Office floor n" + floorNb);
-        boxie.GetComponent<Employe>().boxDeTravail.GetComponent<InteractWithEmployee>().assigne = true;
+        InteractWithEmployee[] boxes = boxie.GetComponent<Employe>().floor.GetComponentsInChildren<InteractWithEmployee>();
+        foreach (InteractWithEmployee box in boxes)
+        {
+            if (box.CompareTag("Box") && box.assigne == false)
+            {
+                boxie.GetComponent<Employe>().setBox(box.gameObject);
+                boxie.GetComponent<Employe>().tMemory.SetItem("auTravail", true);
+                box.assigne = true;
 
+                //boxie.GetComponent<Employe>().setTaget(box);
+                break;
+            }
+        }
 
-        boxie.transform.position = this.gameObject.GetComponent<LevelManager>().getOfficeInstance()[floorNb].transform.position;
-        boxie.transform.position=new Vector3(floor.transform.Find("Elevator Cell 4, 0").position.x, boxie.GetComponent<Collider>().bounds.extents.y, 0);
+        boxie.transform.localScale = boxie.transform.localScale * gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.localScale.x;
+        boxie.transform.position = new Vector3(boxie.GetComponent<Employe>().floor.transform.Find("Elevator Cell 4, 0").position.x, boxie.GetComponent<Collider>().bounds.extents.y, 0);
+       
         boxie.name = boxiePrefab.name + (boxies.Count);
 
         boxies.Add(boxie);
@@ -138,41 +133,15 @@ public class CharacterManager : MonoBehaviour {
     {
         GameObject boxie = (GameObject)Instantiate(boxiePrefab);
 
-        boxie.GetComponent<Rigidbody>().mass = Random.Range(1, 100);
-
-        boxie.name = boxiePrefab.name ;
-
-        boxie.GetComponent<Employe>().tMemory.SetItem("auTravail", true);
-
-        GameObject floor = GameObject.Find("Office floor n0");
-
+        int floorNb = 0;
+        GameObject floor = GameObject.Find("Office floor n" + floorNb);
         boxie.GetComponent<Employe>().floor = floor;
         boxie.GetComponent<Employe>().SetEmployeeLocations();
 
-        InteractWithEmployee[] boxes = floor.GetComponentsInChildren<InteractWithEmployee>();
-        foreach (InteractWithEmployee box in boxes)
-        {
-            if (box.CompareTag("Box") && box.assigne == false)
-            {
-                boxie.GetComponent<Employe>().setBox(box.gameObject);
-                boxie.GetComponent<Employe>().tMemory.SetItem("myTarget", box.gameObject);
-                boxie.GetComponent<Employe>().tMemory.SetItem("enDeplacement", true);
-
-                //boxie.GetComponent<Employe>().setTaget(box);
-                //box.assigne = true;
-                break;
-            }
-        }
-
-        //boxie.GetComponent<Employe>().tMemory.SetItem("ongoingHiring", true);
-        boxie.transform.localScale = boxie.transform.localScale * gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.localScale.x;
-
-        boxie.transform.position = gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.position;
-        boxie.transform.Translate(-10*Random.Range(0, 40), boxie.GetComponent<Collider>().bounds.extents.y,-10* Random.Range(0, 30));
+        //boxie.GetComponent<Rigidbody>().mass = Random.Range(1, 100);
 
         return boxie;
     }
-
 
     public void SpawnOneBoxieInElevator(int floorNb)
     {
@@ -208,13 +177,13 @@ public class CharacterManager : MonoBehaviour {
         boxies.Add(boxie);
     }
 
-
     public void sendBoxieToHell(GameObject boxie)
     {
         if (boxie.GetComponent<Employe>().boxDeTravail != null) boxie.GetComponent<Employe>().boxDeTravail.GetComponent<InteractWithEmployee>().assigne = false;
         boxies.Remove(boxie);
         Destroy(boxie);
     }
+
     void Update()
     {
         if (boxies.Count / 10 > nbDecrasseur)
@@ -223,13 +192,11 @@ public class CharacterManager : MonoBehaviour {
             SpawnDecrasseur();
         }
 
-
         if (nbDecrasseur==1 && !GameManager.instance.hiringTime && tutoDecrasseurLock)
         {
             tutoDecrasseurLock = false;
             GameManager.instance.decrasseurJustArrived = true;
             GameManager.instance.tutoIsOn = true;
-
         }
     }
 }
