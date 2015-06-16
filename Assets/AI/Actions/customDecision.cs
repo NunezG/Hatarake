@@ -21,21 +21,20 @@ public class customDecision : RAINDecision
         ActionResult tResult = ActionResult.SUCCESS;
 
 
-        if (ai.Body.GetComponent<Employe>().data.motivation > 0)
-        {
+ 
 
         for (; _lastRunning < _children.Count; _lastRunning++)
         {
             tResult = _children[_lastRunning].Run(ai);
-            if (tResult != ActionResult.SUCCESS)
-                break;
+           // if (tResult != ActionResult.SUCCESS)
+              //  break;
         }
 
-        return tResult;
+       // return tResult;
 
-        }
+        
 
-        return ActionResult.FAILURE;
+        return ActionResult.SUCCESS;
     }
 
     public override void Stop(RAIN.Core.AI ai)
