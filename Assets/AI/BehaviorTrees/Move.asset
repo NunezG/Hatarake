@@ -19,13 +19,18 @@ MonoBehaviour:
       usepriorities=&quot;False&quot; repeatuntil=&quot;&quot; priority=&quot;&quot;
       name=&quot;move sequencer&quot; debugbreak=&quot;False&quot;&gt;&lt;parallel
       tiebreaker=&quot;fail&quot; succeed=&quot;any&quot; repeatuntil=&quot;success&quot;
-      priority=&quot;&quot; name=&quot;parallel&quot; fail=&quot;all&quot; debugbreak=&quot;False&quot;&gt;&lt;selector
-      usepriorities=&quot;False&quot; repeatuntil=&quot;running&quot; name=&quot;selector&quot;
-      debugbreak=&quot;False&quot;&gt;&lt;action repeatuntil=&quot;&quot; priority=&quot;&quot;
+      priority=&quot;&quot; name=&quot;parallel&quot; fail=&quot;all&quot; debugbreak=&quot;False&quot;&gt;&lt;decision
+      repeatuntil=&quot;running&quot; parametervalues=&quot;&quot; parameters=&quot;&quot;
+      namespace=&quot;&quot; name=&quot;selector&quot; debugbreak=&quot;False&quot;
+      classname=&quot;customDecision&quot;&gt;&lt;detect sensor=&quot;&amp;quot;Visual
+      Sensor&amp;quot;&quot; repeatuntil=&quot;&quot; name=&quot;detect&quot; matchtype=&quot;best&quot;
+      entityobjectvariable=&quot;FormVar&quot; debugbreak=&quot;False&quot; consistent=&quot;True&quot;
+      aspectvariable=&quot;aspVar&quot; aspectobjectvariable=&quot;mountPoint&quot;
+      aspect=&quot;&amp;quot;Aspect0&amp;quot;&quot; /&gt;&lt;action repeatuntil=&quot;&quot;
       parametervalues=&quot;&quot; parameters=&quot;&quot; namespace=&quot;&quot;
       name=&quot;clear&quot; debugbreak=&quot;False&quot; classname=&quot;clearPath&quot;
-      /&gt;&lt;constraint repeatuntil=&quot;&quot; priority=&quot;&quot; name=&quot;noPath
-      == true&quot; debugbreak=&quot;False&quot; constraint=&quot;noPath == true&quot;&gt;&lt;sequencer
+      /&gt;&lt;constraint repeatuntil=&quot;&quot; name=&quot;noPath == true&quot;
+      debugbreak=&quot;False&quot; constraint=&quot;noPath == true&quot;&gt;&lt;sequencer
       usepriorities=&quot;False&quot; repeatuntil=&quot;&quot; name=&quot;sequencer&quot;
       debugbreak=&quot;False&quot;&gt;&lt;move turnspeed=&quot;&quot; repeatuntil=&quot;&quot;
       priority=&quot;&quot; name=&quot;move&quot; movetarget=&quot;tempTarget&quot;
@@ -33,7 +38,7 @@ MonoBehaviour:
       closeenoughdistance=&quot;&quot; closeenoughangle=&quot;&quot; /&gt;&lt;expression
       returnvalue=&quot;success&quot; repeatuntil=&quot;&quot; priority=&quot;&quot;
       name=&quot;expression&quot; expression=&quot;noPath = false&quot; debugbreak=&quot;False&quot;
-      /&gt;&lt;/sequencer&gt;&lt;/constraint&gt;&lt;/selector&gt;&lt;constraint repeatuntil=&quot;success&quot;
+      /&gt;&lt;/sequencer&gt;&lt;/constraint&gt;&lt;/decision&gt;&lt;constraint repeatuntil=&quot;success&quot;
       name=&quot;noPath == false&quot; debugbreak=&quot;False&quot; constraint=&quot;noPath
       == false&quot;&gt;&lt;move turnspeed=&quot;&quot; repeatuntil=&quot;&quot; name=&quot;move
       to target&quot; movetarget=&quot;myTarget&quot; movespeed=&quot;&quot; facetarget=&quot;&quot;
