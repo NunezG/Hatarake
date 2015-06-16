@@ -128,7 +128,9 @@ public class CharacterManager : MonoBehaviour {
 
 
         boxie.transform.position = this.gameObject.GetComponent<LevelManager>().getOfficeInstance()[floorNb].transform.position;
-        boxie.transform.position=new Vector3(floor.transform.Find("Elevator Cell 4, 0").position.x, boxie.GetComponent<Collider>().bounds.extents.y, 0);
+        //boxie.transform.position = new Vector3(floor.transform.Find("Elevator Cell 4, 0").position.x, boxie.GetComponent<Collider>().bounds.extents.y, 0);
+        boxie.transform.position = new Vector3(floor.transform.Find("Corridor Cell 4, 1").position.x, boxie.GetComponent<Collider>().bounds.extents.y, floor.transform.Find("Corridor Cell 4, 1").position.z);
+
         boxie.name = boxiePrefab.name + (boxies.Count);
 
         boxies.Add(boxie);

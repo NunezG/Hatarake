@@ -1672,6 +1672,7 @@ MonoBehaviour:
     motivationMax: 500
     effetEngueulement: 100
     vitesseTravail: 5
+    fatigueSiCasse: 20
   isAlreadyInRange: 0
   moveMemory: 0
   workingMemory: 0

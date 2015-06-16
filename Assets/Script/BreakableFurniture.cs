@@ -98,6 +98,19 @@ public class BreakableFurniture : MonoBehaviour {
         return false;
 	}
 
+    public void FullRepair()
+    {
+        damage = 0;
+
+            transform.parent.GetComponentInChildren<SpriteRenderer>().sprite = normalSprite;
+
+            if (transform.parent.GetComponentInChildren<ParticleSystem>() != null)
+                transform.parent.GetComponentInChildren<ParticleSystem>().Stop();
+
+            broken = false;
+
+    }
+
      void OnMouseDown() 
     {
         if (GameManager.instance.boss.GetComponent<Boss>().getTarget() == breakTarget)

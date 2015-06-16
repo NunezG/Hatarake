@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour {
        tutoTooMuchGlande,tutoGoBreakShitButton, tutoSweetDestruction, 
        tutoDecrasseurButton;
 
-   public GameObject coffeeTable, elevator, phone;
+   public GameObject coffeeTable,coffeeBreak, elevator, phone;
 	//Awake is always called before any Start functions
 
 
@@ -102,6 +102,7 @@ public class GameManager : MonoBehaviour {
 	void Update () {
 
         if (coffeeTable == null) coffeeTable = GameObject.Find("CoffeeTrigger");
+        if (coffeeBreak == null) coffeeBreak = GameObject.Find("tableCafe");
         if (elevator == null) elevator = GameObject.Find("Elevator Cell 4, 0");
         if (phone == null) phone = GameObject.Find("phoneCollider");
 
@@ -255,6 +256,7 @@ public class GameManager : MonoBehaviour {
             {
                 if (boss.GetComponent<Boss>().moveLocked)
                 {
+                    coffeeBreak.GetComponent<BreakableFurniture>().FullRepair();
                     boss.GetComponent<Boss>().moveLocked = false;
                 }
             }
@@ -554,6 +556,7 @@ public class GameManager : MonoBehaviour {
             levelObjective = levelObjective * objectiveIncreaseFactor;
             objectiveCompletion = 0;
             time = 0;
+            //workingIsActuallyUsefull = true;
         //hiringTime = true;
         //nbEmployeeToHire++;
 
