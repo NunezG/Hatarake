@@ -70,7 +70,7 @@ public class clearPath : RAINAction
     private bool CheckPositionOnNavMesh(Vector3 loc, AI ai)
     {
         RAIN.Navigation.Pathfinding.RAINPath myPath = null;
-        if (ai.Navigator.GetPathTo(loc, 10, true, out myPath))
+        if (ai.Navigator.GetPathTo(loc, 10, false, out myPath))
             return true;
 
         return false;
