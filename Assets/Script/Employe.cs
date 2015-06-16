@@ -127,7 +127,7 @@ public class Employe : MonoBehaviour {
 
             isAlreadyInRange = false;
         }else if((suicideMemory  != tMemory.GetItem<bool>("suicidaire") ||
-            /*moveMemory != tMemory.GetItem<bool>("enDeplacement") || */workingMemory != tMemory.GetItem<bool>("auTravail")) )
+            moveMemory != tMemory.GetItem<bool>("enDeplacement") || workingMemory != tMemory.GetItem<bool>("auTravail")) )
         { // si il change d'état
             
             if( isAlreadyInRange)emitActivitySign();
@@ -152,6 +152,7 @@ public class Employe : MonoBehaviour {
             else if (workingMemory && !moveMemory && target.CompareTag("WorkHelp"))
             {
                 depressif = false;
+                //print("photocopier");
                 //play photocopier;
                 this.setActiveSound(false, false, false, true,false,false,false,false,false);
             }
@@ -159,35 +160,41 @@ public class Employe : MonoBehaviour {
             {
                 depressif = false;
                 //play clavier PC
+                //print("clavier");
                 this.setActiveSound(false, false, true, false, false, false, false, false, false);
             }
             else if (!workingMemory && !moveMemory && target.CompareTag("Box"))
             {
                 depressif = false;
                 //play facebook
+                //print("facebook");
                 this.setActiveSound(false, false, false, false, false, true, false, false, false);
             }
             else if (!workingMemory && !moveMemory && (target.name.Equals("CoffeeTrigger") || target.name.Equals("CoffeeTrigger 1")))
             {
                 depressif = false;
                 //play coffee
+                //print("coffee");
                 this.setActiveSound(false, false, false, false, false, false, true, false, false);
             }
             else if (!workingMemory && !moveMemory && target.name.Equals("DrinkTrigger"))
             {
                 depressif = false;
                 //play vending machine
+                //print("vending machine");
                 this.setActiveSound(false, false, false, false, false, false, false, true, false);
             }
             else if (!workingMemory && !moveMemory && (target.name.Equals("TVTrigger") || target.name.Equals("TVTrigger 1") ))
             {
                 depressif = false;
                 //play gaming
+                //print("gaming");
                 this.setActiveSound(false, false, false, false, false, false, false, false, true);
             }
             else
             {
                 depressif = false;
+                //print("nothing");
                 this.setActiveSound(false, false, false, false, false, false, false, false, false);
             }
         }

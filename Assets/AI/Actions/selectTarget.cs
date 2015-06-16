@@ -32,6 +32,11 @@ public class selectTarget : RAINAction
     {
        // if (!ai.WorkingMemory.GetItem<bool>("ongoingHiring"))
        // {
+
+        if (ai.Body.GetComponent<Employe>().boxDeTravail == null)
+            return ActionResult.FAILURE;
+
+
             if (ai.WorkingMemory.GetItem<bool>("suicidaire"))
             {
                 ai.Motor.DefaultSpeed = ai.WorkingMemory.GetItem<int>("suicideSpeed");

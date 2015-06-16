@@ -139,7 +139,7 @@ public class Boss : MonoBehaviour {
 	void Update () {
 
         //print("micro name : "+microphone);
-        if (microphone.loudness > seuilHatarake && !ongoingHatarakading && !enumLock && yellingO_Meter == 8)
+        if (microphone.loudness > seuilHatarake && !ongoingHatarakading && !enumLock && yellingO_Meter == 8 && !hatarakeLocked)
         {
             StartCoroutine(GrowingAreaOfEffect());
         }
@@ -220,6 +220,7 @@ public class Boss : MonoBehaviour {
         ann.SetTrigger("doingStuff");
     }
     public bool enumLock = false;
+    public float hatarakeTime = 1.0f;
     public IEnumerator GrowingAreaOfEffect()
     {
 
@@ -251,7 +252,7 @@ public class Boss : MonoBehaviour {
                 pos = Mathf.Lerp(0, Mathf.Max(jaugeEngueulageMin, maxVolumeLevel*jaugeEngueulageMax/maxLoudness), time / tempsRemplissageJauge);
 
                 actionArea.localScale = new Vector3(pos, actionArea.localScale.y, pos);
-                if (time > 1)
+                if (time > hatarakeTime)
                 {
                     print("--------------TimeOver---------------");
                     ongoingHatarakading = false;

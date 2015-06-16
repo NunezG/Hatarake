@@ -11,7 +11,7 @@ public class BreakableFurniture : MonoBehaviour {
     public float shakeMagnitude = 1;
     public Vector3 initialPosition,initialScale;
     public Quaternion initialRotate;
-
+    public AudioSource hitSound;
     public Sprite normalSprite;
     public Sprite brokenSprite;
 
@@ -36,10 +36,15 @@ public class BreakableFurniture : MonoBehaviour {
         //  }
        //
         ShakeMyBooty();
+        if ( GameManager.instance.goingToBreakShit && this.gameObject.name=="tableCafe" && broken)
+        {
+            GameManager.instance.shitBroken = true;
+
+        }
 
 
 	}
-    //Shakes the camera for a certain amount of time
+    //shakes the furniture
     public void ShakeMyBooty()
     {
         if (shaking && shakingDuration>0)
@@ -62,6 +67,7 @@ public class BreakableFurniture : MonoBehaviour {
         damage++;
         shaking = true;
         shakingDuration = 20;
+        hitSound.Play();
         if (damage >= resistance)
         {
             transform.parent.GetComponentInChildren<SpriteRenderer>().sprite = brokenSprite;
@@ -91,6 +97,19 @@ public class BreakableFurniture : MonoBehaviour {
         }
         return false;
 	}
+
+    public void FullRepair()
+    {
+        damage = 0;
+
+            transform.parent.GetComponentInChildren<SpriteRenderer>().sprite = normalSprite;
+
+            if (transform.parent.GetComponentInChildren<ParticleSystem>() != null)
+                transform.parent.GetComponentInChildren<ParticleSystem>().Stop();
+
+            broken = false;
+
+    }
 
      void OnMouseDown() 
     {
