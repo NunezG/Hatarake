@@ -45,21 +45,23 @@ MonoBehaviour:
       type="RAIN.Navigation.NavMesh.NavMesh" reference="0" id="_navMesh" /></fields><references><reference
       type="RAIN.Navigation.NavMesh.NavMesh" refcount="1" id="0"><field value="" type="System.String"
       id="_graphName" /><field value="1" type="System.Single" id="_size" /><field
-      value="True" type="System.Boolean" id="_automaticGridSize" /><field value="1"
+      value="False" type="System.Boolean" id="_automaticGridSize" /><field value="2"
       type="System.Int32" id="_gridSize" /><field value="0,0.6,0.6,1" type="UnityEngine.Color"
       id="_meshColor" /><field value="-0.5" type="System.Single" id="_outlineColorOffset"
       /><field value="0.25" type="System.Single" id="_visualHeightOffset" /><field
       value="NavigationMesh" type="RAIN.Navigation.NavMesh.NavMesh+DisplayModeEnum"
       id="_displayMode" /><field value="-1" type="UnityEngine.LayerMask" id="_includedLayers"
-      /><field type="System.Collections.Generic.List" id="_ignoredTags" elementtype="System.String"><field
-      value="Employe" type="System.String" id="element0" /></field><field type="System.Collections.Generic.List"
-      id="_unwalkableTags" elementtype="System.String"><field value="Mur" type="System.String"
+      /><field type="System.Collections.Generic.List" id="_ignoredTags" elementtype="System.String"
+      childrenvisible="True"><field value="Employe" type="System.String" id="element0"
+      /></field><field type="System.Collections.Generic.List" id="_unwalkableTags"
+      elementtype="System.String" childrenvisible="True"><field value="Mur" type="System.String"
       id="element0" /><field value="Furniture" type="System.String" id="element1"
-      /></field><field type="System.Collections.Generic.List" id="_graphTags" elementtype="System.String"
-      /><field value="0.01" type="System.Single" id="_maxSlope" /><field value="0.01"
-      type="System.Single" id="_walkableHeight" /><field value="1" type="System.Single"
-      id="_walkableRadius" /><field value="0.01" type="System.Single" id="_stepHeight"
-      /><field value="0.28" type="System.Single" id="_cellSize" /><field value="0.01"
+      /><field value="Untagged" type="System.String" id="element2" /></field><field
+      type="System.Collections.Generic.List" id="_graphTags" elementtype="System.String"
+      /><field value="0.01" type="System.Single" id="_maxSlope" /><field value="0"
+      type="System.Single" id="_walkableHeight" /><field value="1.7" type="System.Single"
+      id="_walkableRadius" /><field value="0" type="System.Single" id="_stepHeight"
+      /><field value="0.2" type="System.Single" id="_cellSize" /><field value="0.01"
       type="System.Single" id="_maxVertexError" /><field type="RAIN.Navigation.NavMesh.NavMeshPathGraph"
       reference="1" id="_graph" /></reference><reference type="RAIN.Navigation.NavMesh.NavMeshPathGraph"
       refcount="1" id="1" customdata="0" /></references></component>
