@@ -19,30 +19,36 @@ MonoBehaviour:
       usepriorities=&quot;False&quot; repeatuntil=&quot;&quot; priority=&quot;&quot;
       name=&quot;move sequencer&quot; debugbreak=&quot;False&quot;&gt;&lt;parallel
       tiebreaker=&quot;fail&quot; succeed=&quot;any&quot; repeatuntil=&quot;success&quot;
-      priority=&quot;&quot; name=&quot;parallel&quot; fail=&quot;all&quot; debugbreak=&quot;False&quot;&gt;&lt;selector
-      usepriorities=&quot;False&quot; repeatuntil=&quot;running&quot; name=&quot;selector&quot;
-      debugbreak=&quot;False&quot;&gt;&lt;action repeatuntil=&quot;&quot; priority=&quot;&quot;
+      priority=&quot;&quot; name=&quot;parallel&quot; fail=&quot;all&quot; debugbreak=&quot;False&quot;&gt;&lt;priority
+      repeatuntil=&quot;&quot; refreshrate=&quot;0.1&quot; name=&quot;selector&quot;
+      debugbreak=&quot;False&quot;&gt;&lt;detect startingpriority=&quot;&quot; sensor=&quot;&amp;quot;Visual
+      Sensor&amp;quot;&quot; runningpriority=&quot;&quot; repeatuntil=&quot;&quot;
+      name=&quot;detect&quot; matchtype=&quot;best&quot; entityobjectvariable=&quot;FormVar&quot;
+      debugbreak=&quot;False&quot; consistent=&quot;True&quot; aspectvariable=&quot;aspVar&quot;
+      aspectobjectvariable=&quot;mountPoint&quot; aspect=&quot;&amp;quot;Aspect0&amp;quot;&quot;
+      /&gt;&lt;action startingpriority=&quot;&quot; runningpriority=&quot;&quot; repeatuntil=&quot;&quot;
       parametervalues=&quot;&quot; parameters=&quot;&quot; namespace=&quot;&quot;
       name=&quot;clear&quot; debugbreak=&quot;False&quot; classname=&quot;clearPath&quot;
-      /&gt;&lt;constraint repeatuntil=&quot;&quot; priority=&quot;&quot; name=&quot;noPath
-      == true&quot; debugbreak=&quot;False&quot; constraint=&quot;noPath == true&quot;&gt;&lt;sequencer
-      usepriorities=&quot;False&quot; repeatuntil=&quot;&quot; name=&quot;sequencer&quot;
-      debugbreak=&quot;False&quot;&gt;&lt;move turnspeed=&quot;&quot; repeatuntil=&quot;&quot;
-      priority=&quot;&quot; name=&quot;move&quot; movetarget=&quot;tempTarget&quot;
-      movespeed=&quot;&quot; facetarget=&quot;&quot; debugbreak=&quot;False&quot;
-      closeenoughdistance=&quot;&quot; closeenoughangle=&quot;&quot; /&gt;&lt;expression
-      returnvalue=&quot;success&quot; repeatuntil=&quot;&quot; priority=&quot;&quot;
-      name=&quot;expression&quot; expression=&quot;noPath = false&quot; debugbreak=&quot;False&quot;
-      /&gt;&lt;/sequencer&gt;&lt;/constraint&gt;&lt;/selector&gt;&lt;constraint repeatuntil=&quot;success&quot;
-      name=&quot;noPath == false&quot; debugbreak=&quot;False&quot; constraint=&quot;noPath
-      == false&quot;&gt;&lt;move turnspeed=&quot;&quot; repeatuntil=&quot;&quot; name=&quot;move
-      to target&quot; movetarget=&quot;myTarget&quot; movespeed=&quot;&quot; facetarget=&quot;&quot;
+      /&gt;&lt;constraint startingpriority=&quot;&quot; runningpriority=&quot;&quot;
+      repeatuntil=&quot;&quot; name=&quot;noPath == true&quot; debugbreak=&quot;False&quot;
+      constraint=&quot;noPath == true&quot;&gt;&lt;sequencer usepriorities=&quot;False&quot;
+      repeatuntil=&quot;&quot; name=&quot;sequencer&quot; debugbreak=&quot;False&quot;&gt;&lt;move
+      turnspeed=&quot;&quot; repeatuntil=&quot;&quot; priority=&quot;&quot; name=&quot;move&quot;
+      movetarget=&quot;tempTarget&quot; movespeed=&quot;&quot; facetarget=&quot;&quot;
       debugbreak=&quot;False&quot; closeenoughdistance=&quot;&quot; closeenoughangle=&quot;&quot;
-      /&gt;&lt;/constraint&gt;&lt;/parallel&gt;&lt;/sequencer&gt;&lt;move turnspeed=&quot;&quot;
-      repeatuntil=&quot;&quot; priority=&quot;&quot; name=&quot;move&quot; movetarget=&quot;&quot;
-      movespeed=&quot;&quot; facetarget=&quot;viewTarget&quot; debugbreak=&quot;False&quot;
-      closeenoughdistance=&quot;&quot; closeenoughangle=&quot;&quot; /&gt;&lt;/sequencer&gt;&lt;/behaviortree&gt;"
-      type="System.String" id="treeData" /><field type="System.Array" id="treeBindings"
-      elementtype="System.String" /></fields><references /></scriptableobject>
+      /&gt;&lt;expression returnvalue=&quot;success&quot; repeatuntil=&quot;&quot;
+      priority=&quot;&quot; name=&quot;expression&quot; expression=&quot;noPath =
+      false&quot; debugbreak=&quot;False&quot; /&gt;&lt;/sequencer&gt;&lt;/constraint&gt;&lt;/priority&gt;&lt;constraint
+      repeatuntil=&quot;success&quot; name=&quot;noPath == false&quot; debugbreak=&quot;False&quot;
+      constraint=&quot;noPath == false&quot;&gt;&lt;move turnspeed=&quot;&quot; repeatuntil=&quot;&quot;
+      name=&quot;move to target&quot; movetarget=&quot;myTarget&quot; movespeed=&quot;&quot;
+      facetarget=&quot;&quot; debugbreak=&quot;False&quot; closeenoughdistance=&quot;&quot;
+      closeenoughangle=&quot;&quot; /&gt;&lt;/constraint&gt;&lt;/parallel&gt;&lt;/sequencer&gt;&lt;move
+      turnspeed=&quot;&quot; repeatuntil=&quot;&quot; priority=&quot;&quot; name=&quot;move&quot;
+      movetarget=&quot;&quot; movespeed=&quot;&quot; facetarget=&quot;viewTarget&quot;
+      debugbreak=&quot;False&quot; closeenoughdistance=&quot;&quot; closeenoughangle=&quot;&quot;
+      /&gt;&lt;/sequencer&gt;&lt;/behaviortree&gt;" type="System.String" id="treeData"
+      /><field type="System.Array" id="treeBindings" elementtype="System.String" /></fields><references
+      /></scriptableobject>
     _serializedGameObjects: []
     _serializedCustomData: []
