@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour {
 
    public bool profileOnClickIsOn;
     //---------------------------
+   public ArrowIndicator tutoArrow;
    public bool tutoIsOn;
    public bool tutoMoveLock=true, tutoHatarakeLock=true;
    public bool cameraLookingForCoffee, fetchingCoffee, cameraLookingForElevator, goingToElevator,
@@ -119,6 +120,8 @@ public class GameManager : MonoBehaviour {
                     //TUTO NEXT 
                     fetchingCoffee = true;
 
+                    tutoArrow.gameObject.SetActive(true);
+                    tutoArrow.target = coffeeTable;
                 }
             }
 
@@ -129,6 +132,7 @@ public class GameManager : MonoBehaviour {
                 if (distance.magnitude < 5)
                 {
                     //print("coffee fetched");
+                    tutoArrow.gameObject.SetActive(false);
                     fetchingCoffee = false;
                     bossLock(true, true);
                     tutoDeliciousCoffeeButton.gameObject.SetActive(true);
@@ -146,6 +150,8 @@ public class GameManager : MonoBehaviour {
                     //TUTO NEXT 
                     goingToElevator = true;
 
+                    tutoArrow.gameObject.SetActive(true);
+                    tutoArrow.target = elevator;
                 }
             }
             if (goingToElevator)
@@ -154,6 +160,7 @@ public class GameManager : MonoBehaviour {
                 Vector3 distance = boss.transform.position - elevator.transform.position;
                 if (distance.magnitude < 5)
                 {
+                    tutoArrow.gameObject.SetActive(false);
                     //print("at elevator");
                     goingToElevator = false;
                     tutoNobodyHereButton.gameObject.SetActive(true);
@@ -191,6 +198,8 @@ public class GameManager : MonoBehaviour {
                     //TUTO NEXT 
                     tutoFreshMeatButton.gameObject.SetActive(true);
                     bossLock(true, true);
+                    tutoArrow.gameObject.SetActive(true);
+                    tutoArrow.target = this.gameObject.GetComponent<CharacterManager>().boxies[0];
                 }
             }
             if (profileLookedAt)
@@ -215,6 +224,7 @@ public class GameManager : MonoBehaviour {
 
             if (employeeHataraked)
             {
+                tutoArrow.gameObject.SetActive(false);
                 employeeHataraked = false;
                 cameraController.dampTime = 0;
                 cameraController.FollowEmployee(this.gameObject.GetComponent<CharacterManager>().boxies[0], 100,0);
@@ -256,12 +266,16 @@ public class GameManager : MonoBehaviour {
             {
                 if (boss.GetComponent<Boss>().moveLocked)
                 {
+                    tutoArrow.gameObject.SetActive(true);
+                    tutoArrow.target = coffeeTable;
                     coffeeBreak.GetComponent<BreakableFurniture>().FullRepair();
                     boss.GetComponent<Boss>().moveLocked = false;
                 }
             }
             if (shitBroken)
             {
+
+                tutoArrow.gameObject.SetActive(false);
                 shitBroken = false;
                 goingToBreakShit = false;
                 tutoSweetDestruction.gameObject.SetActive(true);
@@ -422,6 +436,8 @@ public class GameManager : MonoBehaviour {
     }
     public void TutoHiringTimeClick()
     {
+        tutoArrow.gameObject.SetActive(true);
+        tutoArrow.target = phone;
         goingToPhone = true;
         bossLock(false, true);
     }

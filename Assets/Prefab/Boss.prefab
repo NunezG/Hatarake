@@ -1966,6 +1966,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 289121e1da371764fad40df6d5c4fccd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotationInitial: {x: 0, y: 0, z: 0, w: 0}
+  boss: {fileID: 0}
+  target: {fileID: 0}
 --- !u!114 &11418484
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2024,7 +2027,7 @@ MonoBehaviour:
   onCoolDown: 0
   maxLoudness: 40
   enumLock: 0
-  hatarakeTime: 1
+  hatarakeTime: .5
 --- !u!114 &11454414
 MonoBehaviour:
   m_ObjectHideFlags: 1
