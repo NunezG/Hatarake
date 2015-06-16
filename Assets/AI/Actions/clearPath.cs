@@ -9,8 +9,8 @@ using RAIN.Navigation;
 [RAINAction]
 public class clearPath : RAINAction
 {
-    bool tempDeviation = false;
-    int countDeviation;
+   // bool tempDeviation = false;
+   // int countDeviation;
     Vector3 tempTarget;
 
     public override void Start(RAIN.Core.AI ai)
@@ -26,20 +26,28 @@ public class clearPath : RAINAction
         {
             int randDir = Random.Range(0,2);
            if (randDir == 0)
-               tempTarget = ai.Body.transform.position + ai.Body.transform.TransformDirection(Vector3.left) * 4 + ai.Body.transform.TransformDirection(Vector3.forward);
-           else tempTarget = ai.Body.transform.position + ai.Body.transform.TransformDirection(Vector3.right) * 4 + ai.Body.transform.TransformDirection(Vector3.forward);
+               tempTarget = ai.Body.transform.position + ai.Body.transform.TransformDirection(Vector3.left) * 3 + ai.Body.transform.TransformDirection(Vector3.forward);
+           else tempTarget = ai.Body.transform.position + ai.Body.transform.TransformDirection(Vector3.right) * 3 + ai.Body.transform.TransformDirection(Vector3.forward);
 
-           ai.WorkingMemory.SetItem("noPath", true);
+           if (CheckPositionOnNavMesh(tempTarget, ai))
+          {
+               ai.WorkingMemory.SetItem("tempTarget", tempTarget);
+               ai.WorkingMemory.SetItem("noPath", true);
+           }
 
-            ai.Motor.MoveTo(tempTarget);
+       //    else Debug.Log("NO GOOD TARGET");
 
-            tempDeviation = true;
-            countDeviation = 10;
-            return ActionResult.RUNNING;
+           // ai.Motor.MoveTo(tempTarget);
+
+            //tempDeviation = true;
+           // countDeviation = 10;
+            return ActionResult.FAILURE;
         }
-        else if (tempDeviation)
+       /* else if (tempDeviation)
         {
-            ai.Motor.MoveTo(tempTarget);
+           // ai.WorkingMemory.SetItem("tempTarget", tempTarget); 
+
+           // ai.Motor.MoveTo(tempTarget);
             countDeviation--;
             if (countDeviation == 0)
             {
@@ -48,14 +56,26 @@ public class clearPath : RAINAction
                 ai.WorkingMemory.SetItem("noPath", false);
 
                 tempDeviation = !tempDeviation;
-                return ActionResult.SUCCESS;
+                return ActionResult.FAILURE;
             }
             else
                 return ActionResult.RUNNING;
         }
-
-        return ActionResult.SUCCESS;
+        */
+       //ai.WorkingMemory.SetItem("noPath", false);
+       return ActionResult.SUCCESS;
     }
+
+
+    private bool CheckPositionOnNavMesh(Vector3 loc, AI ai)
+    {
+        RAIN.Navigation.Pathfinding.RAINPath myPath = null;
+        if (ai.Navigator.GetPathTo(loc, 10, true, out myPath))
+            return true;
+
+        return false;
+    }
+
 
     public override void Stop(RAIN.Core.AI ai)
     {

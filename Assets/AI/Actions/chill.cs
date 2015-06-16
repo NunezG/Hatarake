@@ -30,7 +30,7 @@ public class chill : RAINAction
      
         target = ai.WorkingMemory.GetItem<GameObject>("myTarget");
 
-        if (target.tag == "Corridor")
+        if (ai.WorkingMemory.GetItem<bool>("wander"))
         {
             animator.SetBool("cellphone", true);
 
@@ -127,7 +127,7 @@ public class chill : RAINAction
     public override void Stop(RAIN.Core.AI ai)
     {           
         //ai.WorkingMemory.SetItem("motivation", motivation);
-        if (target.tag == "Corridor")
+        if (ai.WorkingMemory.GetItem<bool>("wander"))
         {
             animator.SetBool("cellphone", false);
 
