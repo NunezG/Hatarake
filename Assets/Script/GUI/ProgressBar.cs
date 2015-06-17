@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class ProgressBar : MonoBehaviour {
 
     public Texture progressForeground,progressBackground,progressCursor;
-    public Texture waitScreen;
+    public MovieTexture waitScreen;
 	public GameObject qiBar;
 	public Sprite[] qiBarSteps;
    // public GameObject boss = null;
@@ -14,7 +14,8 @@ public class ProgressBar : MonoBehaviour {
     public float poutPoutFrequence = 1f;
     void Start()
     {
-
+        waitScreen.Play();
+        GetComponentInChildren<AudioSource>().Play();
     }
 
     void Update()
@@ -26,9 +27,10 @@ public class ProgressBar : MonoBehaviour {
     void OnGUI()
     {
 
-        if (!NavMesh.isNavMeshDone)
+        if (waitScreen.isPlaying)
         {
-            GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), waitScreen);
+        //  GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), waitScreen);
+           
         }
         else if (GameManager.instance.displayProgressionBar)/*GameManager.instance.workingIsActuallyUsefull*/
         {
