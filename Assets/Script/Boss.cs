@@ -157,7 +157,7 @@ public class Boss : MonoBehaviour {
             }
         }
        
-        if (Input.GetMouseButtonUp(0) && !charge && !moveLocked)
+        if (Input.GetMouseButton(0) && !charge && !moveLocked)
         {
             pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             //pos.y = transform.position.y;
@@ -173,7 +173,7 @@ public class Boss : MonoBehaviour {
             {
                 if (tNav.OnGraph(pos, 0))
                 {
-                    tMemory.SetItem("sabotage", false);
+                    //tMemory.SetItem("sabotage", false);
                     setTarget(pos);
             
                 }               
