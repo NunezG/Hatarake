@@ -1714,7 +1714,7 @@ MonoBehaviour:
       type="RAIN.Motion.MecanimMotor" refcount="1" id="3"><field value="10" type="System.Single"
       id="_speed" /><field value="500" type="System.Single" id="_rotationSpeed" /><field
       value="0.1" type="System.Single" id="_closeEnoughDistance" /><field value="1"
-      type="System.Single" id="_closeEnoughAngle" /><field value="1000" type="System.Single"
+      type="System.Single" id="_closeEnoughAngle" /><field value="50" type="System.Single"
       id="_faceBeforeMoveAngle" /><field value="0" type="System.Single" id="_stepUpHeight"
       /><field value="False" type="System.Boolean" id="_allow3DMovement" /><field
       value="False" type="System.Boolean" id="_allow3DRotation" /><field value="False"
