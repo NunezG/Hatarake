@@ -5,7 +5,7 @@ public class IntroManager : MonoBehaviour {
 
     GameObject EncartsLogos;
 
-    public float fadeSpeed = 0.2f;          // Speed that the screen fades to and from black.
+    public float fadeSpeed = 0.4f;          // Speed that the screen fades to and from black.
     public bool sceneEnding = false;      // Whether or not the scene is still fading in.
     Color tempColor;
     public MovieTexture waitScreen;
@@ -63,9 +63,9 @@ public class IntroManager : MonoBehaviour {
 
             GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), waitScreen);
            // GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), waitScreen);
-
+            temp += Time.deltaTime;
         }
-        temp += Time.deltaTime;
+       
     }
 
     public void StartScene()

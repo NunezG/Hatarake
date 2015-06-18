@@ -108,8 +108,8 @@ public class chill : RAINAction
         else
         {
             //Motivation augmente si machine cassee, Fatigue augmente         
-            employe.motivation += employe.effetEngueulement * employe.fatigueSiCasse;
-            employe.fatigue +=  employe.effetEngueulement * employe.fatigueSiCasse;
+            employe.motivation += employe.effetEngueulement;
+            employe.fatigue +=  employe.effetEngueulement;
 
             //Au travail!
             if (employe.motivation >= (int)employe.motivationMax)
