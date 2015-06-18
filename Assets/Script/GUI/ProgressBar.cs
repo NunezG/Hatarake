@@ -5,40 +5,38 @@ using UnityEngine.UI;
 public class ProgressBar : MonoBehaviour {
 
     public Texture progressForeground,progressBackground,progressCursor;
-    public Texture waitScreen;
+   // public MovieTexture waitScreen;
 	public GameObject qiBar;
 	public Sprite[] qiBarSteps;
    // public GameObject boss = null;
     public float time = 0;
     public float poutPoutAmplitude = 0.1f;
     public float poutPoutFrequence = 1f;
+
+    Color tempColor;
+
     void Start()
     {
-
+     
     }
 
     void Update()
     {
-			DrawYellingOMeter();    
+			   
     }
 
 
     void OnGUI()
     {
 
-        if (!NavMesh.isNavMeshDone)
+        if (GameManager.instance.displayProgressionBar)/*GameManager.instance.workingIsActuallyUsefull*/
         {
-            GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), waitScreen);
-        }
-        else if (GameManager.instance.displayProgressionBar)/*GameManager.instance.workingIsActuallyUsefull*/
-        {
+            DrawYellingOMeter(); 
             DrawProgressObjective(GameManager.instance.objectiveCompletion / GameManager.instance.levelObjective);
             //if (GameManager.instance.GetComponent<CharacterManager>().GetTotalNumberOfBoxies() != 0)
                 //DrawNumberOfWorkingEmploye(GameManager.instance.GetComponent<CharacterManager>().GetNumberOfWorkingBoxies(), GameManager.instance.GetComponent<CharacterManager>().GetTotalNumberOfBoxies());
         }
-        else
-        {
-        }
+    
     
     }
 

@@ -337,6 +337,7 @@ public class Employe : MonoBehaviour {
 	// Use this for initialization
 	public void Suicide (){
 
+        this.gameObject.GetComponent<Rigidbody>().isKinematic = true;
         //tMemory.GetItem("suicidaire"); 
         GameObject window = tMemory.GetItem<GameObject>("myTarget");
         //window.transform.Find("tache").gameObject.SetActive(true);

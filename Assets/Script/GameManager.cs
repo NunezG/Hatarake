@@ -76,24 +76,14 @@ public class GameManager : MonoBehaviour {
 		DontDestroyOnLoad(gameObject);
 		
 		//Call the InitGame function to initialize the first level 
-		InitGame();
+		//InitGame();
 	}
 
 	// Use this for initialization
     void Start()
     {
        // StartCoroutine(gameObject.GetComponent<NavMesh>().GenerateNavmesh());
-        if (tutoIsOn)
-        {
-            //bossLock(true, true);
-            tutoFirstButton.gameObject.SetActive(true);
-            profileOnClickIsOn = false;
-        }
-        else
-        {
-            workingIsActuallyUsefull = true;
-            profileOnClickIsOn = true;
-        }
+       
         canvaEmbauche.SetActive(false);
 
 	}
@@ -119,7 +109,6 @@ public class GameManager : MonoBehaviour {
                     cameraLookingForCoffee = false;
                     //TUTO NEXT 
                     fetchingCoffee = true;
-
                     tutoArrow.gameObject.SetActive(true);
                     tutoArrow.target = coffeeTable;
                 }
@@ -596,8 +585,20 @@ public class GameManager : MonoBehaviour {
     }
 	public void InitGame()
 	{
+        if (tutoIsOn)
+        {
+            //bossLock(true, true);
+            tutoFirstButton.gameObject.SetActive(true);
+            profileOnClickIsOn = false;
+        }
+        else
+        {
+            workingIsActuallyUsefull = true;
+            profileOnClickIsOn = true;
+        }
 
-		gameObject.GetComponent<LevelManager>().BeginGame();
+
+        gameObject.GetComponent<LevelManager>().RestartGame();
         
         // NavMesh ready ???
         StartCoroutine(navMeshCheck());
@@ -616,6 +617,8 @@ public class GameManager : MonoBehaviour {
 		}
         Destroy(this.GetComponent<AudioListener>());
 		gameObject.GetComponent<CharacterManager>().Spawn();
+        
 	}
+
 
 }
