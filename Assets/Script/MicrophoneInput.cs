@@ -20,13 +20,18 @@ public class MicrophoneInput : MonoBehaviour
         GetComponent<AudioSource>().mute = true; // Mute the sound, we don't want the player to hear it
         while (!(Microphone.GetPosition(null) > 0)) { } // Wait until the recording has started
         GetComponent<AudioSource>().Play(); // Play the audio source!
+
+
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        loudness = GetAveragedVolume() * sensitivity;
+        if (true)//!GameManager.instance.boss.GetComponent<Boss>().ongoingHatarakading
+        {
+            loudness = GetAveragedVolume() * sensitivity;
 
-        frequency = GetFundamentalFrequency();
+            frequency = GetFundamentalFrequency();
+        }
     }
 
     float GetAveragedVolume()

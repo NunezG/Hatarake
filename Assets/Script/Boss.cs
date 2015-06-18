@@ -134,7 +134,7 @@ public class Boss : MonoBehaviour {
     public float seuilHatarake;
     public bool onCoolDown = false;
     float coolDownTickTime = 0;
-    float coolDownTickThreshold = 0.5f;
+    float coolDownTickThreshold = 0.125f;
     public float maxLoudness = 40;
 	void Update () {
 

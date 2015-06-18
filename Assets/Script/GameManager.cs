@@ -567,6 +567,8 @@ public class GameManager : MonoBehaviour {
         bossLock(false, false);
 
         ringingPhone = true;
+        tutoArrow.gameObject.SetActive(true);
+        tutoArrow.target = phone;
 
             if (levelObjective == 10) levelObjective = 50;
             levelObjective = levelObjective * objectiveIncreaseFactor;

@@ -88,6 +88,7 @@ public class Office : MonoBehaviour
         createCorridorRoom();
         unlockCells();
         placingFurnituresInOffice();
+        //printGridLockState();
         for (int i = 0; i < size; i++)
             for (int j = 0; j < size; j++)
                 Create3DCell(i, j);
@@ -128,7 +129,28 @@ public class Office : MonoBehaviour
 
     public bool placingFurniture(Cell cell, FurnitureType type)
     {
-        if (cell.locked) return false;
+        if (cell.locked ||cell.furnitures.Count>0) return false;
+
+        if (type == FurnitureType.Photocopier || type == FurnitureType.VendingMachine)
+        {
+            if (cell.posX > 0 && grid[cell.posX - 1, cell.posY].furnitures.Count >0 && (grid[cell.posX - 1, cell.posY].furnitures[0].type == FurnitureType.Photocopier || grid[cell.posX - 1, cell.posY].furnitures[0].type == FurnitureType.VendingMachine))
+            {
+                return false;
+            }
+            if (cell.posX < size - 1 && grid[cell.posX + 1, cell.posY].furnitures.Count > 0 && (grid[cell.posX + 1, cell.posY].furnitures[0].type == FurnitureType.Photocopier || grid[cell.posX + 1, cell.posY].furnitures[0].type == FurnitureType.VendingMachine))
+            {
+                return false;
+            }
+            if (cell.posY < size - 1 && grid[cell.posX , cell.posY+1].furnitures.Count > 0 && (grid[cell.posX, cell.posY + 1].furnitures[0].type == FurnitureType.Photocopier || grid[cell.posX, cell.posY + 1].furnitures[0].type == FurnitureType.VendingMachine))
+            {
+                return false;
+            }
+            if (cell.posY > 0 && grid[cell.posX , cell.posY-1].furnitures.Count > 0 && (grid[cell.posX, cell.posY - 1].furnitures[0].type == FurnitureType.Photocopier || grid[cell.posX, cell.posY - 1].furnitures[0].type == FurnitureType.VendingMachine))
+            {
+                return false;
+            }
+        }
+
         bool furniturePlaced = true;
         bool againstAWall, oppositeToDoor, whatever, notOnDoorCell;
         List<Orientation> possibleOrientation = new List<Orientation>();
@@ -154,7 +176,7 @@ public class Office : MonoBehaviour
                 notOnDoorCell = whatever = true;
                 break;
             case FurnitureType.Photocopier:
-                againstAWall = true;
+                notOnDoorCell=againstAWall = true;
                 break;
             case FurnitureType.Toilet:
                 againstAWall = oppositeToDoor = true;
@@ -208,6 +230,7 @@ public class Office : MonoBehaviour
         }
         int rdmOrientationIndex = UnityEngine.Random.Range(0, possibleOrientation.Count); // on en tire un au hasard
         cell.furnitures.Add(new Furniture(cell.posX, cell.posY, type, possibleOrientation[rdmOrientationIndex]));
+        cell.locked = true;
         //print(type + ", placed :" + furniturePlaced);
         return furniturePlaced;
     }
@@ -285,7 +308,15 @@ public class Office : MonoBehaviour
                 }*/
                 //---------------
                 furniturePlaced = placingFurniture(room.cells[rdmCellIndex], roomFurnitures[rdmFurnitureIndex]);
-                room.cells[rdmCellIndex].locked = true;
+
+                if (roomFurnitures[rdmFurnitureIndex] == FurnitureType.Photocopier)
+                {
+                    //print("furniture place : " + furniturePlaced + " , randomIndexBagForCells.Count : " + randomIndexBagForCells.Count);
+                }
+                if (furniturePlaced)
+                    room.cells[rdmCellIndex].locked = true;
+
+
 
                 //if (furniturePlaced) print(roomFurnitures[rdmFurnitureIndex] + " successfully placed in cell" + room.cells[rdmCellIndex].posX + ":" + room.cells[rdmCellIndex].posY);
                 //else print(" failed to place " + roomFurnitures[rdmFurnitureIndex] + "in cell" + room.cells[rdmCellIndex].posX + ":" + room.cells[rdmCellIndex].posY);
@@ -294,6 +325,24 @@ public class Office : MonoBehaviour
         }
         if (nbFurnituresPlaced == roomFurnitures.Count) return true;
         else return false;
+    }
+
+    public void printGridLockState()
+    {
+        print("------------------------");
+        print("     | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | ");
+        for (int i = 0; i < size; i++)
+        {
+            string str = i+" : | ";
+            for (int j = 0; j < size; j++)
+            {
+                int b = 0;
+                if (grid[i, j].locked) b = 1;
+                str =  str +b + " | ";
+            }
+            print(str);
+        }
+        print("------------------------");
     }
 
     public void placingCoffeeRoomFurniture(Room room)
@@ -475,7 +524,7 @@ public class Office : MonoBehaviour
 
             obstacles.Add(newNorthWall);
         }
-        else if (grid[x, z].doorNorth && grid[x, z].type != RoomType.Box)
+        else if (grid[x, z].doorNorth && grid[x, z].type != RoomType.Box && grid[x, z - 1].type != RoomType.Box)
         {
             GameObject newNorthDoor = Instantiate(DoorPrefab) as GameObject;
             newNorthDoor.name = "NorthDoor " + x + ", " + z;
@@ -496,7 +545,7 @@ public class Office : MonoBehaviour
             //-------------------
             obstacles.Add(newSouthWall);
         }
-        else if (grid[x, z].doorSouth && grid[x, z].type != RoomType.Box)
+        else if (grid[x, z].doorSouth && grid[x, z].type != RoomType.Box && grid[x, z+1].type != RoomType.Box)
         {
             GameObject newSouthDoor = Instantiate(DoorPrefab) as GameObject;
             newSouthDoor.name = "SouthDoor " + x + ", " + z;
@@ -520,7 +569,7 @@ public class Office : MonoBehaviour
             //-------------------
             obstacles.Add(newEastWall);
         }
-        else if (grid[x, z].doorEast && grid[x, z].type != RoomType.Box)
+        else if (grid[x, z].doorEast && grid[x, z].type != RoomType.Box && grid[x+1, z].type != RoomType.Box)
         {
             GameObject newEastDoor = Instantiate(DoorPrefab) as GameObject;
             newEastDoor.name = "EastDoor " + x + ", " + z;
@@ -542,7 +591,7 @@ public class Office : MonoBehaviour
             //-------------------
             obstacles.Add(newWestWall);
         }
-        else if (grid[x, z].doorWest && grid[x, z].type != RoomType.Box)
+        else if (grid[x, z].doorWest && grid[x, z].type != RoomType.Box && grid[x-1, z].type != RoomType.Box)
         {
             GameObject newWestDoor = Instantiate(DoorPrefab) as GameObject;
             newWestDoor.name = "WestDoor " + x + ", " + z;
@@ -660,6 +709,7 @@ public class Office : MonoBehaviour
         grid[4, 0].wallSouth = false;
         grid[4, 0].doorSouth = true;
         grid[4, 1].wallNorth = false;
+        grid[4, 1].doorNorth = true;
     }
 
     public bool placeRoom(int width, int height, RoomType type)
@@ -719,9 +769,10 @@ public class Office : MonoBehaviour
             if (xDoor == xRoom + width)
             { //si la porte se trouve a l'est
                 grid[xDoor - 1, yDoor].wallEast = false;// on enleve le mur est de sa case ouest
-                grid[xDoor - 1, yDoor].doorEast = true;// on ajoute la porte de sa case ouest
+                grid[xDoor - 1, yDoor].doorEast = true;// on ajoute la porte est de sa case ouest
 
                 grid[xDoor, yDoor].wallWest = false;// on enleve son mur ouest, pas propre, pour mobilier couloir, a revoir
+                grid[xDoor, yDoor].doorWest = true;// on ajoute sa porte ouest
 
             }
             if (xDoor < xRoom)
@@ -729,14 +780,17 @@ public class Office : MonoBehaviour
                 grid[xDoor + 1, yDoor].wallWest = false;// on enleve le mur ouest de sa case est
                 grid[xDoor + 1, yDoor].doorWest = true;// on ajoute la porte ouest de sa case est
 
-                grid[xDoor, yDoor].wallEast = false;// on enleve son mur ouest, pas propre, pour mobilier couloir, a revoir
+                grid[xDoor, yDoor].wallEast = false;// on enleve son mur est, pas propre, pour mobilier couloir, a revoir
+                grid[xDoor, yDoor].doorEast = true;// on sa porte est
+
             }
             if (yDoor == yRoom + height)
             { //si la porte se trouve au sud
                 grid[xDoor, yDoor - 1].wallSouth = false;// on enleve le mur sud de sa case nord
                 grid[xDoor, yDoor - 1].doorSouth = true;// on ajoute la porte sud de sa case nord
 
-                grid[xDoor, yDoor].wallNorth = false;// on enleve son mur ouest, pas propre, pour mobilier couloir, a revoir
+                grid[xDoor, yDoor].wallNorth = false;// on enleve son mur nord, pas propre, pour mobilier couloir, a revoir
+                grid[xDoor, yDoor].doorNorth = true;// on ajoute une porte nord
 
             }
             if (yDoor < yRoom)
@@ -744,7 +798,8 @@ public class Office : MonoBehaviour
                 grid[xDoor, yDoor + 1].wallNorth = false;// on enleve le mur nord de sa case sud
                 grid[xDoor, yDoor + 1].doorNorth = true;// on ajoute la porte nord de sa case sud
 
-                grid[xDoor, yDoor].wallSouth = false;// on enleve son mur ouest, pas propre, pour mobilier couloir, a revoir
+                grid[xDoor, yDoor].wallSouth = false;// on enleve son mur sud, pas propre, pour mobilier couloir, a revoir
+                grid[xDoor, yDoor].doorSouth = true;// on ajoute une porte sud
             }
             roomForTheRoom = true;
         }

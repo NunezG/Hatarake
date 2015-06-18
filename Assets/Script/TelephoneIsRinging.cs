@@ -33,6 +33,7 @@ public class TelephoneIsRinging : MonoBehaviour {
             GameManager.instance.ringingPhone = false;
             ringring.Stop();
             pickUp.Play();
+            GameManager.instance.tutoArrow.gameObject.SetActive(false);
             if (!GameManager.instance.tutoIsOn)
             {/*
                 GameManager.instance.hiringTime = true;
