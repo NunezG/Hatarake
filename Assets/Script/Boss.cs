@@ -54,16 +54,8 @@ public class Boss : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         
-       // gameManager = GameObject.Find("GameManager");
-        if (GameManager.instance.tutoIsOn)
-        {
-            moveLocked = hatarakeLocked = true ;
-        }
-        else
-        {
-            moveLocked = hatarakeLocked = false;
-        }
-
+        moveLocked = hatarakeLocked = true;
+        
 		AIRig aiRig = GetComponentInChildren<AIRig>();		
 		tMemory = aiRig.AI.WorkingMemory as RAIN.Memory.BasicMemory;
         tMotor = aiRig.AI.Motor as RAIN.Motion.MecanimMotor;

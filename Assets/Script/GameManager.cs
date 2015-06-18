@@ -119,7 +119,6 @@ public class GameManager : MonoBehaviour {
                     cameraLookingForCoffee = false;
                     //TUTO NEXT 
                     fetchingCoffee = true;
-
                     tutoArrow.gameObject.SetActive(true);
                     tutoArrow.target = coffeeTable;
                 }
@@ -608,12 +607,13 @@ public class GameManager : MonoBehaviour {
 	{		
 		//NavMesh navMesh = GetComponent<NavMesh> ();
 
-        while (!NavMesh.isNavMeshDone) 
+        while (!NavMesh.isNavMeshDone || !GetComponent<IntroManager>().sceneEnding) 
 		{
 			yield return new WaitForSeconds(1);
 		}
         Destroy(this.GetComponent<AudioListener>());
 		gameObject.GetComponent<CharacterManager>().Spawn();
+        
 	}
 
 }
