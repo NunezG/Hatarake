@@ -22,7 +22,7 @@ public class ProgressBar : MonoBehaviour {
 
     void Update()
     {
-			DrawYellingOMeter();    
+			   
     }
 
 
@@ -31,6 +31,7 @@ public class ProgressBar : MonoBehaviour {
 
         if (GameManager.instance.displayProgressionBar)/*GameManager.instance.workingIsActuallyUsefull*/
         {
+            DrawYellingOMeter(); 
             DrawProgressObjective(GameManager.instance.objectiveCompletion / GameManager.instance.levelObjective);
             //if (GameManager.instance.GetComponent<CharacterManager>().GetTotalNumberOfBoxies() != 0)
                 //DrawNumberOfWorkingEmploye(GameManager.instance.GetComponent<CharacterManager>().GetNumberOfWorkingBoxies(), GameManager.instance.GetComponent<CharacterManager>().GetTotalNumberOfBoxies());

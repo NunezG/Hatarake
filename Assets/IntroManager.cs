@@ -11,7 +11,9 @@ public class IntroManager : MonoBehaviour {
     public MovieTexture waitScreen;
     AudioSource audio;
     float temp = 0;
-    float startFading;
+    public float startFading;
+  //  public bool sceneStarting = false;      // Whether or not the scene is still fading in.
+
    
     void Awake()
     {
@@ -20,8 +22,7 @@ public class IntroManager : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
-        waitScreen.Play();
-        GetComponentInChildren<AudioSource>().Play();
+       
         tempColor = GUI.color;
        // Time.timeScale = 0;
 	}
@@ -37,6 +38,13 @@ public class IntroManager : MonoBehaviour {
        // StartCoroutine(fondu(Color.white, 10));
 	}
 
+    public void startButton()
+    {
+        GameObject.Find("MenuPanel").SetActive(false);
+        StartScene();
+       GameManager.instance.InitGame();
+    }
+
     void OnGUI()
     {
         if (temp >= startFading)
@@ -46,6 +54,9 @@ public class IntroManager : MonoBehaviour {
             // ... call the StartScene function.
             EndScene();
 
+       // if (sceneStarting)
+            // ... call the StartScene function.
+        //    StartScene();
 
         if (waitScreen.isPlaying)
         {
@@ -57,22 +68,27 @@ public class IntroManager : MonoBehaviour {
         temp += Time.deltaTime;
     }
 
-
-    void StartScene()
+    public void StartScene()
     {
+
+        Debug.Log("starrrt");
+
         // Fade the texture to clear.
        // FadeToClear();
 
         // If the texture is almost clear...
-        if (GUI.color.a <= 0.05f)
-        {
+       // if (GUI.color.a <= 0.05f)
+       // {
             // ... set the colour to clear and disable the GUITexture.
-         //   GUI.color = Color.clear;
+           // GUI.color = Color.clear;
            // GUI.enabled = false;
+            waitScreen.Play();
+            GetComponent<AudioSource>().Play();
 
             // The scene is no longer starting.
-           // sceneStarting = false;
-        }
+          //  sceneStarting = false;
+            
+       // }
     }
 
     public void EndScene()
@@ -86,7 +102,6 @@ public class IntroManager : MonoBehaviour {
 
         if (GUI.color.a <= 0.05f)
         {
-           // Time.timeScale = 1;
 
         }
 
@@ -100,6 +115,7 @@ public class IntroManager : MonoBehaviour {
 
     void FadeToClear()
     {
+
         // Set the texture so that it is the the size of the screen and covers it.
        // GUI.DrawTexture(new Rect(0f, 0f, Screen.width, Screen.height), new Texture());
         // Lerp the colour of the texture between itself and transparent.

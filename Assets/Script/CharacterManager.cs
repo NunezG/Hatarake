@@ -25,15 +25,16 @@ public class CharacterManager : MonoBehaviour {
     public void Start()
     {
         boss = (GameObject)Instantiate(bossPrefab);
-        boss.transform.localScale = boss.transform.localScale * gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.localScale.x;
         GameManager.instance.SetBoss(boss);
+
     }
 
 	public void Spawn()
 	{
         GameObject spawn = GameObject.Find("spawnBoss");
-		GameObject floor = GameObject.Find ("Office floor n0");			
-		
+		GameObject floor = GameObject.Find ("Office floor n0");
+
+        boss.transform.localScale = boss.transform.localScale * gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.localScale.x;
         boss.transform.position = gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.position;
         boss.transform.Translate(spawn.transform.position.x, boss.GetComponent<Collider>().bounds.extents.y, spawn.transform.position.z);
        
