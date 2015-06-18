@@ -9,7 +9,7 @@ public class LevelManager : MonoBehaviour {
 	private List<Office> officeFloors = new List<Office>();
 
     public int nbCoffeeRooms, nbBathRooms, nbBoxes,nbFloors;
-	public void BeginGame () {
+	private void BeginGame () {
         for (int i = 0; i < nbFloors; i++) {
             Office officeInstance = Instantiate(officePrefab) as Office;
             officeInstance.name = "Office floor n" + i;
@@ -32,7 +32,7 @@ public class LevelManager : MonoBehaviour {
         officeFloors.Add(officeInstance);
     }
 	
-	private void RestartGame () {
+	public void RestartGame () {
         for (int i = 0; i < officeFloors.Count;i++ )
             Destroy(officeFloors[i].gameObject);
 		BeginGame();
