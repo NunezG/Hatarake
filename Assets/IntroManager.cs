@@ -12,7 +12,7 @@ public class IntroManager : MonoBehaviour {
     AudioSource audio;
     float temp = 0;
     public float startFading;
-  //  public bool sceneStarting = false;      // Whether or not the scene is still fading in.
+    public bool sceneStarting = false;      // Whether or not the scene is still fading in.
 
    
     void Awake()
@@ -40,13 +40,24 @@ public class IntroManager : MonoBehaviour {
 
     public void startButton()
     {
-        GameObject.Find("MenuPanel").SetActive(false);
-        StartScene();
-       GameManager.instance.InitGame();
+        GameManager.instance.boss.transform.Find("hatarake_strong").GetComponent<AudioSource>().Play();
+        
+        StartCoroutine(GameObject.Find("MenuPanel").GetComponentInChildren<shake>().ShakeMyBooty());
+        sceneStarting = true;
+    
     }
 
     void OnGUI()
     {
+        if (sceneStarting && GameObject.Find("MenuPanel").GetComponentInChildren<shake>().shakingDuration == 0 && GameObject.Find("MenuPanel").GetComponentInChildren<shake>().shakingDuration == 0 && !GameManager.instance.boss.transform.Find("hatarake_strong").GetComponent<AudioSource>().isPlaying)
+        {
+            GameObject.Find("MenuPanel").SetActive(false);
+            StartScene();
+            GameManager.instance.InitGame();
+            sceneStarting = false;
+        }
+
+
         if (temp >= startFading)
             sceneEnding = true;
 
@@ -83,7 +94,7 @@ public class IntroManager : MonoBehaviour {
            // GUI.color = Color.clear;
            // GUI.enabled = false;
             waitScreen.Play();
-            GetComponent<AudioSource>().Play();
+       
 
             // The scene is no longer starting.
           //  sceneStarting = false;
