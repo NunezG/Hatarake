@@ -351,11 +351,13 @@ public class GameManager : MonoBehaviour {
 
             if (hiringTime && !ongoingHiring && nbEmployeeLeftToHire != 0)
             {
+                if (!Employe.suicideLock) Employe.suicideLock = true;
                 activateHiringRound();
                 bossLock(true, true);
             }
             else if (hiringTime && nbEmployeeLeftToHire == 0) // on a finit d'embaucher pour le nouvelle objectif
             {
+                Employe.suicideLock = false;
                 hiringTime = false;
                 workingIsActuallyUsefull = true;
                 time = 0;

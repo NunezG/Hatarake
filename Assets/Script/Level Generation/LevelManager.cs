@@ -32,7 +32,7 @@ public class LevelManager : MonoBehaviour {
         officeFloors.Add(officeInstance);
     }
 	
-	private void RestartGame () {
+	public void RestartGame () {
         for (int i = 0; i < officeFloors.Count;i++ )
             Destroy(officeFloors[i].gameObject);
 		BeginGame();
