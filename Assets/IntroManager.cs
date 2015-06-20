@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class IntroManager : MonoBehaviour {
 
@@ -11,13 +12,12 @@ public class IntroManager : MonoBehaviour {
     public MovieTexture waitScreen;
     AudioSource audio;
     float temp = 0;
-    public float startFading;
+    public float startFading = 20;
     public bool sceneStarting = false;      // Whether or not the scene is still fading in.
+    GameObject spawn = GameObject.Find("spawnBoss");
 
-   
     void Awake()
     {
-        //startFading = waitScreen.duration / 10.0f;
     }
     
 	// Use this for initialization
@@ -44,7 +44,6 @@ public class IntroManager : MonoBehaviour {
         
         StartCoroutine(GameObject.Find("MenuPanel").GetComponentInChildren<shake>().ShakeMyBooty());
         sceneStarting = true;
-    
     }
 
     void OnGUI()
@@ -57,33 +56,31 @@ public class IntroManager : MonoBehaviour {
             sceneStarting = false;
         }
 
-
-        if (temp >= startFading)
-            sceneEnding = true;
-
-        if (sceneEnding)
-            // ... call the StartScene function.
-            EndScene();
-
        // if (sceneStarting)
             // ... call the StartScene function.
         //    StartScene();
 
         if (waitScreen.isPlaying)
         {
+            if (sceneEnding)
+                // ... call the StartScene function.
+                EndScene();
 
-            //GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), waitScreen);
+            else if (Input.GetMouseButton(0) || temp >= startFading)
+            {
+                sceneEnding = true;
+            }
+
             GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), waitScreen, ScaleMode.StretchToFill, false);
-           // GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), waitScreen);
+            // GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), waitScreen);
             temp += Time.deltaTime;
         }
-       
     }
 
     public void StartScene()
     {
 
-        Debug.Log("start");
+        Debug.Log("starrrt");
 
         // Fade the texture to clear.
        // FadeToClear();
@@ -114,7 +111,8 @@ public class IntroManager : MonoBehaviour {
 
         if (GUI.color.a <= 0.05f)
         {
-
+            GameManager.instance.tutoFirstButton.GetComponent<Button>().interactable = true;
+            waitScreen.Stop();
         }
 
 
