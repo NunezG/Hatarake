@@ -589,6 +589,7 @@ public class GameManager : MonoBehaviour {
         {
             //bossLock(true, true);
             tutoFirstButton.gameObject.SetActive(true);
+            tutoFirstButton.GetComponent<Button>().interactable = false;
             profileOnClickIsOn = false;
         }
         else
