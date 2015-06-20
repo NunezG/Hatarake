@@ -73,7 +73,7 @@ public class BreakableFurnitureee : MonoBehaviour {
 
         if (damage >= resistance)
         {
-            transform.parent.GetComponentInChildren<SpriteRenderer>().sprite = brokenSprite;
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = brokenSprite;
 
             if (transform.parent.GetComponentInChildren<ParticleSystem>()!= null)
             transform.parent.GetComponentInChildren<ParticleSystem>().Play();
@@ -81,7 +81,12 @@ public class BreakableFurnitureee : MonoBehaviour {
             broken = true;
         }
     }
-
+    public void Break()
+    {
+        damage = resistance;
+        broken = true;
+        this.gameObject.GetComponent<SpriteRenderer>().sprite = brokenSprite;
+    }
 	public bool Repair()
 	{
         damage -= Random.Range(0, resistance);

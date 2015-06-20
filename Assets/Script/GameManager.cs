@@ -320,14 +320,16 @@ public class GameManager : MonoBehaviour {
             }
             else if (boss != null)
             {
-
+                /*
                 if (this.GetComponent<CharacterManager>().GetTotalNumberOfBoxies() == 20)
                 {
                     EndOfDemo.gameObject.SetActive(true);
                     bossLock(true, true);
                     workingIsActuallyUsefull = false;
                 }
-                else if (this.GetComponent<CharacterManager>().GetTotalNumberOfBoxies() == 7 && tutoBreakIsNotComplete){
+                else*/
+                if (this.GetComponent<CharacterManager>().GetTotalNumberOfBoxies() == 7 && tutoBreakIsNotComplete)
+                {
                     timeToStartBreakingShit = true;
                     tutoIsOn = true;
                 }
@@ -351,7 +353,6 @@ public class GameManager : MonoBehaviour {
 
             if (hiringTime && !ongoingHiring && nbEmployeeLeftToHire != 0)
             {
-                if (!Employe.suicideLock) Employe.suicideLock = true;
                 activateHiringRound();
                 bossLock(true, true);
             }

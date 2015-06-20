@@ -124,7 +124,6 @@ public class Employe : MonoBehaviour {
         }
         else if (distance.magnitude >= 15 && isAlreadyInRange) // si il en sort
         {
-
             isAlreadyInRange = false;
         }else if((suicideMemory  != tMemory.GetItem<bool>("suicidaire") ||
             moveMemory != tMemory.GetItem<bool>("enDeplacement") || workingMemory != tMemory.GetItem<bool>("auTravail")) )
@@ -345,10 +344,9 @@ public class Employe : MonoBehaviour {
         GameManager.instance.cameraController.FollowObjectAndShakeAtTheEnd(window, 140,20,0);
         GameManager.instance.GetComponent<CharacterManager>().sendBoxieToHell(this.gameObject);
 
-        window.GetComponent<Window>().playSuicide(data.isMale);
-
-            this.gameObject.SetActive(false);
-            suicideLock = false;
+        window.GetComponent<Window>().playSuicide(data.isMale, this.GetComponent<Employe>().data.hairColor, this.GetComponent<Employe>().data.topColor);
+        this.gameObject.SetActive(false);
+        suicideLock = false;
 	}
 
 }

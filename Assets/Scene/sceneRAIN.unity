@@ -1433,7 +1433,7 @@ MonoBehaviour:
   boxiePrefab: {fileID: 143746, guid: c7ee810d6529ba340916106e675eee8c, type: 2}
   decrasseurPrefab: {fileID: 119372, guid: a87ab07792d486b44a81726adf8069c2, type: 2}
   bossPrefab: {fileID: 111604, guid: 5134b76fd8d64f14aacdbb095f67182c, type: 2}
-  nombreBoxies: 0
+  nombreBoxies: 9
   nbDecrasseur: 0
   boxies: []
   decrasseurs: []
@@ -1465,6 +1465,7 @@ MonoBehaviour:
   fadeSpeed: .200000003
   sceneEnding: 0
   waitScreen: {fileID: 15200000, guid: 1b482489f522e9242ae25cc02be546d0, type: 3}
+  startFading: 30
   sceneStarting: 0
 --- !u!114 &268217654
 MonoBehaviour:
@@ -1590,7 +1591,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c59c655fe9ae54342b11c8f0557985cb, type: 3}
   time: 0
   poutPoutAmplitude: .0500000007
-  poutPoutFrequence: 20
+  poutPoutFrequence: 5
 --- !u!82 &268217657
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1729,6 +1730,7 @@ RectTransform:
   - {fileID: 2121349215}
   - {fileID: 331497635}
   - {fileID: 524748416}
+  - {fileID: 1104155031}
   - {fileID: 1428697963}
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -2233,7 +2235,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &350667196
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2276,7 +2278,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 21300000, guid: 72204811b24a15a4a8047278d32bfb56, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c59c655fe9ae54342b11c8f0557985cb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6352,6 +6354,39 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!1 &1104155030
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1104155031}
+  m_Layer: 5
+  m_Name: solarClock
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1104155031
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1104155030}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1639111203}
+  m_Father: {fileID: 295031079}
+  m_RootOrder: 7
+  m_AnchorMin: {x: .5, y: .5}
+  m_AnchorMax: {x: .5, y: .5}
+  m_AnchoredPosition: {x: 0, y: -188.899994}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: .5, y: .5}
 --- !u!1 &1107030820
 GameObject:
   m_ObjectHideFlags: 0
@@ -8245,7 +8280,7 @@ RectTransform:
   - {fileID: 222875491}
   - {fileID: 1233465854}
   m_Father: {fileID: 295031079}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -9447,6 +9482,67 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1614155976}
+--- !u!1 &1639111202
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1639111203}
+  - 222: {fileID: 1639111205}
+  - 114: {fileID: 1639111204}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1639111203
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1639111202}
+  m_LocalRotation: {x: 0, y: 0, z: .707106829, w: .707106709}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1104155031}
+  m_RootOrder: 0
+  m_AnchorMin: {x: .5, y: .5}
+  m_AnchorMax: {x: .5, y: .5}
+  m_AnchoredPosition: {x: -98.6999969, y: 7.30000019}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: .5, y: .5}
+--- !u!114 &1639111204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1639111202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 10779cdadef0bc342a22eb534e1acc29, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &1639111205
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1639111202}
 --- !u!1 &1640019059
 GameObject:
   m_ObjectHideFlags: 0
@@ -9929,7 +10025,7 @@ GameObject:
   - 222: {fileID: 1683660610}
   - 114: {fileID: 1683660609}
   m_Layer: 5
-  m_Name: CLOCK
+  m_Name: chrono
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

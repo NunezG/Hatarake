@@ -11,8 +11,9 @@ public class Window : MonoBehaviour
 
     public ParticleSystem brokenGlass;
 
-    public Animator suicideAnimator;
-
+    public Animator suicideHeadAnimator,suicideTopAnimator,suicideFeetAnimator;
+    public SpriteRenderer suicideHeadSpriteRenderer, suicideTopSpriteRenderer, suicideFeetSpriteRenderer;
+    public BreakableFurnitureee breakableFurniture;
     //public bool occupe = false;
 
     // Use this for initialization
@@ -25,7 +26,7 @@ public class Window : MonoBehaviour
     {
     }
 
-    public void playSuicide(bool isMale)
+    public void playSuicide(bool isMale,Color hairColor,Color topColor)
     {
         if (isMale)
         {
@@ -45,15 +46,24 @@ public class Window : MonoBehaviour
             suicideFemale.Play();
         }
         bloodStain.SetActive(true);
-        if (!suicideAnimator.gameObject.activeInHierarchy)
+        if (!suicideHeadAnimator.gameObject.activeInHierarchy)
         {
-            suicideAnimator.gameObject.SetActive(true);
+            suicideHeadAnimator.gameObject.SetActive(true);
+            suicideTopAnimator.gameObject.SetActive(true);
+            suicideFeetAnimator.gameObject.SetActive(true);
         }
-        //suicideAnimator.Play("idle");
-        suicideAnimator.Play("Suicide", -1, 0f);
-        suicideAnimator.CrossFade("Suicide", 0);
-        brokenGlass.Play();
 
+        suicideHeadSpriteRenderer.color = hairColor;
+        suicideTopSpriteRenderer.color = topColor;
+        //suicideAnimator.Play("idle");
+        suicideHeadAnimator.Play("suicide_head_anim", -1, 0f);
+        suicideHeadAnimator.CrossFade("suicide_head_anim", 0);
+        suicideTopAnimator.Play("suicide_top_anim", -1, 0f);
+        suicideTopAnimator.CrossFade("suicide_top_anim", 0);
+        suicideFeetAnimator.Play("suicide_feet_anim", -1, 0f);
+        suicideFeetAnimator.CrossFade("suicide_feet_anim", 0);
+        brokenGlass.Play();
+        breakableFurniture.Break();
     }
 
     void OnTriggerEnter(Collider other)

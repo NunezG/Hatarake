@@ -17,7 +17,7 @@ public class IntroManager : MonoBehaviour {
    
     void Awake()
     {
-        startFading = waitScreen.duration / 10.0f;
+        //startFading = waitScreen.duration / 10.0f;
     }
     
 	// Use this for initialization
@@ -72,7 +72,8 @@ public class IntroManager : MonoBehaviour {
         if (waitScreen.isPlaying)
         {
 
-            GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), waitScreen);
+            //GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), waitScreen);
+            GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), waitScreen, ScaleMode.StretchToFill, false);
            // GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), waitScreen);
             temp += Time.deltaTime;
         }
@@ -82,7 +83,7 @@ public class IntroManager : MonoBehaviour {
     public void StartScene()
     {
 
-        Debug.Log("starrrt");
+        Debug.Log("start");
 
         // Fade the texture to clear.
        // FadeToClear();
