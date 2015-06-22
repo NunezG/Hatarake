@@ -1462,10 +1462,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c70d39ebd559144d921565dccb90819, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeSpeed: .200000003
+  fadeSpeed: 1
   sceneEnding: 0
-  waitScreen: {fileID: 15200000, guid: 53d785cf16ab57e4d964daba811a9e13, type: 3}
-  startFading: 30
+  waitScreen: {fileID: 15200000, guid: f2233d8575a9b424eaa97d7e961ed020, type: 3}
+  temp: 0
+  startFading: 35
   sceneStarting: 0
 --- !u!114 &268217654
 MonoBehaviour:
@@ -1604,7 +1605,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 53d785cf16ab57e4d964daba811a9e13, type: 3}
+  m_audioClip: {fileID: 8300000, guid: f2233d8575a9b424eaa97d7e961ed020, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
