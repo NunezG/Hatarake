@@ -21,6 +21,8 @@ public class MusicManager : MonoBehaviour {
 	}
 
 	void Update () {
+
+        if (GameManager.instance.GetComponent<IntroManager>().sceneEnding)
 		mainBG.volume = Mathf.Lerp(mainBG.volume, volumes [0], 0.05f);
 	}
 }
