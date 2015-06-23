@@ -317,20 +317,26 @@ public class GameManager : MonoBehaviour {
                 strCentiSecondes = "" + centisecondes;
 
             clock.text = strMinutes + "\'" + strSecondes + "\'\'" + strCentiSecondes;
-            if (objectiveCompletion < levelObjective)
+
+            
+                if (endOfDemo)
+                {
+                    print("FIIIIIIIIIIIIIN");
+                    victoryLocked = true;
+                    endOfDemo=false;
+                    EndOfDemoButton.gameObject.SetActive(true);
+                    bossLock(true, true);
+                    workingIsActuallyUsefull = false;
+                }
+
+            else if (objectiveCompletion < levelObjective)
             {
                 if (workingIsActuallyUsefull && boss!=null) time = time + Time.deltaTime;
             }
             else if (boss != null)
             {
 
-                if (endOfDemo)
-                {
-                    EndOfDemoButton.gameObject.SetActive(true);
-                    bossLock(true, true);
-                    workingIsActuallyUsefull = false;
-                }
-                else if (this.GetComponent<CharacterManager>().GetTotalNumberOfBoxies() == 7 && tutoBreakIsNotComplete)
+                if (this.GetComponent<CharacterManager>().GetTotalNumberOfBoxies() == 7 && tutoBreakIsNotComplete)
                 {
                     timeToStartBreakingShit = true;
                     tutoIsOn = true;
