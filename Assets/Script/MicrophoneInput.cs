@@ -7,7 +7,7 @@ public class MicrophoneInput : MonoBehaviour
     public float sensitivity = 100.0f;
     public float loudness = 0.0f;
     public float frequency = 0.0f;
-    public int samplerate = 20024;
+    public int samplerate = 96000;
 
     void Start()
     {

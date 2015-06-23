@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour {
     public GameObject canvaEmbauche;
     public GameObject victoryButton;
     public Button newMissionButton;
-    public Button EndOfDemo;
+    public Button EndOfDemoButton;
     public GameObject boss=null;
     private GameObject[] tempHiringBoxiesBuffer = new GameObject[3];
 	public float levelObjective;
@@ -55,9 +55,12 @@ public class GameManager : MonoBehaviour {
 
 
     //----------------GUI
+   public float solarClock = 0;
+   public bool startSolarClock = false;
    public GameObject GUIClock, GUIQiBar;
    public bool displayProgressionBar;
     //--------------------------
+   public bool endOfDemo = false;
 
 
 	void Awake()
@@ -321,13 +324,14 @@ public class GameManager : MonoBehaviour {
             else if (boss != null)
             {
 
-                if (this.GetComponent<CharacterManager>().GetTotalNumberOfBoxies() == 20)
+                if (endOfDemo)
                 {
-                    EndOfDemo.gameObject.SetActive(true);
+                    EndOfDemoButton.gameObject.SetActive(true);
                     bossLock(true, true);
                     workingIsActuallyUsefull = false;
                 }
-                else if (this.GetComponent<CharacterManager>().GetTotalNumberOfBoxies() == 7 && tutoBreakIsNotComplete){
+                else if (this.GetComponent<CharacterManager>().GetTotalNumberOfBoxies() == 7 && tutoBreakIsNotComplete)
+                {
                     timeToStartBreakingShit = true;
                     tutoIsOn = true;
                 }
@@ -336,9 +340,10 @@ public class GameManager : MonoBehaviour {
                     if (!victoryLocked)
                     {
                         boss.GetComponent<Boss>().gongOfVictory.Play();
+                        print("GOOOOOOOOOOOOOONG");
                         bossLock(true, true);
                         victoryButton.SetActive(true);
-                        victoryButton.GetComponentInChildren<Text>().text = "YATTTTA ! \n Nous avons encore rempli notre devoir en \n" + strMinutes + "\'\'" + strSecondes + "\'" + strCentiSecondes;
+                        victoryButton.GetComponentInChildren<Text>().text = "YATTTTA ! \n Objectif atteint en \n" + strMinutes + "\'\'" + strSecondes + "\'" + strCentiSecondes;
                         boss.GetComponent<Boss>().moveLocked = true;
                         boss.GetComponent<Boss>().hatarakeLocked = true;
                     }
@@ -356,6 +361,7 @@ public class GameManager : MonoBehaviour {
             }
             else if (hiringTime && nbEmployeeLeftToHire == 0) // on a finit d'embaucher pour le nouvelle objectif
             {
+                Employe.suicideLock = false;
                 hiringTime = false;
                 workingIsActuallyUsefull = true;
                 time = 0;
@@ -574,7 +580,6 @@ public class GameManager : MonoBehaviour {
         int freeBoxes = 20 - this.GetComponent<CharacterManager>().GetTotalNumberOfBoxies();
         if (freeBoxes >= nbEmployeeToHire) nbEmployeeLeftToHire = nbEmployeeToHire;
         else nbEmployeeLeftToHire = freeBoxes;
-
     }
 
 

@@ -5,11 +5,11 @@ public class JobText : MonoBehaviour {
 
 	public string jobLabel;
 	private static string[] salut=new string[]{"Salut,","Hey,","Coucou,","Yo,",
-							 "Salutations,","Bonjour,","Bonsoir,","Konnichiwa,",
+							 "Salutations,","Bonjour,","Bonsoir,","Konichiwa,",
 							 "Wesh, wesh,", "Konbanwa,"};
 
     private static string[] intro = new string[]{"c'est le fils de", "c'est le beau-frère de", 
-							 "je suis le fantome de","c'est","c'est moi,","moi etre", "je suis"};
+							 "je suis le fantôme de","c'est","c'est moi,","moi être", "je suis"};
     private static string[] nom = new string[]{"Taro,","Yamada,","Iroshi,","Kazuke,","Naruto,","Sasuke,",
 						   "Yotto,","le Président du Japon,"};
     private static string[] qualite = new string[]{"ton oncle.","tu te souviens de moi ?","ton frère de sang.",
@@ -27,12 +27,12 @@ public class JobText : MonoBehaviour {
     private static string[] sujet = new string[]{"moeurs", "coutumes", "poneys", "phases existentielles de la vie des loutres",
 							 "amis"};
     private static string[] adjectif = new string[]{"d'outre-tombe", "en Occident.", "en Orient.","en Ouganda.","aléatoires.",
-								"en entreprise.", "en papier maché.", "imaginaires"};
+								"en entreprise.", "en papier maché.", "imaginaires."};
     private static string[] merci = new string[]{"Je t'aime, toi, tu sais,", "T'es un chef,","Voilà,",
 							 "T'es le meilleur,","C'est cool de ta part,","Je te revaudrai ça,",
 							 "C'est pour offrir,","Ce sera à emporter, s'il-te-plait,"};
     private static string[] aurevoir = new string[]{"à plus, ma couille!", "à plus!", "et magne-toi, s'il-te-plait!",
-							 	"ciao!","salut!","à bientot!","à demain!","bye!","auf wiedersehen!",
+							 	"ciao!","salut!","à bientôt!","à demain!","bye!","auf wiedersehen!",
 								"bon, bah salut!", "... allez, GO!"};
 
 	void Start () {

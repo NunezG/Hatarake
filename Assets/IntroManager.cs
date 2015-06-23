@@ -11,7 +11,7 @@ public class IntroManager : MonoBehaviour {
     Color tempColor;
     public MovieTexture waitScreen;
     AudioSource audio;
-    float temp = 0;
+    public float temp = 0;
     public float startFading = 20;
     public bool sceneStarting = false;      // Whether or not the scene is still fading in.
     GameObject spawn;
@@ -37,6 +37,7 @@ public class IntroManager : MonoBehaviour {
        // new WaitForSeconds(10);
 
        // StartCoroutine(fondu(Color.white, 10));
+        if (waitScreen.isPlaying)        temp += Time.deltaTime;
 	}
 
     public void startButton()
@@ -69,14 +70,16 @@ public class IntroManager : MonoBehaviour {
 
             else if (Input.GetMouseButton(0) || temp >= startFading)
             {
+                print("END OF VIDEO");
                 sceneEnding = true;
             }
 
             GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), waitScreen, ScaleMode.StretchToFill, false);
             // GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), waitScreen);
-            temp += Time.deltaTime;
         }
     }
+
+
 
     public void StartScene()
     {
@@ -108,11 +111,13 @@ public class IntroManager : MonoBehaviour {
 
         // Start fading towards black.
         FadeToClear();
-
+        print("end scene : " + GUI.color.a);
 
         if (GUI.color.a <= 0.05f)
         {
+            print("end fading");
             GameManager.instance.tutoFirstButton.GetComponent<Button>().interactable = true;
+            GameManager.instance.startSolarClock = true;
             waitScreen.Stop();
         }
 

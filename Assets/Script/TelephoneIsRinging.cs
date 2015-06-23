@@ -5,7 +5,7 @@ public class TelephoneIsRinging : MonoBehaviour {
 
     public AudioSource ringring;
     public AudioSource pickUp;
-
+    public GameObject onPickUpTarget,targetToFace;
 	// Use this for initialization
 	void Start () {
 	
@@ -38,6 +38,7 @@ public class TelephoneIsRinging : MonoBehaviour {
             {/*
                 GameManager.instance.hiringTime = true;
                 GameManager.instance.CalculateNumberOfEmployeeToHire();*/
+                Employe.suicideLock = true;
                 GameManager.instance.tutoArrow.gameObject.SetActive(false);
                 GameManager.instance.cameraController.FollowEmployee(GameManager.instance.boss,1,0);
                 GameManager.instance.activateNextMissionButton();
@@ -47,6 +48,9 @@ public class TelephoneIsRinging : MonoBehaviour {
                 GameManager.instance.activateHiringRound();
             }
         }
+
+        GameManager.instance.boss.GetComponent<Boss>().setTarget(onPickUpTarget.transform.position);
+        GameManager.instance.boss.GetComponent<Boss>().faceTarget(targetToFace.transform.position);
     }
 
     void OnTriggerEnter(Collider other)

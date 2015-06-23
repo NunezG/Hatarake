@@ -33,6 +33,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &144098
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 490740}
+  m_Layer: 0
+  m_Name: targetToFace
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &147792
 GameObject:
   m_ObjectHideFlags: 1
@@ -158,6 +173,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 449484}
   m_RootOrder: 0
+--- !u!4 &490740
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 144098}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .152999997, y: 0, z: .218999997}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 491030}
+  m_RootOrder: 3
 --- !u!4 &491030
 Transform:
   m_ObjectHideFlags: 1
@@ -171,6 +198,7 @@ Transform:
   - {fileID: 451006}
   - {fileID: 441488}
   - {fileID: 449484}
+  - {fileID: 490740}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!65 &6520344
@@ -348,6 +376,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ringring: {fileID: 8298088}
   pickUp: {fileID: 8250788}
+  onPickUpTarget: {fileID: 156374}
+  targetToFace: {fileID: 144098}
 --- !u!212 &21298240
 SpriteRenderer:
   m_ObjectHideFlags: 1
