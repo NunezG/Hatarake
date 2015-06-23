@@ -395,6 +395,12 @@ public class GameManager : MonoBehaviour {
     }
     public void DemoEndOnClick()
     {
+        GameObject.Find("CreditsPanel").SetActive(true);
+       // Application.Quit();
+    }
+
+    public void CreditsEndOnClick()
+    {
         Application.Quit();
     }
 

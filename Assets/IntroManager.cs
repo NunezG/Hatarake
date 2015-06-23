@@ -25,6 +25,7 @@ public class IntroManager : MonoBehaviour {
 	void Start () {
        
         tempColor = GUI.color;
+        sceneStarting = true;
        // Time.timeScale = 0;
 	}
 	
@@ -42,17 +43,19 @@ public class IntroManager : MonoBehaviour {
 
     public void startButton()
     {
-        GameManager.instance.boss.transform.Find("hatarake_strong").GetComponent<AudioSource>().Play();
+       // GameManager.instance.boss.transform.Find("hatarake_strong").GetComponent<AudioSource>().Play();
         
-        StartCoroutine(GameObject.Find("MenuPanel").GetComponentInChildren<shake>().ShakeMyBooty());
-        sceneStarting = true;
+       // StartCoroutine(GameObject.Find("MenuPanel").GetComponentInChildren<shake>().ShakeMyBooty());
+        //sceneStarting = true;
     }
 
     void OnGUI()
     {
-        if (sceneStarting && GameObject.Find("MenuPanel").GetComponentInChildren<shake>().shakingDuration == 0 && GameObject.Find("MenuPanel").GetComponentInChildren<shake>().shakingDuration == 0 && !GameManager.instance.boss.transform.Find("hatarake_strong").GetComponent<AudioSource>().isPlaying)
+        if (sceneStarting 
+            //&& GameObject.Find("MenuPanel").GetComponentInChildren<shake>().shakingDuration == 0 && GameObject.Find("MenuPanel").GetComponentInChildren<shake>().shakingDuration == 0  && !GameManager.instance.boss.transform.Find("hatarake_strong").GetComponent<AudioSource>().isPlaying
+            )
         {
-            GameObject.Find("MenuPanel").SetActive(false);
+          //  GameObject.Find("MenuPanel").SetActive(false);
             StartScene();
             GameManager.instance.InitGame();
             sceneStarting = false;
