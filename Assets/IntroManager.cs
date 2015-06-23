@@ -126,6 +126,7 @@ public class IntroManager : MonoBehaviour {
             GameManager.instance.tutoFirstButton.GetComponent<Button>().interactable = true;
             GameManager.instance.startSolarClock = true;
             waitScreen.Stop();
+            sceneEnding = false;
         }
 
 
