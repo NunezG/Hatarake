@@ -6,10 +6,11 @@ public class MusicManager : MonoBehaviour {
 	public AudioSource mainBG;
 	public float[] volumes;
 	public GameManager GM;
-
+    IntroManager intro;
 
 	void Start () {
-	
+        intro = GameObject.FindObjectOfType<IntroManager>();
+
 		// getting musics
 		mainBG = transform.FindChild ("mainBackground").GetComponent<AudioSource> ();
 		GM = GameObject.Find ("GameManager").GetComponent<GameManager> ();
@@ -22,7 +23,7 @@ public class MusicManager : MonoBehaviour {
 
 	void Update () {
 
-        if (GameManager.instance.GetComponent<IntroManager>().sceneEnding)
+        if (intro.sceneEnding)
 		mainBG.volume = Mathf.Lerp(mainBG.volume, volumes [0], 0.05f);
 	}
 }
