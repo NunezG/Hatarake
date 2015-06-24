@@ -100,7 +100,18 @@ public class GameManager : MonoBehaviour {
         if (elevator == null) elevator = GameObject.Find("Elevator Cell 4, 0");
         if (phone == null) phone = GameObject.Find("phoneCollider");
 
-        if (tutoIsOn)
+        if (endOfDemo)
+        {
+            print("FIIIIIIIIIIIIIN");
+            victoryLocked = true;
+            endOfDemo = false;
+            EndOfDemoButton.gameObject.SetActive(true);
+            bossLock(true, true);
+            workingIsActuallyUsefull = false;
+        }
+
+
+        else if (tutoIsOn)
         {
             if (cameraLookingForCoffee)
             {
@@ -319,17 +330,9 @@ public class GameManager : MonoBehaviour {
             clock.text = strMinutes + "\'" + strSecondes + "\'\'" + strCentiSecondes;
 
             
-                if (endOfDemo)
-                {
-                    print("FIIIIIIIIIIIIIN");
-                    victoryLocked = true;
-                    endOfDemo=false;
-                    EndOfDemoButton.gameObject.SetActive(true);
-                    bossLock(true, true);
-                    workingIsActuallyUsefull = false;
-                }
 
-            else if (objectiveCompletion < levelObjective)
+
+            if (objectiveCompletion < levelObjective)
             {
                 if (workingIsActuallyUsefull && boss!=null) time = time + Time.deltaTime;
             }

@@ -16,6 +16,8 @@ public class SolarClockManager : MonoBehaviour {
         angle = -startingAngle;
         cycleAngularSize = endingAngle - startingAngle;
         initRotation = rectTransform.rotation;
+
+        rectTransform.Rotate(0, 0, angle);
         //rectTransform.rotation = new Quaternion(0, 0, 1, angle);
 	}
 	

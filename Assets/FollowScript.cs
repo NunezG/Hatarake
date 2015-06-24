@@ -9,7 +9,9 @@ public class FollowScript : MonoBehaviour {
     public Color startColor,middleColor,endColor;
     public SolarClockManager solarClock;
 	// Use this for initialization
-	void Start () {
+    void Start()
+    {
+        this.transform.position = target.transform.position;
 	}
 	
 	// Update is called once per frame
