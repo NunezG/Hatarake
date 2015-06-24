@@ -14,11 +14,11 @@ public class IntroManager : MonoBehaviour {
     public float temp = 0;
     public float startFading = 20;
     public bool sceneStarting = false;      // Whether or not the scene is still fading in.
-    GameObject spawn;
+   // GameObject spawn;
 
     void Awake()
     {
-        spawn = GameObject.Find("spawnBoss");
+       // spawn = GameObject.Find("spawnBoss");
     }
     
 	// Use this for initialization

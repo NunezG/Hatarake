@@ -49,11 +49,11 @@ MonoBehaviour:
   glassTablePrefab: {fileID: 185890, guid: 9e26f2c9440868b4abc498e1b1cbbbfb, type: 2}
   employeeDeskPrefab: {fileID: 102786, guid: 9ab10a9e999a9b444adee0c4b51e696e, type: 2}
   canapPrefab: {fileID: 186938, guid: 6e9d39f8c6d8a4d4ea4f26a6968da5f7, type: 2}
-  tvPrefab: {fileID: 138702, guid: 6401747cec3fe7a4f90fca37c745e331, type: 2}
+  tvPrefab: {fileID: 168704, guid: 6401747cec3fe7a4f90fca37c745e331, type: 2}
   photocopierPrefab: {fileID: 178750, guid: c21eb0b47bf85a148a132db01b0828b0, type: 2}
   toiletPrefab: {fileID: 129940, guid: 32d18ba487213744bb1c9f9541443be5, type: 2}
-  vendingMachinePrefab: {fileID: 197442, guid: 3a62f35d048cb0948a13ce1e51fc4560, type: 2}
-  coffeeMachinePrefab: {fileID: 130762, guid: b7b15f4c1a407a44d81befff22a2c337, type: 2}
+  vendingMachinePrefab: {fileID: 177870, guid: 3a62f35d048cb0948a13ce1e51fc4560, type: 2}
+  coffeeMachinePrefab: {fileID: 163716, guid: b7b15f4c1a407a44d81befff22a2c337, type: 2}
   carpetPrefab: {fileID: 170040, guid: 208c54618fa9c714290867c73e59c427, type: 2}
   flowerPotPrefab: {fileID: 125056, guid: 0ddfa9d6cd497c644b01f1b91312f03b, type: 2}
   casier0Prefab: {fileID: 104958, guid: 3158fda371b3d3647a9a9088f5d56e09, type: 2}

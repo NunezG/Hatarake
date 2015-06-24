@@ -37,7 +37,9 @@ public class CharacterManager : MonoBehaviour {
         boss.transform.localScale = boss.transform.localScale * gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.localScale.x;
         boss.transform.position = gameObject.GetComponent<LevelManager>().getOfficeInstance()[0].transform.position;
         boss.transform.Translate(spawn.transform.position.x, boss.GetComponent<Collider>().bounds.extents.y, spawn.transform.position.z);
-       
+        boss.transform.LookAt(GameObject.Find("targetToFace").transform.position);
+      //  boss.GetComponent<Boss>().setTarget(spawn.transform.position);
+
         GameObject[] corridorsCell = GameObject.FindGameObjectsWithTag("Corridor");
         InteractWithEmployee[] targets = floor.GetComponentsInChildren<InteractWithEmployee>();
 
