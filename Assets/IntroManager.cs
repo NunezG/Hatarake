@@ -118,11 +118,9 @@ public class IntroManager : MonoBehaviour {
 
         // Start fading towards black.
         FadeToClear();
-        print("end scene : " + GUI.color.a);
 
         if (GUI.color.a <= 0.05f)
         {
-            print("end fading");
             GameManager.instance.tutoFirstButton.GetComponent<Button>().interactable = true;
             GameManager.instance.startSolarClock = true;
             waitScreen.Stop();

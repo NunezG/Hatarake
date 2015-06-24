@@ -20,7 +20,7 @@ MonoBehaviour:
   _navMeshGenerationThreads: 4
   _useSkin: 1
   _showAdvanced: 1
-  _allowAutoUpdateCheck: 1
+  _allowAutoUpdateCheck: 0
   _updateFrequencyHours: 24
   _showWelcomeWindow: 1
   _projectSkin: {fileID: 11400000, guid: 3105e5d4d3cc38545a790e1a236bb891, type: 2}
