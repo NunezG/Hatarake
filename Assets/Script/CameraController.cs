@@ -79,7 +79,7 @@ public class CameraController : MonoBehaviour {
                 GameManager.instance.boss.GetComponent<Boss>().moveLocked = true;
                 GameManager.instance.boss.GetComponent<Boss>().hatarakeLocked = true;
 				onOtherTarget = true;
-				focusTimer--;
+				focusTimer-=Time.deltaTime;
 				fixedCamera = true;
 				pointer.SetActive(true);
                 dampTime = followDampTime;

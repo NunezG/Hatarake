@@ -188,7 +188,7 @@ public class GameManager : MonoBehaviour {
                 //print("fresh meat hired");
                 freshMeatHired = false;
                 cameraController.dampTime = 0;
-                cameraController.FollowEmployee(this.gameObject.GetComponent<CharacterManager>().boxies[0], 100,0);
+                cameraController.FollowEmployee(this.gameObject.GetComponent<CharacterManager>().boxies[0], 1.5f,0);
 
                 cameraLookingForFreshMeat = true;
             }
@@ -230,7 +230,7 @@ public class GameManager : MonoBehaviour {
                 tutoArrow.gameObject.SetActive(false);
                 employeeHataraked = false;
                 cameraController.dampTime = 0;
-                cameraController.FollowEmployee(this.gameObject.GetComponent<CharacterManager>().boxies[0], 100,0);
+                cameraController.FollowEmployee(this.gameObject.GetComponent<CharacterManager>().boxies[0], 1.5f,0);
                 cameraFollowingEmployeeHataraked = true;
             }
             if (cameraFollowingEmployeeHataraked)
@@ -250,7 +250,7 @@ public class GameManager : MonoBehaviour {
             if (timeToStartBreakingShit)
             {
                 timeToStartBreakingShit = false;
-                cameraController.FollowEmployee(coffeeTable, 100, 0.2f);
+                cameraController.FollowEmployee(coffeeTable, 1.5f, 0.2f);
                 tutoTooMuchGlande.gameObject.SetActive(true);
                 bossLock(true, true);
                 cameraLookingForShitToBreak = true;
@@ -290,7 +290,7 @@ public class GameManager : MonoBehaviour {
                 print("decrasseurJustArrived");
                 decrasseurJustArrived = false;
                 tutoDecrasseurButton.gameObject.SetActive(true);
-                cameraController.FollowEmployee(this.gameObject.GetComponent<CharacterManager>().decrasseurs[0], 100, 0);
+                cameraController.FollowEmployee(this.gameObject.GetComponent<CharacterManager>().decrasseurs[0], 1.5f, 0);
                 bossLock(true, true);
                 cameraLookingAtDecrasseur = true;
             }
@@ -417,14 +417,14 @@ public class GameManager : MonoBehaviour {
 
     public void TutoCoffeeButtonClick()
     {
-        cameraController.FollowEmployee(coffeeTable, 100,0.2f);
+        cameraController.FollowEmployee(coffeeTable, 1.5f,0.2f);
         cameraLookingForCoffee = true;
         bossLock(false, true);
     }
 
     public void TutoLookingForElevatorClick()
     {
-        cameraController.FollowEmployee(elevator, 100,0.2f);
+        cameraController.FollowEmployee(elevator, 1.5f,0.2f);
         cameraLookingForElevator = true;
         //while (cameraController.onOtherTarget) { }
 
@@ -439,7 +439,7 @@ public class GameManager : MonoBehaviour {
     }
     public void TutoWtfClick()
     {
-        cameraController.FollowEmployee(phone, 100,0.2f);
+        cameraController.FollowEmployee(phone, 1.5f,0.2f);
         cameraLookingForPhone = true;
     }
     public void TutoHiringTimeClick()
@@ -462,7 +462,7 @@ public class GameManager : MonoBehaviour {
     {
         //vider motivation employer + follow avec cam
         this.gameObject.GetComponent<CharacterManager>().boxies[0].GetComponent<Employe>().TotalDemotivation();
-        cameraController.FollowEmployee(this.gameObject.GetComponent<CharacterManager>().boxies[0], 200,0);
+        cameraController.FollowEmployee(this.gameObject.GetComponent<CharacterManager>().boxies[0], 4,0);
         cameraLookingAtSlacker = true;
     }
 
