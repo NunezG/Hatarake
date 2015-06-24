@@ -1973,7 +1973,7 @@ MonoBehaviour:
   onCoolDown: 0
   maxLoudness: 40
   enumLock: 0
-  hatarakeTime: 1
+  hatarakeTime: .5
 --- !u!114 &11417598
 MonoBehaviour:
   m_ObjectHideFlags: 1
