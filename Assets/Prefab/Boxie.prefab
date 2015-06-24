@@ -1897,8 +1897,8 @@ MonoBehaviour:
     maxVitesseDemotivation: 50
     minVitesseDemotivation: 20
     effetRepos: 0
-    maxEffetRepos: 30
-    minEffetRepos: 20
+    maxEffetRepos: 25
+    minEffetRepos: 10
     firstName: 
     surname: 
     isMale: 0
@@ -1911,10 +1911,10 @@ MonoBehaviour:
     fatigue: 0
     motivation: 0
     fatigueMAX: 700
-    motivationMax: 500
+    motivationMax: 700
     effetEngueulement: 100
     vitesseTravail: 5
-    fatigueSiCasse: 20
+    fatigueSiCasse: 60
   isAlreadyInRange: 0
   moveMemory: 0
   workingMemory: 0
