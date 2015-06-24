@@ -4007,7 +4007,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 163756, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 116076, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
       propertyPath: m_Name
@@ -8575,7 +8575,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: 0
-  endOfTime: 20
+  endOfTime: 360
   angle: 0
   startingAngle: -45
   endingAngle: 230
