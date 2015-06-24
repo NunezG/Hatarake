@@ -346,13 +346,11 @@ public class GameManager : MonoBehaviour {
                         victoryButton.GetComponentInChildren<Text>().text = "YATTTTA ! \n Objectif atteint en \n" + strMinutes + "\'\'" + strSecondes + "\'" + strCentiSecondes;
                         boss.GetComponent<Boss>().moveLocked = true;
                         boss.GetComponent<Boss>().hatarakeLocked = true;
+                        victoryLocked = true;
                     }
                     workingIsActuallyUsefull = false;
-
-
                 }
             }
-
 
             if (hiringTime && !ongoingHiring && nbEmployeeLeftToHire != 0)
             {
@@ -565,6 +563,8 @@ public class GameManager : MonoBehaviour {
     public float objectiveIncreaseFactor = 3;
     public void nextObjective()
     {
+        victoryLocked = false;
+
         bossLock(false, false);
 
         ringingPhone = true;

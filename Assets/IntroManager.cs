@@ -25,7 +25,12 @@ public class IntroManager : MonoBehaviour {
 	void Start () {
        
         tempColor = GUI.color;
-        sceneStarting = true;
+
+        waitScreen.Play();
+        GameManager.instance.InitGame();
+        sceneStarting = false;
+
+       // sceneStarting = true;
        // Time.timeScale = 0;
 	}
 	
@@ -51,15 +56,14 @@ public class IntroManager : MonoBehaviour {
 
     void OnGUI()
     {
-        if (sceneStarting 
+       // if (sceneStarting 
             //&& GameObject.Find("MenuPanel").GetComponentInChildren<shake>().shakingDuration == 0 && GameObject.Find("MenuPanel").GetComponentInChildren<shake>().shakingDuration == 0  && !GameManager.instance.boss.transform.Find("hatarake_strong").GetComponent<AudioSource>().isPlaying
-            )
-        {
+          //  )
+       // {
           //  GameObject.Find("MenuPanel").SetActive(false);
-            StartScene();
-            GameManager.instance.InitGame();
-            sceneStarting = false;
-        }
+           // StartScene();
+         
+       // }
 
        // if (sceneStarting)
             // ... call the StartScene function.
@@ -98,7 +102,7 @@ public class IntroManager : MonoBehaviour {
             // ... set the colour to clear and disable the GUITexture.
            // GUI.color = Color.clear;
            // GUI.enabled = false;
-            waitScreen.Play();
+      //  waitScreen.Play();
        
 
             // The scene is no longer starting.
@@ -122,6 +126,7 @@ public class IntroManager : MonoBehaviour {
             GameManager.instance.tutoFirstButton.GetComponent<Button>().interactable = true;
             GameManager.instance.startSolarClock = true;
             waitScreen.Stop();
+            sceneEnding = false;
         }
 
 
