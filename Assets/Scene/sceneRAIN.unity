@@ -1493,7 +1493,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 59d34ee4912e1664f8e9c1ddf3f5a8e4, type: 3}
+    m_Font: {fileID: 12800000, guid: b7eb1c4314fb6214d8f1b434d166af05, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
@@ -1504,7 +1504,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Choisis ton prochain esc ... collaborateur
+  m_Text: "<i>Prends trois nouveaux employ\xE9s</i>\nQuel choix corn\xE9lien ..."
 --- !u!222 &235996280
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3188,16 +3188,16 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 1881838744}
   m_GameObject: {fileID: 363206316}
---- !u!1 &365779999
+--- !u!1 &365779999 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 116076, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
   m_PrefabInternal: {fileID: 458650909}
---- !u!224 &365780000
+--- !u!224 &365780000 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22413780, guid: 878ddc77cf27cf14b836dfc9fdc06496,
     type: 2}
   m_PrefabInternal: {fileID: 458650909}
---- !u!114 &365780001
+--- !u!114 &365780001 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11468108, guid: 878ddc77cf27cf14b836dfc9fdc06496,
     type: 2}
@@ -3379,7 +3379,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Allons nous prendre un bon caf\xE9 dans le SALLE DE REPOS."
+  m_Text: "Allons prendre un bon caf\xE9 dans le <i>SALLE DE REPOS</i>."
 --- !u!222 &409121588
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4036,7 +4036,7 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
   m_IsPrefabParent: 0
---- !u!224 &458650910
+--- !u!224 &458650910 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22497468, guid: 878ddc77cf27cf14b836dfc9fdc06496,
     type: 2}
@@ -4891,8 +4891,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Ce larbin est parti lancer des offres d'emplois pour toi. Les postulants
-    ne devraient pas tarder.
+  m_Text: "Offres d'emploi en cours de r\xE9daction. Attendons les candidats."
 --- !u!222 &578192336
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6008,7 +6007,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "H\xE9 toi, l\xE0-haut, tape-lui dessus que je sache s'il est motiv\xE9!!"
+  m_Text: <i>Tapote</i> sur lui pour plus d'infos.
 --- !u!222 &749338247
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7089,7 +7088,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Ils sont toujours pas l\xE0, d'ailleurs ?! Allons voir l'ASCENSEUR."
+  m_Text: "Allons voir l'<i>ASCENSEUR</i>. C'est de l\xE0 qu'ils viendront."
 --- !u!222 &902560518
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7322,7 +7321,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Ils se servent beaucoup trop de cette machine \xE0 Caf\xE9 !"
+  m_Text: "Ils se servent beaucoup trop de cette <i>machine \xE0 Caf\xE9</i> !"
 --- !u!222 &950821946
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7388,7 +7387,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "La casser pourrait peut-\xEAtre les faire bosser plus!"
+  m_Text: "La <i>casser</i> pourrait peut-\xEAtre les faire bosser plus!"
 --- !u!222 &976357027
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9255,7 +9254,7 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1217861429}
---- !u!1 &1228620638
+--- !u!1 &1228620638 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 163756, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
   m_PrefabInternal: {fileID: 458650909}
@@ -10886,8 +10885,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Tu dois attendre de reprendre ton souffle  d'energie vitale avant de pouvoir
-    leur crier dessus une nouvelle fois.
+  m_Text: "Attends que la <i>barre de Qi</i> se recharge avant de crier \xE0 nouveau."
 --- !u!222 &1397735459
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11198,7 +11196,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Bonjour, entretien du b\xE2timent, je passe dans les \xE9tages v\xE9rifier
+  m_Text: "Bonjour, <i>entretien du b\xE2timent</i>, je passe dans les \xE9tages v\xE9rifier
     que tout fonctionne."
 --- !u!222 &1425984628
 CanvasRenderer:
@@ -11539,7 +11537,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Je peux s\xFBrement casser d\u2019autres trucs, on verra \xE7a plus tard\u2026"
+  m_Text: "Je peux s\xFBrement casser <i>d\u2019autres trucs</i>, on verra \xE7a plus
+    tard\u2026"
 --- !u!222 &1453372598
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12316,11 +12315,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: .5, y: .5}
---- !u!1 &1568487262
+--- !u!1 &1568487262 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 116076, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
   m_PrefabInternal: {fileID: 722902175}
---- !u!114 &1568487264
+--- !u!114 &1568487264 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11468108, guid: 878ddc77cf27cf14b836dfc9fdc06496,
     type: 2}
@@ -12443,7 +12442,7 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1571285480}
---- !u!1 &1578270307
+--- !u!1 &1578270307 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 112356, guid: 99ae62e24122ea443b25198d8593bc45, type: 2}
   m_PrefabInternal: {fileID: 1016883580}
@@ -12634,7 +12633,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Approche-toi de lui et gueule-lui dessus de toutes tes forces.
+  m_Text: Approche-toi de lui et <i>crie dans le micro</i> pour l'engueuler.
 --- !u!222 &1604817906
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13885,7 +13884,7 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 1881838744}
   m_GameObject: {fileID: 1736473744}
---- !u!114 &1742126617
+--- !u!114 &1742126617 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11471296, guid: 99ae62e24122ea443b25198d8593bc45,
     type: 2}
@@ -14101,7 +14100,7 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1791623073}
---- !u!114 &1791663992
+--- !u!114 &1791663992 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11498816, guid: 878ddc77cf27cf14b836dfc9fdc06496,
     type: 2}
@@ -14359,9 +14358,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Dans sa fiche, tu peux voir son NOM, ses HOBBIES, sa MOTIVATION actuelle
-    et son STRESS. D\xE8s que leur MOTIVATION est au plus bas, ils vont se reposer.
-    D\xE8s que leur STRESS est au plus haut ... on verra \xE7a plus tard!"
+  m_Text: "La jauge verte indique sa <i>motivation</i>. Quand elle est au max, il
+    retourne bosser.\nLa jauge rouge indique son <i>stress</i>. Quand il est au max
+    ... tu verras \xE7a en temps voulu."
 --- !u!222 &1823677713
 CanvasRenderer:
   m_ObjectHideFlags: 0
