@@ -6,12 +6,12 @@ using System.Collections.Generic;
 public class EmployeeData {
 
 	public float vitesseDemotivation;
-	public float maxVitesseDemotivation = 1f;
+	public float maxVitesseDemotivation = 50f;
 	public float minVitesseDemotivation = 20.0f;
 
 	public float effetRepos;
     public float maxEffetRepos = 20.0f;
-    public float minEffetRepos = 1f;
+    public float minEffetRepos = 10f;
 
 	public string firstName;
 	public string surname;
@@ -33,11 +33,11 @@ public class EmployeeData {
 
     public float fatigue = 0;// variable similaire à la vie, augmente qd il se fait engueuler, diminue lors de ses pauses. si == fatigueMAX -> suicidaire = true;
     public float motivation;// variable conditionnant le départ en pause. motivation = 0 -> go to Pause;
-    public float fatigueMAX = 100;
-    public float motivationMax = 500;// variable conditionnant le départ en pause. motivation = 0 -> go to Pause;
-    public float effetEngueulement = 40;
-    public float vitesseTravail = 0.5f;
-    public float fatigueSiCasse = 20.0f;
+    public float fatigueMAX = 700;
+    public float motivationMax = 700;// variable conditionnant le départ en pause. motivation = 0 -> go to Pause;
+    public float effetEngueulement = 200;
+    public float vitesseTravail = 5.0f;
+    public float fatigueSiCasse = 60.0f;
 
 
 	public void InitializeEmployee (){

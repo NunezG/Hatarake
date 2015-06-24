@@ -43,7 +43,8 @@ public class IntroManager : MonoBehaviour {
        // new WaitForSeconds(10);
 
        // StartCoroutine(fondu(Color.white, 10));
-        if (waitScreen.isPlaying)        temp += Time.deltaTime;
+        if (waitScreen.isPlaying)   
+            temp += Time.deltaTime;
 	}
 
     public void startButton()
@@ -68,20 +69,21 @@ public class IntroManager : MonoBehaviour {
        // if (sceneStarting)
             // ... call the StartScene function.
         //    StartScene();
-
+        
         if (waitScreen.isPlaying)
         {
+            //GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), waitScreen, ScaleMode.StretchToFill, false);
             if (sceneEnding)
                 // ... call the StartScene function.
                 EndScene();
 
-            else if (Input.GetMouseButton(0) || temp >= startFading)
+            else if (temp >= startFading)
             {
                 print("END OF VIDEO");
                 sceneEnding = true;
             }
 
-            GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), waitScreen, ScaleMode.StretchToFill, false);
+           
             // GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), waitScreen);
         }
     }
@@ -119,12 +121,14 @@ public class IntroManager : MonoBehaviour {
         // Start fading towards black.
         FadeToClear();
 
-        if (GUI.color.a <= 0.05f)
+        if (GetComponentInChildren<RawImage>().color.a <= 0.05f)
         {
             GameManager.instance.tutoFirstButton.GetComponent<Button>().interactable = true;
             GameManager.instance.startSolarClock = true;
+
             waitScreen.Stop();
             sceneEnding = false;
+            gameObject.SetActive(false);
         }
 
 
@@ -137,14 +141,14 @@ public class IntroManager : MonoBehaviour {
 
     void FadeToClear()
     {
-
+        
         // Set the texture so that it is the the size of the screen and covers it.
        // GUI.DrawTexture(new Rect(0f, 0f, Screen.width, Screen.height), new Texture());
         // Lerp the colour of the texture between itself and transparent.
 
-        tempColor = Color.Lerp(tempColor, Color.clear, fadeSpeed * Time.deltaTime);
+        GetComponent<RawImage>().color = Color.Lerp(GetComponent<RawImage>().color, Color.clear, fadeSpeed * Time.deltaTime);
 
-        GUI.color = tempColor;
+       // GUI.color = tempColor;
 
         
 
@@ -154,7 +158,7 @@ public class IntroManager : MonoBehaviour {
     void FadeToBlack()
     {
         // Lerp the colour of the texture between itself and black.
-        GUI.color = Color.Lerp(GUI.color, Color.black, fadeSpeed * Time.deltaTime);
+        GetComponent<RawImage>().color = Color.Lerp(GetComponent<RawImage>().color, Color.black, fadeSpeed * Time.deltaTime);
     }
 
 
