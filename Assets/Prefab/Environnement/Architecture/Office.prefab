@@ -52,7 +52,7 @@ MonoBehaviour:
   tvPrefab: {fileID: 168704, guid: 6401747cec3fe7a4f90fca37c745e331, type: 2}
   photocopierPrefab: {fileID: 178750, guid: c21eb0b47bf85a148a132db01b0828b0, type: 2}
   toiletPrefab: {fileID: 129940, guid: 32d18ba487213744bb1c9f9541443be5, type: 2}
-  vendingMachinePrefab: {fileID: 177870, guid: 3a62f35d048cb0948a13ce1e51fc4560, type: 2}
+  vendingMachinePrefab: {fileID: 197442, guid: 3a62f35d048cb0948a13ce1e51fc4560, type: 2}
   coffeeMachinePrefab: {fileID: 163716, guid: b7b15f4c1a407a44d81befff22a2c337, type: 2}
   carpetPrefab: {fileID: 170040, guid: 208c54618fa9c714290867c73e59c427, type: 2}
   flowerPotPrefab: {fileID: 125056, guid: 0ddfa9d6cd497c644b01f1b91312f03b, type: 2}
