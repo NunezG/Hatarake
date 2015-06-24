@@ -45,6 +45,7 @@ GameObject:
   - 222: {fileID: 22240504}
   - 114: {fileID: 11468108}
   - 114: {fileID: 11478546}
+  - 114: {fileID: 11492392}
   m_Layer: 5
   m_Name: profile 0
   m_TagString: profile
@@ -1127,6 +1128,59 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &11492392
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
+    m_PressedColor: {r: .784313738, g: .784313738, b: .784313738, a: 1}
+    m_DisabledColor: {r: .784313738, g: .784313738, b: .784313738, a: .501960814}
+    m_ColorMultiplier: 1
+    m_FadeDuration: .100000001
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 11468108}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11498816}
+        m_MethodName: nullifyJProfile
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &11492686
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1220,18 +1274,18 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 249c8329fdec770409faa8aadf061769, type: 3}
   - {fileID: 21300000, guid: c4363d4439142ea42a58aa418468e3ef, type: 3}
   - {fileID: 21300000, guid: 3f6031d5f97431e4a898c758a48c4f8f, type: 3}
-  - {fileID: 21300000, guid: 249c8329fdec770409faa8aadf061769, type: 3}
+  - {fileID: 21300000, guid: b700fa0e099a9a04485fa1750f4c254b, type: 3}
+  - {fileID: 21300000, guid: a2b1d367e2b010145a3e53353e1605c7, type: 3}
+  - {fileID: 21300000, guid: 8039836020feddf44bad6c58610bf82a, type: 3}
+  - {fileID: 21300000, guid: 0b265298212ed724f94d6c35e23d66cb, type: 3}
   - {fileID: 21300000, guid: c4363d4439142ea42a58aa418468e3ef, type: 3}
-  - {fileID: 21300000, guid: 3f6031d5f97431e4a898c758a48c4f8f, type: 3}
-  - {fileID: 21300000, guid: 249c8329fdec770409faa8aadf061769, type: 3}
-  - {fileID: 21300000, guid: c4363d4439142ea42a58aa418468e3ef, type: 3}
   - {fileID: 21300000, guid: 5b9e315464b194d4ba0b7de5fac2aadd, type: 3}
-  - {fileID: 21300000, guid: 5b9e315464b194d4ba0b7de5fac2aadd, type: 3}
-  - {fileID: 21300000, guid: 5b9e315464b194d4ba0b7de5fac2aadd, type: 3}
-  - {fileID: 21300000, guid: 5b9e315464b194d4ba0b7de5fac2aadd, type: 3}
-  - {fileID: 21300000, guid: 5b9e315464b194d4ba0b7de5fac2aadd, type: 3}
-  - {fileID: 21300000, guid: 5b9e315464b194d4ba0b7de5fac2aadd, type: 3}
-  - {fileID: 21300000, guid: 5b9e315464b194d4ba0b7de5fac2aadd, type: 3}
+  - {fileID: 21300000, guid: f0b65e862b1264141999837d3e59a286, type: 3}
+  - {fileID: 21300000, guid: 00c5d46b4076044408d482600956e15f, type: 3}
+  - {fileID: 21300000, guid: edb303d33fa62ed449fd9114c0da3080, type: 3}
+  - {fileID: 21300000, guid: 8727b60a9d51c2d40b1610e84582292b, type: 3}
+  - {fileID: 21300000, guid: 263c397a360fba14bbaca77da42cb56c, type: 3}
+  - {fileID: 21300000, guid: edb303d33fa62ed449fd9114c0da3080, type: 3}
   - {fileID: 21300000, guid: 5b9e315464b194d4ba0b7de5fac2aadd, type: 3}
   eyes:
   - {fileID: 21300000, guid: a7f75ab0888e85843a6f750c8bc2b1f1, type: 3}
@@ -1286,21 +1340,21 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0c2558cc68163784d9df5950fec3455d, type: 3}
   tops:
   - {fileID: 21300000, guid: c82aaf96fae9ac94b8e57b96b53566ed, type: 3}
+  - {fileID: 21300000, guid: 60db340a0b0414043a0da1539ac34d29, type: 3}
+  - {fileID: 21300000, guid: a6ba6d9a8eb989f47acd8368807d3e48, type: 3}
+  - {fileID: 21300000, guid: 4f6387a0e2b997841b52e60cc035ca5e, type: 3}
   - {fileID: 21300000, guid: c82aaf96fae9ac94b8e57b96b53566ed, type: 3}
-  - {fileID: 21300000, guid: c82aaf96fae9ac94b8e57b96b53566ed, type: 3}
-  - {fileID: 21300000, guid: c82aaf96fae9ac94b8e57b96b53566ed, type: 3}
-  - {fileID: 21300000, guid: c82aaf96fae9ac94b8e57b96b53566ed, type: 3}
-  - {fileID: 21300000, guid: c82aaf96fae9ac94b8e57b96b53566ed, type: 3}
-  - {fileID: 21300000, guid: c82aaf96fae9ac94b8e57b96b53566ed, type: 3}
-  - {fileID: 21300000, guid: c82aaf96fae9ac94b8e57b96b53566ed, type: 3}
+  - {fileID: 21300000, guid: 60db340a0b0414043a0da1539ac34d29, type: 3}
+  - {fileID: 21300000, guid: a6ba6d9a8eb989f47acd8368807d3e48, type: 3}
+  - {fileID: 21300000, guid: 4f6387a0e2b997841b52e60cc035ca5e, type: 3}
   - {fileID: 21300000, guid: 3da9ca42bda663641ac5d620d17d028c, type: 3}
+  - {fileID: 21300000, guid: 92375a723dc3f8647bc8a9e4a13cd4c0, type: 3}
+  - {fileID: 21300000, guid: 00c5302e69e6e954988b2f92dcebd13f, type: 3}
+  - {fileID: 21300000, guid: adb5c359712182749a88827ee26ff197, type: 3}
+  - {fileID: 21300000, guid: 068181c121cbf70469191819407d3361, type: 3}
   - {fileID: 21300000, guid: 3da9ca42bda663641ac5d620d17d028c, type: 3}
-  - {fileID: 21300000, guid: 3da9ca42bda663641ac5d620d17d028c, type: 3}
-  - {fileID: 21300000, guid: 3da9ca42bda663641ac5d620d17d028c, type: 3}
-  - {fileID: 21300000, guid: 3da9ca42bda663641ac5d620d17d028c, type: 3}
-  - {fileID: 21300000, guid: 3da9ca42bda663641ac5d620d17d028c, type: 3}
-  - {fileID: 21300000, guid: 3da9ca42bda663641ac5d620d17d028c, type: 3}
-  - {fileID: 21300000, guid: 3da9ca42bda663641ac5d620d17d028c, type: 3}
+  - {fileID: 21300000, guid: 92375a723dc3f8647bc8a9e4a13cd4c0, type: 3}
+  - {fileID: 21300000, guid: 00c5302e69e6e954988b2f92dcebd13f, type: 3}
 --- !u!222 &22209286
 CanvasRenderer:
   m_ObjectHideFlags: 1

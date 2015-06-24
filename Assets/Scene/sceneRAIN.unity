@@ -269,7 +269,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
@@ -872,7 +872,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
@@ -1025,7 +1025,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
@@ -2584,7 +2584,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
@@ -3379,7 +3379,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Allons prendre un bon caf\xE9 dans la <i>SALLE DE REPOS</i>."
+  m_Text: "Allons prendre un bon caf\xE9 dans la <color=#ff0000ff><i>SALLE DE REPOS</i></color>."
 --- !u!222 &409121588
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5730,34 +5730,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 22450564, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 22476118, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 22499698, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
-      propertyPath: m_AnchorMax.x
-      value: .802999973
-      objectReference: {fileID: 0}
-    - target: {fileID: 22499698, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 22409960, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
-      propertyPath: m_AnchorMin.x
-      value: .802999973
-      objectReference: {fileID: 0}
-    - target: {fileID: 22409960, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
-      propertyPath: m_AnchorMax.x
-      value: .802999973
-      objectReference: {fileID: 0}
-    - target: {fileID: 22409960, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 22497468, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5830,57 +5802,34 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 163756, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
-      propertyPath: m_IsActive
+    - target: {fileID: 22450564, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
+      propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 116076, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
-      propertyPath: m_TagString
-      value: profile
-      objectReference: {fileID: 0}
-    - target: {fileID: 116076, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
-      propertyPath: m_Name
-      value: profile 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11483194, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
-      propertyPath: m_UiScaleMode
+    - target: {fileID: 22476118, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
+      propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 11411690, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: 59d34ee4912e1664f8e9c1ddf3f5a8e4,
-        type: 3}
-    - target: {fileID: 11455262, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: 59d34ee4912e1664f8e9c1ddf3f5a8e4,
-        type: 3}
-    - target: {fileID: 11459642, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: 59d34ee4912e1664f8e9c1ddf3f5a8e4,
-        type: 3}
-    - target: {fileID: 11477982, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: 59d34ee4912e1664f8e9c1ddf3f5a8e4,
-        type: 3}
-    - target: {fileID: 11423776, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: 59d34ee4912e1664f8e9c1ddf3f5a8e4,
-        type: 3}
-    - target: {fileID: 11463654, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: 59d34ee4912e1664f8e9c1ddf3f5a8e4,
-        type: 3}
-    - target: {fileID: 11435896, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: 59d34ee4912e1664f8e9c1ddf3f5a8e4,
-        type: 3}
+    - target: {fileID: 22499698, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
+      propertyPath: m_AnchorMax.x
+      value: .802999973
+      objectReference: {fileID: 0}
+    - target: {fileID: 22499698, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22409960, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
+      propertyPath: m_AnchorMin.x
+      value: .802999973
+      objectReference: {fileID: 0}
+    - target: {fileID: 22409960, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
+      propertyPath: m_AnchorMax.x
+      value: .802999973
+      objectReference: {fileID: 0}
+    - target: {fileID: 22409960, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
   m_IsPrefabParent: 0
@@ -6007,7 +5956,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: <i>Tapote</i> sur lui pour plus d'infos.
+  m_Text: <color=#ff0000ff><i>tapote</i></color> sur lui pour plus d'infos.
 --- !u!222 &749338247
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6270,7 +6219,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
@@ -6821,7 +6770,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
@@ -7088,7 +7037,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Allons voir l'<i>ASCENSEUR</i>. C'est de l\xE0 qu'ils viendront."
+  m_Text: "Allons voir l'<color=#ff0000ff><i>ASCENSEUR</i></color>. C'est de l\xE0
+    qu'ils viendront."
 --- !u!222 &902560518
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7321,7 +7271,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Ils se servent beaucoup trop de cette <i>machine \xE0 Caf\xE9</i> !"
+  m_Text: "Ils se servent beaucoup trop de cette <color=#ff0000ff><i>machine \xE0
+    caf\xE9</i></color> !"
 --- !u!222 &950821946
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7387,7 +7338,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "La <i>casser</i> pourrait peut-\xEAtre les faire bosser plus!"
+  m_Text: "La <color=#ff0000ff><i>casser</i></color> pourrait peut-\xEAtre les faire
+    bosser plus!"
 --- !u!222 &976357027
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7646,9 +7598,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .196078435, g: .196078435, b: .196078435, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 59d34ee4912e1664f8e9c1ddf3f5a8e4, type: 3}
+    m_Font: {fileID: 12800000, guid: b7eb1c4314fb6214d8f1b434d166af05, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
@@ -9378,7 +9330,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
@@ -9670,7 +9622,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
@@ -9983,7 +9935,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
@@ -10885,7 +10837,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Attends que la <i>barre de Qi</i> se recharge avant de crier \xE0 nouveau."
+  m_Text: "Attends que la <color=#ff0000ff><i>barre de QI</i></color> se recharge
+    avant de crier \xE0 nouveau."
 --- !u!222 &1397735459
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11010,7 +10963,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
@@ -11196,8 +11149,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Bonjour, <i>entretien du b\xE2timent</i>, je passe dans les \xE9tages v\xE9rifier
-    que tout fonctionne."
+  m_Text: "Bonjour, <color=#ff0000ff><i>entretien des locaux</i></color>, je passe
+    dans les \xE9tages v\xE9rifier que tout fonctionne."
 --- !u!222 &1425984628
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11537,8 +11490,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Je peux s\xFBrement casser <i>d\u2019autres trucs</i>, on verra \xE7a plus
-    tard\u2026"
+  m_Text: "Je peux s\xFBrement casser <color=#ff0000ff><i>d'autres trucs</i></color>,
+    on verra \xE7a plus tard\u2026"
 --- !u!222 &1453372598
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11726,7 +11679,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
@@ -12315,69 +12268,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: .5, y: .5}
---- !u!1 &1568487262 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 116076, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
-  m_PrefabInternal: {fileID: 722902175}
---- !u!114 &1568487264 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11468108, guid: 878ddc77cf27cf14b836dfc9fdc06496,
-    type: 2}
-  m_PrefabInternal: {fileID: 722902175}
-  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
---- !u!114 &1568487266
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1568487262}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
-    m_PressedColor: {r: .784313738, g: .784313738, b: .784313738, a: 1}
-    m_DisabledColor: {r: .784313738, g: .784313738, b: .784313738, a: .501960814}
-    m_ColorMultiplier: 1
-    m_FadeDuration: .100000001
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 1568487264}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1791663992}
-        m_MethodName: nullifyJProfile
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1 &1571285480
 GameObject:
   m_ObjectHideFlags: 0
@@ -12633,7 +12523,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Approche-toi de lui et <i>crie dans le micro</i> pour l'engueuler.
+  m_Text: Approche-toi de lui et <color=#ff0000ff><i>crie dans le micro</i></color>
+    pour l'engueuler.
 --- !u!222 &1604817906
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12695,7 +12586,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
@@ -13214,7 +13105,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
@@ -13343,7 +13234,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
@@ -13546,7 +13437,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
@@ -14224,7 +14115,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
@@ -14358,9 +14249,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "La jauge verte indique sa <i>motivation</i>. Quand elle est au max, il
-    retourne bosser.\nLa jauge rouge indique son <i>stress</i>. Quand il est au max
-    ... tu verras \xE7a en temps voulu."
+  m_Text: "La jauge verte indique sa <color=#ff0000ff><i>motivation</i></color>. Quand
+    elle est au max, il retourne bosser.\nLa jauge rouge indique son <color=#ff0000ff><i>stress</i></color>.
+    Quand elle est au max ... tu verras \xE7a en temps voulu."
 --- !u!222 &1823677713
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15108,7 +14999,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
@@ -15237,7 +15128,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
@@ -16077,7 +15968,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
@@ -16206,7 +16097,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
