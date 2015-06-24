@@ -59,7 +59,7 @@ MonoBehaviour:
       /><field value="Untagged" type="System.String" id="element2" /></field><field
       type="System.Collections.Generic.List" id="_graphTags" elementtype="System.String"
       /><field value="0.01" type="System.Single" id="_maxSlope" /><field value="0"
-      type="System.Single" id="_walkableHeight" /><field value="1.7" type="System.Single"
+      type="System.Single" id="_walkableHeight" /><field value="1.6" type="System.Single"
       id="_walkableRadius" /><field value="0" type="System.Single" id="_stepHeight"
       /><field value="0.2" type="System.Single" id="_cellSize" /><field value="0.01"
       type="System.Single" id="_maxVertexError" /><field type="RAIN.Navigation.NavMesh.NavMeshPathGraph"

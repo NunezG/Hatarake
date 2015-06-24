@@ -100,7 +100,18 @@ public class GameManager : MonoBehaviour {
         if (elevator == null) elevator = GameObject.Find("Elevator Cell 4, 0");
         if (phone == null) phone = GameObject.Find("phoneCollider");
 
-        if (tutoIsOn)
+        if (endOfDemo)
+        {
+            print("FIIIIIIIIIIIIIN");
+            victoryLocked = true;
+            endOfDemo = false;
+            EndOfDemoButton.gameObject.SetActive(true);
+            bossLock(true, true);
+            workingIsActuallyUsefull = false;
+        }
+
+
+        else if (tutoIsOn)
         {
             if (cameraLookingForCoffee)
             {
@@ -317,6 +328,10 @@ public class GameManager : MonoBehaviour {
                 strCentiSecondes = "" + centisecondes;
 
             clock.text = strMinutes + "\'" + strSecondes + "\'\'" + strCentiSecondes;
+
+            
+
+
             if (objectiveCompletion < levelObjective)
             {
                 if (workingIsActuallyUsefull && boss!=null) time = time + Time.deltaTime;
@@ -324,13 +339,7 @@ public class GameManager : MonoBehaviour {
             else if (boss != null)
             {
 
-                if (endOfDemo)
-                {
-                    EndOfDemoButton.gameObject.SetActive(true);
-                    bossLock(true, true);
-                    workingIsActuallyUsefull = false;
-                }
-                else if (this.GetComponent<CharacterManager>().GetTotalNumberOfBoxies() == 7 && tutoBreakIsNotComplete)
+                if (this.GetComponent<CharacterManager>().GetTotalNumberOfBoxies() == 7 && tutoBreakIsNotComplete)
                 {
                     timeToStartBreakingShit = true;
                     tutoIsOn = true;

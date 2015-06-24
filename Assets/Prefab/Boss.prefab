@@ -1941,7 +1941,7 @@ MonoBehaviour:
   tutoLock: 0
   moveLocked: 0
   hatarakeLocked: 0
-  yellingO_Meter: 8
+  yellingO_Meter: 0
   maxYellingO_Meter: 8
   gainByBubble: 1
   maxLossByScream: 8
@@ -1973,7 +1973,7 @@ MonoBehaviour:
   onCoolDown: 0
   maxLoudness: 40
   enumLock: 0
-  hatarakeTime: 1
+  hatarakeTime: .5
 --- !u!114 &11417598
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2014,7 +2014,7 @@ MonoBehaviour:
       type="System.Single" id="_closeEnoughAngle" /><field value="500" type="System.Single"
       id="_faceBeforeMoveAngle" /><field value="0" type="System.Single" id="_stepUpHeight"
       /><field value="False" type="System.Boolean" id="_allow3DMovement" /><field
-      value="False" type="System.Boolean" id="_allow3DRotation" /><field value="True"
+      value="False" type="System.Boolean" id="_allow3DRotation" /><field value="False"
       type="System.Boolean" id="_allowOffGraphMovement" /><field value="False" type="System.Boolean"
       id="_useRootMotion" /><field value="False" type="System.Boolean" id="_overrideRootRotation"
       /><field type="System.Collections.Generic.List" id="_forwardedParameters" elementtype="RAIN.Motion.MecanimMotor+MotorParameter"><field
