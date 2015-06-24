@@ -344,7 +344,7 @@ public class Employe : MonoBehaviour {
         GameObject window = tMemory.GetItem<GameObject>("myTarget");
         //window.transform.Find("tache").gameObject.SetActive(true);
         //window.GetComponentInChildren<ParticleSystem>().Play();
-        GameManager.instance.cameraController.FollowObjectAndShakeAtTheEnd(window, 1.5f,0.3f,0);
+        GameManager.instance.cameraController.FollowObjectAndShakeAtTheEnd(window, 2f,0.3f,0);
         GameManager.instance.GetComponent<CharacterManager>().sendBoxieToHell(this.gameObject);
 
         window.GetComponent<Window>().playSuicide(data.isMale, this.GetComponent<Employe>().data.hairColor, this.GetComponent<Employe>().data.topColor);

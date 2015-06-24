@@ -83,7 +83,7 @@ public class CameraController : MonoBehaviour {
 				fixedCamera = true;
 				pointer.SetActive(true);
                 dampTime = followDampTime;
-                if (endFollowByShaking && focusTimer == focusTimeToStartShaking)
+                if (endFollowByShaking && !shaking && focusTimer <= focusTimeToStartShaking)
                 {
                     shaking = true;
                 }
