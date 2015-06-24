@@ -22,8 +22,10 @@ public class clearPath : RAINAction
     {
        RaycastHit hit;
 
-       if (ai.WorkingMemory.GetItem<GameObject>("mountPoint") || ai.Navigator.CurrentGraph == null || (ai.Navigator.CurrentGraph != null && !ai.Navigator.OnGraph(ai.Body.transform.position, 3)))
+       if (ai.WorkingMemory.GetItem<GameObject>("mountPoint") || ai.Navigator.CurrentGraph == null || (ai.Navigator.CurrentGraph != null && !ai.Navigator.CurrentGraph.IsPointOnGraph(ai.Body.transform.position, 3)))
         {
+           
+
             int randDir = Random.Range(0,2);
            if (randDir == 0)
                tempTarget = ai.Body.transform.position + ai.Body.transform.TransformDirection(Vector3.left) * 3 + ai.Body.transform.TransformDirection(Vector3.forward);
