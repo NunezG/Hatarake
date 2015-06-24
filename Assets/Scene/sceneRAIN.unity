@@ -1504,7 +1504,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "<i>Prends trois nouveaux employ\xE9s</i>\nQuel choix corn\xE9lien ..."
+  m_Text: "<i>Choisis ton prochain employ\xE9!</i>"
 --- !u!222 &235996280
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3379,7 +3379,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Allons prendre un bon caf\xE9 dans le <i>SALLE DE REPOS</i>."
+  m_Text: "Allons prendre un bon caf\xE9 dans la <i>SALLE DE REPOS</i>."
 --- !u!222 &409121588
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9509,7 +9509,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1269763775
 RectTransform:
   m_ObjectHideFlags: 0
