@@ -16,8 +16,8 @@ public class Suicide : RAINAction
     {
 
 		//From RAIN custom action script
-		ai.Body.gameObject.SendMessage("Suicide");
 
+        ai.Body.GetComponent<Employe>().Suicide();
         return ActionResult.SUCCESS;
     }
 

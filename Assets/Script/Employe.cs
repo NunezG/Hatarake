@@ -28,7 +28,7 @@ public class Employe : MonoBehaviour {
     public static List<GameObject> emptyWorkingHelp;
 
     public RAIN.Memory.BasicMemory tMemory;
-    private RAIN.Navigation.BasicNavigator tNav;
+    public RAIN.Perception.BasicSenses tSens;
 
 	public EmployeeData data;
 	//Awake is always called before any Start functions
@@ -48,7 +48,7 @@ public class Employe : MonoBehaviour {
 	{
 		AIRig aiRig = GetComponentInChildren<AIRig>();
         tMemory = aiRig.AI.WorkingMemory as RAIN.Memory.BasicMemory;
-        tNav = aiRig.AI.Navigator as RAIN.Navigation.BasicNavigator;          
+        tSens = aiRig.AI.Senses as RAIN.Perception.BasicSenses;          
 	}
     // Use this for initialization
     void Start()
@@ -108,6 +108,12 @@ public class Employe : MonoBehaviour {
             tMemory.SetItem<bool>("suicidaire", true);
             employeProfile.setJProfile(0, this.gameObject);
             GameManager.instance.cameraController.FollowEmployee(this.gameObject, 1000,0f);
+
+            Rigidbody rb = GetComponent<Rigidbody>();
+            rb.isKinematic = true;
+            rb.detectCollisions = false;
+            tSens.DisableSensor("Visual Sensor");
+            //tSens.GetSensor("Visual Sensor").IsActive = false;
         }
 
 
@@ -335,9 +341,6 @@ public class Employe : MonoBehaviour {
 
 	// Use this for initialization
 	public void Suicide (){
-
-        this.gameObject.GetComponent<Rigidbody>().isKinematic = true;
-        //tMemory.GetItem("suicidaire"); 
         GameObject window = tMemory.GetItem<GameObject>("myTarget");
         //window.transform.Find("tache").gameObject.SetActive(true);
         //window.GetComponentInChildren<ParticleSystem>().Play();
