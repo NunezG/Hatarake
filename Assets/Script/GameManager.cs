@@ -59,17 +59,19 @@ public class GameManager : MonoBehaviour {
    public bool startSolarClock = false;
    public GameObject GUIClock, GUIQiBar;
    public bool displayProgressionBar;
+   public GameObject creditsPanel;
     //--------------------------
    public bool endOfDemo = false;
 
+   public int framerate=60;
 
 	void Awake()
 	{
+        Application.targetFrameRate = framerate;
 		//Check if instance already exists
 		if (instance == null)			
 			//if not, set instance to this
 			instance = this;
-		
 		//If instance already exists and it's not this:
 		else if (instance != this)			
 			//Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of a GameManager.
@@ -91,10 +93,10 @@ public class GameManager : MonoBehaviour {
 
 	}
     public bool victoryLocked = false;
-    public bool ringingLocked = false;
 	// Update is called once per frame
 	void Update () {
 
+        
         if (coffeeTable == null) coffeeTable = GameObject.Find("CoffeeTrigger");
         if (coffeeBreak == null) coffeeBreak = GameObject.Find("tableCafe");
         if (elevator == null) elevator = GameObject.Find("Elevator Cell 4, 0");
@@ -103,6 +105,8 @@ public class GameManager : MonoBehaviour {
         if (endOfDemo)
         {
             print("FIIIIIIIIIIIIIN");
+            displayProgressionBar = false;
+            ringingPhone = false;
             victoryLocked = true;
             endOfDemo = false;
             EndOfDemoButton.gameObject.SetActive(true);
@@ -402,7 +406,7 @@ public class GameManager : MonoBehaviour {
     }
     public void DemoEndOnClick()
     {
-        GameObject.Find("CreditsPanel").SetActive(true);
+        creditsPanel.SetActive(true);
        // Application.Quit();
     }
 
