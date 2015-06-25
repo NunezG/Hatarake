@@ -44,7 +44,10 @@ public class selectTarget : RAINAction
                 int rdmIndex = UnityEngine.Random.Range(0, Employe.suicide.Count);
 
                 target = Employe.suicide[rdmIndex];
-                return ActionResult.SUCCESS;
+
+
+               if (target.GetComponent<BreakableFurniture>().broken) return ActionResult.SUCCESS;
+               else return ActionResult.RUNNING;
 
             }
             else if (!ai.WorkingMemory.GetItem<bool>("auTravail"))

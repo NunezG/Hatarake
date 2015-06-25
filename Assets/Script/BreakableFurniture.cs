@@ -3,9 +3,9 @@ using System.Collections;
 
 public class BreakableFurniture : MonoBehaviour {
     public bool broken = false;
-	private int resistance = 5;
-    private int damage = 0;
-    private Vector3 breakTarget;
+    protected int resistance = 5;
+    protected int damage = 0;
+    protected Vector3 breakTarget;
     public bool shaking = false;
     public int shakingDuration = 5;
     public float shakeMagnitude = 1;
@@ -73,7 +73,7 @@ public class BreakableFurniture : MonoBehaviour {
             transform.parent.GetComponentInChildren<SpriteRenderer>().sprite = brokenSprite;
            // transform.parent.GetComponentInChildren<SpriteRenderer>().color = new Color(0.0f, 0.0f, 0.0f);
 
-            if (transform.parent.GetComponentInChildren<ParticleSystem>()!= null)
+            if (!broken && transform.parent.GetComponentInChildren<ParticleSystem>() != null)
             transform.parent.GetComponentInChildren<ParticleSystem>().Play();
 
             broken = true;
