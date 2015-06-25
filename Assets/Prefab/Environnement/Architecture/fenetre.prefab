@@ -700,11 +700,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   broken: 0
+  shaking: 0
   shakingDuration: 5
-  shakeMagnitude: 1
+  shakeMagnitude: 2
   initialPosition: {x: 0, y: 0, z: 0}
   initialScale: {x: 0, y: 0, z: 0}
   initialRotate: {x: 0, y: 0, z: 0, w: 0}
+  hitSound: {fileID: 8291644, guid: b7b15f4c1a407a44d81befff22a2c337, type: 2}
   normalSprite: {fileID: 21300000, guid: 5f78b90891a3f454c9a6c7037e7829fc, type: 3}
   brokenSprite: {fileID: 21300000, guid: 6fb7b9cda8b3f6f40bfcecb2acd91960, type: 3}
 --- !u!114 &11488834

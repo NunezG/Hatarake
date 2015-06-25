@@ -35,19 +35,31 @@ public class Decrasseur : MonoBehaviour {
     // mets les repères pour l'employé
     public void SetEmployeeLocations()
     {
-        if (emptyRepair == null)
-        {
+        //if (emptyRepair == null)
+       // {
             emptyRepair = new List<GameObject>();
             InteractWithEmployee[] chills = floor.GetComponentsInChildren<InteractWithEmployee>();
+
+         bool alreadyInList = false;
             foreach (InteractWithEmployee chi in chills)
             {
-                if (chi.transform.parent.Find("breakPos") != null)
-                    emptyRepair.Add(chi.transform.parent.Find("breakPos").gameObject);
-                else
-                    if (chi.transform.parent.GetComponentInChildren<BreakableFurniture>() != null)
-                        emptyRepair.Add(chi.gameObject);
+               alreadyInList = false;
+                foreach (GameObject available in emptyRepair)
+                {
+                    if (available.transform.parent == chi.transform.parent)
+                        alreadyInList = true;
+                }
+
+                if (!alreadyInList)
+                {
+                    if (chi.transform.parent.Find("breakPos") != null)
+                        emptyRepair.Add(chi.transform.parent.Find("breakPos").gameObject);
+                    else
+                        if (chi.transform.parent.GetComponentInChildren<BreakableFurniture>() != null)
+                            emptyRepair.Add(chi.gameObject);
+                }
             }
-        }
+       // }
     }
 
 

@@ -1,22 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BreakableFurnitureee : MonoBehaviour {
-    public bool broken = false;
-	private int resistance = 5;
-    private int damage = 0;
-    private Vector3 breakTarget;
-   // public bool shaking = false;
-    public int shakingDuration = 5;
-    public float shakeMagnitude = 300000;
-    public Vector3 initialPosition,initialScale;
-    public Quaternion initialRotate;
-
-    public Sprite normalSprite;
-    public Sprite brokenSprite;
-
+public class BreakableFurnitureee : BreakableFurniture
+{
+ 
     void Start(){
-
+       // shakeMagnitude = 1;
         if (transform.parent.FindChild("breakPos") != null)
         {
             breakTarget = transform.parent.FindChild("breakPos").position;
@@ -30,11 +19,7 @@ public class BreakableFurnitureee : MonoBehaviour {
     }
 
 	void Update () {
-       // if (GameManager.instance.boss.GetComponent<Boss>().getTarget() == breakTarget)
-     //   {
-        //  }
-       //
-       // ShakeMyBooty();
+
 	}
 
     //Shakes the camera for a certain amount of time
@@ -75,7 +60,7 @@ public class BreakableFurnitureee : MonoBehaviour {
         {
             this.gameObject.GetComponent<SpriteRenderer>().sprite = brokenSprite;
 
-            if (transform.parent.GetComponentInChildren<ParticleSystem>()!= null)
+            if (!broken && transform.parent.GetComponentInChildren<ParticleSystem>() != null)
             transform.parent.GetComponentInChildren<ParticleSystem>().Play();
 
             broken = true;
@@ -95,8 +80,8 @@ public class BreakableFurnitureee : MonoBehaviour {
         {
             transform.parent.GetComponentInChildren<SpriteRenderer>().sprite = normalSprite;
           
-            if (transform.parent.GetComponentInChildren<ParticleSystem>() != null)
-            transform.parent.GetComponentInChildren<ParticleSystem>().Stop();
+          //  if (transform.parent.GetComponentInChildren<ParticleSystem>() != null)
+          //  transform.parent.GetComponentInChildren<ParticleSystem>().Stop();
 
             broken = false;
             return true;
