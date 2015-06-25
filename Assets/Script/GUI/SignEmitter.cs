@@ -20,7 +20,10 @@ public class SignEmitter : MonoBehaviour {
         Vector3 pos = new Vector3(position.x, position.y + 10, position.z);
         GameObject newObject;
         if (type != SignType.Hatarake)
+        {
             newObject = Instantiate(SignGeneratorEmploye) as GameObject;
+
+        }
         else
         {
             newObject = Instantiate(SignGeneratorBoss) as GameObject;
@@ -52,36 +55,47 @@ public class SignEmitter : MonoBehaviour {
                 partiSys.startSize = 50 * size;
                 break;
             case SignType.Cellphone:
+                boss.GetComponent<Boss>().addBubble();
                 partiSysRender.material = materials[0];
                 break;
             case SignType.Coffee:
+                boss.GetComponent<Boss>().addBubble();
                 partiSysRender.material = materials[1];
                 break;
             case SignType.Death:
+                boss.GetComponent<Boss>().addBubble();
                 partiSysRender.material = materials[2];
                 break;
             case SignType.Drink:
+                boss.GetComponent<Boss>().addBubble();
                 partiSysRender.material = materials[3];
                 break;
             case SignType.Facebook:
+                boss.GetComponent<Boss>().addBubble();
                 partiSysRender.material = materials[4];
                 break;
             case SignType.GoingToGlande:
+                boss.GetComponent<Boss>().addBubble();
                 partiSysRender.material = materials[5];
                 break;
             case SignType.GoingToWork:
+                boss.GetComponent<Boss>().addBubble();
                 partiSysRender.material = materials[6];
                 break;
             case SignType.Photocopier:
+                boss.GetComponent<Boss>().addBubble();
                 partiSysRender.material = materials[7];
                 break;
             case SignType.Toilet:
+                boss.GetComponent<Boss>().addBubble();
                 partiSysRender.material = materials[8];
                 break;
             case SignType.Tv:
+                boss.GetComponent<Boss>().addBubble();
                 partiSysRender.material = materials[9];
                 break;
             case SignType.Work:
+                boss.GetComponent<Boss>().addBubble();
                 partiSysRender.material = materials[10];
                 break;
             default:
@@ -94,15 +108,15 @@ public class SignEmitter : MonoBehaviour {
 
         if (!partiSys.IsAlive() )
         {
-            if( type != SignType.Hatarake)
-                boss.GetComponent<Boss>().addBubble();
+            //if( type != SignType.Hatarake)
+                //boss.GetComponent<Boss>().addBubble();
 
             Destroy(this.gameObject);
         }
 
-		if (partiSys.time > 0.6f && type != SignType.Hatarake) {
-			transform.position = Vector3.Lerp(transform.position, boss.transform.position, 0.2f);
-		}
+		//if (partiSys.time > 0.6f && type != SignType.Hatarake) {
+			//transform.position = Vector3.Lerp(transform.position, boss.transform.position, 0.2f);
+		//}
 
 	}
 }

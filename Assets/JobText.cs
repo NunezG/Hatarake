@@ -15,20 +15,33 @@ public class JobText : MonoBehaviour {
 							"un e-book", "un CandyCrush-like", "une expérience AR",
 							"un serious game", "un jeu fun"};
     private static string[] concernant = new string[] {"sur les"};
-    private static string[] sujet = new string[]{"enfants", "coutumes", "poneys", "loutres","amis","ornythorinques","placentas","oiseaux"};
+    private static string[] sujet = new string[]{"enfants.", "coutumes.", "poneys.", "loutres.","amis.","ornythorinques.","placentas.","oiseaux."};
     
-    private static string[] aurevoir = new string[]{"à plus, ma couille!", "à plus!", "et magne-toi, s'il-te-plait!",
-							 	"ciao!","salut!","à bientôt!","à demain!","bye!","auf wiedersehen!",
-								"bon, bah salut!", "... allez, GO!"};
+    private static string[] aurevoir = new string[]{"A plus, ma couille!", "A plus!", "Et magne-toi, s'il-te-plait!",
+							 	"Ciao!","Salut!","A bientôt!","A demain!","Bye!","Auf wiedersehen!",
+								"Bon, bah salut!", "Allez, GO!"};
 
     public static string GenerateRandomJob()
     {
-        return c(salut) + ", "+ c(demande) +" "+ c(type) + c(concernant) + c(sujet) + c(aurevoir);
+        return c(salut) + ", "+ c(demande) +" "+ c(type) + c(concernant) + c(sujet)+" " + c(aurevoir);
     }
 
     public static string c(string[] tab)
     {
-
         return tab[(int)Random.Range(0, tab.Length)] + " ";
+    }
+
+
+
+    private static string[] goodVictory = new string[]{"Maître de l'Hatarakade","Dragon Hurlant","Tigre Rugissant","Ours Grondant"};
+    private static string[] badVictory = new string[]{"Poulet Asthmatique", "Grillon Atone","Grenouille Souffreteuse","Canard Enroué"};
+
+    public static string GenerateRandomGoodVictory()
+    {
+        return c(goodVictory);
+    }
+    public static string GenerateRandomBadVictory()
+    {
+        return c(badVictory);
     }
 }

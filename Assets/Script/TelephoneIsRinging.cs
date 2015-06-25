@@ -40,7 +40,7 @@ public class TelephoneIsRinging : MonoBehaviour {
                 GameManager.instance.CalculateNumberOfEmployeeToHire();*/
                 Employe.suicideLock = true;
                 GameManager.instance.tutoArrow.gameObject.SetActive(false);
-                GameManager.instance.cameraController.FollowEmployee(GameManager.instance.boss,1,0);
+                GameManager.instance.cameraController.FollowEmployee(GameManager.instance.boss,1.5f,0);
                 GameManager.instance.activateNextMissionButton();
             }
             else
