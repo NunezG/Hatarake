@@ -1,5 +1,20 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &102146
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 404992}
+  m_Layer: 0
+  m_Name: brokenGlass
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
 --- !u!1 &106772
 GameObject:
   m_ObjectHideFlags: 0
@@ -247,6 +262,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &404992
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 102146}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 485008}
+  - {fileID: 424882}
+  - {fileID: 489352}
+  m_Father: {fileID: 454826}
+  m_RootOrder: 8
 --- !u!4 &405600
 Transform:
   m_ObjectHideFlags: 1
@@ -277,11 +307,11 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 197338}
-  m_LocalRotation: {x: 0, y: 2.98023224e-08, z: .256535023, w: .966534972}
-  m_LocalPosition: {x: -1.7070303, y: 2.01801395, z: .33802554}
-  m_LocalScale: {x: 3.38025784, y: 3.38025856, z: 3.3802588}
+  m_LocalRotation: {x: .683443487, y: -.181397647, z: .181397647, w: .683443367}
+  m_LocalPosition: {x: -.483999997, y: 0, z: -.274000049}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 467394}
+  m_Father: {fileID: 404992}
   m_RootOrder: 1
 --- !u!4 &435442
 Transform:
@@ -349,6 +379,7 @@ Transform:
   - {fileID: 485106}
   - {fileID: 442468}
   - {fileID: 405600}
+  - {fileID: 404992}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &467394
@@ -360,10 +391,7 @@ Transform:
   m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106709}
   m_LocalPosition: {x: .0209999997, y: .100000001, z: -.870999992}
   m_LocalScale: {x: .295835406, y: .295835406, z: .295835406}
-  m_Children:
-  - {fileID: 485008}
-  - {fileID: 424882}
-  - {fileID: 489352}
+  m_Children: []
   m_Father: {fileID: 454826}
   m_RootOrder: 2
 --- !u!4 &474004
@@ -384,11 +412,11 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 161164}
-  m_LocalRotation: {x: .0130518088, y: -.000624984561, z: -.7060408, w: .708050668}
-  m_LocalPosition: {x: .466475606, y: 2.36618042, z: .33802551}
-  m_LocalScale: {x: 3.38025761, y: 3.38025737, z: 3.38025808}
+  m_LocalRotation: {x: .509896457, y: .498804331, z: -.499688119, w: .491438359}
+  m_LocalPosition: {x: .158999994, y: 0, z: -.171000123}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 467394}
+  m_Father: {fileID: 404992}
   m_RootOrder: 0
 --- !u!4 &485106
 Transform:
@@ -435,11 +463,11 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 170504}
-  m_LocalRotation: {x: 1.4901163e-08, y: -2.98023259e-08, z: -.876238525, w: .481877714}
-  m_LocalPosition: {x: -.638868749, y: 2.66702342, z: .338025451}
-  m_LocalScale: {x: 3.38025808, y: 3.38025808, z: 3.38025832}
+  m_LocalRotation: {x: .340739012, y: .619594216, z: -.619594157, w: .340738952}
+  m_LocalPosition: {x: -.167999998, y: 0, z: -.0820000768}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 467394}
+  m_Father: {fileID: 404992}
   m_RootOrder: 2
 --- !u!65 &6568954
 BoxCollider:
@@ -721,6 +749,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bloodStain: {fileID: 108156}
+  brokenGlassSprite: {fileID: 102146}
   suicideMale: {fileID: 8203940}
   suicideFemale: {fileID: 8299586}
   brokenGlass: {fileID: 19860506}

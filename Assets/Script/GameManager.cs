@@ -105,6 +105,8 @@ public class GameManager : MonoBehaviour {
         if (endOfDemo)
         {
             print("FIIIIIIIIIIIIIN");
+
+            boss.GetComponent<Boss>().gongOfVictory.Play();
             displayProgressionBar = false;
             ringingPhone = false;
             victoryLocked = true;
@@ -358,7 +360,7 @@ public class GameManager : MonoBehaviour {
                         GUIClock.SetActive(false);
                         float victoryRatio = levelObjective/time;
                         string victoryTitle = "";
-                        if (victoryRatio < 5)
+                        if (victoryRatio < 6)
                         {
                             victoryTitle = JobText.GenerateRandomBadVictory();
                         }
@@ -590,7 +592,7 @@ public class GameManager : MonoBehaviour {
 
 
     }
-    public float objectiveIncreaseFactor = 3;
+    public float objectiveIncreaseFactor = 1.5f;
     public void nextObjective()
     {
         victoryLocked = false;
@@ -601,7 +603,7 @@ public class GameManager : MonoBehaviour {
         tutoArrow.gameObject.SetActive(true);
         tutoArrow.target = phone;
 
-            if (levelObjective == 10) levelObjective = 50;
+            if (levelObjective == 30) levelObjective = 50;
             levelObjective = levelObjective * objectiveIncreaseFactor;
             objectiveCompletion = 0;
             time = 0;

@@ -7,6 +7,7 @@ using System.Collections;
 public class Window : MonoBehaviour
 {
     public GameObject bloodStain;
+    public GameObject brokenGlassSprite;
     public AudioSource suicideMale, suicideFemale;
 
     public ParticleSystem brokenGlass;
@@ -16,18 +17,31 @@ public class Window : MonoBehaviour
     public BreakableFurnitureee breakableFurniture;
     //public bool occupe = false;
 
+    bool bloodStainLock = false;
+
     // Use this for initialization
     void Start()
     {
     }
+    float timerBloodStain = 0;
 
     // Update is called once per frame
     void Update()
     {
+        if (timerBloodStain > 0 && !bloodStainLock)
+        {
+            timerBloodStain = timerBloodStain - Time.deltaTime;
+            if (timerBloodStain < 0)
+            {
+                bloodStain.SetActive(true);
+                bloodStainLock = true;
+            }
+        }
     }
-
     public void playSuicide(bool isMale,Color hairColor,Color topColor)
     {
+        brokenGlassSprite.SetActive(true);
+        timerBloodStain = 1.7f;
         if (isMale)
         {
             if (!suicideMale.gameObject.activeInHierarchy)
@@ -45,7 +59,6 @@ public class Window : MonoBehaviour
             }
             suicideFemale.Play();
         }
-        bloodStain.SetActive(true);
         if (!suicideHeadAnimator.gameObject.activeInHierarchy)
         {
             suicideHeadAnimator.gameObject.SetActive(true);

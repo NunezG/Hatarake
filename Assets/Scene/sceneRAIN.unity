@@ -1742,6 +1742,7 @@ MonoBehaviour:
   nbDecrasseur: 0
   boxies: []
   decrasseurs: []
+  freshMeatThreshold: 0
   tutoDecrasseurLock: 1
 --- !u!4 &268217652
 Transform:
@@ -1790,7 +1791,7 @@ MonoBehaviour:
   newMissionButton: {fileID: 331497636}
   EndOfDemoButton: {fileID: 524748417}
   boss: {fileID: 0}
-  levelObjective: 10
+  levelObjective: 30
   objectiveCompletion: 0
   clock: {fileID: 1234538996}
   time: 0
