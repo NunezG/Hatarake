@@ -46,7 +46,7 @@ public class selectTarget : RAINAction
                 target = Employe.suicide[rdmIndex];
 
 
-               if (target.GetComponent<BreakableFurniture>().broken) return ActionResult.SUCCESS;
+               if (!target.transform.parent.GetComponentInChildren<BreakableFurniture>().broken) return ActionResult.SUCCESS;
                else return ActionResult.RUNNING;
 
             }
