@@ -241,6 +241,9 @@ public class Employe : MonoBehaviour {
         if (facebook && !facebookSound.isPlaying) facebookSound.Play();
         else facebookSound.Stop();
 
+        if (coffee && !coffeeSound.isPlaying) coffeeSound.Play();
+        else coffeeSound.Stop();
+
         if (vendingMachine && !vendingMachineSound.isPlaying) vendingMachineSound.Play();
         else vendingMachineSound.Stop();
 

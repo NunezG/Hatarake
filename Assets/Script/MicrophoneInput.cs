@@ -8,13 +8,15 @@ public class MicrophoneInput : MonoBehaviour
     public float loudness = 0.0f;
     public float frequency = 0.0f;
     public int samplerate = 96000;
+    public int currentMinSampleRate, currentMaxSampleRate;
 
     void Start()
     {
         for (int i = 0; i < Microphone.devices.Length; i++)
         {
             print("Micro nb " + i + " s'appelle : " + Microphone.devices[i]);
-        
+
+        Microphone.GetDeviceCaps(null, out currentMinSampleRate,out currentMaxSampleRate);
         GetComponent<AudioSource>().clip = Microphone.Start(null, true, 10, samplerate);
         GetComponent<AudioSource>().loop = true; // Set the AudioClip to loop
         GetComponent<AudioSource>().mute = true; // Mute the sound, we don't want the player to hear it

@@ -356,7 +356,7 @@ public class GameManager : MonoBehaviour {
                         print("GOOOOOOOOOOOOOONG");
                         bossLock(true, true);
                         victoryButton.SetActive(true);
-						victoryButton.GetComponentInChildren<Text>().text = "TEMPS:\n" + strMinutes + "\'\'" + strSecondes + "\'" + strCentiSecondes + "\nSCORE :\n NUL ! POUSSE LES UN PEU PLUS!";
+                        victoryButton.GetComponentInChildren<Text>().text = "TEMPS:\n" + strMinutes + "\'\'" + strSecondes + "\'" + strCentiSecondes + "\nSCORE :\n <color=#ff0000ff><i>NUL ! POUSSE LES UN PEU PLUS!</i></color>";
                         boss.GetComponent<Boss>().moveLocked = true;
                         boss.GetComponent<Boss>().hatarakeLocked = true;
                         victoryLocked = true;

@@ -37,7 +37,8 @@ public class SolarClockManager : MonoBehaviour {
 
         }
 
-        if (time >= endOfTime) { 
+        if (time >= endOfTime && !solarClockLock)
+        { 
             solarClockLock = true;
             GameManager.instance.endOfDemo = true;
         }

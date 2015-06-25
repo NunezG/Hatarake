@@ -260,21 +260,21 @@ public class Boss : MonoBehaviour {
             actionArea.localScale = new Vector3(0.8f, actionArea.localScale.y, 0.8f);
             yellingO_Meter = 0;
         //-------------------
-            if (pos > 40)
-            {
+           // if (pos > 40)
+          //  {
 
-                GameManager.instance.cameraController.shaking = true;
-                GameManager.instance.cameraController.shakeMagnitude = pos;
+           //     GameManager.instance.cameraController.shaking = true;
+           //     GameManager.instance.cameraController.shakeMagnitude = pos;
                 //GameObject audio = this.transform.Find("hatarake_strong").gameObject;
                 //audio.GetComponent<AudioSource>().Play();
-            }
-            else if (pos > 20)
-            {
+           // }
+           // else if (pos > 20)
+           // {
                 GameManager.instance.cameraController.shaking = true;
                 GameManager.instance.cameraController.shakeMagnitude = pos;
                 //GameObject audio = this.transform.Find("hatarake_medium").gameObject;
                 //audio.GetComponent<AudioSource>().Play();
-            }
+            //}
             actionArea.gameObject.SetActive(false);
             actionArea.localScale = new Vector3(0.8f, actionArea.localScale.y, 0.8f);
             //ResetTimer
