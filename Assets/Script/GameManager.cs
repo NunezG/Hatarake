@@ -189,6 +189,7 @@ public class GameManager : MonoBehaviour {
             }
             if (freshMeatHired)
             {
+                GetComponent<CharacterManager>().freshMeatThreshold = true;
                 //print("fresh meat hired");
                 freshMeatHired = false;
                 cameraController.dampTime = 0;
