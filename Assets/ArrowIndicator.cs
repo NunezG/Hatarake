@@ -8,7 +8,7 @@ public class ArrowIndicator : MonoBehaviour {
     public GameObject boss;
     public GameObject target;
     public GameObject sprite;
-
+    public float minScale = 1.6f;
     public int spriteActiveThreshold = 15,logFactor =2;
 	// Use this for initialization
 	void Start () {
@@ -41,6 +41,10 @@ public class ArrowIndicator : MonoBehaviour {
             float scaleDistance = direction.magnitude / 100;
             //print("distance :" + scaleDistance);
             transform.localScale = initalScale * (Mathf.Log10(scaleDistance + 1)*logFactor);
+            if (transform.localScale.x < minScale)
+            {
+                transform.localScale = new Vector3(minScale, minScale, minScale);
+            }
             transform.LookAt(target.transform.position);
         }
 	

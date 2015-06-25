@@ -1946,7 +1946,7 @@ MonoBehaviour:
   gainByBubble: 1
   maxLossByScream: 8
   bossMovingSounds:
-  - {fileID: 8214090}
+  - {fileID: 8270580}
   - {fileID: 8206762}
   - {fileID: 8238542}
   - {fileID: 8241548}

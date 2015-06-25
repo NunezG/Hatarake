@@ -528,8 +528,8 @@ public class Data{
 		public List<string> lowClassHobbies = new List<string>{
 		"Sortir en boîte",
 		"Sortir au bar",
-		"Les parties fines entre amis",
-		"Les parties fines entre collègues",
+		"Jouer du pipeau",
+		"Les films de Michael Bay",
 		"S'admirer durant des heures",
 		"Écarter ses doigts de pieds",
 		"Jouer aux jeux-vidéo",

@@ -350,13 +350,27 @@ public class GameManager : MonoBehaviour {
                 }
                 else
                 {
+                    displayProgressionBar = false;
                     if (!victoryLocked)
                     {
+
+                        GUIClock.SetActive(false);
+                        float victoryRatio = levelObjective/time;
+                        string victoryTitle = "";
+                        if (victoryRatio < 5)
+                        {
+                            victoryTitle = JobText.GenerateRandomBadVictory();
+                        }
+                        else
+                        {
+                            victoryTitle = JobText.GenerateRandomGoodVictory();
+                        }
                         boss.GetComponent<Boss>().gongOfVictory.Play();
                         print("GOOOOOOOOOOOOOONG");
                         bossLock(true, true);
                         victoryButton.SetActive(true);
-                        victoryButton.GetComponentInChildren<Text>().text = "TEMPS:\n" + strMinutes + "\'\'" + strSecondes + "\'" + strCentiSecondes + "\nSCORE :\n <color=#ff0000ff><i>NUL ! POUSSE LES UN PEU PLUS!</i></color>";
+
+                        victoryButton.GetComponentInChildren<Text>().text = "TEMPS:\n" + strMinutes + "\'\'" + strSecondes + "\'" + strCentiSecondes + "\n\nSCORE :\n <color=#ff0000ff><i>" + victoryTitle + "</i></color>";
                         boss.GetComponent<Boss>().moveLocked = true;
                         boss.GetComponent<Boss>().hatarakeLocked = true;
                         victoryLocked = true;
@@ -374,6 +388,8 @@ public class GameManager : MonoBehaviour {
             {
                 Employe.suicideLock = false;
                 hiringTime = false;
+                GUIClock.SetActive(true);
+                displayProgressionBar = true;
                 workingIsActuallyUsefull = true;
                 time = 0;
 
@@ -466,7 +482,7 @@ public class GameManager : MonoBehaviour {
     {
         //vider motivation employer + follow avec cam
         this.gameObject.GetComponent<CharacterManager>().boxies[0].GetComponent<Employe>().TotalDemotivation();
-        cameraController.FollowEmployee(this.gameObject.GetComponent<CharacterManager>().boxies[0], 4,0);
+        cameraController.FollowEmployee(this.gameObject.GetComponent<CharacterManager>().boxies[0], 1.5f,0);
         cameraLookingAtSlacker = true;
     }
 
