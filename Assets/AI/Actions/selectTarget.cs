@@ -41,13 +41,24 @@ public class selectTarget : RAINAction
             {
                 ai.Motor.DefaultSpeed = ai.WorkingMemory.GetItem<int>("suicideSpeed");
 
-                int rdmIndex = UnityEngine.Random.Range(0, Employe.suicide.Count);
+               // int rdmIndex = UnityEngine.Random.Range(0, Employe.suicide.Count);
 
-                target = Employe.suicide[rdmIndex];
+               // target = Employe.suicide[rdmIndex];
+
+                foreach (GameObject fenetre in Employe.suicide)
+                {
+                    if (!fenetre.GetComponentInChildren<BreakableFurniture>().broken)
+                    {
+                        target = fenetre;
+                        return ActionResult.SUCCESS;
+
+                       
+                    }
+                }
 
 
-               if (!target.transform.parent.GetComponentInChildren<BreakableFurniture>().broken) return ActionResult.SUCCESS;
-               else return ActionResult.RUNNING;
+               
+               return ActionResult.RUNNING;
 
             }
             else if (!ai.WorkingMemory.GetItem<bool>("auTravail"))
