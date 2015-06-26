@@ -123,8 +123,11 @@ public class BreakableFurniture : MonoBehaviour {
         }
         else
         {
-            GameManager.instance.boss.GetComponent<Boss>().setTarget(breakTarget);
-            GameManager.instance.boss.GetComponent<Boss>().faceTarget(transform.parent.FindChild("lookAt").position);
+            if (!GameManager.instance.boss.GetComponent<Boss>().moveLocked)
+            {
+                GameManager.instance.boss.GetComponent<Boss>().setTarget(breakTarget);
+                GameManager.instance.boss.GetComponent<Boss>().faceTarget(transform.parent.FindChild("lookAt").position);
+            }
         }
 
     }
