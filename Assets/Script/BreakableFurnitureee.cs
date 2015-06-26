@@ -3,8 +3,9 @@ using System.Collections;
 
 public class BreakableFurnitureee : BreakableFurniture
 {
- 
-    void Start(){
+
+    void Start()
+    {
        // shakeMagnitude = 1;
         if (transform.parent.FindChild("breakPos") != null)
         {
@@ -18,7 +19,8 @@ public class BreakableFurnitureee : BreakableFurniture
         initialRotate =transform.localRotation;
     }
 
-	void Update () {
+    void Update()
+    {
 
 	}
 
@@ -27,7 +29,6 @@ public class BreakableFurnitureee : BreakableFurniture
     {
         int rotation = 1;
         int rotationTemp = 0;
-
         while(shakingDuration > 0)
         {
             if (rotationTemp == shakeMagnitude )
@@ -43,13 +44,30 @@ public class BreakableFurnitureee : BreakableFurniture
             rotationTemp++;
             yield return true;
         }
-
+        shaking = false;
         this.transform.position = initialPosition;
         this.transform.localScale = initialScale;
         this.transform.localRotation = initialRotate; 
     }
 
-  
+    override public void Hit()
+    {
+        GameManager.instance.boss.GetComponent<Boss>().action();
+        damage++;
+        shaking = true;
+        shakingDuration = 20;
+        StartCoroutine(ShakeMyBooty());
+
+        if (damage >= resistance)
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = brokenSprite;
+
+            if (!broken && transform.parent.GetComponentInChildren<ParticleSystem>() != null)
+            transform.parent.GetComponentInChildren<ParticleSystem>().Play();
+
+            broken = true;
+        }
+    }
     public void Break()
     {
         damage = resistance;
@@ -57,6 +75,4 @@ public class BreakableFurnitureee : BreakableFurniture
         this.gameObject.GetComponent<SpriteRenderer>().sprite = brokenSprite;
     }
 	
-
-   
 }
