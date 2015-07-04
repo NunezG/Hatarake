@@ -49,14 +49,56 @@ public class BreakableFurnitureee : BreakableFurniture
         this.transform.localRotation = initialRotate; 
     }
 
-  
+    public void Hit()
+    {
+        GameManager.instance.boss.GetComponent<Boss>().action();
+        damage++;
+        shakingDuration = 20;
+        StartCoroutine(ShakeMyBooty());
+
+        if (damage >= resistance)
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = brokenSprite;
+
+            if (!broken && transform.parent.GetComponentInChildren<ParticleSystem>() != null)
+            transform.parent.GetComponentInChildren<ParticleSystem>().Play();
+
+            broken = true;
+        }
+    }
     public void Break()
     {
         damage = resistance;
         broken = true;
         this.gameObject.GetComponent<SpriteRenderer>().sprite = brokenSprite;
     }
-	
+	public bool Repair()
+	{
+        damage -= Random.Range(0, resistance);
 
-   
+        if (damage <= 0)
+        {
+            transform.parent.GetComponentInChildren<SpriteRenderer>().sprite = normalSprite;
+          
+          //  if (transform.parent.GetComponentInChildren<ParticleSystem>() != null)
+          //  transform.parent.GetComponentInChildren<ParticleSystem>().Stop();
+
+            broken = false;
+            return true;
+        }
+        return false;
+	}
+
+     void OnMouseDown() 
+    {
+        if (GameManager.instance.boss.GetComponent<Boss>().getTarget() == breakTarget)
+        {
+            Hit();
+        }
+        else
+        {
+            GameManager.instance.boss.GetComponent<Boss>().setTarget(breakTarget);
+            GameManager.instance.boss.GetComponent<Boss>().faceTarget(transform.parent.FindChild("lookAt").position);
+        }
+    }
 }
