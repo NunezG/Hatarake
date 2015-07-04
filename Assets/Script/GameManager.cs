@@ -21,7 +21,8 @@ public class GameManager : MonoBehaviour {
     public float time = 0;
     public bool ongoingHiring = false;
     public AudioSource gongOfVictorySound;
-
+    int nbObjectifCompleted = 0;
+    public int nbSuicides = 0;
    public int nbEmployeeToHire = 3;
    public int nbEmployeeLeftToHire;
    public bool hiringTime = false;
@@ -43,7 +44,7 @@ public class GameManager : MonoBehaviour {
                 shitBroken,
                 decrasseurJustArrived,cameraLookingAtDecrasseur;
 
-    public Button tutoFirstButton, tutoCoffeeButton, tutoDeliciousCoffeeButton,
+    public GameObject tutoFirstButton, tutoCoffeeButton, tutoDeliciousCoffeeButton,
        tutoLookingForElevatorButton, tutoNobodyHereButton, tutoWtfButton,
        tutoHiringTimeButton, tutoFreshMeatButton, tutoExplicationProfileButton, tutoGoingToGlandeButton,
        tutoHatarakeExplicationButton, tutoSuccessfulHatarakingButton,
@@ -106,13 +107,16 @@ public class GameManager : MonoBehaviour {
         {
             print("FIIIIIIIIIIIIIN");
 
-            boss.GetComponent<Boss>().gongOfVictory.Play();
+            //boss.GetComponent<Boss>().gongOfVictory.Play();
+            EndSound();
             displayProgressionBar = false;
             ringingPhone = false;
             victoryLocked = true;
             endOfDemo = false;
+            bossLock(true, true); 
             EndOfDemoButton.gameObject.SetActive(true);
-            bossLock(true, true);
+            EndOfDemoButton.GetComponentInChildren<Text>().text = "Pour une première journée, c'était pas trop mal ...\n\n Projets Terminés : <color=#ff0000ff><i>" + nbObjectifCompleted + "</i></color>\n Employés toujours vivants : <color=#ff0000ff><i>" + this.GetComponent<CharacterManager>().GetTotalNumberOfBoxies() + "</i></color>\nEmployés toujours morts : <color=#ff0000ff><i>" + nbSuicides + "</i></color>\n Rang Céleste : <color=#ff0000ff><i>Crapaud Hardi</i></color> \n\n<i>Cliquez</i> pour voir vos meilleurs employés!";
+
             workingIsActuallyUsefull = false;
         }
 
@@ -353,14 +357,16 @@ public class GameManager : MonoBehaviour {
                 }
                 else
                 {
-                    displayProgressionBar = false;
+                    //displayProgressionBar = false;
                     if (!victoryLocked)
                     {
-
+                        displayProgressionBar = false;
+                        nbObjectifCompleted++;
                         GUIClock.SetActive(false);
                         float victoryRatio = levelObjective/time;
                         string victoryTitle = "";
-                        if (victoryRatio < 6)
+                        print("victoryRatio : " + victoryRatio);
+                        if (victoryRatio < 8)
                         {
                             victoryTitle = JobText.GenerateRandomBadVictory();
                         }
@@ -402,9 +408,15 @@ public class GameManager : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            print("space key was pressed");
+            boss.GetComponent<MicrophoneInput>().Restart();
+            //print("space key was pressed");
             //gameObject.GetComponent<CharacterManager>().SpawnOneBoxieInElevator(1);
             //if (!ongoingHiring) activateHiringRound();
+        }
+
+        if (Input.GetMouseButton(0))
+        {
+            //employeeProfile.nullifyAllProfile();
         }
 
 	}
@@ -494,6 +506,7 @@ public class GameManager : MonoBehaviour {
         goingToHatarakeSlacker = true;
         boss.GetComponent<Boss>().yellingO_Meter = boss.GetComponent<Boss>().maxYellingO_Meter;
         bossLock(false, false);
+        //boss.GetComponent<Boss>().UnmuteMic();
     }
 
     public void TutoEmployeeHataraked()
@@ -631,8 +644,8 @@ public class GameManager : MonoBehaviour {
         if (tutoIsOn)
         {
             //bossLock(true, true);
-            tutoFirstButton.gameObject.SetActive(true);
-            tutoFirstButton.GetComponent<Button>().interactable = false;
+            //tutoFirstButton.gameObject.SetActive(true);
+            //tutoFirstButton.GetComponent<Button>().interactable = false;
             profileOnClickIsOn = false;
         }
         else
@@ -664,5 +677,20 @@ public class GameManager : MonoBehaviour {
         
 	}
 
+    public void OnClickMenuSound()
+    {
+        if (!boss.GetComponent<Boss>().clickMenu.isActiveAndEnabled) boss.GetComponent<Boss>().clickMenu.gameObject.SetActive(true);
+        boss.GetComponent<Boss>().clickMenu.Play();
+    }
+
+    public void EndSound()
+    {
+        boss.GetComponent<Boss>().winFinal.Play();
+    }
+
+    public void OnClickDebug()
+    {
+        print("debug");
+    }
 
 }

@@ -123,7 +123,8 @@ public class IntroManager : MonoBehaviour {
 
         if (GetComponentInChildren<RawImage>().color.a <= 0.05f)
         {
-            GameManager.instance.tutoFirstButton.GetComponent<Button>().interactable = true;
+            //GameManager.instance.tutoFirstButton.GetComponent<Button>().interactable = true;
+            GameManager.instance.tutoFirstButton.SetActive(true);
             GameManager.instance.startSolarClock = true;
 
             waitScreen.Stop();

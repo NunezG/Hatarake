@@ -106,6 +106,8 @@ public class Employe : MonoBehaviour {
         {
             suicideLock = true;
             tMemory.SetItem<bool>("suicidaire", true);
+
+            GameManager.instance.GetComponent<GameManager>().victoryLocked = true;
             employeProfile.setJProfile(0, this.gameObject);
             GameManager.instance.cameraController.FollowEmployee(this.gameObject, 1000,0f);
 
@@ -344,12 +346,13 @@ public class Employe : MonoBehaviour {
 
 	// Use this for initialization
 	public void Suicide (){
+        GameManager.instance.GetComponent<GameManager>().victoryLocked = false;
         GameObject window = tMemory.GetItem<GameObject>("myTarget");
         //window.transform.Find("tache").gameObject.SetActive(true);
         //window.GetComponentInChildren<ParticleSystem>().Play();
         GameManager.instance.cameraController.FollowObjectAndShakeAtTheEnd(window, 2f,0.3f,0);
         GameManager.instance.GetComponent<CharacterManager>().sendBoxieToHell(this.gameObject);
-
+        GameManager.instance.GetComponent<GameManager>().nbSuicides++;
         window.GetComponent<Window>().playSuicide(data.isMale, this.GetComponent<Employe>().data.hairColor, this.GetComponent<Employe>().data.topColor);
         this.gameObject.SetActive(false);
         suicideLock = false;

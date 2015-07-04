@@ -30,7 +30,7 @@ public class Boss : MonoBehaviour {
     public AudioSource[] voicelessBossSounds;
     public AudioSource[] bubbleSound;
 
-    public AudioSource gongOfVictory;
+    public AudioSource gongOfVictory,clickMenu,winFinal;
 
     public float jaugeEngueulageMin = 0.9f; //se remplit quand on appuie sur le boss.
     public float jaugeEngueulageMax = 15.0f; //se remplit quand on appuie sur le boss.
@@ -52,8 +52,13 @@ public class Boss : MonoBehaviour {
     private RAIN.Navigation.BasicNavigator tNav;
     private RAIN.Motion.MecanimMotor tMotor;
 	// Use this for initialization
+
+
+    void Awake()
+    {
+        //clickMenu.playOnAwake = false;
+    }
 	void Start () {
-        
         moveLocked = hatarakeLocked = true;
         
 		AIRig aiRig = GetComponentInChildren<AIRig>();		
@@ -192,6 +197,11 @@ public class Boss : MonoBehaviour {
         tMemory.SetItem("target", target);
         GameManager.instance.employeeProfile.nullifyAllProfile();
 
+    }
+
+    public void UnmuteMic()
+    {
+        microphone.GetComponent<AudioSource>().mute = false;
     }
 
     public void faceTarget(Vector3 target)
