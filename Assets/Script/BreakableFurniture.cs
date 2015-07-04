@@ -61,7 +61,7 @@ public class BreakableFurniture : MonoBehaviour {
             shaking = false;
         }
     }
-    public void Hit()
+    virtual public void Hit()
     {
         GameManager.instance.boss.GetComponent<Boss>().action();
         damage++;
