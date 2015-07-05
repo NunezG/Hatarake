@@ -5551,7 +5551,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 163756, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 116076, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
       propertyPath: m_Name
@@ -8708,7 +8708,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 163756, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11463654, guid: 878ddc77cf27cf14b836dfc9fdc06496, type: 2}
       propertyPath: m_FontData.m_Font
